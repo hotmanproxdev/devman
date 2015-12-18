@@ -9,14 +9,14 @@ use App\Http\Controllers\Controller;
 
 class BaseServiceProviders extends Controller
 {
-    public function test()
+    public function env()
     {
         if(preg_match('@local@is',gethostname()))
         {
-            return $this->json(['env'=>'developer']);
+            return 'developer';
         }
 
-        return $this->json(['env'=>'production']);
+        return 'local';
     }
 
     public function json($data)
