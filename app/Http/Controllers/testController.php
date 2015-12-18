@@ -17,13 +17,6 @@ class testController extends Controller
     }
     public function index()
     {
-        if(preg_match('@local@is',gethostname()))
-        {
-            return 'developer';
-        }
-        else
-        {
-            return 'production';
-        }
+        return 'hello world';
     }
 }
