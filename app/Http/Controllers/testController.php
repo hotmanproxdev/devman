@@ -10,13 +10,15 @@ use App\Http\Controllers\Controller;
 class testController extends Controller
 {
     public $request;
+    public $app;
 
     public function __construct(Request $request)
     {
         $this->request=$request;
+        $this->app=app()->make("Base");
     }
     public function index()
     {
-        return 'hello world';
+        return $this->app->test();
     }
 }
