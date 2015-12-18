@@ -12,13 +12,15 @@ class testController extends Controller
     public $request;
     public $app;
 
-    public function index()
-    {
-        return $this->app->test();
-    }
     public function __construct(Request $request)
     {
         $this->request=$request;
         $this->app=app()->make("Base");
     }
+
+    public function index()
+    {
+        return $this->app->test();
+    }
+
 }
