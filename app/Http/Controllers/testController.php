@@ -11,6 +11,6 @@ class testController extends Controller
 {
     public function index()
     {
-        return 'test controller';
+        return gethostname();
     }
 }
