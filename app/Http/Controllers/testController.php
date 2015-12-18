@@ -9,8 +9,21 @@ use App\Http\Controllers\Controller;
 
 class testController extends Controller
 {
+    public $request;
+
+    public function __construct(Request $request)
+    {
+        $this->request=$request;
+    }
     public function index()
     {
-        dd(\App::environment());
+        if(preg_match('@local@is',gethostname()))
+        {
+            return 'developer';
+        }
+        else
+        {
+            return 'production';
+        }
     }
 }
