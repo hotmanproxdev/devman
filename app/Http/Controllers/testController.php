@@ -21,7 +21,7 @@ class testController extends Controller
 
     public function index()
     {
-        return DB::table("users")->paginate(15);
+        return "hello world";
     }
 
 }
