@@ -15,7 +15,9 @@ class Kernel extends ConsoleKernel
     protected $commands = [
 
         Commands\Inspire::class,
-    ];
+        Commands\Using::class,
+        Commands\pageSetCommand::class,
+ ];
 
     /**
      * Define the application's command schedule.
