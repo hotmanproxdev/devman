@@ -95,6 +95,7 @@ class UsingCommand extends Command
         if($this->argument("name")=="tooltip")
         {
             $dd['tooltip']='class="tooltips" data-placement="top" data-original-title="Change dashboard date range"';
+
             dd($dd);
         }
 
