@@ -11,7 +11,7 @@
 |
 */
 
-Route::group(['prefix' =>''.config("app.admin_dirname").'/','namespace'=>''.ucfirst(config("app.admin_dirname")).''], function () {
+Route::group(['prefix' =>''.strtolower(config("app.admin_dirname")).'/','namespace'=>''.config("app.admin_dirname").''], function () {
 
     Route::group(['namespace'=>'Login'], function ()
     {

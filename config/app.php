@@ -14,7 +14,7 @@ return [
     */
 
     'debug' => env('APP_DEBUG', true),
-    'admin_dirname'=>'mandev',
+    'admin_dirname'=>'Mandev',
 
     /*
     |--------------------------------------------------------------------------
