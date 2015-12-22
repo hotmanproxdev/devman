@@ -11,7 +11,7 @@ class UsingCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'using {name}';
+    protected $signature = 'using {name} ';
 
     /**
      * The console command description.
