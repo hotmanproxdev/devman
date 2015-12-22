@@ -16,6 +16,7 @@ class Kernel extends ConsoleKernel
 
         Commands\Inspire::class,
         Commands\Using::class,
+        Commands\pageSetCommand::class,
     ];
 
     /**
