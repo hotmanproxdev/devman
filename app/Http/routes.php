@@ -11,4 +11,4 @@
 |
 */
 
-Route::get("/test","mandev\\login\\loginController@index");
+Route::get("/test","Mandev\\Login\\loginController@index");
