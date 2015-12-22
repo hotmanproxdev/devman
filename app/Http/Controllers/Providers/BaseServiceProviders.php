@@ -28,4 +28,5 @@ class BaseServiceProviders extends Controller
     {
         return json_decode($data,true);
     }
+
 }
