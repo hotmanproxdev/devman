@@ -12,7 +12,7 @@ class loginController extends Controller
 {
        public $request;
        public $app;
-       public $data;
+       public $data=[];
        public $url_path='login';
 
        public function __construct (Request $request)
@@ -26,7 +26,6 @@ class loginController extends Controller
     public function index ()
     {
         //return view
-        return 'hello world';
-        //return view("".config("app.admin_dirname").".".$this->url_path.".main",$this->data);
+        return view("".config("app.admin_dirname").".".$this->url_path.".main",$this->data);
     }
 }
