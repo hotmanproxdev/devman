@@ -13,6 +13,10 @@
 
 Route::group(['prefix' =>''.config("app.admin_dirname").'/','namespace'=>''.config("app.admin_dirname").''], function () {
 
-   Route::get("test",function() { return 'test'; });
+    Route::group(['namespace'=>'login'], function ()
+    {
+        //home route (mainController)
+        Route::get("login", "loginController@index");
+    });
 
 });
