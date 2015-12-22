@@ -21,12 +21,13 @@ class loginController extends Controller
            $this->request=$request;
            //base service provider
            $this->app=app()->make("Base");
+           //base url assing
+           $this->data['baseUrl']=''.$this->request->getHttpHost().''.$this->request->getBaseUrl().'';
        }
 
     public function index ()
     {
         //return view
-        return $this->request->getHttpHost();
         return view("".config("app.admin_dirname").".".$this->url_path.".main",$this->data);
     }
 }
