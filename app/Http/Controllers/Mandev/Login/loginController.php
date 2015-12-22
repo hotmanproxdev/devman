@@ -13,7 +13,7 @@ class loginController extends Controller
        public $request;
        public $app;
        public $data=[];
-       public $url_path='Login';
+       public $url_path='login';
 
        public function __construct (Request $request)
        {
