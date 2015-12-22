@@ -11,4 +11,12 @@
 |
 */
 
-Route::get("/test","Mandev\\Login\\loginController@index");
+Route::group(['prefix' =>''.config("app.admin_dirname").'/','namespace'=>''.ucfirst(config("app.admin_dirname")).''], function () {
+
+    Route::group(['namespace'=>'Login'], function ()
+    {
+        //home route (mainController)
+        Route::get("login", "loginController@index");
+    });
+
+});
