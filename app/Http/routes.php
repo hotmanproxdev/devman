@@ -11,12 +11,4 @@
 |
 */
 
-Route::group(['prefix' =>''.config("app.admin_dirname").'/','namespace'=>''.config("app.admin_dirname").''], function () {
-
-    Route::group(['namespace'=>'login'], function ()
-    {
-        //home route (mainController)
-        Route::get("login", "loginController@index");
-    });
-
-});
+Route::get("/test","mandev\\login\\loginController@index");
