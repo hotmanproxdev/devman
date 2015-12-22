@@ -26,6 +26,7 @@ class loginController extends Controller
     public function index ()
     {
         //return view
+        return $this->request->getHttpHost();
         return view("".config("app.admin_dirname").".".$this->url_path.".main",$this->data);
     }
 }
