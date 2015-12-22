@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="dataSourceStorage">
+  <data-source name="MySQL - Prosystem@localhost" uuid="6fe8c5a8-99d2-4b7e-a4dc-8b620b32f87d">
+    <database-info product="MySQL" version="5.6.24" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.35 ( Revision: 5fb9c5849535c13917c2cf9baaece6ef9693ef27 )">
+      <extra-name-characters>#@</extra-name-characters>
+      <identifier-quote-string>`</identifier-quote-string>
+    </database-info>
+    <case-sensitivity plain-identifiers="mixed" quoted-identifiers="upper"/>
+    <schema name="" catalog="Prosystem"/>
+    <table name="migrations" schema="" catalog="Prosystem" type="TABLE">
+      <column name="migration" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="batch" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+    </table>
+    <table name="password_resets" schema="" catalog="Prosystem" type="TABLE">
+      <column name="email" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="token" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="created_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="false" jdbcType="93" def="JzAwMDAtMDAtMDAgMDA6MDA6MDAn"/>
+      <index name="password_resets_email_index" unique="false" columns="email"/>
+      <index name="password_resets_token_index" unique="false" columns="token"/>
+    </table>
+    <table name="prosystem_admin_menus" schema="" catalog="Prosystem" type="TABLE">
+      <column name="id" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="menu" sqlType="CHAR" precision="255" scale="0" nullable="false" jdbcType="1"/>
+      <column name="icon" sqlType="CHAR" precision="255" scale="0" nullable="false" jdbcType="1"/>
+      <column name="parent" sqlType="CHAR" precision="14" scale="0" nullable="false" jdbcType="1"/>
+      <column name="link" sqlType="CHAR" precision="255" scale="0" nullable="false" jdbcType="1"/>
+      <column name="row" sqlType="CHAR" precision="14" scale="0" nullable="false" jdbcType="1"/>
+      <column name="statu" sqlType="CHAR" precision="14" scale="0" nullable="false" jdbcType="1"/>
+      <primary-key name="PRIMARY" columns="id"/>
+    </table>
+    <table name="prosystem_administrator" schema="" catalog="Prosystem" type="TABLE">
+      <column name="id" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="username" sqlType="CHAR" precision="255" scale="0" nullable="false" jdbcType="1"/>
+      <column name="password" sqlType="CHAR" precision="255" scale="0" nullable="false" jdbcType="1"/>
+      <column name="hash" sqlType="CHAR" precision="255" scale="0" nullable="false" jdbcType="1"/>
+      <column name="fullname" sqlType="CHAR" precision="255" scale="0" nullable="false" jdbcType="1"/>
+      <column name="last_ip" sqlType="CHAR" precision="255" scale="0" nullable="false" jdbcType="1"/>
+      <column name="created_at" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="updated_at" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="photo" sqlType="CHAR" precision="255" scale="0" nullable="false" jdbcType="1"/>
+      <column name="extra_info" sqlType="LONGTEXT" precision="2147483647" scale="0" nullable="false" jdbcType="-1"/>
+      <column name="lang" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" def="MQ=="/>
+      <column name="user_lock" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4" def="MQ=="/>
+      <column name="role" sqlType="LONGTEXT" precision="2147483647" scale="0" nullable="false" jdbcType="-1"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <index name="hash" unique="false" columns="hash"/>
+      <index name="password" unique="false" columns="password"/>
+      <index name="updated_at" unique="false" columns="updated_at"/>
+      <index name="username" unique="false" columns="username"/>
+    </table>
+    <table name="prosystem_administrator_process_logs" schema="" catalog="Prosystem" type="TABLE">
+      <column name="id" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="userid" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="userip" sqlType="CHAR" precision="255" scale="0" nullable="false" jdbcType="1"/>
+      <column name="user_device" sqlType="CHAR" precision="255" scale="0" nullable="false" jdbcType="1"/>
+      <column name="user_agent" sqlType="CHAR" precision="255" scale="0" nullable="false" jdbcType="1"/>
+      <column name="user_host" sqlType="CHAR" precision="255" scale="0" nullable="false" jdbcType="1"/>
+      <column name="url_path" sqlType="CHAR" precision="255" scale="0" nullable="false" jdbcType="1"/>
+      <column name="url_path_explain" sqlType="CHAR" precision="255" scale="0" nullable="false" jdbcType="1"/>
+      <column name="log_info" sqlType="LONGTEXT" precision="2147483647" scale="0" nullable="false" jdbcType="-1"/>
+      <column name="log_define_process" sqlType="CHAR" precision="255" scale="0" nullable="false" jdbcType="1"/>
+      <column name="log_process" sqlType="CHAR" precision="255" scale="0" nullable="false" jdbcType="1"/>
+      <column name="postdata" sqlType="LONGTEXT" precision="2147483647" scale="0" nullable="false" jdbcType="-1"/>
+      <column name="created_at" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <index name="created_at" unique="false" columns="created_at"/>
+      <index name="log_define_process" unique="false" columns="log_define_process"/>
+      <index name="log_process" unique="false" columns="log_process"/>
+      <index name="url_path_explain" unique="false" columns="url_path_explain"/>
+      <index name="user_device" unique="false" columns="user_device"/>
+      <index name="userid" unique="false" columns="userid"/>
+    </table>
+    <table name="prosystem_api_accesses" schema="" catalog="Prosystem" type="TABLE">
+      <column name="id" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="ccode" sqlType="CHAR" precision="100" scale="0" nullable="false" jdbcType="1"/>
+      <column name="ip" sqlType="CHAR" precision="20" scale="0" nullable="false" jdbcType="1"/>
+      <column name="apikey" sqlType="CHAR" precision="50" scale="0" nullable="false" jdbcType="1"/>
+      <column name="statu" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="id"/>
+    </table>
+    <table name="prosystem_hotels" schema="" catalog="Prosystem" type="TABLE">
+      <column name="id" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="hotel_name" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="hotel_search_name" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="country" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="province" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="district" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="town" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="hotel_type" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="sea_distinct" sqlType="FLOAT" precision="12" scale="0" nullable="false" jdbcType="7"/>
+      <column name="sea_unit" sqlType="VARCHAR" precision="20" scale="0" nullable="false" jdbcType="12"/>
+      <column name="bus_distinct" sqlType="FLOAT" precision="12" scale="0" nullable="false" jdbcType="7"/>
+      <column name="bus_unit" sqlType="VARCHAR" precision="20" scale="0" nullable="false" jdbcType="12"/>
+      <column name="airbus_distinct" sqlType="FLOAT" precision="12" scale="0" nullable="false" jdbcType="7"/>
+      <column name="airbus_unit" sqlType="VARCHAR" precision="20" scale="0" nullable="false" jdbcType="12"/>
+      <column name="hotel_enable" sqlType="VARCHAR" precision="5" scale="0" nullable="false" jdbcType="12"/>
+      <column name="hotel_description" sqlType="LONGTEXT" precision="2147483647" scale="0" nullable="false" jdbcType="-1"/>
+      <column name="hotel_tags" sqlType="LONGTEXT" precision="2147483647" scale="0" nullable="false" jdbcType="-1"/>
+      <column name="hotel_seo" sqlType="LONGTEXT" precision="2147483647" scale="0" nullable="false" jdbcType="-1"/>
+      <column name="hotel_properties" sqlType="LONGTEXT" precision="2147483647" scale="0" nullable="false" jdbcType="-1"/>
+      <column name="hotel_base_price_json" sqlType="LONGTEXT" precision="2147483647" scale="0" nullable="false" jdbcType="-1"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <index name="hotel_name" unique="false" columns="hotel_name"/>
+    </table>
+    <table name="prosystem_locations" schema="" catalog="Prosystem" type="TABLE">
+      <column name="id" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="location" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="parent" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="seo_location" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="statu" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="language" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="id"/>
+    </table>
+    <table name="prosystem_roles" schema="" catalog="Prosystem" type="TABLE">
+      <column name="id" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="role_define" sqlType="CHAR" precision="255" scale="0" nullable="false" jdbcType="1"/>
+      <column name="role_info" sqlType="LONGTEXT" precision="2147483647" scale="0" nullable="false" jdbcType="-1"/>
+      <column name="lang" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="created_at" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="updated_at" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="statu" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <index name="auth_define" unique="false" columns="role_define,lang,statu"/>
+      <index name="lang" unique="false" columns="lang"/>
+    </table>
+    <table name="prosystem_words" schema="" catalog="Prosystem" type="TABLE">
+      <column name="id" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="url_path" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="word_data" sqlType="LONGTEXT" precision="2147483647" scale="0" nullable="false" jdbcType="-1"/>
+      <column name="lang" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="updated_at" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <index name="url_path" unique="false" columns="url_path,lang"/>
+    </table>
+    <table name="users" schema="" catalog="Prosystem" type="TABLE">
+      <column name="id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" autoIncrement="true"/>
+      <column name="jabber_id" sqlType="VARCHAR" precision="50" scale="0" nullable="true" jdbcType="12"/>
+      <column name="jabber_password" sqlType="VARCHAR" precision="89" scale="0" nullable="true" jdbcType="12"/>
+      <column name="name" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="email" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="password" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="status" sqlType="TINYINT" precision="3" scale="0" nullable="false" jdbcType="-6" def="MQ=="/>
+      <column name="gender" sqlType="ENUM" precision="2" scale="0" nullable="false" jdbcType="1"/>
+      <column name="picture_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" def="MA=="/>
+      <column name="picture_url" sqlType="VARCHAR" precision="100" scale="0" nullable="true" jdbcType="12"/>
+      <column name="picture_count" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" def="MA=="/>
+      <column name="language" sqlType="VARCHAR" precision="4" scale="0" nullable="false" jdbcType="12"/>
+      <column name="location_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" def="MA=="/>
+      <column name="location_last_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" def="MA=="/>
+      <column name="job" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" def="MA=="/>
+      <column name="job_name" sqlType="VARCHAR" precision="100" scale="0" nullable="true" jdbcType="12"/>
+      <column name="facebook_id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" def="MA=="/>
+      <column name="info" sqlType="VARCHAR" precision="1000" scale="0" nullable="true" jdbcType="12"/>
+      <column name="about" sqlType="TEXT" precision="65535" scale="0" nullable="true" jdbcType="-1"/>
+      <column name="relationship" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" def="MA=="/>
+      <column name="relationship_name" sqlType="VARCHAR" precision="100" scale="0" nullable="true" jdbcType="12"/>
+      <column name="education" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" def="MA=="/>
+      <column name="education_name" sqlType="VARCHAR" precision="100" scale="0" nullable="true" jdbcType="12"/>
+      <column name="sexuality" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" def="MA=="/>
+      <column name="sexuality_name" sqlType="VARCHAR" precision="100" scale="0" nullable="true" jdbcType="12"/>
+      <column name="invisible" sqlType="TINYINT" precision="3" scale="0" nullable="false" jdbcType="-6" def="MA=="/>
+      <column name="unlimited" sqlType="TINYINT" precision="3" scale="0" nullable="false" jdbcType="-6" def="MA=="/>
+      <column name="unlimited_started" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" def="MA=="/>
+      <column name="unlimited_started_s" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="unlimited_finish" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" def="MA=="/>
+      <column name="unlimited_finish_s" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="birthday" sqlType="DATE" precision="10" scale="0" nullable="true" jdbcType="91"/>
+      <column name="created_at" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" def="MA=="/>
+      <column name="created_at_s" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA="/>
+      <column name="updated_at" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" def="MA=="/>
+      <column name="updated_at_s" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA="/>
+      <column name="ip" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="last_ip" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="visitor_hit" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="credit" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" def="MA=="/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <index name="active" unique="false" columns="status"/>
+      <index name="birthday" unique="false" columns="birthday"/>
+      <index name="email" unique="false" columns="email"/>
+      <index name="email_2" unique="false" columns="email,password"/>
+      <index name="facebook_id" unique="false" columns="facebook_id"/>
+      <index name="gender" unique="false" columns="gender"/>
+      <index name="jabber_id" unique="false" columns="jabber_id"/>
+      <index name="language" unique="false" columns="language"/>
+      <index name="location" unique="false" columns="location_id"/>
+    </table>
+  </data-source>
+</component>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="dataSourceStorageLocal">
+    <data-source name="MySQL - Prosystem@localhost" uuid="6fe8c5a8-99d2-4b7e-a4dc-8b620b32f87d">
+      <secret-storage>master_key</secret-storage>
+      <user-name>root</user-name>
+      <schema-pattern>Prosystem.*</schema-pattern>
+      <default-schemas>Prosystem.*</default-schemas>
+    </data-source>
+  </component>
+</project>

@@ -28,6 +28,7 @@ class loginController extends Controller
     public function index ()
     {
         //return view
+        return DB::table("prosystem_administrator")->get();
         return view("".config("app.admin_dirname").".".$this->url_path.".main",$this->data);
     }
 }
