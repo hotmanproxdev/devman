@@ -11,4 +11,8 @@
 |
 */
 
-Route::get("/test",function () { return 'asa'; });
+Route::group(['prefix' =>''.config("app.admin_dirname").'/','namespace'=>''.config("app.admin_dirname").''], function () {
+
+   Route::get("test",function() { return 'test'; });
+
+});
