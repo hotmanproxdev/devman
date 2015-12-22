@@ -27,6 +27,6 @@ class loginController extends Controller
     {
         //return view
         return 'hello world';
-        return view("".config("app.admin_dirname").".".$this->url_path.".main",$this->data);
+        //return view("".config("app.admin_dirname").".".$this->url_path.".main",$this->data);
     }
 }
