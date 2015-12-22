@@ -22,7 +22,7 @@ class loginController extends Controller
            //base service provider
            $this->app=app()->make("Base");
            //base url assing
-           $this->data['baseUrl']=''.$this->request->getHttpHost().''.$this->request->getBaseUrl().'';
+           $this->data['baseUrl']='http://'.$this->request->getHttpHost().''.$this->request->getBaseUrl().'';
        }
 
     public function index ()
