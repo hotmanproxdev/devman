@@ -25,7 +25,7 @@ class adminSeeder extends Seeder
                 'extra_info'=>'',
                 'lang'=>'1',
                 'user_lock'=>'1',
-                'role'=>''
+                'role'=>'1'
             ]
         ]);
     }
