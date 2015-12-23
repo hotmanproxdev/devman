@@ -32,7 +32,7 @@
     <li class="divider">
     </li>
     <li>
-      <a href="{{config("app.admin_path")}}/lockScreen">
+      <a href="{{$baseUrl}}/{{strtolower(config("app.admin_dirname"))}}/lockscreen">
         <i class="icon-lock"></i> Lock Screen </a>
     </li>
     <li>

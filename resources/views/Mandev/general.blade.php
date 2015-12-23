@@ -77,7 +77,7 @@
   <div class="page-header-inner container">
     <!-- BEGIN LOGO -->
     <div class="page-logo">
-      <a href="{{config("app.admin_path")}}/home">
+      <a href="{{$baseUrl}}/{{strtolower(config("app.admin_dirname"))}}/home">
         <img src="{{$baseUrl}}/metron/theme/assets/admin/layout2/img/logo-default.png" alt="logo" class="logo-default"/>
       </a>
       <div class="menu-toggler sidebar-toggler">
