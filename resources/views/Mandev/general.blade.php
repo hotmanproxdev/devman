@@ -351,7 +351,6 @@
     dayOfWeekStart : 1,
     lang:'tr',
     format:'Y-m-d H:i',
-    value:'2015/04/15 05:03',
     step:10,
   });
   $('#datetimepicker').datetimepicker({value:'2015/04/15 05:03',step:10});
