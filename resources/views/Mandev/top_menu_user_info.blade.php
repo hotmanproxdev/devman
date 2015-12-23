@@ -36,7 +36,7 @@
         <i class="icon-lock"></i> Lock Screen </a>
     </li>
     <li>
-      <a href="{{config("app.admin_path")}}/logout">
+      <a href="{{$baseUrl}}/{{strtolower(config("app.admin_dirname"))}}/logout">
         <i class="icon-key"></i> Log Out </a>
     </li>
   </ul>

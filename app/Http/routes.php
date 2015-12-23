@@ -20,6 +20,9 @@ Route::group(['prefix' =>''.strtolower(config("app.admin_dirname")).'/','namespa
         Route::controllers(['login' => 'loginController']);
     });
 
+    //logout part
+    Route::get("logout", "logoutController@index");
+
 
     //home part
     Route::group(['namespace'=>'Home'], function ()

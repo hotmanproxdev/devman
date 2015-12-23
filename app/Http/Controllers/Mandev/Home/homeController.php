@@ -13,6 +13,7 @@ class homeController extends Controller
        public $request;
        public $app;
        public $data;
+       public $admin;
        public $url_path='home';
 
        public function __construct (Request $request)
@@ -27,6 +28,8 @@ class homeController extends Controller
            $this->data=$this->app->getLang(['url_path'=>$this->url_path,'lang'=>1]);
            //menu statu
            $this->data['menu']=$this->app->menuStatu('normal');
+           //admin data
+           $this->admin=$this->app->admin();
 
        }
 
