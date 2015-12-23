@@ -30,6 +30,8 @@ class homeController extends Controller
            $this->data['menu']=$this->app->menuStatu('normal');
            //admin data
            $this->admin=$this->app->admin();
+           //page role
+           $this->data['pageRole']=$this->app->pageRole(['pageRole'=>1,'admin'=>$this->admin->role]);
 
        }
 
