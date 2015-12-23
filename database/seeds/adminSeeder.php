@@ -13,7 +13,9 @@ class adminSeeder extends Seeder
     public function run()
     {
         DB::table('prosystem_administrator')->insert([
-            [   'username' => 'troyya',
+            [
+                'ccode'=>'devSde',
+                'username' => 'troyya',
                 'password' =>'7ada520f7fb0eb935a11f392511fe86e',
                 'ccode'=>'devSde',
                 'fullname' =>'Ali Gurbuz',
