@@ -20,6 +20,13 @@ Route::group(['prefix' =>''.strtolower(config("app.admin_dirname")).'/','namespa
         Route::controllers(['login' => 'loginController']);
     });
 
+    //login part
+    Route::group(['namespace'=>'Test'], function ()
+    {
+        //logout part
+        Route::get("test", "testController@index");
+    });
+
 
     //lockScreen part
     Route::group(['namespace'=>'LockScreen'], function ()

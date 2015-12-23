@@ -20,7 +20,7 @@
         </a>
       </li>
       <li>
-        <a href="{{config("app.admin_path")}}/test">
+        <a href="{{$baseUrl}}/{{strtolower(config("app.admin_dirname"))}}/test">
           <i class="glyphicon glyphicon-star"></i>
           <span class="title">Test Sayfası</span>
           <span class="arrow "></span>
