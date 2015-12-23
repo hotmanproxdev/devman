@@ -31,7 +31,7 @@ class wordSeeder extends Seeder
                 'lang'=> 1,
                 'updated_at'=>time()
             ],
-            [   'id'=>3,
+            [   'id'=>4,
                 'url_path'=>'home',
                 'word_data'=> '{"mainsearch":"Bir data aray\u0131n","dashboard":"Anasayfa - Genel \u0130statistikler","dashboard_info":"Sisteminizdeki genel istatistiklerin bulundu\u011fu b\u00f6l\u00fcmdesiniz..."}',
                 'lang'=> 1,
