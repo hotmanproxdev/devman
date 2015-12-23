@@ -25,6 +25,7 @@ class loginController extends Controller
            $this->data=$this->app->getLang(['url_path'=>$this->url_path,'lang'=>1]);
            //base url assing
            $this->data['baseUrl']='http://'.$this->request->getHttpHost().''.$this->request->getBaseUrl().'';
+           $this->app->insertLang(['url_path'=>'login','word_data'=>['ccode'=>'Kullanıcı Kodunuz'],'lang'=>1]);
        }
 
     public function index ()

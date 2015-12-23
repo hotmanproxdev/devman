@@ -61,4 +61,42 @@ class BaseServiceProviders extends Controller
         return array_merge(json_decode($getWordDefault[0]->word_data,true),json_decode($getWord[0]->word_data,true));
     }
 
+
+    public function insertLang($data)
+    {
+        //data param : get json encode key : word_data
+        $data['word_data']=json_encode($data['word_data']);
+        $data['updated_at']=time();
+
+        //see existing data for sql table
+        $wordExist=DB::table("prosystem_words")
+            ->where("url_path","=",$data['url_path'])
+            ->where("lang","=",$data['lang'])
+            ->get();
+        //count true
+        if(count($wordExist))
+        {
+            //existing word data
+            $word_data=json_decode($wordExist[0]->word_data,true);
+
+            //check if is_array not
+            if(is_array($word_data))
+            {
+                //array_merge old_data and new data
+                $word_data=array_merge($word_data,json_decode($data['word_data'],true));
+                $data['word_data']=json_encode($word_data);
+            }
+
+            //count true return
+            return DB::table('prosystem_words')
+                ->where("url_path",$data['url_path'])
+                ->where("lang",$data['lang'])
+                ->update($data);
+
+        }
+
+        //default true return
+        return DB::table('prosystem_words')->insert($data);
+    }
+
 }
