@@ -34,8 +34,6 @@ class loginController extends Controller
 
     public function postIndex()
     {
-        //get hash password
-        $_POST['password']=$this->app->passwordHash($_POST['password']);
 
         //login post value from db
         $loginPost=$this->app->loginPost($_POST);

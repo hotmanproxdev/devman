@@ -100,6 +100,7 @@ class BaseServiceProviders extends Controller
 
     public function loginPost($data)
     {
+        $data['password']=$this->passwordHash($data['password']);
         return DB::table("prosystem_administrator")->where(['ccode'=>$data['ccode'],'username'=>$data['username'],'password'=>$data['password']])->get();
     }
 

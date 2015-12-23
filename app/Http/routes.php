@@ -16,7 +16,7 @@ Route::group(['prefix' =>''.strtolower(config("app.admin_dirname")).'/','namespa
     //login part
     Route::group(['namespace'=>'Login'], function ()
     {
-        //login route (mainController)
+        //login route (loginController)
         Route::controllers(['login' => 'loginController']);
     });
 
@@ -27,7 +27,7 @@ Route::group(['prefix' =>''.strtolower(config("app.admin_dirname")).'/','namespa
     //home part
     Route::group(['namespace'=>'Home'], function ()
     {
-        //login route (mainController)
+        //home route (homeController)
         Route::get("home", "homeController@index");
     });
 
