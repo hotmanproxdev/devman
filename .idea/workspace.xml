@@ -88,7 +88,7 @@
         <entry file="file://$PROJECT_DIR$/resources/views/Mandev/login/main.blade.php">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.64342314" vertical-offset="704" max-vertical-offset="2175">
-              <caret line="74" column="116" selection-start-line="74" selection-start-column="116" selection-end-line="74" selection-end-column="116" />
+              <caret line="74" column="126" selection-start-line="74" selection-start-column="126" selection-end-line="74" selection-end-column="126" />
               <folding />
             </state>
           </provider>
@@ -850,7 +850,7 @@
     <entry file="file://$PROJECT_DIR$/resources/views/Mandev/login/main.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.64342314" vertical-offset="704" max-vertical-offset="2175">
-          <caret line="74" column="116" selection-start-line="74" selection-start-column="116" selection-end-line="74" selection-end-column="116" />
+          <caret line="74" column="126" selection-start-line="74" selection-start-column="126" selection-end-line="74" selection-end-column="126" />
           <folding />
         </state>
       </provider>
