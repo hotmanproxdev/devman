@@ -25,8 +25,6 @@ class homeController extends Controller
            $this->app=app()->make("Base");
            //page lang
            $this->data=$this->app->getLang(['url_path'=>$this->url_path,'lang'=>1]);
-           //base url assing
-           $this->data['baseUrl']='http://'.$this->request->getHttpHost().''.$this->request->getBaseUrl().'';
            //menu statu
            $this->data['menu']=$this->app->menuStatu('normal');
 

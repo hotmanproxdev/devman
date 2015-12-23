@@ -1,6 +1,4 @@
 
-
-
   @include("".config("app.admin_dirname").".prepared.stats")
   <div class="clearfix"></div>
   <div class="row">
