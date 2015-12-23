@@ -7,6 +7,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Contracts\Routing\ResponseFactory;
 use DB;
+use Session;
 
 class loginController extends Controller
 {
@@ -25,12 +26,44 @@ class loginController extends Controller
            $this->data=$this->app->getLang(['url_path'=>$this->url_path,'lang'=>1]);
            //base url assing
            $this->data['baseUrl']='http://'.$this->request->getHttpHost().''.$this->request->getBaseUrl().'';
-           $this->app->insertLang(['url_path'=>'login','word_data'=>['ccode'=>'Kullanıcı Kodunuz'],'lang'=>1]);
        }
 
-    public function index ()
+    public function getIndex ()
     {
         //return view
         return view("".config("app.admin_dirname").".".$this->url_path.".main",$this->data);
     }
+
+    public function postIndex()
+    {
+        //get hash password
+        $_POST['password']=$this->app->passwordHash($_POST['password']);
+
+        //login post value from db
+        $loginPost=$this->app->loginPost($_POST);
+
+        //true login post
+        if(count($loginPost))
+        {
+            //get session hash info
+            $sessionHash=$this->app->loginSessionHash($loginPost);
+
+            //update hash, if it is true
+            if($this->app->updateUserHash($sessionHash,$loginPost[0]->id))
+            {
+                Session::put("userHash",$sessionHash);
+                return redirect("".strtolower(config("app.admin_dirname"))."/home");
+            }
+
+            //give this warning when data hasn't been updated hash
+            return response()->json(['warning'=>config("app.login_warning")]);
+        }
+
+        //return false
+        return redirect("".strtolower(config("app.admin_dirname"))."/login");
+
+    }
+
+
+
 }

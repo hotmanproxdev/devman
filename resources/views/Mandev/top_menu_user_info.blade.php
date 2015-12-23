@@ -2,9 +2,9 @@
 <!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
 <li class="dropdown dropdown-user">
   <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
-    <img alt="" class="img-circle" src=""/>
+    <img alt="" class="img-circle" src="{{$baseUrl}}/{{config("app.admin_profil_path")}}/{{app()->make("Base")->admin()->photo}}"/>
 						<span class="username username-hide-on-mobile">
-              Ali Gürbüz
+              {{app()->make("Base")->admin()->fullname}}
             </span>
     <i class="fa fa-angle-down"></i>
   </a>
@@ -32,11 +32,11 @@
     <li class="divider">
     </li>
     <li>
-      <a href="{{$baseUrl}}/lockScreen">
+      <a href="{{config("app.admin_path")}}/lockScreen">
         <i class="icon-lock"></i> Lock Screen </a>
     </li>
     <li>
-      <a href="{{$baseUrl}}/logout">
+      <a href="{{config("app.admin_path")}}/logout">
         <i class="icon-key"></i> Log Out </a>
     </li>
   </ul>

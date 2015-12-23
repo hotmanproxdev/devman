@@ -17,7 +17,7 @@ Route::group(['prefix' =>''.strtolower(config("app.admin_dirname")).'/','namespa
     Route::group(['namespace'=>'Login'], function ()
     {
         //login route (mainController)
-        Route::get("login", "loginController@index");
+        Route::controllers(['login' => 'loginController']);
     });
 
 

@@ -15,6 +15,8 @@ return [
 
     'debug' => env('APP_DEBUG', true),
     'admin_dirname'=>'Mandev',
+    'login_warning'=>'please,try again later::@error: could not registered to datatabase',
+    'admin_profil_path'=>'upload/admin_profil_pictures',
 
     /*
     |--------------------------------------------------------------------------

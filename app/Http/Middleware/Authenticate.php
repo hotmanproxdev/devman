@@ -34,12 +34,21 @@ class Authenticate
      */
     public function handle($request, Closure $next)
     {
-        if ($this->auth->guest()) {
-            if ($request->ajax()) {
+        if(count(app()->make("Base")->pageProtector())==false)
+        {
+            if ($request->ajax())
+            {
                 return response('Unauthorized.', 401);
-            } else {
-                return redirect()->guest('auth/login');
             }
+            else
+            {
+                return redirect()->guest(''.strtolower(config("app.admin_dirname")).'/login');
+            }
+        }
+
+        if(app()->make("Base")->adminUpdate()==false)
+        {
+            return redirect()->guest(''.strtolower(config("app.admin_dirname")).'/login');
         }
 
         return $next($request);

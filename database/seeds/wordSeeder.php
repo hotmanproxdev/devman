@@ -15,7 +15,7 @@ class wordSeeder extends Seeder
         DB::table('prosystem_words')->insert([
             [   'id'=>1,
                 'url_path'=>'login',
-                'word_data'=> '{"login_password":"\u015eifreniz","loginTop":"Panel Giri\u015f Formu","login_warning":"Herhangi bir kullan\u0131c\u0131 ad\u0131 yada \u015fifre girmediniz"}',
+                'word_data'=> '{"ccode":"Kullan\u0131c\u0131 Kodunuz","login_password":"\u015eifreniz","loginTop":"Panel Giri\u015f Formu","login_warning":"Herhangi bir kullan\u0131c\u0131 ad\u0131 yada \u015fifre girmediniz"}',
                 'lang'=> 1,
                 'updated_at'=>time()
             ],

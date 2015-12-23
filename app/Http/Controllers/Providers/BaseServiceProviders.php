@@ -99,4 +99,87 @@ class BaseServiceProviders extends Controller
         return DB::table('prosystem_words')->insert($data);
     }
 
+
+    public function passwordHash($data)
+    {
+        //complexity password info
+        $password_info=''.$data.'___xcKlM34proX';
+
+        //return and hash password
+        return md5(sha1(base64_encode($password_info)));
+    }
+
+
+    public function loginSessionHash($data)
+    {
+        $sessionHash=''.$data[0]->id.'__'.$data[0]->password.'__'.$_SERVER['HTTP_USER_AGENT'].'__'.time().'__prpH';
+        return md5(sha1(base64_encode($sessionHash)));
+    }
+
+
+    public function loginPost($data)
+    {
+        return DB::table("prosystem_administrator")->where(['ccode'=>$data['ccode'],'username'=>$data['username'],'password'=>$data['password']])->get();
+    }
+
+
+    public function updateUserHash($hash,$id)
+    {
+        return DB::table("prosystem_administrator")->where(['id'=>$id])->update(['hash'=>$hash,'last_ip'=>$_SERVER['REMOTE_ADDR'],'user_lock'=>1]);
+    }
+
+    public function pageProtector($field=false)
+    {
+        if($field)
+        {
+            $query=DB::table("prosystem_administrator")->where(['hash'=>Session("userHash"),'last_ip'=>$_SERVER['REMOTE_ADDR'],'user_lock'=>1])->get();
+
+            $adminFields=['lang'=>config("app.default_lang"),'role'=>1,'id'=>1];
+            if(count($query))
+            {
+                foreach ($field as $fieldval)
+                {
+                    $adminFields[$fieldval] = $query[0]->$fieldval;
+                }
+
+                return (object)$adminFields;
+            }
+            return (object)$adminFields;
+        }
+
+        return DB::table("prosystem_administrator")->where(['hash'=>Session("userHash"),'last_ip'=>$_SERVER['REMOTE_ADDR'],'user_lock'=>1])->get();
+    }
+
+
+    public function adminLock()
+    {
+        return DB::table("prosystem_administrator")->where(['hash'=>Session("userHash"),'last_ip'=>$_SERVER['REMOTE_ADDR'],'user_lock'=>1])->update(['user_lock'=>0]);
+    }
+
+    public function get_admin_for_lockScreen()
+    {
+        return DB::table("prosystem_administrator")->where(['hash'=>Session("userHash"),'last_ip'=>$_SERVER['REMOTE_ADDR'],'user_lock'=>0])->get();
+    }
+
+    public function admin()
+    {
+        return $this->pageProtector(['id','username','fullname','photo','lang','role']);
+    }
+
+    public function adminUpdate()
+    {
+        return DB::table("prosystem_administrator")->where(['hash'=>Session("userHash"),'last_ip'=>$_SERVER['REMOTE_ADDR'],'user_lock'=>1])->update(['updated_at'=>time()]);
+    }
+
+    public function pageRole($data=array())
+    {
+        $adminRole=explode("-",$data['admin']);
+
+        if(in_array($data['pageRole'],$adminRole))
+        {
+            return true;
+        }
+        return false;
+    }
+
 }

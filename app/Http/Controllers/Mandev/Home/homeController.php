@@ -17,6 +17,8 @@ class homeController extends Controller
 
        public function __construct (Request $request)
        {
+           //page protector
+           $this->middleware('auth');
            //request class
            $this->request=$request;
            //base service provider
