@@ -1,4 +1,15 @@
 <!DOCTYPE html>
+<!-- 
+Template Name: Metronic - Responsive Admin Dashboard Template build with Twitter Bootstrap 3.3.4
+Version: 3.3.0
+Author: KeenThemes
+Website: http://www.keenthemes.com/
+Contact: support@keenthemes.com
+Follow: www.twitter.com/keenthemes
+Like: www.facebook.com/keenthemes
+Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-template/4021469?ref=keenthemes
+License: You must have a valid license purchased only from themeforest(the above link) in order to legally use the theme for your project.
+-->
 <!--[if IE 8]> <html lang="en" class="ie8 no-js"> <![endif]-->
 <!--[if IE 9]> <html lang="en" class="ie9 no-js"> <![endif]-->
 <!--[if !IE]><!-->
@@ -7,7 +18,7 @@
 <!-- BEGIN HEAD -->
 <head>
   <meta charset="utf-8"/>
-  <title>Prosystem | Login Options - Login Form 1</title>
+  <title>Metronic | Login Options - Login Form 1</title>
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
   <meta http-equiv="Content-type" content="text/html; charset=utf-8">
@@ -51,25 +62,25 @@
   <!-- BEGIN LOGIN FORM -->
   <form class="login-form" action="" method="post">
     <input type="hidden" name="_token" value="{{ csrf_token() }}">
-    <h3 class="form-title">Prosystem Login Girişi</h3>
+    <h3 class="form-title">{{$loginTop}}</h3>
     <div class="alert alert-danger display-hide">
       <button class="close" data-close="alert"></button>
 			<span>
-			Sisteme giriş yapın. </span>
+			{{$login_warning}}. </span>
     </div>
     <div class="form-group">
       <!--ie8, ie9 does not support html5 placeholder, so we just show field title for that-->
       <label class="control-label visible-ie8 visible-ie9">Username</label>
-      <input class="form-control form-control-solid placeholder-no-fix" type="text" autocomplete="off" placeholder="Kullanıcı adınızı giriniz" name="username"/>
+      <input class="form-control form-control-solid placeholder-no-fix" type="text" autocomplete="off" placeholder="{{$username}}" name="username"/>
     </div>
     <div class="form-group">
       <label class="control-label visible-ie8 visible-ie9">Password</label>
-      <input class="form-control form-control-solid placeholder-no-fix" type="password" autocomplete="off" placeholder="Şifrenizi Giriniz" name="password"/>
+      <input class="form-control form-control-solid placeholder-no-fix" type="password" autocomplete="off" placeholder="{{$login_password}}" name="password"/>
     </div>
     <div class="form-actions">
-      <button type="submit" class="btn btn-success uppercase">Giriş Yap</button>
+      <button type="submit" class="btn btn-success uppercase">{{$login}}</button>
       <label class="rememberme check">
-        <input type="checkbox" name="remember" value="1"/>Beni Hatırla </label>
+        <input type="checkbox" name="remember" value="1"/>{{$remember}} </label>
 
     </div>
 

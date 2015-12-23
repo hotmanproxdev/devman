@@ -13,6 +13,7 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call('adminSeeder');
+        $this->call('wordSeeder');
 
         $this->command->info('table seeded!');
     }
