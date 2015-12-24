@@ -18,7 +18,7 @@ return [
     'login_warning'=>'please,try again later::@error: could not registered to datatabase',
     'admin_profil_path'=>'upload/admin_profil_pictures',
     'log_status'=>false,
-    'mysql_slow_status'=>true,
+    'mysql_slow_status'=>false,
     'default_lang'=>1,
 
     /*

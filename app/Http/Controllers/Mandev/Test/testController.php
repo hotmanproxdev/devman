@@ -39,8 +39,6 @@ class testController extends Controller
     public function getIndex (\App\Http\Services\putLogController $log)
     {
         //return view
-        DB::table("prosystem_administrator")->get();
-        return DB::getQueryLog();
         return view("".config("app.admin_dirname").".".$this->url_path.".main",$this->data);
     }
 
