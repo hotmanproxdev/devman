@@ -29,7 +29,11 @@ class Authenticate
     {
         $this->auth = $auth;
         $this->log=$log;
-        $this->log->put(['access','request','request'],Input::all());
+        if(config("app.log_status"))
+        {
+            $this->log->put(['access','request','request'],Input::all());
+        }
+
     }
 
     /**

@@ -17,7 +17,7 @@ return [
     'admin_dirname'=>'Mandev',
     'login_warning'=>'please,try again later::@error: could not registered to datatabase',
     'admin_profil_path'=>'upload/admin_profil_pictures',
-    'log_access'=>1,
+    'log_status'=>false,
     'default_lang'=>1,
 
     /*
