@@ -31,9 +31,8 @@ class Authenticate
         $this->log=$log;
         if(config("app.log_status"))
         {
-            $this->log->put(['access','request','request'],Input::all());
+            $this->log->admin(['access','request','request'],Input::all());
         }
-
     }
 
     /**

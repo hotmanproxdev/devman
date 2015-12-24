@@ -4,9 +4,29 @@ namespace App\Http\Middleware;
 
 use Closure;
 use DB;
+use Illuminate\Http\Request;
 
-class AfterMiddleware implements Middleware
+class AfterMiddleware
 {
+    /**
+     * The Guard implementation.
+     *
+     * @var Guard
+     */
+    protected $request;
+
+    /**
+     * Create a new middleware instance.
+     *
+     * @param  Guard  $auth
+     * @return void
+     */
+    public function __construct(Request $request)
+    {
+        $this->request=$request;
+    }
+
+
     /**
      * Handle an incoming request.
      *
@@ -18,7 +38,7 @@ class AfterMiddleware implements Middleware
     {
         $response = $next($request);
 
-        DB::table("prosystem_administrator_process_logs")->insert(['id'=>1,'userid'=>1]);
+        //perform
 
         return $response;
     }

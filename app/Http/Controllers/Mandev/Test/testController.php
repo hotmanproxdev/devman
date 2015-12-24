@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Contracts\Routing\ResponseFactory;
 use DB;
 
+
 class testController extends Controller
 {
         public $request;
@@ -35,9 +36,11 @@ class testController extends Controller
 
         }
 
-    public function getIndex ()
+    public function getIndex (\App\Http\Services\putLogController $log)
     {
         //return view
+        DB::table("prosystem_administrator")->get();
+        return DB::getQueryLog();
         return view("".config("app.admin_dirname").".".$this->url_path.".main",$this->data);
     }
 

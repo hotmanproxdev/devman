@@ -27,7 +27,7 @@ class putLogController extends Controller
         //admin data
         $this->admin=$this->app->admin();
     }
-    public function put($log=array(),$post=array())
+    public function admin($log=array(),$post=array())
     {
         $data['userid']=$this->admin->id;
         $data['userip']=$this->request->ip();
@@ -43,4 +43,6 @@ class putLogController extends Controller
         return DB::table("prosystem_administrator_process_logs")->insert($data);
 
     }
+
+
 }
