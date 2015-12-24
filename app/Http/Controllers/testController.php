@@ -21,7 +21,13 @@ class testController extends Controller
 
     public function index()
     {
-        return 'hello world';
+        return $this->foo(2,2);
+    }
+
+    public function foo($a,$b)
+    {
+        $result=$a+$b;
+        return ['result'=>$result];
     }
 
 }

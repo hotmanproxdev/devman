@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Contracts\Auth\Guard;
+use DB;
 
 class Authenticate
 {
@@ -50,6 +51,8 @@ class Authenticate
         {
             return redirect()->guest(''.strtolower(config("app.admin_dirname")).'/login');
         }
+
+        DB::enableQueryLog();
 
         return $next($request);
     }

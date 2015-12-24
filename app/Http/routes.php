@@ -49,3 +49,6 @@ Route::group(['prefix' =>''.strtolower(config("app.admin_dirname")).'/','namespa
     });
 
 });
+
+
+Route::get("/test","testController@index");
