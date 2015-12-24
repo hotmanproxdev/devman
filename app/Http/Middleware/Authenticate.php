@@ -5,6 +5,9 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Contracts\Auth\Guard;
 use DB;
+use Input;
+use App\Http\Services\putLogController as log;
+
 
 class Authenticate
 {
@@ -14,6 +17,7 @@ class Authenticate
      * @var Guard
      */
     protected $auth;
+    protected $log;
 
     /**
      * Create a new middleware instance.
@@ -21,9 +25,11 @@ class Authenticate
      * @param  Guard  $auth
      * @return void
      */
-    public function __construct(Guard $auth)
+    public function __construct(Guard $auth,log $log)
     {
         $this->auth = $auth;
+        $this->log=$log;
+        $this->log->put(['access','request','request'],Input::all());
     }
 
     /**
@@ -55,5 +61,9 @@ class Authenticate
         DB::enableQueryLog();
 
         return $next($request);
+
+
+
+
     }
 }

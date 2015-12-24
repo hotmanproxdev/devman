@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Manager\Services;
+namespace App\Http\Services;
 
 use Illuminate\Http\Request;
 use App\Http\Requests;
@@ -31,14 +31,12 @@ class putLogController extends Controller
     {
         $data['userid']=$this->admin->id;
         $data['userip']=$this->request->ip();
-        $data['user_device']=($this->request->ajax()) ? 'Mobile' : 'Web';
+        $data['formprocess']=($this->request->ajax()) ? 'Ajax Request' : 'Normal Request';
         $data['user_agent']=$this->request->header('User-Agent');
         $data['user_host']=$this->request->header('HOST');
         $data['url_path']=$this->request->fullUrl();
         $data['url_path_explain']=$this->request->getPathInfo();
-        $data['log_info']=$log[0];
-        $data['log_define_process']=(array_key_exists(1,$log)) ? $log[1] : '';
-        $data['log_process']=(array_key_exists(2,$log)) ? $log[2] : '';
+        $data['log_process']=(count($post)) ? 2 : 1;
         $data['postdata']=json_encode($post);
         $data['created_at']=time();
 
