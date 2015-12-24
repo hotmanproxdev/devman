@@ -7,6 +7,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Contracts\Routing\ResponseFactory;
 use DB;
+use Time;
 
 class homeController extends Controller
 {
@@ -15,8 +16,9 @@ class homeController extends Controller
        public $data;
        public $admin;
        public $url_path='home';
+       public $time;
 
-       public function __construct (Request $request)
+       public function __construct (Request $request,Time $time)
        {
            //page protector
            $this->middleware('auth');
@@ -32,6 +34,8 @@ class homeController extends Controller
            $this->admin=$this->app->admin();
            //page role
            $this->data['pageRole']=$this->app->pageRole(['pageRole'=>1,'admin'=>$this->admin->role]);
+           //time def
+           $this->time=$time;
 
        }
 

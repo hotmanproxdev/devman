@@ -203,6 +203,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View'      => Illuminate\Support\Facades\View::class,
         'Json'      => Illuminate\Contracts\Routing\ResponseFactory::class,
+        'Time'      => App\Http\Services\timeDefController::class,
 
     ],
 
