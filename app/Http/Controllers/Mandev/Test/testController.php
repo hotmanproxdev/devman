@@ -38,7 +38,6 @@ class testController extends Controller
     public function getIndex ()
     {
         //return view
-        return DB::table("prosystem_administrator_process_logs")->get();
         return view("".config("app.admin_dirname").".".$this->url_path.".main",$this->data);
     }
 
