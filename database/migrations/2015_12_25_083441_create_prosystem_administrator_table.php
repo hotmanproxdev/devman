@@ -28,6 +28,7 @@ class CreateProsystemAdministratorTable extends Migration {
 			$table->integer('lang')->default(1);
 			$table->integer('user_lock')->nullable()->default(1);
 			$table->text('role');
+			$table->char('system_name')->nullable()->default('');
 		});
 	}
 
