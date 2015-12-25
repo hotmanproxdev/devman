@@ -26,7 +26,11 @@ class adminSeeder extends Seeder
                 'lang'=>'1',
                 'user_lock'=>'1',
                 'role'=>'1',
-                'system_name'=>'Developer'
+                'system_name'=>'Developer',
+                'phone_number'=>'0545 906 29 92',
+                'address'=>'',
+                'occupation'=>'Software Developer',
+                'website'=>''
             ]
         ]);
     }

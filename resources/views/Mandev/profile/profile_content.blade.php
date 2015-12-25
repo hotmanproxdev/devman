@@ -678,21 +678,21 @@
                 <ul class="ver-inline-menu tabbable margin-bottom-10">
                   <li class="active">
                     <a data-toggle="tab" href="#tab_1-1">
-                      <i class="fa fa-cog"></i> Personal info </a>
+                      <i class="fa fa-cog"></i>{{$personal_info}} </a>
 													<span class="after">
 													</span>
                   </li>
                   <li>
                     <a data-toggle="tab" href="#tab_2-2">
-                      <i class="fa fa-picture-o"></i> Change Avatar </a>
+                      <i class="fa fa-picture-o"></i>{{$profil_picture}} </a>
                   </li>
                   <li>
                     <a data-toggle="tab" href="#tab_3-3">
-                      <i class="fa fa-lock"></i> Change Password </a>
+                      <i class="fa fa-lock"></i>{{$change_password}} </a>
                   </li>
                   <li>
                     <a data-toggle="tab" href="#tab_4-4">
-                      <i class="fa fa-eye"></i> Privacity Settings </a>
+                      <i class="fa fa-eye"></i>{{$private_settings}} </a>
                   </li>
                 </ul>
               </div>
@@ -700,39 +700,44 @@
                 <div class="tab-content">
                   <div id="tab_1-1" class="tab-pane active">
                     <form role="form" action="#">
+
                       <div class="form-group">
-                        <label class="control-label">First Name</label>
-                        <input type="text" placeholder="John" class="form-control"/>
+                        <label class="control-label">{{$login_name}}</label>
+                        <input type="text" value="{{$admin->username}}" class="form-control"/>
+                      </div>
+
+                      <div class="form-group">
+                        <label class="control-label">{{$username}}</label>
+                        <input type="text" value="{{$admin->fullname}}" class="form-control"/>
                       </div>
                       <div class="form-group">
-                        <label class="control-label">Last Name</label>
-                        <input type="text" placeholder="Doe" class="form-control"/>
+                        <label class="control-label">{{$company_code}} <span style="color:#e20a16; font-weight:bold;">({{$notchange}})</span></label>
+                        <input type="text" disabled="disabled" value="{{$admin->ccode}}" class="form-control"/>
                       </div>
                       <div class="form-group">
-                        <label class="control-label">Mobile Number</label>
-                        <input type="text" placeholder="+1 646 580 DEMO (6284)" class="form-control"/>
+                        <label class="control-label">{{$mobilphone}}</label>
+                        <input type="text"  value="{{$admin->phone_number}}" class="form-control"/>
                       </div>
                       <div class="form-group">
-                        <label class="control-label">Interests</label>
-                        <input type="text" placeholder="Design, Web etc." class="form-control"/>
+                        <label class="control-label">{{$address}}</label>
+                        <input type="text" value="{{$admin->address}}" class="form-control"/>
                       </div>
                       <div class="form-group">
-                        <label class="control-label">Occupation</label>
-                        <input type="text" placeholder="Web Developer" class="form-control"/>
+                        <label class="control-label">{{$occupation}}</label>
+                        <input type="text" value="{{$admin->occupation}}" class="form-control"/>
                       </div>
                       <div class="form-group">
-                        <label class="control-label">About</label>
-                        <textarea class="form-control" rows="3" placeholder="We are KeenThemes!!!"></textarea>
+                        <label class="control-label">{{$about}}</label>
+                        <textarea class="form-control" rows="3">{{$admin->extra_info}}</textarea>
                       </div>
                       <div class="form-group">
-                        <label class="control-label">Website Url</label>
-                        <input type="text" placeholder="http://www.mywebsite.com" class="form-control"/>
+                        <label class="control-label">{{$website}}</label>
+                        <input type="text" value="{{$admin->website}}" class="form-control"/>
                       </div>
                       <div class="margiv-top-10">
                         <a href="javascript:;" class="btn green">
-                          Save Changes </a>
-                        <a href="javascript:;" class="btn default">
-                          Cancel </a>
+                          {{$save_changes}} </a>
+
                       </div>
                     </form>
                   </div>

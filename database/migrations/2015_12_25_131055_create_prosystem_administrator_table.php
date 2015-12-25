@@ -29,6 +29,10 @@ class CreateProsystemAdministratorTable extends Migration {
 			$table->integer('user_lock')->nullable()->default(1);
 			$table->text('role');
 			$table->char('system_name')->nullable()->default('');
+			$table->char('phone_number')->nullable();
+			$table->text('address')->nullable();
+			$table->char('occupation')->nullable()->default('');
+			$table->char('website')->nullable();
 		});
 	}
 
