@@ -36,6 +36,12 @@ class wordSeeder extends Seeder
                 'word_data'=> '{"mainsearch":"Bir data aray\u0131n","dashboard":"Anasayfa - Genel \u0130statistikler","dashboard_info":"Sisteminizdeki genel istatistiklerin bulundu\u011fu b\u00f6l\u00fcmdesiniz..."}',
                 'lang'=> 1,
                 'updated_at'=>time()
+            ],
+            [   'id'=>5,
+                'url_path'=>'profile',
+                'word_data'=> '{"dashboard":"Profil Sayfas\u0131","dashboard_info":"Profil Sayfas\u0131 (Ki\u015fisel Ayarlar Merkezi)"}',
+                'lang'=> 1,
+                'updated_at'=>time()
             ]
         ]);
     }

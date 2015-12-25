@@ -31,7 +31,7 @@
               <div class="col-md-3">
                 <ul class="list-unstyled profile-nav">
                   <li>
-                    <img src="{{$baseUrl}}/metron/theme/assets/admin/pages/media/profile/profile-img.png" class="img-responsive" alt=""/>
+                    <img src="{{$baseUrl}}/{{config("app.admin_profil_path")}}/{{app()->make("Base")->admin()->photo}}" class="img-responsive" alt=""/>
                     <a href="javascript:;" class="profile-edit">
                       edit </a>
                   </li>
@@ -58,7 +58,7 @@
               <div class="col-md-9">
                 <div class="row">
                   <div class="col-md-8 profile-info">
-                    <h1>John Doe</h1>
+                    <h1>{{app()->make("Base")->admin()->fullname}}</h1>
                     <p>
                       Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt laoreet dolore magna aliquam tincidunt erat volutpat laoreet dolore magna aliquam tincidunt erat volutpat.
                     </p>
