@@ -36,7 +36,7 @@ class testController extends Controller
 
         }
 
-    public function getIndex (\App\Http\Services\putLogController $log)
+    public function getIndex ()
     {
         //return view
         return view("".config("app.admin_dirname").".".$this->url_path.".main",$this->data);

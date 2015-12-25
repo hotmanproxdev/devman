@@ -21,7 +21,7 @@ class wordSeeder extends Seeder
             ],
             [   'id'=>2,
                 'url_path'=>'default',
-                'word_data'=> '{"username":"Kullan\u0131c\u0131 Ad\u0131","login":"Giri\u015f","remember":"Hat\u0131rla","not":"De\u011filim?","approximately":"Yakla\u015f\u0131k","second":"Saniye","before":"\u00d6nce","minute":"Dakika","hour":"Saat","day":"G\u00fcn","month":"Ay","year":"Y\u0131l","mainsearch":"Bir data aray\u0131n","dashboard":"","dashboard_info":""}',
+                'word_data'=> '{"lockscreen":"Kilit Ekran\u0131","username":"Kullan\u0131c\u0131 Ad\u0131","login":"Giri\u015f","remember":"Hat\u0131rla","not":"De\u011filim?","approximately":"Yakla\u015f\u0131k","second":"Saniye","before":"\u00d6nce","minute":"Dakika","hour":"Saat","day":"G\u00fcn","month":"Ay","year":"Y\u0131l","mainsearch":"Bir data aray\u0131n","dashboard":"","dashboard_info":""}',
                 'lang'=> 1,
                 'updated_at'=>time()
             ],

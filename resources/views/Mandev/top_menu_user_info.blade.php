@@ -33,11 +33,11 @@
     </li>
     <li>
       <a href="{{$baseUrl}}/{{strtolower(config("app.admin_dirname"))}}/lockscreen">
-        <i class="icon-lock"></i> Lock Screen </a>
+        <i class="icon-lock"></i>{{$lockscreen}} </a>
     </li>
     <li>
       <a href="{{$baseUrl}}/{{strtolower(config("app.admin_dirname"))}}/logout">
-        <i class="icon-key"></i> Log Out </a>
+        <i class="icon-key"></i>{{$logout}} </a>
     </li>
   </ul>
 </li>
