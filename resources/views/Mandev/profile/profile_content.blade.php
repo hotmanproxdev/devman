@@ -699,44 +699,46 @@
               <div class="col-md-9">
                 <div class="tab-content">
                   <div id="tab_1-1" class="tab-pane active">
-                    <form role="form" action="#">
-
+                    <form id="profile_update" method="post" role="form">
+                      <input type="hidden" name="_token" value="{{csrf_token()}}">
                       <div class="form-group">
                         <label class="control-label">{{$login_name}}</label>
-                        <input type="text" value="{{$admin->username}}" class="form-control"/>
+                        <input type="text" name="username" value="{{$admin->username}}" class="form-control"/>
                       </div>
 
                       <div class="form-group">
                         <label class="control-label">{{$username}}</label>
-                        <input type="text" value="{{$admin->fullname}}" class="form-control"/>
+                        <input type="text" name="fullname" value="{{$admin->fullname}}" class="form-control"/>
                       </div>
                       <div class="form-group">
                         <label class="control-label">{{$company_code}} <span style="color:#e20a16; font-weight:bold;">({{$notchange}})</span></label>
-                        <input type="text" disabled="disabled" value="{{$admin->ccode}}" class="form-control"/>
+                        <input type="text" name="ccode" disabled="disabled" value="{{$admin->ccode}}" class="form-control"/>
                       </div>
                       <div class="form-group">
                         <label class="control-label">{{$mobilphone}}</label>
-                        <input type="text"  value="{{$admin->phone_number}}" class="form-control"/>
+                        <input type="text"  name="phone_number" value="{{$admin->phone_number}}" class="form-control"/>
                       </div>
                       <div class="form-group">
                         <label class="control-label">{{$address}}</label>
-                        <input type="text" value="{{$admin->address}}" class="form-control"/>
+                        <input type="text" name="address" value="{{$admin->address}}" class="form-control"/>
                       </div>
                       <div class="form-group">
                         <label class="control-label">{{$occupation}}</label>
-                        <input type="text" value="{{$admin->occupation}}" class="form-control"/>
+                        <input type="text" name="occupation" value="{{$admin->occupation}}" class="form-control"/>
                       </div>
                       <div class="form-group">
                         <label class="control-label">{{$about}}</label>
-                        <textarea class="form-control" rows="3">{{$admin->extra_info}}</textarea>
+                        <textarea class="form-control" name="extra_info" rows="3">{{$admin->extra_info}}</textarea>
                       </div>
                       <div class="form-group">
                         <label class="control-label">{{$website}}</label>
-                        <input type="text" value="{{$admin->website}}" class="form-control"/>
+                        <input type="text" name="website" value="{{$admin->website}}" class="form-control"/>
                       </div>
                       <div class="margiv-top-10">
-                        <a href="javascript:;" class="btn green">
+                        <a class="submit btn green" ajax-form="profile_update" action="profile">
                           {{$save_changes}} </a>
+
+                        <span id="profile_updateresult"></span>
 
                       </div>
                     </form>

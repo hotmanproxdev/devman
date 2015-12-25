@@ -42,4 +42,9 @@ class profileController extends Controller
         //return view
         return view("".config("app.admin_dirname").".".$this->url_path.".main",$this->data);
     }
+
+    public function postIndex()
+    {
+        dd($_POST);
+    }
 }
