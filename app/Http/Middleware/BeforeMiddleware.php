@@ -43,6 +43,8 @@ class BeforeMiddleware
         $this->app->insertLang(["url_path"=>"default","word_data"=>['logout'=>'Çıkış Yap'],"lang"=>1]);
         $this->app->insertLang(["url_path"=>"default","word_data"=>['tasks'=>'Görevlerim'],"lang"=>1]);
         $this->app->insertLang(["url_path"=>"default","word_data"=>['Profile'=>'Profilim'],"lang"=>1]);
+        $this->app->insertLang(["url_path"=>"profile","word_data"=>['dashboard'=>'Profil Sayfası'],"lang"=>1]);
+        $this->app->insertLang(["url_path"=>"profile","word_data"=>['dashboard_info'=>'Profil Sayfası (Kişisel Ayarlar Merkezi)'],"lang"=>1]);
         return $next($request);
     }
 }
