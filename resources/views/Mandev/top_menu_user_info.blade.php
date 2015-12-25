@@ -10,10 +10,10 @@
   </a>
   <ul class="dropdown-menu dropdown-menu-default">
     <li>
-      <a href="extra_profile.html">
-        <i class="icon-user"></i> My Profile </a>
+      <a href="{{$baseUrl}}/{{strtolower(config("app.admin_dirname"))}}/profile">
+        <i class="icon-user"></i>{{$Profile}} </a>
     </li>
-    <li>
+    <!--<li>
       <a href="page_calendar.html">
         <i class="icon-calendar"></i> My Calendar </a>
     </li>
@@ -22,10 +22,10 @@
         <i class="icon-envelope-open"></i> My Inbox <span class="badge badge-danger">
 								3 </span>
       </a>
-    </li>
+    </li>-->
     <li>
-      <a href="page_todo.html">
-        <i class="icon-rocket"></i> My Tasks <span class="badge badge-success">
+      <a href="{{$baseUrl}}/{{strtolower(config("app.admin_dirname"))}}/todo">
+        <i class="icon-rocket"></i>{{$tasks}} <span class="badge badge-success">
 								7 </span>
       </a>
     </li>
