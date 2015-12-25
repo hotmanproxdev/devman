@@ -10,19 +10,19 @@
         <ul class="nav nav-tabs">
           <li class="active">
             <a href="#tab_1_1" data-toggle="tab">
-              Overview </a>
+              {{$profile_tab1}} </a>
           </li>
           <li>
             <a href="#tab_1_3" data-toggle="tab">
-              Account </a>
+              {{$profile_tab2}} </a>
           </li>
           <li>
             <a href="#tab_1_4" data-toggle="tab">
-              Projects </a>
+              {{$profile_tab3}} </a>
           </li>
           <li>
             <a href="#tab_1_6" data-toggle="tab">
-              Help </a>
+              {{$profile_tab4}}  </a>
           </li>
         </ul>
         <div class="tab-content">
@@ -32,27 +32,15 @@
                 <ul class="list-unstyled profile-nav">
                   <li>
                     <img src="{{$baseUrl}}/{{config("app.admin_profil_path")}}/{{app()->make("Base")->admin()->photo}}" class="img-responsive" alt=""/>
-                    <a href="javascript:;" class="profile-edit">
-                      edit </a>
+
                   </li>
                   <li>
                     <a href="javascript:;">
-                      Projects </a>
+                      <h1>
+                      {{app()->make("Base")->admin()->system_name}} </a>
+                      </h1>
                   </li>
-                  <li>
-                    <a href="javascript:;">
-                      Messages <span>
-													3 </span>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="javascript:;">
-                      Friends </a>
-                  </li>
-                  <li>
-                    <a href="javascript:;">
-                      Settings </a>
-                  </li>
+
                 </ul>
               </div>
               <div class="col-md-9">

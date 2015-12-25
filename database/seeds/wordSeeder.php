@@ -39,7 +39,7 @@ class wordSeeder extends Seeder
             ],
             [   'id'=>5,
                 'url_path'=>'profile',
-                'word_data'=> '{"dashboard":"Profil Sayfas\u0131","dashboard_info":"Profil Sayfas\u0131 (Ki\u015fisel Ayarlar Merkezi)"}',
+                'word_data'=> '{"profile_tab1":"Profil Bilgisi","dashboard":"Profil Sayfas\u0131","dashboard_info":"Profil Sayfas\u0131 (Ki\u015fisel Ayarlar Merkezi)"}',
                 'lang'=> 1,
                 'updated_at'=>time()
             ]
