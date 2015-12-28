@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Contracts\Routing\ResponseFactory;
 use App\Http\Controllers\Mandev\Profile\profileModel;
 use DB;
+use Input;
 
 class profileController extends Controller
 {
@@ -49,6 +50,6 @@ class profileController extends Controller
 
     public function postIndex()
     {
-        return $this->model->updateProfile($_POST);
+        return $this->model->updateProfile(Input::all());
     }
 }
