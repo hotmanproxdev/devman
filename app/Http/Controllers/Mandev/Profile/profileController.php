@@ -57,9 +57,9 @@ class profileController extends Controller
     public function postChangepassword()
     {
         //check new password and renew password
-        if(Input::get("new_password")==Input::get("renew_password"))
+        if(Input::get("password")==Input::get("repassword"))
         {
-            return $this->model->changePassword(Input::all());
+            return $this->model->changePassword(Input::get("password"));
         }
 
     }

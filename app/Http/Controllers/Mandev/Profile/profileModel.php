@@ -41,17 +41,17 @@ class profileModel extends Controller
         }
     }
 
-    public function changePassword($data)
+    public function changePassword($data=false)
     {
-        //password hash
-        $new_password=$this->app->passwordHash($data['new_password']);
-
-        //db table update true
-        if(DB::table("prosystem_administrator")->where("id","=",$this->admin->id)->update(['password'=>$new_password]));
+        if($data)
         {
-            //userhash forget
-            Session::forget('userHash');
-            return 'Başarılı';
+            //db table update true
+            if(DB::table("prosystem_administrator")->where("id","=",$this->admin->id)->update(['password'=>$this->app->passwordHash($data)]));
+            {
+                //userhash forget
+                Session::forget('userHash');
+                return 'Başarılı';
+            }
         }
 
     }
