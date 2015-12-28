@@ -64,6 +64,7 @@ class BeforeMiddleware
         $this->app->insertLang(["url_path"=>"profile","word_data"=>['website'=>'Website'],"lang"=>1]);
         $this->app->insertLang(["url_path"=>"default","word_data"=>['save_changes'=>'Değişiklikleri Kaydet'],"lang"=>1]);
         $this->app->insertLang(["url_path"=>"default","word_data"=>['validation_warning'=>'Bu alanı boş bırakamazsınız'],"lang"=>1]);
+        $this->app->insertLang(["url_path"=>"profile","word_data"=>['username_info'=>'Bu alan login girişi için kullanılacak kullanıcı ismidir.'],"lang"=>1]);
         return $next($request);
     }
 }
