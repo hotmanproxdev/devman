@@ -50,6 +50,7 @@ class profileController extends Controller
 
     public function postIndex()
     {
+        //update profil for session admin
         return $this->model->updateProfile(Input::all());
     }
 }
