@@ -510,6 +510,24 @@
 <script>
   $(document).on("click","a.submit",function(){
     var form=$(this).attr("ajax-form");
+
+    $(".form-control").each(function(index,value)
+    {
+
+      var required=$(this).attr("require");
+
+      if(required!==undefined)
+      {
+        var require_split=required.split("-");
+        var val=$(""+require_split[0]+"."+require_split[1]).val();
+        if(val.length==0)
+        {
+          $(""+require_split[0]+"."+require_split[1]).focus();
+          $("span."+require_split[1]).show();
+          exit();
+        }
+      }
+    });
     var action=$(this).attr("action");
     var loading='<img src="{{$baseUrl}}/reload.gif" width="32">';
     document.getElementById(""+form+"result").innerHTML=loading;

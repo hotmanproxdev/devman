@@ -703,12 +703,14 @@
                       <input type="hidden" name="_token" value="{{csrf_token()}}">
                       <div class="form-group">
                         <label class="control-label">{{$login_name}}</label>
-                        <input type="text" name="username" value="{{$admin->username}}" class="form-control"/>
+                        <input type="text" name="username" value="{{$admin->username}}" class="form-control username" require="input-username"/>
+                        <span class="validation username">* Bu alanı boş bırakamazsınız</span>
                       </div>
 
                       <div class="form-group">
                         <label class="control-label">{{$username}}</label>
-                        <input type="text" name="fullname" value="{{$admin->fullname}}" class="form-control"/>
+                        <input type="text" name="fullname" value="{{$admin->fullname}}" class="form-control fullname" require="input-fullname"/>
+                        <span class="validation fullname">* Bu alanı boş bırakamazsınız</span>
                       </div>
                       <div class="form-group">
                         <label class="control-label">{{$company_code}} <span style="color:#e20a16; font-weight:bold;">({{$notchange}})</span></label>
@@ -734,6 +736,7 @@
                         <label class="control-label">{{$website}}</label>
                         <input type="text" name="website" value="{{$admin->website}}" class="form-control"/>
                       </div>
+
                       <div class="margiv-top-10">
                         <a class="submit btn green" ajax-form="profile_update" action="profile">
                           {{$save_changes}} </a>
