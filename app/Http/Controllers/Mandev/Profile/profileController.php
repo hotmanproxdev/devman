@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Contracts\Routing\ResponseFactory;
+use App\Http\Controllers\Mandev\Profile\profileModel;
 use DB;
 
 class profileController extends Controller
@@ -15,8 +16,9 @@ class profileController extends Controller
         public $data;
         public $admin;
         public $url_path='profile';
+        public $model;
 
-        public function __construct (Request $request)
+        public function __construct (Request $request,profileModel $model)
         {
              //page protector
              $this->middleware('auth');
@@ -34,6 +36,8 @@ class profileController extends Controller
              $this->data['admin']=$this->admin;
              //page role
              $this->data['pageRole']=$this->app->pageRole(['pageRole'=>1,'admin'=>$this->admin->role]);
+             //get page model
+             $this->model=$model;
 
         }
 
@@ -45,6 +49,6 @@ class profileController extends Controller
 
     public function postIndex()
     {
-        dd($_POST);
+        return $this->model->updateProfile($_POST);
     }
 }

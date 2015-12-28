@@ -164,4 +164,18 @@ class BaseServiceProviders extends Controller
         return false;
     }
 
+
+    public function getvalidPostKey($data,$invalid=array())
+    {
+        foreach ($data as $valid_key=>$valid_val)
+        {
+            if(!in_array($valid_key,$invalid))
+            {
+                $validKeys[$valid_key]=$valid_val;
+            }
+        }
+
+        return $validKeys;
+    }
+
 }
