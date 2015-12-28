@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use DB;
+use Session;
 
 class profileModel extends Controller
 {
@@ -48,7 +49,9 @@ class profileModel extends Controller
         //db table update true
         if(DB::table("prosystem_administrator")->where("id","=",$this->admin->id)->update(['password'=>$new_password]));
         {
-            return 'basarili';
+            //userhash forget
+            Session::forget('userHash');
+            return 'Başarılı';
         }
 
     }
