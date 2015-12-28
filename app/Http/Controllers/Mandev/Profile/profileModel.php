@@ -40,5 +40,18 @@ class profileModel extends Controller
         }
     }
 
+    public function changePassword($data)
+    {
+        //password hash
+        $new_password=$this->app->passwordHash($data['new_password']);
+
+        //db table update true
+        if(DB::table("prosystem_administrator")->where("id","=",$this->admin->id)->update(['password'=>$new_password]));
+        {
+            return 'basarili';
+        }
+
+    }
+
 
 }

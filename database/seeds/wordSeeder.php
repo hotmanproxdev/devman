@@ -39,7 +39,7 @@ class wordSeeder extends Seeder
             ],
             [   'id'=>5,
                 'url_path'=>'profile',
-                'word_data'=> '{"mobilphone":"Telefon Numaras\u0131","login_name":"Kullan\u0131c\u0131 Ad\u0131","address":"\u0130kamet Adresi","occupation":"Meslek",
+                'word_data'=> '{"username_info":"Bu alan login giri\u015fi i\u00e7in kullan\u0131lacak kullan\u0131c\u0131 ismidir.","new_password":"Yeni \u015eifreniz.","renew_password":"Yeni \u015eifrenizi Tekrar Yaz\u0131n\u0131z.","mobilphone":"Telefon Numaras\u0131","login_name":"Kullan\u0131c\u0131 Ad\u0131","address":"\u0130kamet Adresi","occupation":"Meslek",
                 "about":"Hakk\u0131nda","website":"Website","notchange":"De\u011fi\u015ftirilemez","company_code":"Sistem Kodu","private_settings":"\u00d6zel Ayarlar","profil_picture":"Profil Resmi","change_password":"\u015eifre De\u011fi\u015ftir","personal_info":"Ki\u015fisel Bilgiler","profile_tab1":"Profil Bilgisi","dashboard":"Profil Sayfas\u0131","dashboard_info":"Profil Sayfas\u0131 (Ki\u015fisel Ayarlar Merkezi)"}',
                 'lang'=> 1,
                 'updated_at'=>time()

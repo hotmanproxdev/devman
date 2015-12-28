@@ -53,4 +53,14 @@ class profileController extends Controller
         //update profil for session admin
         return $this->model->updateProfile(Input::all());
     }
+
+    public function postChangepassword()
+    {
+        //check new password and renew password
+        if(Input::get("new_password")==Input::get("renew_password"))
+        {
+            return $this->model->changePassword(Input::all());
+        }
+
+    }
 }

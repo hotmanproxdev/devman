@@ -786,24 +786,25 @@
                     </form>
                   </div>
                   <div id="tab_3-3" class="tab-pane">
-                    <form action="#">
+                    <form id="changepassword" method="post">
+
+                      <input type="hidden" name="_token" value="{{csrf_token()}}">
+
                       <div class="form-group">
-                        <label class="control-label">Current Password</label>
-                        <input type="password" class="form-control"/>
+                        <label class="control-label">{{$new_password}}</label>
+                        <input type="password" name="new_password" class="form-control new_password" require="input-new_password"/>
+                        <span class="validation new_password"> * {{$validation_warning}}</span>
                       </div>
                       <div class="form-group">
-                        <label class="control-label">New Password</label>
-                        <input type="password" class="form-control"/>
-                      </div>
-                      <div class="form-group">
-                        <label class="control-label">Re-type New Password</label>
-                        <input type="password" class="form-control"/>
+                        <label class="control-label">{{$renew_password}}</label>
+                        <input type="password" name="renew_password" class="form-control renew_password" require="input-renew_password"/>
+                        <span class="validation renew_password"> * {{$validation_warning}}</span>
                       </div>
                       <div class="margin-top-10">
-                        <a href="javascript:;" class="btn green">
-                          Change Password </a>
-                        <a href="javascript:;" class="btn default">
-                          Cancel </a>
+                        <a class="submit btn green" ajax-form="changepassword" action="profile/changepassword">
+                          {{$save_changes}} </a>
+                        <span id="changepasswordresult"></span>
+
                       </div>
                     </form>
                   </div>
