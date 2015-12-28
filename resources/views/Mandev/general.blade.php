@@ -509,9 +509,10 @@
 
 <script>
   $(document).on("click","a.submit",function(){
+
     var form=$(this).attr("ajax-form");
 
-    $(".form-control").each(function(index,value)
+    $("form#"+form).find(".form-control").each(function(index,value)
     {
 
       var required=$(this).attr("require");
