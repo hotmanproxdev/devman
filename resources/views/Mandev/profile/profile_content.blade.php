@@ -704,13 +704,13 @@
                       <div class="form-group">
                         <label class="control-label">{{$login_name}}</label>
                         <input type="text" name="username" value="{{$admin->username}}" class="form-control username" require="input-username"/>
-                        <span class="validation username">* Bu alanı boş bırakamazsınız</span>
+                        <span class="validation username">* {{$validation_warning}}</span>
                       </div>
 
                       <div class="form-group">
                         <label class="control-label">{{$username}}</label>
                         <input type="text" name="fullname" value="{{$admin->fullname}}" class="form-control fullname" require="input-fullname"/>
-                        <span class="validation fullname">* Bu alanı boş bırakamazsınız</span>
+                        <span class="validation fullname">* {{$validation_warning}}</span>
                       </div>
                       <div class="form-group">
                         <label class="control-label">{{$company_code}} <span style="color:#e20a16; font-weight:bold;">({{$notchange}})</span></label>
