@@ -90,7 +90,7 @@ class profileController extends Controller
         //file upload
         $upload=$file->upload(['input'=>Input::all(),'name'=>'photo','path'=>'upload/admin_profil_pictures']);
 
-        //result true
+        //result true upload
         if($upload['result'])
         {
            if($this->model->uploadUpdate($upload['file']))
