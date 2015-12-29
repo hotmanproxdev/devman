@@ -55,7 +55,12 @@ class profileController extends Controller
     public function postIndex()
     {
         //update profil for session admin
-        return $this->model->updateProfile(Input::all());
+        if($this->model->updateProfile(Input::all()))
+        {
+            return $this->notification->send(['msg'=>$this->data['update_profile_msg_success'],'title'=>$this->data['update_profile_title_success']]);
+        }
+
+        return false;
     }
 
     public function postChangepassword()
@@ -65,18 +70,14 @@ class profileController extends Controller
         {
             if($this->model->changePassword(Input::get("password")))
             {
-                return $this->notification->send(['msg'=>$this->data['change_password_msg_success'],
-                                                  'title'=>$this->data['change_password_title_success']]);
+                return $this->notification->send(['msg'=>$this->data['change_password_msg_success'],'title'=>$this->data['change_password_title_success']]);
             }
 
             return false;
         }
 
         //not same for password warning
-        return $this->notification->send(['msg'=>$this->data['change_password_not_same_warning_msg'],
-                                         'title'=>$this->data['change_password_not_same_warning_title'],
-                                         'position'=>'top-right',
-                                         'function'=>'warning']);
+        return $this->notification->send(['msg'=>$this->data['change_password_not_same_warning_msg'],'title'=>$this->data['change_password_not_same_warning_title'],'position'=>'top-right', 'function'=>'warning']);
 
     }
 

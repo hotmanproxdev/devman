@@ -75,6 +75,9 @@ class BeforeMiddleware
         $this->app->insertLang(["url_path"=>"profile","word_data"=>['change_password_title_success'=>'Şifre Değişikliği'],"lang"=>1]);
         $this->app->insertLang(["url_path"=>"profile","word_data"=>['change_password_not_same_warning_msg'=>'Girilen Şifreler Uyumlu Görünmüyor.Lütfen Aynı Şifre Yazınız'],"lang"=>1]);
         $this->app->insertLang(["url_path"=>"profile","word_data"=>['change_password_not_same_warning_title'=>'Şifre Hatası'],"lang"=>1]);
+        $this->app->insertLang(["url_path"=>"profile","word_data"=>['update_profile_msg_success'=>'Profil bilgilerinizi başarı ile değiştirdiniz.'],"lang"=>1]);
+        $this->app->insertLang(["url_path"=>"profile","word_data"=>['update_profile_title_success'=>'Profil Bilgi Değişikliği'],"lang"=>1]);
+
         return $next($request);
     }
 }
