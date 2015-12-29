@@ -50,8 +50,10 @@ class profileModel extends Controller
             {
                 //userhash forget
                 Session::forget('userHash');
-                return 'Başarılı';
+                return true;
             }
+
+            return false;
         }
 
     }

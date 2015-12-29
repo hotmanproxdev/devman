@@ -9,6 +9,7 @@ use Illuminate\Contracts\Routing\ResponseFactory;
 use App\Http\Controllers\Mandev\Profile\profileModel;
 use DB;
 use Input;
+use Notification;
 
 class profileController extends Controller
 {
@@ -18,8 +19,9 @@ class profileController extends Controller
         public $admin;
         public $url_path='profile';
         public $model;
+        public $notification;
 
-        public function __construct (Request $request,profileModel $model)
+        public function __construct (Request $request,profileModel $model,Notification $notification)
         {
              //page protector
              $this->middleware('auth');
@@ -39,6 +41,8 @@ class profileController extends Controller
              $this->data['pageRole']=$this->app->pageRole(['pageRole'=>1,'admin'=>$this->admin->role]);
              //get page model
              $this->model=$model;
+             //notification
+             $this->notification=$notification;
 
         }
 
@@ -59,8 +63,17 @@ class profileController extends Controller
         //check new password and renew password
         if(Input::get("password")==Input::get("repassword"))
         {
-            return $this->model->changePassword(Input::get("password"));
+            if($this->model->changePassword(Input::get("password")))
+            {
+                return $this->notification->send(['msg'=>$this->data['change_password_msg_success'],'title'=>$this->data['change_password_title_success']]);
+            }
+
+            return false;
         }
+
+        //not same for password warning
+        return $this->notification->send(['msg'=>$this->data['change_password_not_same_warning_msg'],
+                                         'title'=>$this->data['change_password_not_same_warning_title'],'position'=>'top-right','function'=>'warning']);
 
     }
 

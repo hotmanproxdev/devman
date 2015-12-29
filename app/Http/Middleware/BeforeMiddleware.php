@@ -71,6 +71,10 @@ class BeforeMiddleware
         $this->app->insertLang(["url_path"=>"profile","word_data"=>['pick_picture'=>'Bir resim seçin.'],"lang"=>1]);
         $this->app->insertLang(["url_path"=>"default","word_data"=>['warning'=>'Uyarı.'],"lang"=>1]);
         $this->app->insertLang(["url_path"=>"profile","word_data"=>['warning_profil_picture_size'=>'Lütfen büyük resimler yüklemeye özen gösteriniz.'],"lang"=>1]);
+        $this->app->insertLang(["url_path"=>"profile","word_data"=>['change_password_msg_success'=>'Şifreniz Başarı İle Değiştirildi'],"lang"=>1]);
+        $this->app->insertLang(["url_path"=>"profile","word_data"=>['change_password_title_success'=>'Şifre Değişikliği'],"lang"=>1]);
+        $this->app->insertLang(["url_path"=>"profile","word_data"=>['change_password_not_same_warning_msg'=>'Girilen Şifreler Uyumlu Görünmüyor.Lütfen Aynı Şifre Yazınız'],"lang"=>1]);
+        $this->app->insertLang(["url_path"=>"profile","word_data"=>['change_password_not_same_warning_title'=>'Şifre Hatası'],"lang"=>1]);
         return $next($request);
     }
 }

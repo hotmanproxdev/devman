@@ -53,6 +53,10 @@
   <link href="{{$baseUrl}}/metron/theme/assets/admin/layout2/css/custom.css" rel="stylesheet" type="text/css"/>
 
   <link rel="stylesheet" type="text/css" href="{{$baseUrl}}/datetimep/jquery.datetimepicker.css"/>
+
+
+  <link rel="stylesheet" type="text/css" href="{{$baseUrl}}/metron/theme/assets/global/plugins/bootstrap-toastr/toastr.min.css"/>
+
   <!-- END THEME STYLES -->
   <link rel="shortcut icon" href="favicon.ico"/>
 </head>
@@ -331,6 +335,9 @@
 <!-- BEGIN PAGE LEVEL PLUGINS -->
 <script src="{{$baseUrl}}/metron/theme/assets/global/plugins/bootstrap-modal/js/bootstrap-modalmanager.js" type="text/javascript"></script>
 <script src="{{$baseUrl}}/metron/theme/assets/global/plugins/bootstrap-modal/js/bootstrap-modal.js" type="text/javascript"></script>
+
+<script src="{{$baseUrl}}/metron/theme/assets/global/plugins/bootstrap-toastr/toastr.min.js"></script>
+
 <!-- END PAGE LEVEL PLUGINS -->
 <script>
 
@@ -680,6 +687,10 @@
 
   dbchart.initCharts();
 </script>
+
+
+
+
 
 
 </body>
