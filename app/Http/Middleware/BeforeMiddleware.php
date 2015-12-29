@@ -67,6 +67,10 @@ class BeforeMiddleware
         $this->app->insertLang(["url_path"=>"profile","word_data"=>['username_info'=>'Bu alan login girişi için kullanılacak kullanıcı ismidir.'],"lang"=>1]);
         $this->app->insertLang(["url_path"=>"profile","word_data"=>['new_password'=>'Yeni Şifreniz.'],"lang"=>1]);
         $this->app->insertLang(["url_path"=>"profile","word_data"=>['renew_password'=>'Yeni Şifrenizi Tekrar Yazınız.'],"lang"=>1]);
+        $this->app->insertLang(["url_path"=>"profile","word_data"=>['profil_field_top_info'=>'Bu alanda profil fotonuzu görebilir ve yenisini ekleyebilirsiniz.Profil fotonuz sistemdeki tek fotonuzdur'],"lang"=>1]);
+        $this->app->insertLang(["url_path"=>"profile","word_data"=>['pick_picture'=>'Bir resim seçin.'],"lang"=>1]);
+        $this->app->insertLang(["url_path"=>"default","word_data"=>['warning'=>'Uyarı.'],"lang"=>1]);
+        $this->app->insertLang(["url_path"=>"profile","word_data"=>['warning_profil_picture_size'=>'Lütfen büyük resimler yüklemeye özen gösteriniz.'],"lang"=>1]);
         return $next($request);
     }
 }

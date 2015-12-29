@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Manager\Services;
+namespace App\Http\Services;
 
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use DB;
 
 class fileUploadController extends Controller
 {
@@ -26,7 +27,11 @@ class fileUploadController extends Controller
 
         // IF UPLOAD IS SUCCESSFUL SEND SUCCESS MESSAGE OTHERWISE SEND ERROR MESSAGE
         if ($upload_success) {
-            return 'basarili';
+
+            return ['result'=>true,'file'=>$fileName];
         }
+
+        return ['result'=>false];
     }
+
 }

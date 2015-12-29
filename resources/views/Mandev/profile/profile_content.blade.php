@@ -748,41 +748,42 @@
                   </div>
                   <div id="tab_2-2" class="tab-pane">
                     <p>
-                      Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod.
+                      {{$profil_field_top_info}}
                     </p>
-                    <form action="#" role="form">
+                    <form id="profilephoto" method="post" role="form" enctype="multipart/form-data">
+                      <input type="hidden" name="_token" value="{{csrf_token()}}">
                       <div class="form-group">
                         <div class="fileinput fileinput-new" data-provides="fileinput">
                           <div class="fileinput-new thumbnail" style="width: 200px; height: 150px;">
-                            <img src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&amp;text=no+image" alt=""/>
+                            <img src="{{$baseUrl}}/{{config("app.admin_profil_path")}}/{{$admin->photo}}" alt=""/>
                           </div>
                           <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;">
                           </div>
                           <div>
 																	<span class="btn default btn-file">
 																	<span class="fileinput-new">
-																	Select image </span>
-																	<span class="fileinput-exists">
-																	Change </span>
-																	<input type="file" name="...">
+																	{{$pick_picture}} </span>
+
+																	<input type="file" name="photo" class="form-control photo" require="input-photo">
+                                    <span class="validation photo">{{$validation_warning}}</span>
 																	</span>
-                            <a href="javascript:;" class="btn default fileinput-exists" data-dismiss="fileinput">
-                              Remove </a>
+
                           </div>
                         </div>
                         <div class="clearfix margin-top-10">
 																<span class="label label-danger">
-																NOTE! </span>
+																{{$warning}}! </span>
 																<span>
-																Attached image thumbnail is supported in Latest Firefox, Chrome, Opera, Safari and Internet Explorer 10 only </span>
+																{{$warning_profil_picture_size}} </span>
                         </div>
                       </div>
                       <div class="margin-top-10">
-                        <a href="javascript:;" class="btn green">
-                          Submit </a>
-                        <a href="javascript:;" class="btn default">
-                          Cancel </a>
+                        <a class="submit btn green" ajax-form="profilephoto" action="profile/photoupload">
+                          {{$save_changes}} </a>
+
                       </div>
+
+                      <span id="profilephotoresult"></span>
                     </form>
                   </div>
                   <div id="tab_3-3" class="tab-pane">

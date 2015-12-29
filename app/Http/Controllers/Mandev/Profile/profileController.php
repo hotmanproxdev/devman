@@ -63,4 +63,24 @@ class profileController extends Controller
         }
 
     }
+
+
+    public function postPhotoupload(\FileUpload $file)
+    {
+        //file upload
+        $upload=$file->upload(['input'=>Input::all(),'name'=>'photo','path'=>'upload/admin_profil_pictures']);
+
+        //result true
+        if($upload['result'])
+        {
+            if(DB::table("prosystem_administrator")->where("id","=",$this->admin->id)->update(['photo'=>$upload['file']]))
+            {
+                return 'basarili';
+            }
+
+            return 'basarisiz';
+        }
+
+        return 'dosya yuklenmedi';
+    }
 }

@@ -205,6 +205,7 @@ return [
         'View'      => Illuminate\Support\Facades\View::class,
         'Json'      => Illuminate\Contracts\Routing\ResponseFactory::class,
         'Time'      => App\Http\Services\timeDefController::class,
+        'FileUpload' =>App\Http\Services\fileUploadController::class,
 
     ],
 
