@@ -57,9 +57,11 @@ class profileController extends Controller
         //update profil for session admin
         if($this->model->updateProfile(Input::all()))
         {
+            //update profil notification
             return $this->notification->send(['msg'=>$this->data['update_profile_msg_success'],'title'=>$this->data['update_profile_title_success']]);
         }
 
+        //update profil false notification
         return $this->notification->send(['msg'=>$this->data['update_profile_msg_warning'],'title'=>$this->data['update_profile_title_warning'],'position'=>'top-right', 'function'=>'warning']);
     }
 
@@ -70,6 +72,7 @@ class profileController extends Controller
         {
             if($this->model->changePassword(Input::get("password")))
             {
+                //change password notification
                 return $this->notification->send(['msg'=>$this->data['change_password_msg_success'],'title'=>$this->data['change_password_title_success']]);
             }
 
