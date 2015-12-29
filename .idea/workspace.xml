@@ -51,8 +51,8 @@
       <file leaf-file-name="profileController.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Mandev/Profile/profileController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.29022083" vertical-offset="1001" max-vertical-offset="1680">
-              <caret line="79" column="189" selection-start-line="79" selection-start-column="189" selection-end-line="79" selection-end-column="189" />
+            <state vertical-scroll-proportion="0.43217665" vertical-offset="656" max-vertical-offset="1680">
+              <caret line="62" column="190" selection-start-line="62" selection-start-column="190" selection-end-line="62" selection-end-column="190" />
               <folding>
                 <element signature="e#55#83#0#PHP" expanded="true" />
               </folding>
@@ -119,8 +119,8 @@
       <file leaf-file-name="BeforeMiddleware.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/Middleware/BeforeMiddleware.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-24.541666" vertical-offset="626" max-vertical-offset="1305">
-              <caret line="83" column="0" selection-start-line="83" selection-start-column="0" selection-end-line="83" selection-end-column="0" />
+            <state vertical-scroll-proportion="-22.666666" vertical-offset="626" max-vertical-offset="1335">
+              <caret line="80" column="97" selection-start-line="80" selection-start-column="97" selection-end-line="80" selection-end-column="97" />
               <folding />
             </state>
           </provider>
@@ -908,16 +908,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Middleware/BeforeMiddleware.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-24.541666" vertical-offset="626" max-vertical-offset="1305">
-          <caret line="83" column="0" selection-start-line="83" selection-start-column="0" selection-end-line="83" selection-end-column="0" />
+        <state vertical-scroll-proportion="-22.666666" vertical-offset="626" max-vertical-offset="1335">
+          <caret line="80" column="97" selection-start-line="80" selection-start-column="97" selection-end-line="80" selection-end-column="97" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Mandev/Profile/profileController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.29022083" vertical-offset="1001" max-vertical-offset="1680">
-          <caret line="79" column="189" selection-start-line="79" selection-start-column="189" selection-end-line="79" selection-end-column="189" />
+        <state vertical-scroll-proportion="0.43217665" vertical-offset="656" max-vertical-offset="1680">
+          <caret line="62" column="190" selection-start-line="62" selection-start-column="190" selection-end-line="62" selection-end-column="190" />
           <folding>
             <element signature="e#55#83#0#PHP" expanded="true" />
           </folding>

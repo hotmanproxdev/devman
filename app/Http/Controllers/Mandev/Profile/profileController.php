@@ -60,7 +60,7 @@ class profileController extends Controller
             return $this->notification->send(['msg'=>$this->data['update_profile_msg_success'],'title'=>$this->data['update_profile_title_success']]);
         }
 
-        return false;
+        return $this->notification->send(['msg'=>$this->data['update_profile_msg_warning'],'title'=>$this->data['update_profile_title_warning'],'position'=>'top-right', 'function'=>'warning']);
     }
 
     public function postChangepassword()
