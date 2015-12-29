@@ -73,14 +73,17 @@ class profileController extends Controller
         //result true
         if($upload['result'])
         {
-            if(DB::table("prosystem_administrator")->where("id","=",$this->admin->id)->update(['photo'=>$upload['file']]))
-            {
-                return 'basarili';
-            }
+           if($this->model->uploadUpdate($upload['file']))
+           {
+               //true
+               return 'basarili';
+           }
 
+            //false
             return 'basarisiz';
         }
 
+        //file false
         return 'dosya yuklenmedi';
     }
 }

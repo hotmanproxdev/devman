@@ -57,4 +57,10 @@ class profileModel extends Controller
     }
 
 
+    public function uploadUpdate($file)
+    {
+        return DB::table("prosystem_administrator")->where("id","=",$this->admin->id)->update(['photo'=>$file]);
+    }
+
+
 }
