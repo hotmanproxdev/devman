@@ -48,10 +48,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="profileController.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="profileController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Mandev/Profile/profileController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.71608835" vertical-offset="656" max-vertical-offset="1725">
+            <state vertical-scroll-proportion="-2.0416667" vertical-offset="1061" max-vertical-offset="1725">
               <caret line="74" column="46" selection-start-line="74" selection-start-column="46" selection-end-line="74" selection-end-column="46" />
               <folding>
                 <element signature="e#55#83#0#PHP" expanded="true" />
@@ -126,11 +126,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="wordSeeder.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="wordSeeder.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/database/seeds/wordSeeder.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-18.75" vertical-offset="0" max-vertical-offset="840">
-              <caret line="31" column="36" selection-start-line="31" selection-start-column="36" selection-end-line="31" selection-end-column="36" />
+            <state vertical-scroll-proportion="0.6451104" vertical-offset="206" max-vertical-offset="930">
+              <caret line="42" column="16" selection-start-line="42" selection-start-column="16" selection-end-line="42" selection-end-column="16" />
               <folding />
             </state>
           </provider>
@@ -193,10 +193,10 @@
         <option value="$PROJECT_DIR$/resources/views/Mandev/profile/profile_content.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/Mandev/notification.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Services/notificationController.php" />
-        <option value="$PROJECT_DIR$/database/seeds/wordSeeder.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Mandev/Profile/profileModel.php" />
         <option value="$PROJECT_DIR$/app/Http/Middleware/BeforeMiddleware.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Mandev/Profile/profileController.php" />
+        <option value="$PROJECT_DIR$/database/seeds/wordSeeder.php" />
       </list>
     </option>
   </component>
@@ -880,14 +880,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/database/seeds/wordSeeder.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-18.75" vertical-offset="0" max-vertical-offset="840">
-          <caret line="31" column="36" selection-start-line="31" selection-start-column="36" selection-end-line="31" selection-end-column="36" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Services/notificationController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-15.625" vertical-offset="0" max-vertical-offset="615">
@@ -916,11 +908,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Mandev/Profile/profileController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.71608835" vertical-offset="656" max-vertical-offset="1725">
+        <state vertical-scroll-proportion="-2.0416667" vertical-offset="1061" max-vertical-offset="1725">
           <caret line="74" column="46" selection-start-line="74" selection-start-column="46" selection-end-line="74" selection-end-column="46" />
           <folding>
             <element signature="e#55#83#0#PHP" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/seeds/wordSeeder.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.6451104" vertical-offset="206" max-vertical-offset="930">
+          <caret line="42" column="16" selection-start-line="42" selection-start-column="16" selection-end-line="42" selection-end-column="16" />
+          <folding />
         </state>
       </provider>
     </entry>
