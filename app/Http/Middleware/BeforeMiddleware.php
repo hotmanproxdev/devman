@@ -79,6 +79,12 @@ class BeforeMiddleware
         $this->app->insertLang(["url_path"=>"profile","word_data"=>['update_profile_title_success'=>'Profil Bilgi Değişikliği'],"lang"=>1]);
         $this->app->insertLang(["url_path"=>"profile","word_data"=>['update_profile_msg_warning'=>'Güncelleme için herhangi bir değişiklik algılayamadık'],"lang"=>1]);
         $this->app->insertLang(["url_path"=>"profile","word_data"=>['update_profile_title_warning'=>'Güncelleme Hatası'],"lang"=>1]);
+        $this->app->insertLang(["url_path"=>"profile","word_data"=>['file_upload_msg_success'=>'Profil resminizi başarı ile değiştirdiniz.'],"lang"=>1]);
+        $this->app->insertLang(["url_path"=>"profile","word_data"=>['file_upload_title_success'=>'Profil Resim Değişikliği'],"lang"=>1]);
+        $this->app->insertLang(["url_path"=>"profile","word_data"=>['file_upload_msg_warning'=>'Profil resminizi değiştiremedik lütfen tekrar deneyiniz.'],"lang"=>1]);
+        $this->app->insertLang(["url_path"=>"profile","word_data"=>['file_upload_title_warning'=>'Profil Resim Değişikliği Hatası'],"lang"=>1]);
+        $this->app->insertLang(["url_path"=>"profile","word_data"=>['file_upload_false_msg_warning'=>'Profil resminizi değiştiremedik lütfen tekrar deneyiniz.Dosya yüklenmedi,izinlerinizi kontrol ediniz'],"lang"=>1]);
+        $this->app->insertLang(["url_path"=>"profile","word_data"=>['file_upload_false_title_warning'=>'Profil Resim Değişikliği Hatası'],"lang"=>1]);
 
         return $next($request);
     }

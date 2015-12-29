@@ -53,6 +53,15 @@ class Using extends Command
             dd($dd);
         }
 
+
+        //notification using
+        if($this->argument("name")=="notification")
+        {
+            $dd['notification']="notification::send(['msg'=>'msg','title'=>'title','position'=>'top-right', 'function'=>'warning'])";
+
+            dd($dd);
+        }
+
         //timedef class helper
         if($this->argument("name")=="time")
         {

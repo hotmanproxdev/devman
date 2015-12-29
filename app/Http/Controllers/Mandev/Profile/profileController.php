@@ -95,15 +95,16 @@ class profileController extends Controller
         {
            if($this->model->uploadUpdate($upload['file']))
            {
-               //true
-               return 'basarili';
+               //file upload notification
+               return $this->notification->send(['msg'=>$this->data['file_upload_msg_success'],'title'=>$this->data['file_upload_title_success']]);
            }
 
-            //false
-            return 'basarisiz';
+            //file upload notification false sql
+            return $this->notification->send(['msg'=>$this->data['file_upload_msg_warning'],'title'=>$this->data['file_upload_title_warning'],'position'=>'top-right', 'function'=>'warning']);
         }
 
-        //file false
-        return 'dosya yuklenmedi';
+        //file upload notification false tmp
+        return $this->notification->send(['msg'=>$this->data['file_upload_false_msg_warning'],'title'=>$this->data['file_upload_false_title_warning'],'position'=>'top-right', 'function'=>'warning']);
+
     }
 }
