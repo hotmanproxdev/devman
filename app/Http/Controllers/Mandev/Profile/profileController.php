@@ -65,7 +65,8 @@ class profileController extends Controller
         {
             if($this->model->changePassword(Input::get("password")))
             {
-                return $this->notification->send(['msg'=>$this->data['change_password_msg_success'],'title'=>$this->data['change_password_title_success']]);
+                return $this->notification->send(['msg'=>$this->data['change_password_msg_success'],
+                                                  'title'=>$this->data['change_password_title_success']]);
             }
 
             return false;
@@ -73,7 +74,9 @@ class profileController extends Controller
 
         //not same for password warning
         return $this->notification->send(['msg'=>$this->data['change_password_not_same_warning_msg'],
-                                         'title'=>$this->data['change_password_not_same_warning_title'],'position'=>'top-right','function'=>'warning']);
+                                         'title'=>$this->data['change_password_not_same_warning_title'],
+                                         'position'=>'top-right',
+                                         'function'=>'warning']);
 
     }
 
