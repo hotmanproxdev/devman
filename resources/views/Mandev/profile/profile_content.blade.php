@@ -703,13 +703,13 @@
                       <input type="hidden" name="_token" value="{{csrf_token()}}">
                       <div class="form-group">
                         <label class="control-label">{{$login_name}}</label>
-                        <input type="text" name="username" value="{{$admin->username}}" class="form-controlx username tooltips" data-placement="top" data-original-title="{{$username_info}}" require="input-username"/>
+                        <input type="text" name="username" value="{{$admin->username}}" class="form-control username tooltips" data-placement="top" data-original-title="{{$username_info}}" require="input-username"/>
                         <span class="validation username">* {{$validation_warning}}</span>
                       </div>
 
                       <div class="form-group">
                         <label class="control-label">{{$username}}</label>
-                        <input type="text" name="fullname" value="{{$admin->fullname}}" class="form-controlx fullname" require="input-fullname"/>
+                        <input type="text" name="fullname" value="{{$admin->fullname}}" class="form-control fullname" require="input-fullname"/>
                         <span class="validation fullname">* {{$validation_warning}}</span>
                       </div>
                       <div class="form-group">
