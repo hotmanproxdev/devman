@@ -24,8 +24,6 @@ class profileModel extends Controller
         $this->request=$request;
         //base service provider
         $this->app=app()->make("Base");
-        //page lang
-        $this->data=$this->app->getLang(['url_path'=>$this->url_path,'lang'=>1]);
         //admin data
         $this->admin=$this->app->admin();
         //page role

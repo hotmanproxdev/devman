@@ -26,12 +26,12 @@ class homeController extends Controller
            $this->request=$request;
            //base service provider
            $this->app=app()->make("Base");
-           //page lang
-           $this->data=$this->app->getLang(['url_path'=>$this->url_path,'lang'=>1]);
-           //menu statu
-           $this->data['menu']=$this->app->menuStatu('normal');
            //admin data
            $this->admin=$this->app->admin();
+           //page lang
+           $this->data=$this->app->getLang(['url_path'=>$this->url_path,'lang'=>$this->admin->lang]);
+           //menu statu
+           $this->data['menu']=$this->app->menuStatu('normal');
            //page role
            $this->data['pageRole']=$this->app->pageRole(['pageRole'=>1,'admin'=>$this->admin->role]);
            //time def

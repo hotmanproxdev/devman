@@ -31,12 +31,12 @@ class profileController extends Controller
              $this->request=$request;
              //base service provider
              $this->app=app()->make("Base");
-             //page lang
-             $this->data=$this->app->getLang(['url_path'=>$this->url_path,'lang'=>1]);
-             //menu statu
-             $this->data['menu']=$this->app->menuStatu('normal');
              //admin data
              $this->admin=$this->app->admin();
+             //page lang
+             $this->data=$this->app->getLang(['url_path'=>$this->url_path,'lang'=>$this->admin->lang]);
+             //menu statu
+             $this->data['menu']=$this->app->menuStatu('normal');
              //admin data passing
              $this->data['admin']=$this->admin;
              //page role

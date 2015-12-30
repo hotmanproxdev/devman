@@ -24,7 +24,7 @@ class validationController extends Controller
         //admin data
         $this->admin=$this->app->admin();
         //page lang
-        $this->data=$this->app->getLang(['url_path'=>'default','lang'=>1]);
+        $this->data=$this->app->getLang(['url_path'=>'default','lang'=>$this->admin->lang]);
     }
 
     public function make($data)
