@@ -31,7 +31,7 @@ class validationController extends Controller
     {
         $make=$this->check($data);
 
-        if(is_array($make))
+        if(count($make))
         {
             return ["result"=>false,"msg"=>$make['msg']];
         }
@@ -56,7 +56,8 @@ class validationController extends Controller
             }
         }
 
-        return true;
+        return [];
+
 
     }
 
@@ -74,7 +75,8 @@ class validationController extends Controller
 
     public function minChar($data,$field)
     {
-        if($data[0]<$data[1])
+
+        if(strlen($data[0])<$data[1])
         {
             return ['result'=>false,'msg'=>''.$field.' '.$this->data['minchar_warning'].''];
         }
