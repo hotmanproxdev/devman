@@ -28,6 +28,7 @@ Route::group(['prefix' =>''.strtolower(config("app.admin_dirname")).'/','namespa
         Route::controllers(['profile' => 'profileController']);
     });
 
+
     //test part
     Route::group(['namespace'=>'Test'], function ()
     {
