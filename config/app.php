@@ -207,6 +207,7 @@ return [
         'Time'      => App\Http\Services\timeDefController::class,
         'FileUpload' =>App\Http\Services\fileUploadController::class,
         'Notification' =>App\Http\Services\notificationController::class,
+        'Validation' =>App\Http\Services\validationController::class,
 
     ],
 

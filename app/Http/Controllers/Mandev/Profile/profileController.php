@@ -10,6 +10,7 @@ use App\Http\Controllers\Mandev\Profile\profileModel;
 use DB;
 use Input;
 use Notification;
+use Validation;
 
 class profileController extends Controller
 {
@@ -20,8 +21,9 @@ class profileController extends Controller
         public $url_path='profile';
         public $model;
         public $notification;
+        public $validation;
 
-        public function __construct (Request $request,profileModel $model,Notification $notification)
+        public function __construct (Request $request,profileModel $model,Notification $notification,Validation $validation)
         {
              //page protector
              $this->middleware('auth');
@@ -43,6 +45,8 @@ class profileController extends Controller
              $this->model=$model;
              //notification
              $this->notification=$notification;
+             //validation
+             $this->validation=$validation;
 
         }
 
@@ -54,6 +58,16 @@ class profileController extends Controller
 
     public function postIndex()
     {
+        //validation check
+        $validation=$this->validation->make($this->validationRules("postIndex"));
+
+        //validation false
+        if(!$validation['result'])
+        {
+            //validation false notification
+            return $this->notification->warning(['msg'=>$validation['msg'],'title'=>$this->data['error']]);
+        }
+
         //update profil for session admin
         if($this->model->updateProfile(Input::all()))
         {
@@ -106,5 +120,20 @@ class profileController extends Controller
         //file upload notification false tmp
         return $this->notification->warning(['msg'=>$this->data['file_upload_false_msg_warning'],'title'=>$this->data['file_upload_false_title_warning']]);
 
+    }
+
+
+    public function validationRules($key)
+    {
+        if($key=="postIndex")
+        {
+            $rules=array(
+                         "str_empty"=>[$this->data['login_name']=>Input::get("username"),
+                                       $this->data['username']=>Input::get("fullname")
+                                      ]
+                        );
+        }
+
+        return $rules;
     }
 }
