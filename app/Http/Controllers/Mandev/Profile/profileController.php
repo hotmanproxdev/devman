@@ -81,6 +81,16 @@ class profileController extends Controller
 
     public function postChangepassword()
     {
+        //validation check
+        $validation=$this->validation->make($this->validationRules("postChangepassword"));
+
+        //validation false
+        if(!$validation['result'])
+        {
+            //validation false notification
+            return $this->notification->warning(['msg'=>$validation['msg'],'title'=>$this->data['error']]);
+        }
+
         //check new password and renew password
         if(Input::get("password")==Input::get("repassword"))
         {
@@ -128,10 +138,23 @@ class profileController extends Controller
         if($key=="postIndex")
         {
             $rules=array(
-                         "str_empty"=>[$this->data['login_name']=>Input::get("username"),
-                                       $this->data['username']=>Input::get("fullname")
+                         "str_empty"=>[$this->data['login_name']=>[Input::get("username")],
+                                       $this->data['username']=>[Input::get("fullname")]
                                       ]
                         );
+        }
+
+
+        if($key=="postChangepassword")
+        {
+            $rules=array(
+                "str_empty"=>[$this->data['new_password']=>[Input::get("password")],
+                    $this->data['renew_password']=>[Input::get("repassword")]
+                ],
+                "minChar"=>[$this->data['new_password']=>[Input::get("password"),8],
+                    $this->data['renew_password']=>[Input::get("repassword"),8]
+                ]
+            );
         }
 
         return $rules;

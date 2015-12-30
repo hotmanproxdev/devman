@@ -42,6 +42,7 @@ class BeforeMiddleware
         $this->app->insertLang(["url_path"=>"default","word_data"=>['lockscreen'=>'Kilit Ekranı'],"lang"=>1]);
         $this->app->insertLang(["url_path"=>"default","word_data"=>['error'=>'Hata Kaydı'],"lang"=>1]);
         $this->app->insertLang(["url_path"=>"default","word_data"=>['empty_warning'=>'Seçeneğini Boş Gönderemezsiniz.Lütfen İlgili Alanı Doldurunuz'],"lang"=>1]);
+        $this->app->insertLang(["url_path"=>"default","word_data"=>['minchar_warning'=>'Seçeneği İçin En Az 8 Karakter Bekleniyor'],"lang"=>1]);
         return $next($request);
     }
 }

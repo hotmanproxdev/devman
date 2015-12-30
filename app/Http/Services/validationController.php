@@ -63,9 +63,20 @@ class validationController extends Controller
 
     public function str_empty($data,$field)
     {
-        if((trim($data))=="")
+        if((trim($data[0]))=="")
         {
             return ['result'=>false,'msg'=>''.$field.' '.$this->data['empty_warning'].''];
+        }
+
+        return ['result'=>true];
+    }
+
+
+    public function minChar($data,$field)
+    {
+        if($data[0]<$data[1])
+        {
+            return ['result'=>false,'msg'=>''.$field.' '.$this->data['minchar_warning'].''];
         }
 
         return ['result'=>true];

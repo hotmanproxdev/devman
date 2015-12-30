@@ -793,12 +793,12 @@
 
                       <div class="form-group">
                         <label class="control-label">{{$new_password}}</label>
-                        <input type="password" name="password" class="form-control new_password" require="input-new_password"/>
+                        <input type="password" name="password" class="form-controlx new_password" require="input-new_password"/>
                         <span class="validation new_password"> * {{$validation_warning}}</span>
                       </div>
                       <div class="form-group">
                         <label class="control-label">{{$renew_password}}</label>
-                        <input type="password" name="repassword" class="form-control renew_password" require="input-renew_password"/>
+                        <input type="password" name="repassword" class="form-controlx renew_password" require="input-renew_password"/>
                         <span class="validation renew_password"> * {{$validation_warning}}</span>
                       </div>
                       <div class="margin-top-10">
