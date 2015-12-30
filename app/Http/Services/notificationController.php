@@ -25,14 +25,14 @@ class notificationController extends Controller
         $this->app=app()->make("Base");
         //admin data
         $this->admin=$this->app->admin();
-        $this->position=array("position"=>"top-full-width","warning"=>"top-right");
+        $this->position=array("success"=>"top-full-width","warning"=>"top-right");
     }
 
     public function success($data=array())
     {
         //predefined values
         $data['function']='success';
-        $data['position']=$this->position['position'];
+        $data['position']=$this->position['success'];
 
         //return view
         return view("".config("app.admin_dirname").".notification",$data);
