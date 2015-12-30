@@ -206,12 +206,14 @@ class profileController extends Controller
         if($key=="postChangepassword")
         {
             $rules=array(
+
                 "str_empty"=>[$this->data['new_password']=>[Input::get("password")],
-                    $this->data['renew_password']=>[Input::get("repassword")]
-                ],
-                "minChar"=>[$this->data['new_password']=>[Input::get("password"),8],
-                    $this->data['renew_password']=>[Input::get("repassword"),8]
-                ]
+                              $this->data['renew_password']=>[Input::get("repassword")]
+                             ],
+
+                "minChar"=>  [$this->data['new_password']=>[Input::get("password"),8],
+                              $this->data['renew_password']=>[Input::get("repassword"),8]
+                             ]
             );
         }
 
