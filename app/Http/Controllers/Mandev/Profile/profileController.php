@@ -50,11 +50,35 @@ class profileController extends Controller
 
         }
 
+
+    /*
+    |--------------------------------------------------------------------------
+    | Application Profil Index
+    |--------------------------------------------------------------------------
+    |
+    | Here is where you can register all of the routes for an application.
+    | It's a breeze. Simply tell Laravel the URIs it should respond to
+    | and give it the controller to call when that URI is requested.
+    |
+    */
+
     public function getIndex ()
     {
         //return view
         return view("".config("app.admin_dirname").".".$this->url_path.".main",$this->data);
     }
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | Application Profile Post Index
+    |--------------------------------------------------------------------------
+    |
+    | Here is where you can register all of the routes for an application.
+    | It's a breeze. Simply tell Laravel the URIs it should respond to
+    | and give it the controller to call when that URI is requested.
+    |
+    */
 
     public function postIndex()
     {
@@ -78,6 +102,18 @@ class profileController extends Controller
         //update profil false notification
         return $this->notification->warning(['msg'=>$this->data['update_profile_msg_warning'],'title'=>$this->data['update_profile_title_warning']]);
     }
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | Application Profile Change Password
+    |--------------------------------------------------------------------------
+    |
+    | Here is where you can register all of the routes for an application.
+    | It's a breeze. Simply tell Laravel the URIs it should respond to
+    | and give it the controller to call when that URI is requested.
+    |
+    */
 
     public function postChangepassword()
     {
@@ -109,6 +145,17 @@ class profileController extends Controller
     }
 
 
+    /*
+    |--------------------------------------------------------------------------
+    | Application Profile Photo Upload
+    |--------------------------------------------------------------------------
+    |
+    | Here is where you can register all of the routes for an application.
+    | It's a breeze. Simply tell Laravel the URIs it should respond to
+    | and give it the controller to call when that URI is requested.
+    |
+    */
+
     public function postPhotoupload(\FileUpload $file)
     {
         //file upload
@@ -132,6 +179,17 @@ class profileController extends Controller
 
     }
 
+
+    /*
+    |--------------------------------------------------------------------------
+    | Application Profile Validate Rules
+    |--------------------------------------------------------------------------
+    |
+    | Here is where you can register all of the routes for an application.
+    | It's a breeze. Simply tell Laravel the URIs it should respond to
+    | and give it the controller to call when that URI is requested.
+    |
+    */
 
     public function validationRules($key)
     {
