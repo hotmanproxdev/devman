@@ -58,11 +58,11 @@ class profileController extends Controller
         if($this->model->updateProfile(Input::all()))
         {
             //update profil notification
-            return $this->notification->send(['msg'=>$this->data['update_profile_msg_success'],'title'=>$this->data['update_profile_title_success']]);
+            return $this->notification->success(['msg'=>$this->data['update_profile_msg_success'],'title'=>$this->data['update_profile_title_success']]);
         }
 
         //update profil false notification
-        return $this->notification->send(['msg'=>$this->data['update_profile_msg_warning'],'title'=>$this->data['update_profile_title_warning'],'position'=>'top-right', 'function'=>'warning']);
+        return $this->notification->warning(['msg'=>$this->data['update_profile_msg_warning'],'title'=>$this->data['update_profile_title_warning']]);
     }
 
     public function postChangepassword()
@@ -73,14 +73,14 @@ class profileController extends Controller
             if($this->model->changePassword(Input::get("password")))
             {
                 //change password notification
-                return $this->notification->send(['msg'=>$this->data['change_password_msg_success'],'title'=>$this->data['change_password_title_success']]);
+                return $this->notification->success(['msg'=>$this->data['change_password_msg_success'],'title'=>$this->data['change_password_title_success']]);
             }
 
             return false;
         }
 
         //not same for password warning
-        return $this->notification->send(['msg'=>$this->data['change_password_not_same_warning_msg'],'title'=>$this->data['change_password_not_same_warning_title'],'position'=>'top-right', 'function'=>'warning']);
+        return $this->notification->warning(['msg'=>$this->data['change_password_not_same_warning_msg'],'title'=>$this->data['change_password_not_same_warning_title']]);
 
     }
 
@@ -96,15 +96,15 @@ class profileController extends Controller
            if($this->model->uploadUpdate($upload['file']))
            {
                //file upload notification
-               return $this->notification->send(['msg'=>$this->data['file_upload_msg_success'],'title'=>$this->data['file_upload_title_success']]);
+               return $this->notification->success(['msg'=>$this->data['file_upload_msg_success'],'title'=>$this->data['file_upload_title_success']]);
            }
 
             //file upload notification false sql
-            return $this->notification->send(['msg'=>$this->data['file_upload_msg_warning'],'title'=>$this->data['file_upload_title_warning'],'position'=>'top-right', 'function'=>'warning']);
+            return $this->notification->warning(['msg'=>$this->data['file_upload_msg_warning'],'title'=>$this->data['file_upload_title_warning']]);
         }
 
         //file upload notification false tmp
-        return $this->notification->send(['msg'=>$this->data['file_upload_false_msg_warning'],'title'=>$this->data['file_upload_false_title_warning'],'position'=>'top-right', 'function'=>'warning']);
+        return $this->notification->warning(['msg'=>$this->data['file_upload_false_msg_warning'],'title'=>$this->data['file_upload_false_title_warning']]);
 
     }
 }

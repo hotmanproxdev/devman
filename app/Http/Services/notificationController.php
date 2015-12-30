@@ -13,6 +13,7 @@ class notificationController extends Controller
     public $request;
     public $app;
     public $admin;
+    public $position;
 
     public function __construct(Request $request)
     {
@@ -24,13 +25,25 @@ class notificationController extends Controller
         $this->app=app()->make("Base");
         //admin data
         $this->admin=$this->app->admin();
+        $this->position=array("success"=>"top-full-width","warning"=>"top-right");
     }
 
-    public function send($data=array())
+    public function success($data=array())
     {
         //predefined values
-        $data['position']=(array_key_exists('position',$data)) ? $data['position'] : 'top-full-width';
-        $data['function']=(array_key_exists('function',$data)) ? $data['function'] : 'success';
+        $data['function']='success';
+        $data['position']=$this->position['success'];
+
+        //return view
+        return view("".config("app.admin_dirname").".notification",$data);
+    }
+
+
+    public function warning($data=array())
+    {
+        //predefined values
+        $data['function']='warning';
+        $data['position']=$this->position['warning'];
 
         //return view
         return view("".config("app.admin_dirname").".notification",$data);
