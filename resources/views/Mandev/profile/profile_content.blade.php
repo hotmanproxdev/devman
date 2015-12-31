@@ -94,6 +94,7 @@
 																	<span class="label label-sm label-danger">
                                     @if(app()->make("Base")->getOnlineStatu($admin->id)->status)
 																	{{$active}}
+
                                    @else
                                   {{$passive}}
                                   @endif</span>
