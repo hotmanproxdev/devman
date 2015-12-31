@@ -83,11 +83,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="profile_content.blade.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="profile_content.blade.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/Mandev/profile/profile_content.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.37795275" vertical-offset="0" max-vertical-offset="20295">
-              <caret line="16" column="31" selection-start-line="16" selection-start-column="31" selection-end-line="16" selection-end-column="31" />
+            <state vertical-scroll-proportion="-4.54902" vertical-offset="11693" max-vertical-offset="20295">
+              <caret line="795" column="62" selection-start-line="795" selection-start-column="34" selection-end-line="795" selection-end-column="62" />
               <folding />
             </state>
           </provider>
@@ -103,11 +103,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="BeforeMiddleware.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="BeforeMiddleware.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/Http/Middleware/BeforeMiddleware.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-20.833334" vertical-offset="115" max-vertical-offset="780">
-              <caret line="43" column="93" selection-start-line="43" selection-start-column="93" selection-end-line="43" selection-end-column="93" />
+            <state vertical-scroll-proportion="0.8346457" vertical-offset="115" max-vertical-offset="810">
+              <caret line="45" column="148" selection-start-line="45" selection-start-column="148" selection-end-line="45" selection-end-column="148" />
               <folding />
             </state>
           </provider>
@@ -214,8 +214,8 @@
         <option value="db-console:/4280185a/6fe8c5a8-99d2-4b7e-a4dc-8b620b32f87d/" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Providers/BaseServiceProviders.php" />
         <option value="$PROJECT_DIR$/database/seeds/wordSeeder.php" />
-        <option value="$PROJECT_DIR$/app/Http/Middleware/BeforeMiddleware.php" />
         <option value="$PROJECT_DIR$/resources/views/Mandev/profile/profile_content.blade.php" />
+        <option value="$PROJECT_DIR$/app/Http/Middleware/BeforeMiddleware.php" />
       </list>
     </option>
   </component>
@@ -851,18 +851,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Middleware/BeforeMiddleware.php">
+    <entry file="file://$PROJECT_DIR$/resources/views/Mandev/profile/profile_content.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-20.833334" vertical-offset="115" max-vertical-offset="780">
-          <caret line="43" column="93" selection-start-line="43" selection-start-column="93" selection-end-line="43" selection-end-column="93" />
+        <state vertical-scroll-proportion="-4.54902" vertical-offset="11693" max-vertical-offset="20295">
+          <caret line="795" column="62" selection-start-line="795" selection-start-column="34" selection-end-line="795" selection-end-column="62" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/Mandev/profile/profile_content.blade.php">
+    <entry file="file://$PROJECT_DIR$/app/Http/Middleware/BeforeMiddleware.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.37795275" vertical-offset="0" max-vertical-offset="20295">
-          <caret line="16" column="31" selection-start-line="16" selection-start-column="31" selection-end-line="16" selection-end-column="31" />
+        <state vertical-scroll-proportion="0.8346457" vertical-offset="115" max-vertical-offset="810">
+          <caret line="45" column="148" selection-start-line="45" selection-start-column="148" selection-end-line="45" selection-end-column="148" />
           <folding />
         </state>
       </provider>

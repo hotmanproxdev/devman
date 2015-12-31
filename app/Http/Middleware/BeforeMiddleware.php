@@ -42,6 +42,8 @@ class BeforeMiddleware
         $this->app->insertLang(["url_path"=>"profile","word_data"=>['profile_tab2'=>'Hesabım'],"lang"=>1]);
         $this->app->insertLang(["url_path"=>"profile","word_data"=>['profile_tab3'=>'Yetkiler'],"lang"=>1]);
         $this->app->insertLang(["url_path"=>"profile","word_data"=>['profile_tab4'=>'Görevler'],"lang"=>1]);
+        $this->app->insertLang(["url_path"=>"profile","word_data"=>['warning'=>'Uyarı'],"lang"=>1]);
+        $this->app->insertLang(["url_path"=>"profile","word_data"=>['warning_profil_picture_size'=>'Lütfen büyük resimler yüklemeye özen gösteriniz.'],"lang"=>1]);
 
         return $next($request);
     }
