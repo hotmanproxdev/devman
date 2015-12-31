@@ -14,7 +14,7 @@
           </li>
           <li>
             <a href="#tab_1_3" data-toggle="tab">
-              {{$profile_tab2}} </a>
+              {{$profile_tab2}}</a>
           </li>
           <li>
             <a href="#tab_1_4" data-toggle="tab">

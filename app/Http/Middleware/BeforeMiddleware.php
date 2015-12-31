@@ -39,7 +39,9 @@ class BeforeMiddleware
      */
     public function handle($request, Closure $next)
     {
-        $this->app->insertLang(["url_path"=>"default","word_data"=>['lockscreen'=>'Kilit Ekranı'],"lang"=>1]);
+        $this->app->insertLang(["url_path"=>"profile","word_data"=>['profile_tab2'=>'Hesabım'],"lang"=>1]);
+        $this->app->insertLang(["url_path"=>"profile","word_data"=>['profile_tab3'=>'Yetkiler'],"lang"=>1]);
+        $this->app->insertLang(["url_path"=>"profile","word_data"=>['profile_tab4'=>'Görevler'],"lang"=>1]);
 
         return $next($request);
     }

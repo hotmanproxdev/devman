@@ -48,7 +48,8 @@ class wordSeeder extends Seeder
                 "change_password_not_same_warning_title":"\u015eifre Hatas\u0131",
                 "profil_field_top_info":"Bu alanda profil fotonuzu g\u00f6rebilir ve yenisini ekleyebilirsiniz.Profil fotonuz sistemdeki tek fotonuzdur",
                 "username_info":"Bu alan login giri\u015fi i\u00e7in kullan\u0131lacak kullan\u0131c\u0131 ismidir.","new_password":"Yeni \u015eifreniz.","renew_password":"Yeni \u015eifrenizi Tekrar Yaz\u0131n\u0131z.","mobilphone":"Telefon Numaras\u0131","login_name":"Kullan\u0131c\u0131 Ad\u0131","address":"\u0130kamet Adresi","occupation":"Meslek",
-                "about":"Hakk\u0131nda","website":"Website","notchange":"De\u011fi\u015ftirilemez","company_code":"Sistem Kodu","private_settings":"\u00d6zel Ayarlar","profil_picture":"Profil Resmi","change_password":"\u015eifre De\u011fi\u015ftir","personal_info":"Ki\u015fisel Bilgiler","profile_tab1":"Profil Bilgisi","dashboard":"Profil Sayfas\u0131","dashboard_info":"Profil Sayfas\u0131 (Ki\u015fisel Ayarlar Merkezi)"}',
+                "about":"Hakk\u0131nda","website":"Website","notchange":"De\u011fi\u015ftirilemez","company_code":"Sistem Kodu","private_settings":"\u00d6zel Ayarlar","profil_picture":"Profil Resmi","change_password":"\u015eifre De\u011fi\u015ftir","personal_info":"Ki\u015fisel Bilgiler",
+                "profile_tab1":"Profil Bilgisi","profile_tab2":"Hesabim","profile_tab3":"Yetkiler","profile_tab4":"Gorevler","dashboard":"Profil Sayfas\u0131","dashboard_info":"Profil Sayfas\u0131 (Ki\u015fisel Ayarlar Merkezi)"}',
                 'lang'=> 1,
                 'updated_at'=>time()
             ]
