@@ -11,6 +11,7 @@ use DB;
 use Input;
 use Notification;
 use Validation;
+use Time;
 
 class profileController extends Controller
 {
@@ -22,8 +23,9 @@ class profileController extends Controller
         public $model;
         public $notification;
         public $validation;
+        public $time;
 
-        public function __construct (Request $request,profileModel $model,Notification $notification,Validation $validation)
+        public function __construct (Request $request,profileModel $model,Notification $notification,Validation $validation,Time $time)
         {
              //page protector
              $this->middleware('auth');
@@ -47,6 +49,8 @@ class profileController extends Controller
              $this->notification=$notification;
              //validation
              $this->validation=$validation;
+            //time get
+            $this->time=$time;
 
         }
 
@@ -64,6 +68,9 @@ class profileController extends Controller
 
     public function getIndex ()
     {
+        //variables will be sent
+        $this->data['last_login_time']=$this->time->getPassing($this->admin->last_login_time)->output;
+
         //return view
         return view("".config("app.admin_dirname").".".$this->url_path.".main",$this->data);
     }

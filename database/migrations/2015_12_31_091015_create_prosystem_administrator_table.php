@@ -33,6 +33,8 @@ class CreateProsystemAdministratorTable extends Migration {
 			$table->text('address')->nullable();
 			$table->char('occupation')->nullable()->default('');
 			$table->char('website')->nullable();
+			$table->integer('last_login_time')->nullable();
+			$table->char('user_where')->nullable();
 		});
 	}
 

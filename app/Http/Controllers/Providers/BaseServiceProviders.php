@@ -107,7 +107,7 @@ class BaseServiceProviders extends Controller
 
     public function updateUserHash($hash,$id)
     {
-        return DB::table("prosystem_administrator")->where(['id'=>$id])->update(['hash'=>$hash,'last_ip'=>$_SERVER['REMOTE_ADDR'],'user_lock'=>1]);
+        return DB::table("prosystem_administrator")->where(['id'=>$id])->update(['hash'=>$hash,'last_ip'=>$_SERVER['REMOTE_ADDR'],'user_lock'=>1,'last_login_time'=>time()]);
     }
 
     public function pageProtector($field=false)
@@ -145,7 +145,8 @@ class BaseServiceProviders extends Controller
 
     public function admin()
     {
-        return $this->pageProtector(['id','username','fullname','photo','lang','role','ccode','system_name','phone_number','address','occupation','website','extra_info']);
+        return $this->pageProtector(['id','username','fullname','photo','lang','role','ccode','system_name','phone_number','address','occupation','website','extra_info',
+                                     'created_at','last_login_time','user_where','last_ip']);
     }
 
     public function adminUpdate()
@@ -155,13 +156,17 @@ class BaseServiceProviders extends Controller
 
     public function pageRole($data=array())
     {
-        $adminRole=explode("-",$data['admin']);
-
-        if(in_array($data['pageRole'],$adminRole))
+        if(count($data))
         {
-            return true;
+            $adminRole=explode("-",$data['admin']);
+
+            if(in_array($data['pageRole'],$adminRole))
+            {
+                return true;
+            }
+            return false;
         }
-        return false;
+
     }
 
 

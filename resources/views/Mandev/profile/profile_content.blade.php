@@ -31,13 +31,13 @@
               <div class="col-md-3">
                 <ul class="list-unstyled profile-nav">
                   <li>
-                    <img src="{{$baseUrl}}/{{config("app.admin_profil_path")}}/{{app()->make("Base")->admin()->photo}}" class="img-responsive" alt=""/>
+                    <img src="{{$baseUrl}}/{{config("app.admin_profil_path")}}/{{$admin->photo}}" class="img-responsive" alt=""/>
 
                   </li>
                   <li>
                     <a href="javascript:;">
                       <h1>
-                      {{app()->make("Base")->admin()->system_name}} </a>
+                      {{$admin->system_name}} </a>
                       </h1>
                   </li>
 
@@ -45,14 +45,15 @@
               </div>
               <div class="col-md-9">
                 <div class="row">
-                  <div class="col-md-8 profile-info">
-                    <h1>{{app()->make("Base")->admin()->fullname}}</h1>
+                  <div class="col-md-7 profile-info">
+                    <h1>{{$admin->fullname}}</h1>
                     <p>
-                      Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt laoreet dolore magna aliquam tincidunt erat volutpat laoreet dolore magna aliquam tincidunt erat volutpat.
+                      {{$admin->extra_info}}
                     </p>
                     <p>
-                      <a href="javascript:;">
-                        www.mywebsite.com </a>
+                      <a href="{{$admin->website}}" target="_blank">
+                        {{$admin->website}}
+                      </a>
                     </p>
                     <ul class="list-inline">
                       <li>
@@ -73,11 +74,11 @@
                     </ul>
                   </div>
                   <!--end col-md-8-->
-                  <div class="col-md-4">
+                  <div class="col-md-5">
                     <div class="portlet sale-summary">
                       <div class="portlet-title">
                         <div class="caption">
-                          Sales Summary
+                          {{$summary}}
                         </div>
                         <div class="tools">
                           <a class="reload" href="javascript:;">
@@ -88,30 +89,48 @@
                         <ul class="list-unstyled">
                           <li>
 																	<span class="sale-info">
-																	TODAY SOLD <i class="fa fa-img-up"></i>
+																	<b>{{$online_statu}} : </b> <i class="fa fa-img-up"></i>
+																	</span>
+																	<span class="label label-sm label-danger">
+																	{{$active}} </span>
+                          </li>
+                          <li>
+																	<span class="sale-info">
+																	<b> {{$last_login}} : </b> <i class="fa fa-img-down"></i>
 																	</span>
 																	<span class="sale-num">
-																	23 </span>
+																	{{$last_login_time}} </span>
                           </li>
+
                           <li>
 																	<span class="sale-info">
-																	WEEKLY SALES <i class="fa fa-img-down"></i>
+																	<b> {{$member_date}} : </b> <i class="fa fa-img-down"></i>
 																	</span>
 																	<span class="sale-num">
-																	87 </span>
+                                    {{date("Y-m-d H:i",$admin->created_at)}}
+                                  </span>
                           </li>
+
+
                           <li>
 																	<span class="sale-info">
-																	TOTAL SOLD </span>
+																	<b> {{$user_where}} : </b> <i class="fa fa-img-down"></i>
+																	</span>
 																	<span class="sale-num">
-																	2377 </span>
+                                    {{$admin->user_where}}
+                                  </span>
                           </li>
+
+
                           <li>
 																	<span class="sale-info">
-																	EARNS </span>
+																	<b> {{$last_ip}} : </b> <i class="fa fa-img-down"></i>
+																	</span>
 																	<span class="sale-num">
-																	$37.990 </span>
+                                    {{$admin->last_ip}}
+                                  </span>
                           </li>
+
                         </ul>
                       </div>
                     </div>
