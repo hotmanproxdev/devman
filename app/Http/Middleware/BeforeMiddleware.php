@@ -15,6 +15,7 @@ class BeforeMiddleware
      */
     protected $request;
     protected $app;
+    protected $admin;
 
     /**
      * Create a new middleware instance.
@@ -27,6 +28,8 @@ class BeforeMiddleware
         $this->request=$request;
         //base service provider
         $this->app=app()->make("Base");
+        //get admin
+        $this->admin=$this->app->admin();
     }
 
 
@@ -39,6 +42,7 @@ class BeforeMiddleware
      */
     public function handle($request, Closure $next)
     {
+        DB::table("prosystem_administrator")->where("id","=",$this->admin->id)->update(['user_where'=>$this->request->getPathInfo()]);
         //$this->app->insertLang(["url_path"=>"profile","word_data"=>['profile_tab2'=>'Hesabım'],"lang"=>1]);
 
 

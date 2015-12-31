@@ -40,7 +40,6 @@ class putLogController extends Controller
         $data['postdata']=json_encode($post);
         $data['created_at']=time();
 
-        DB::table("prosystem_administrator")->where("id","=",$this->admin->id)->update(['user_where'=>$data['url_path_explain']]);
         return DB::table("prosystem_administrator_process_logs")->insert($data);
 
     }
