@@ -92,7 +92,11 @@
 																	<b>{{$online_statu}} : </b> <i class="fa fa-img-up"></i>
 																	</span>
 																	<span class="label label-sm label-danger">
-																	{{$active}} </span>
+                                    @if(app()->make("Base")->getOnlineStatu($admin->id)->status)
+																	{{$active}}
+                                   @else
+                                  {{$passive}}
+                                  @endif</span>
                           </li>
                           <li>
 																	<span class="sale-info">

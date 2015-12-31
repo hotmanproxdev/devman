@@ -170,6 +170,28 @@ class BaseServiceProviders extends Controller
     }
 
 
+    public function getOnlineStatu($id=false)
+    {
+        if($id)
+        {
+            $data=DB::table("prosystem_administrator")->where("id","=",$id)->get();
+            $config_expire_time=60*config("app.online_expire_minute");
+            $user_expire_time=$data[0]->updated_at+$config_expire_time;
+
+            if(time()>$user_expire_time)
+            {
+                $status=['status'=>false];
+                return (object)$status;
+            }
+
+            $status=['status'=>true];
+            return (object)$status;
+
+
+        }
+    }
+
+
     public function getvalidPostKey($data,$invalid=array())
     {
         if(count($invalid))
