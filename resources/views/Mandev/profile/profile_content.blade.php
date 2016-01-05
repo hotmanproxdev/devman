@@ -175,7 +175,7 @@
                           @foreach ($logs as $log)
                           <tr>
                             <td>
-                              {{$log->msg}}
+                              {{$log->formprocess}}
                             </td>
                             <td>
                               {{$log->url_path_explain}}
