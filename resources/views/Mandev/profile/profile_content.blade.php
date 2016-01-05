@@ -93,7 +93,8 @@
 																	</span>
 																	<span class="label label-sm label-danger">
                                     @if(app()->make("Base")->getOnlineStatu($admin->id)->status)
-																	{{$active}}
+
+                                      {{$active}}
 
                                    @else
                                   {{$passive}}
@@ -147,7 +148,7 @@
                   <ul class="nav nav-tabs">
                     <li class="active">
                       <a href="#tab_1_11" data-toggle="tab">
-                        Latest Customers </a>
+                        {{$admin_last_actions}} </a>
                     </li>
                     <li>
                       <a href="#tab_1_22" data-toggle="tab">
@@ -161,138 +162,57 @@
                           <thead>
                           <tr>
                             <th>
-                              <i class="fa fa-briefcase"></i> Company
+                              <i class="fa fa-briefcase"></i> Form Süreci
                             </th>
                             <th class="hidden-xs">
-                              <i class="fa fa-question"></i> Descrition
+                              <i class="fa fa-question"></i> Link Yolu
                             </th>
                             <th>
-                              <i class="fa fa-bookmark"></i> Amount
+                              <i class="fa fa-bookmark"></i> Log İşlemi
                             </th>
+
                             <th>
+                              <i class="fa fa-bookmark">Tarih</i>
                             </th>
+
                           </tr>
                           </thead>
+
+                          @if(config("app.log_status")==false)
                           <tbody>
                           <tr>
-                            <td>
-                              <a href="javascript:;">
-                                Pixel Ltd </a>
-                            </td>
-                            <td class="hidden-xs">
-                              Server hardware purchase
-                            </td>
-                            <td>
-                              52560.10$ <span class="label label-success label-sm">
-																	Paid </span>
-                            </td>
-                            <td>
-                              <a class="btn default btn-xs green-stripe" href="javascript:;">
-                                View </a>
-                            </td>
+                            <th colspan="4" style="background-color:#ffffdd;">
+                              {{$log_false}}
+                            </th>
+
                           </tr>
+                          </tbody>
+                          @endif
+
+                          <tbody>
+                          @foreach ($logs as $log)
                           <tr>
                             <td>
-                              <a href="javascript:;">
-                                Smart House </a>
-                            </td>
-                            <td class="hidden-xs">
-                              Office furniture purchase
+                              {{$log->formprocess}}
                             </td>
                             <td>
-                              5760.00$ <span class="label label-warning label-sm">
-																	Pending </span>
+                              {{$log->url_path_explain}}
                             </td>
                             <td>
-                              <a class="btn default btn-xs blue-stripe" href="javascript:;">
-                                View </a>
+                              @if($log->log_process==1)
+                                GET
+                                @else
+                                POST
+                                @endif
                             </td>
+                            <td>
+                              {{date("Y-m-d H:i:s",$log->created_at)}}
+                            </td>
+
+
                           </tr>
-                          <tr>
-                            <td>
-                              <a href="javascript:;">
-                                FoodMaster Ltd </a>
-                            </td>
-                            <td class="hidden-xs">
-                              Company Anual Dinner Catering
-                            </td>
-                            <td>
-                              12400.00$ <span class="label label-success label-sm">
-																	Paid </span>
-                            </td>
-                            <td>
-                              <a class="btn default btn-xs blue-stripe" href="javascript:;">
-                                View </a>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>
-                              <a href="javascript:;">
-                                WaterPure Ltd </a>
-                            </td>
-                            <td class="hidden-xs">
-                              Payment for Jan 2013
-                            </td>
-                            <td>
-                              610.50$ <span class="label label-danger label-sm">
-																	Overdue </span>
-                            </td>
-                            <td>
-                              <a class="btn default btn-xs red-stripe" href="javascript:;">
-                                View </a>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>
-                              <a href="javascript:;">
-                                Pixel Ltd </a>
-                            </td>
-                            <td class="hidden-xs">
-                              Server hardware purchase
-                            </td>
-                            <td>
-                              52560.10$ <span class="label label-success label-sm">
-																	Paid </span>
-                            </td>
-                            <td>
-                              <a class="btn default btn-xs green-stripe" href="javascript:;">
-                                View </a>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>
-                              <a href="javascript:;">
-                                Smart House </a>
-                            </td>
-                            <td class="hidden-xs">
-                              Office furniture purchase
-                            </td>
-                            <td>
-                              5760.00$ <span class="label label-warning label-sm">
-																	Pending </span>
-                            </td>
-                            <td>
-                              <a class="btn default btn-xs blue-stripe" href="javascript:;">
-                                View </a>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>
-                              <a href="javascript:;">
-                                FoodMaster Ltd </a>
-                            </td>
-                            <td class="hidden-xs">
-                              Company Anual Dinner Catering
-                            </td>
-                            <td>
-                              12400.00$ <span class="label label-success label-sm">
-																	Paid </span>
-                            </td>
-                            <td>
-                              <a class="btn default btn-xs blue-stripe" href="javascript:;">
-                                View </a>
-                            </td>
-                          </tr>
+                            @endforeach
+
                           </tbody>
                         </table>
                       </div>

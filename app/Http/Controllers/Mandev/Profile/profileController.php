@@ -71,6 +71,9 @@ class profileController extends Controller
         //variables will be sent
         $this->data['last_login_time']=$this->time->getPassing($this->admin->last_login_time)->output;
 
+        //get logs
+        $this->data['logs']=$this->app->getLogs(['id'=>$this->admin->id]);
+
         //return view
         return view("".config("app.admin_dirname").".".$this->url_path.".main",$this->data);
     }

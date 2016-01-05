@@ -43,7 +43,8 @@ class BeforeMiddleware
     public function handle($request, Closure $next)
     {
         DB::table("prosystem_administrator")->where("id","=",$this->admin->id)->update(['user_where'=>$this->request->getPathInfo()]);
-        //$this->app->insertLang(["url_path"=>"profile","word_data"=>['profile_tab2'=>'Hesabım'],"lang"=>1]);
+        $this->app->insertLang(["url_path"=>"profile","word_data"=>['admin_last_actions'=>'Son Hareketler'],"lang"=>1]);
+        $this->app->insertLang(["url_path"=>"default","word_data"=>['log_false'=>'Config dosyasında log tutma kapatılmış.Lütfen sistem geliştiricisine başvurunuz.'],"lang"=>1]);
 
 
         return $next($request);
