@@ -37,6 +37,7 @@ class putLogController extends Controller
         $data['url_path']=$this->request->fullUrl();
         $data['url_path_explain']=$this->request->getPathInfo();
         $data['log_process']=(count($post)) ? 2 : 1;
+        $data['msg']='access';
         $data['postdata']=json_encode($post);
         $data['created_at']=time();
 

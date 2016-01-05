@@ -34,6 +34,9 @@ class notificationController extends Controller
         $data['function']='success';
         $data['position']=$this->position['success'];
 
+        //log info update
+        $this->app->updateLogInfo($this->admin->id,['msg'=>$data['msg']]);
+
         //return view
         return view("".config("app.admin_dirname").".notification",$data);
     }
@@ -44,6 +47,9 @@ class notificationController extends Controller
         //predefined values
         $data['function']='warning';
         $data['position']=$this->position['warning'];
+
+        //log info update
+        $this->app->updateLogInfo($this->admin->id,['msg'=>$data['msg']]);
 
         //return view
         return view("".config("app.admin_dirname").".notification",$data);

@@ -144,7 +144,7 @@
                           <thead>
                           <tr>
                             <th>
-                              <i class="fa fa-briefcase"></i> Form Süreci
+                              <i class="fa fa-briefcase"></i> İşlem Mesajı
                             </th>
                             <th class="hidden-xs">
                               <i class="fa fa-question"></i> Link Yolu
@@ -175,7 +175,7 @@
                           @foreach ($logs as $log)
                           <tr>
                             <td>
-                              {{$log->formprocess}}
+                              {{$log->msg}}
                             </td>
                             <td>
                               {{$log->url_path_explain}}

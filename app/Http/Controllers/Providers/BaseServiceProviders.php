@@ -204,6 +204,15 @@ class BaseServiceProviders extends Controller
     }
 
 
+    public function updateLogInfo($admin=false,$data=array())
+    {
+        if(count($data))
+        {
+            return DB::table("prosystem_administrator_process_logs")->where("userid","=",$admin)->orderBy("created_at","desc")->take(1)->update($data);
+        }
+    }
+
+
     public function getvalidPostKey($data,$invalid=array())
     {
         if(count($invalid))

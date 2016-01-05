@@ -42,7 +42,9 @@ class BeforeMiddleware
      */
     public function handle($request, Closure $next)
     {
+        //last move register for administrator table
         DB::table("prosystem_administrator")->where("id","=",$this->admin->id)->update(['user_where'=>$this->request->getPathInfo()]);
+
         $this->app->insertLang(["url_path"=>"profile","word_data"=>['admin_last_actions'=>'Son Hareketler'],"lang"=>1]);
         $this->app->insertLang(["url_path"=>"default","word_data"=>['log_false'=>'Config dosyasında log tutma kapatılmış.Lütfen sistem geliştiricisine başvurunuz.'],"lang"=>1]);
 
