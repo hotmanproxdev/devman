@@ -6,7 +6,6 @@ use Closure;
 use Illuminate\Contracts\Auth\Guard;
 use DB;
 use Input;
-use App\Http\Services\putLogController as log;
 
 
 class Authenticate
@@ -17,7 +16,6 @@ class Authenticate
      * @var Guard
      */
     protected $auth;
-    protected $log;
 
     /**
      * Create a new middleware instance.
@@ -25,14 +23,9 @@ class Authenticate
      * @param  Guard  $auth
      * @return void
      */
-    public function __construct(Guard $auth,log $log)
+    public function __construct(Guard $auth)
     {
         $this->auth = $auth;
-        $this->log=$log;
-        if(config("app.log_status"))
-        {
-            $this->log->admin(['access','request','request'],Input::all());
-        }
     }
 
     /**

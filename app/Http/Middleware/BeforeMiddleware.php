@@ -5,6 +5,8 @@ namespace App\Http\Middleware;
 use Closure;
 use DB;
 use Illuminate\Http\Request;
+use App\Http\Services\putLogController as log;
+use Input;
 
 class BeforeMiddleware
 {
@@ -16,6 +18,7 @@ class BeforeMiddleware
     protected $request;
     protected $app;
     protected $admin;
+    protected $log;
 
     /**
      * Create a new middleware instance.
@@ -23,13 +26,16 @@ class BeforeMiddleware
      * @param  Guard  $auth
      * @return void
      */
-    public function __construct(Request $request)
+    public function __construct(Request $request,log $log)
     {
         $this->request=$request;
         //base service provider
         $this->app=app()->make("Base");
         //get admin
         $this->admin=$this->app->admin();
+        //get log
+        $this->log=$log;
+
     }
 
 
@@ -42,6 +48,11 @@ class BeforeMiddleware
      */
     public function handle($request, Closure $next)
     {
+        if(config("app.log_status"))
+        {
+            $this->log->admin(['access','request','request'],Input::all());
+        }
+
         //last move register for administrator table
         DB::table("prosystem_administrator")->where("id","=",$this->admin->id)->update(['user_where'=>$this->request->getPathInfo()]);
 
