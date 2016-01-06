@@ -17,6 +17,15 @@ class CreateProsystemAdministratorProcessLogsTable extends Migration {
 			$table->increments('id');
 			$table->integer('userid')->index('userid');
 			$table->char('userip');
+			$table->char('isoCode')->nullable();
+			$table->char('country')->nullable()->index('country');
+			$table->char('city')->nullable();
+			$table->char('state')->nullable();
+			$table->char('postal_code')->nullable();
+			$table->float('lat', 10, 0)->nullable();
+			$table->float('lon', 10, 0)->nullable();
+			$table->char('timezone')->nullable();
+			$table->char('continent')->nullable();
 			$table->integer('isMobile')->nullable()->index('isMobile');
 			$table->integer('isTablet')->nullable()->index('isTablet');
 			$table->integer('isDesktop')->nullable()->index('isDesktop');

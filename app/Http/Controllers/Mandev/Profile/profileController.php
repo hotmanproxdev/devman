@@ -12,7 +12,6 @@ use Input;
 use Notification;
 use Validation;
 use Time;
-use GeoIP;
 
 
 class profileController extends Controller
@@ -70,7 +69,7 @@ class profileController extends Controller
 
     public function getIndex ()
     {
-        dd(GeoIP::getLocation());
+        return DB::table("prosystem_administrator_process_logs")->orderBy("id","desc")->get();
         //variables will be sent
         $this->data['last_login_time']=$this->time->getPassing($this->admin->last_login_time)->output;
 

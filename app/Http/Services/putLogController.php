@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use Session;
 use DB;
 use BrowserDetect;
+use GeoIP;
 
 class putLogController extends Controller
 {
@@ -33,10 +34,19 @@ class putLogController extends Controller
         $data['userid']=$this->admin->id;
         $data['userip']=$this->request->ip();
 
+        foreach (GeoIP::getLocation() as $key=>$value)
+        {
+            if(($key!=="ip") AND ($key!=="default"))
+            {
+                $data[$key]=$value;
+            }
+        }
+
         foreach (BrowserDetect::toArray() as $key=>$value)
         {
             $data[$key]=$value;
         }
+
         $data['formprocess']=($this->request->ajax()) ? 'Ajax Request' : 'Normal Request';
         $data['user_agent']=$this->request->header('User-Agent');
         $data['user_host']=$this->request->header('HOST');
