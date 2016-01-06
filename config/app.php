@@ -161,6 +161,7 @@ return [
         Way\Generators\GeneratorsServiceProvider::class,
         Xethron\MigrationsGenerator\MigrationsGeneratorServiceProvider::class,
         hisorange\BrowserDetect\Provider\BrowserDetectService::class,
+        //Torann\GeoIP\GeoIPServiceProvider::class,
 
 
     ],
@@ -216,6 +217,7 @@ return [
         'Notification' =>App\Http\Services\notificationController::class,
         'Validation' =>App\Http\Services\validationController::class,
         'BrowserDetect' => hisorange\BrowserDetect\Facade\Parser::class,
+        'GeoIP' => Torann\GeoIP\GeoIPFacade::class,
 
     ],
 

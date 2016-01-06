@@ -12,6 +12,7 @@ use Input;
 use Notification;
 use Validation;
 use Time;
+use GeoIP;
 
 
 class profileController extends Controller
@@ -69,7 +70,6 @@ class profileController extends Controller
 
     public function getIndex ()
     {
-
         //variables will be sent
         $this->data['last_login_time']=$this->time->getPassing($this->admin->last_login_time)->output;
 
