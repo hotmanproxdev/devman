@@ -160,7 +160,7 @@ return [
         App\Providers\ComposerServiceProvider::class,
         Way\Generators\GeneratorsServiceProvider::class,
         Xethron\MigrationsGenerator\MigrationsGeneratorServiceProvider::class,
-        //hisorange\BrowserDetect\Provider\BrowserDetectService::class,
+        hisorange\BrowserDetect\Provider\BrowserDetectService::class,
 
 
     ],
@@ -215,7 +215,7 @@ return [
         'FileUpload' =>App\Http\Services\fileUploadController::class,
         'Notification' =>App\Http\Services\notificationController::class,
         'Validation' =>App\Http\Services\validationController::class,
-        //'BrowserDetect' => hisorange\BrowserDetect\Facade\Parser::class,
+        'BrowserDetect' => hisorange\BrowserDetect\Facade\Parser::class,
 
     ],
 
