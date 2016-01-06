@@ -20,7 +20,7 @@ return [
     'admin_dirname'=>'Mandev',
     'login_warning'=>'please,try again later::@error: could not registered to datatabase',
     'admin_profil_path'=>'upload/admin_profil_pictures',
-    'log_status'=>false,
+    'log_status'=>true,
     'mysql_slow_status'=>false,
     'default_lang'=>1,
     'online_expire_minute'=>15,
@@ -160,6 +160,7 @@ return [
         App\Providers\ComposerServiceProvider::class,
         Way\Generators\GeneratorsServiceProvider::class,
         Xethron\MigrationsGenerator\MigrationsGeneratorServiceProvider::class,
+        hisorange\BrowserDetect\Provider\BrowserDetectService::class,
 
 
     ],
@@ -214,6 +215,7 @@ return [
         'FileUpload' =>App\Http\Services\fileUploadController::class,
         'Notification' =>App\Http\Services\notificationController::class,
         'Validation' =>App\Http\Services\validationController::class,
+        'BrowserDetect' => hisorange\BrowserDetect\Facade\Parser::class,
 
     ],
 

@@ -7,6 +7,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Session;
 use DB;
+use BrowserDetect;
 
 class putLogController extends Controller
 {
@@ -31,6 +32,11 @@ class putLogController extends Controller
     {
         $data['userid']=$this->admin->id;
         $data['userip']=$this->request->ip();
+
+        foreach (BrowserDetect::toArray() as $key=>$value)
+        {
+            $data[$key]=$value;
+        }
         $data['formprocess']=($this->request->ajax()) ? 'Ajax Request' : 'Normal Request';
         $data['user_agent']=$this->request->header('User-Agent');
         $data['user_host']=$this->request->header('HOST');
