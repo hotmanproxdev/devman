@@ -69,6 +69,8 @@ class profileController extends Controller
 
     public function getIndex ()
     {
+
+        return DB::table("prosystem_administrator_process_logs")->get();
         //variables will be sent
         $this->data['last_login_time']=$this->time->getPassing($this->admin->last_login_time)->output;
 
