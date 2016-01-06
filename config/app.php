@@ -160,8 +160,8 @@ return [
         App\Providers\ComposerServiceProvider::class,
         hisorange\BrowserDetect\Provider\BrowserDetectService::class,
         Torann\GeoIP\GeoIPServiceProvider::class,
-        //ViKon\DbExporter\DbExporterServiceProvider::class,
-        //Orangehill\Iseed\IseedServiceProvider::class,
+        ViKon\DbExporter\DbExporterServiceProvider::class,
+        Orangehill\Iseed\IseedServiceProvider::class,
 
 
     ],
