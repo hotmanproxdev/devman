@@ -161,7 +161,7 @@ return [
         Way\Generators\GeneratorsServiceProvider::class,
         Xethron\MigrationsGenerator\MigrationsGeneratorServiceProvider::class,
         hisorange\BrowserDetect\Provider\BrowserDetectService::class,
-        //Torann\GeoIP\GeoIPServiceProvider::class,
+        Torann\GeoIP\GeoIPServiceProvider::class,
 
 
     ],
