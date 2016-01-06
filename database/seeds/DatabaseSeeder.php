@@ -12,10 +12,10 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $this->call('adminSeeder');
-        $this->call('wordSeeder');
-
+        $this->call('ProsystemWordsTableSeeder');
+		$this->call('ProsystemAdministratorTableSeeder');
         $this->command->info('table seeded!');
-    }
+		$this->call('ProsystemRolesTableSeeder');
+	}
 
 }

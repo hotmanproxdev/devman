@@ -62,6 +62,15 @@ class Using extends Command
             dd($dd);
         }
 
+
+        //db exporter seed
+        if($this->argument("name")=="seed")
+        {
+            $dd['seed']="\Iseed::generateSeed('prosystem_roles')";
+
+            dd($dd);
+        }
+
         //timedef class helper
         if($this->argument("name")=="time")
         {

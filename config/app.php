@@ -158,10 +158,10 @@ return [
         App\Providers\RouteServiceProvider::class,
         App\Providers\BaseServiceProvider::class,
         App\Providers\ComposerServiceProvider::class,
-        Way\Generators\GeneratorsServiceProvider::class,
-        Xethron\MigrationsGenerator\MigrationsGeneratorServiceProvider::class,
         hisorange\BrowserDetect\Provider\BrowserDetectService::class,
         Torann\GeoIP\GeoIPServiceProvider::class,
+        ViKon\DbExporter\DbExporterServiceProvider::class,
+        Orangehill\Iseed\IseedServiceProvider::class,
 
 
     ],
