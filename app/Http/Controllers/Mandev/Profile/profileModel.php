@@ -33,7 +33,7 @@ class profileModel extends Controller
 
     public function updateProfile($data)
     {
-        return DB::table("prosystem_administrator")->where("id","=",$this->admin->id)->update($this->app->getValidPostKey($data,['_token','ccode']));
+        return DB::table($this->app->dbTable(['admin']))->where("id","=",$this->admin->id)->update($this->app->getValidPostKey($data,['_token','ccode']));
     }
 
     public function changePassword($data=false)
@@ -41,7 +41,7 @@ class profileModel extends Controller
         if($data)
         {
             //db table update true
-            if(DB::table("prosystem_administrator")->where("id","=",$this->admin->id)->update(['password'=>$this->app->passwordHash($data)]));
+            if(DB::table($this->app->dbTable(['admin']))->where("id","=",$this->admin->id)->update(['password'=>$this->app->passwordHash($data)]));
             {
                 //userhash forget
                 Session::forget('userHash');
@@ -56,7 +56,7 @@ class profileModel extends Controller
 
     public function uploadUpdate($file)
     {
-        return DB::table("prosystem_administrator")->where("id","=",$this->admin->id)->update(['photo'=>$file]);
+        return DB::table($this->app->dbTable(['admin']))->where("id","=",$this->admin->id)->update(['photo'=>$file]);
     }
 
 

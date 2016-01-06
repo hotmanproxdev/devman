@@ -11,6 +11,22 @@ use DB;
 class BaseServiceProviders extends Controller
 {
 
+    protected $dbtable_prefix="prosystem";
+
+    public function dbTable($data=array())
+    {
+        if(count($data))
+        {
+            $data['words']="".$this->dbtable_prefix."_words";
+            $data['admin']="".$this->dbtable_prefix."_administrator";
+            $data['logs']="".$this->dbtable_prefix."_administrator_process_logs";
+            $data['api']="".$this->dbtable_prefix."_api_accesses";
+            $data['mysql_slow']="".$this->dbtable_prefix."_mysql_slow_process_logs";
+            $data['roles']="".$this->dbtable_prefix."_roles";
+
+            return $data[$data[0]];
+        }
+    }
     public function menuStatu($value)
     {
         $menu['small']['ul']='page-sidebar-menu page-sidebar-menu-hover-submenu page-sidebar-menu-closed ';
@@ -26,10 +42,10 @@ class BaseServiceProviders extends Controller
     public function getLang($data)
     {
         //default word data
-        $getWordDefault=DB::table("prosystem_words")->where(['url_path'=>'default','lang'=>$data['lang']])->get();
+        $getWordDefault=DB::table($this->dbTable(['words']))->where(['url_path'=>'default','lang'=>$data['lang']])->get();
 
         //requested word data
-        $getWord=DB::table("prosystem_words")->where($data)->get();
+        $getWord=DB::table($this->dbTable(['words']))->where($data)->get();
 
         if(count($getWord)==false)
         {
@@ -50,7 +66,7 @@ class BaseServiceProviders extends Controller
         $data['updated_at']=time();
 
         //see existing data for sql table
-        $wordExist=DB::table("prosystem_words")
+        $wordExist=DB::table($this->dbTable(['words']))
             ->where("url_path","=",$data['url_path'])
             ->where("lang","=",$data['lang'])
             ->get();
@@ -69,7 +85,7 @@ class BaseServiceProviders extends Controller
             }
 
             //count true return
-            return DB::table('prosystem_words')
+            return DB::table($this->dbTable(['words']))
                 ->where("url_path",$data['url_path'])
                 ->where("lang",$data['lang'])
                 ->update($data);
@@ -77,7 +93,7 @@ class BaseServiceProviders extends Controller
         }
 
         //default true return
-        return DB::table('prosystem_words')->insert($data);
+        return DB::table($this->dbTable(['words']))->insert($data);
     }
 
 
@@ -101,20 +117,20 @@ class BaseServiceProviders extends Controller
     public function loginPost($data)
     {
         $data['password']=$this->passwordHash($data['password']);
-        return DB::table("prosystem_administrator")->where(['ccode'=>$data['ccode'],'username'=>$data['username'],'password'=>$data['password']])->get();
+        return DB::table($this->dbTable(['admin']))->where(['ccode'=>$data['ccode'],'username'=>$data['username'],'password'=>$data['password']])->get();
     }
 
 
     public function updateUserHash($hash,$id)
     {
-        return DB::table("prosystem_administrator")->where(['id'=>$id])->update(['hash'=>$hash,'last_ip'=>$_SERVER['REMOTE_ADDR'],'user_lock'=>1,'last_login_time'=>time()]);
+        return DB::table($this->dbTable(['admin']))->where(['id'=>$id])->update(['hash'=>$hash,'last_ip'=>$_SERVER['REMOTE_ADDR'],'user_lock'=>1,'last_login_time'=>time()]);
     }
 
     public function pageProtector($field=false)
     {
         if($field)
         {
-            $query=DB::table("prosystem_administrator")->where(['hash'=>Session("userHash"),'last_ip'=>$_SERVER['REMOTE_ADDR'],'user_lock'=>1])->get();
+            $query=DB::table($this->dbTable(['admin']))->where(['hash'=>Session("userHash"),'last_ip'=>$_SERVER['REMOTE_ADDR'],'user_lock'=>1])->get();
 
             $adminFields=['lang'=>config("app.default_lang"),'role'=>1,'id'=>1];
             if(count($query))
@@ -129,18 +145,18 @@ class BaseServiceProviders extends Controller
             return (object)$adminFields;
         }
 
-        return DB::table("prosystem_administrator")->where(['hash'=>Session("userHash"),'last_ip'=>$_SERVER['REMOTE_ADDR'],'user_lock'=>1])->get();
+        return DB::table($this->dbTable(['admin']))->where(['hash'=>Session("userHash"),'last_ip'=>$_SERVER['REMOTE_ADDR'],'user_lock'=>1])->get();
     }
 
 
     public function adminLock()
     {
-        return DB::table("prosystem_administrator")->where(['hash'=>Session("userHash"),'last_ip'=>$_SERVER['REMOTE_ADDR'],'user_lock'=>1])->update(['user_lock'=>0]);
+        return DB::table($this->dbTable(['admin']))->where(['hash'=>Session("userHash"),'last_ip'=>$_SERVER['REMOTE_ADDR'],'user_lock'=>1])->update(['user_lock'=>0]);
     }
 
     public function get_admin_for_lockScreen()
     {
-        return DB::table("prosystem_administrator")->where(['hash'=>Session("userHash"),'last_ip'=>$_SERVER['REMOTE_ADDR'],'user_lock'=>0])->get();
+        return DB::table($this->dbTable(['admin']))->where(['hash'=>Session("userHash"),'last_ip'=>$_SERVER['REMOTE_ADDR'],'user_lock'=>0])->get();
     }
 
     public function admin()
@@ -151,7 +167,7 @@ class BaseServiceProviders extends Controller
 
     public function adminUpdate()
     {
-        return DB::table("prosystem_administrator")->where(['hash'=>Session("userHash"),'last_ip'=>$_SERVER['REMOTE_ADDR'],'user_lock'=>1])->update(['updated_at'=>time()]);
+        return DB::table($this->dbTable(['admin']))->where(['hash'=>Session("userHash"),'last_ip'=>$_SERVER['REMOTE_ADDR'],'user_lock'=>1])->update(['updated_at'=>time()]);
     }
 
     public function pageRole($data=array())
@@ -174,7 +190,7 @@ class BaseServiceProviders extends Controller
     {
         if($id)
         {
-            $data=DB::table("prosystem_administrator")->where("id","=",$id)->get();
+            $data=DB::table($this->dbTable(['admin']))->where("id","=",$id)->get();
             $config_expire_time=60*config("app.online_expire_minute");
             $user_expire_time=$data[0]->updated_at+$config_expire_time;
 
@@ -198,7 +214,7 @@ class BaseServiceProviders extends Controller
         {
             if(array_key_exists("id",$data))
             {
-                return DB::table("prosystem_administrator_process_logs")->where("userid","=",$data['id'])->orderBy("created_at","desc")->take(10)->get();
+                return DB::table($this->dbTable(['logs']))->where("userid","=",$data['id'])->orderBy("created_at","desc")->take(10)->get();
             }
         }
     }
@@ -208,7 +224,7 @@ class BaseServiceProviders extends Controller
     {
         if(count($data))
         {
-            return DB::table("prosystem_administrator_process_logs")->where("userid","=",$admin)->orderBy("created_at","desc")->take(1)->update($data);
+            return DB::table($this->dbTable(['logs']))->where("userid","=",$admin)->orderBy("created_at","desc")->take(1)->update($data);
         }
     }
 
