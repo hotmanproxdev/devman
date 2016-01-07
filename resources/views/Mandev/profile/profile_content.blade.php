@@ -47,14 +47,20 @@
                     <p>
                       {{$admin->extra_info}}
                     </p>
+
                     <p>
+                      <b>{{$mail}} : </b> {{$admin->email}}
+                    </p>
+
+                    <p>
+                      <b>{{$website}}</b> :
                       <a href="{{$admin->website}}" target="_blank">
                         {{$admin->website}}
                       </a>
                     </p>
 
                     <p>
-                      {{$admin->ccode}}
+                      <b> Ccode :</b> {{$admin->ccode}}
                     </p>
 
                   </div>
