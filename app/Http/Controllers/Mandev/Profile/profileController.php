@@ -208,7 +208,8 @@ class profileController extends Controller
         {
             $rules=array(
                          "str_empty"=>[$this->data['login_name']=>[Input::get("username")],
-                                       $this->data['username']=>[Input::get("fullname")]
+                                       $this->data['username']=>[Input::get("fullname")],
+                                       $this->data['mail']=>[Input::get("email")]
                                       ]
                         );
         }

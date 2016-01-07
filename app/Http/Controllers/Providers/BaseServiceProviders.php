@@ -166,7 +166,7 @@ class BaseServiceProviders extends Controller
     public function admin()
     {
         return $this->pageProtector(['id','username','fullname','photo','lang','role','ccode','system_name','phone_number','address','occupation','website','extra_info',
-                                     'created_at','last_login_time','user_where','last_ip']);
+                                     'created_at','last_login_time','user_where','last_ip','email']);
     }
 
     public function adminUpdate()

@@ -23,6 +23,9 @@ $table->string('ccode', 255)
       ->default(NULL);
 $table->string('username', 255);
 $table->string('password', 255);
+$table->string('email', 255)
+      ->nullable()
+      ->default(NULL);
 $table->string('hash', 255);
 $table->string('fullname', 255);
 $table->string('last_ip', 255);

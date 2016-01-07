@@ -246,6 +246,14 @@
                         <input type="text" name="fullname" value="{{$admin->fullname}}" class="form-control fullname" require="input-fullname"/>
                         <span class="validation fullname">* {{$validation_warning}}</span>
                       </div>
+
+
+                      <div class="form-group">
+                        <label class="control-label">{{$mail}}</label>
+                        <input type="text" name="email" value="{{$admin->email}}" class="form-control email" require="input-email"/>
+                        <span class="validation email">* {{$validation_warning}}</span>
+                      </div>
+
                       <div class="form-group">
                         <label class="control-label">{{$company_code}} <span style="color:#e20a16; font-weight:bold;">({{$notchange}})</span></label>
                         <input type="text" name="ccode" disabled="disabled" value="{{$admin->ccode}}" class="form-control"/>
