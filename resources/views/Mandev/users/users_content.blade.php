@@ -21,7 +21,7 @@
         </div>
       </div>
       <div class="portlet-body">
-        <div class="table-scrollable">
+        <div class="table-scrollable getUsers">
           <table class="table table-striped table-bordered table-hover">
             <thead>
             <tr>
@@ -127,7 +127,7 @@
 
         </div>
 
-        <div class="pagination"> {!! $getUsers->render() !!} </div>
+        {!! $getUsers->render() !!}
 
       </div>
     </div>

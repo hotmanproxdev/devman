@@ -35,7 +35,7 @@ class usersModel extends Controller
         if($this->admin->system_number==0)
         {
             //for just system developers
-            return DB::table($this->app->dbTable(['admin']))->paginate(10);
+            return DB::table($this->app->dbTable(['admin']))->paginate(1);
         }
 
         //for system developers and managers

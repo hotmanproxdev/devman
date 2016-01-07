@@ -8,7 +8,6 @@ use App\Http\Controllers\Controller;
 use Illuminate\Contracts\Routing\ResponseFactory;
 use App\Http\Controllers\Mandev\Users\usersModel;
 use DB;
-use Illuminate\Pagination\LengthAwarePaginator;
 
 class usersController extends Controller
 {
@@ -18,6 +17,7 @@ class usersController extends Controller
         public $admin;
         public $url_path='users';
         public $model;
+        public $pagination;
 
         public function __construct (Request $request,usersModel $model)
         {
@@ -44,6 +44,10 @@ class usersController extends Controller
     {
         //get all users
         $this->data['getUsers']=$this->model->getUsers();
+
+        if ($this->request->ajax()) {
+            return Response::json(view("".config("app.admin_dirname").".".$this->url_path.".main",$this->data)->render());
+        }
 
         //return view
         return view("".config("app.admin_dirname").".".$this->url_path.".main",$this->data);

@@ -218,6 +218,7 @@ return [
         'Validation' =>App\Http\Services\validationController::class,
         'BrowserDetect' => hisorange\BrowserDetect\Facade\Parser::class,
         'GeoIP' => Torann\GeoIP\GeoIPFacade::class,
+        'Pagination' => App\Http\Services\paginationController::class,
 
     ],
 
