@@ -33,6 +33,7 @@ class ProsystemAdministratorTableSeeder extends Seeder {
 				'role' => '1',
 				'system_name' => 'Developer
 ',
+				'system_number' => 0,
 				'phone_number' => '0545 906 29 92',
 				'address' => 'İstanbul',
 				'occupation' => 'Software Developer',
