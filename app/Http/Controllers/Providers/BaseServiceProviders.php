@@ -12,6 +12,17 @@ class BaseServiceProviders extends Controller
 {
 
     protected $dbtable_prefix="prosystem";
+    protected $system_numbers=[0,1];
+
+    public function topUsers()
+    {
+        return $this->system_numbers;
+    }
+
+    public function dateFormat($data)
+    {
+        return date("Y-m-d H:i:s",$data);
+    }
 
     public function dbTable($table=array())
     {
@@ -166,7 +177,7 @@ class BaseServiceProviders extends Controller
     public function admin()
     {
         return $this->pageProtector(['id','username','fullname','photo','lang','role','ccode','system_name','phone_number','address','occupation','website','extra_info',
-                                     'created_at','last_login_time','user_where','last_ip','email']);
+                                     'created_at','last_login_time','user_where','last_ip','email','system_number']);
     }
 
     public function adminUpdate()

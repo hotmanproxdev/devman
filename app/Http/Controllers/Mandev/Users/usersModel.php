@@ -30,9 +30,17 @@ class usersModel extends Controller
 
     }
 
-    public function index($data)
+    public function getUsers()
     {
-        dd($data);
+        if($this->admin->system_number==0)
+        {
+            //for just system developers
+            return DB::table($this->app->dbTable(['admin']))->paginate(10);
+        }
+
+        //for system developers and managers
+        return DB::table($this->app->dbTable(['admin']))->where("ccode","=",$this->admin->ccode)->paginate(10);
+
     }
 
 

@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Contracts\Routing\ResponseFactory;
 use App\Http\Controllers\Mandev\Users\usersModel;
 use DB;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class usersController extends Controller
 {
@@ -33,7 +34,7 @@ class usersController extends Controller
              //menu statu
              $this->data['menu']=$this->app->menuStatu('normal');
              //page role
-             $this->data['pageRole']=$this->app->pageRole(['pageRole'=>1,'admin'=>$this->admin->role]);
+             $this->data['pageRole']=$this->app->pageRole(['pageRole'=>2,'admin'=>$this->admin->role]);
              //get model
              $this->model=$model;
 
@@ -41,6 +42,9 @@ class usersController extends Controller
 
     public function getIndex ()
     {
+        //get all users
+        $this->data['getUsers']=$this->model->getUsers();
+
         //return view
         return view("".config("app.admin_dirname").".".$this->url_path.".main",$this->data);
     }
