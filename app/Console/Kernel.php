@@ -18,7 +18,6 @@ class Kernel extends ConsoleKernel
         Commands\Using::class,
         Commands\pageSetCommand::class,
         Commands\seeder::class,
-        Commands\drop::class,
  ];
 
     /**
