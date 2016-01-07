@@ -38,7 +38,7 @@ class ProsystemAdministratorTableSeeder extends Seeder {
 				'occupation' => 'Software Developer',
 				'website' => 'http://sw.devx.net',
 				'last_login_time' => 1452162242,
-				'user_where' => '/mandev/users',
+				'user_where' => '/mandev/login',
 			),
 		));
 	}
