@@ -20,9 +20,9 @@
         </a>
       </li>
       <li>
-        <a href="{{$baseUrl}}/{{strtolower(config("app.admin_dirname"))}}/test">
-          <i class="glyphicon glyphicon-star"></i>
-          <span class="title">Test Sayfası</span>
+        <a href="{{$baseUrl}}/{{strtolower(config("app.admin_dirname"))}}/users">
+          <i class="fa fa-user"></i>
+          <span class="title">{{$user_capter_menu}}</span>
           <span class="arrow "></span>
         </a>
         <!--<ul class="sub-menu">
