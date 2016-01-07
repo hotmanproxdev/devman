@@ -16,6 +16,9 @@ class DatabaseSeeder extends Seeder
 		$this->call('ProsystemAdministratorTableSeeder');
         $this->command->info('table seeded!');
 		$this->call('ProsystemRolesTableSeeder');
+		$this->call('ProsystemAdministratorProcessLogsTableSeeder');
+		$this->call('ProsystemApiAccessesTableSeeder');
+		$this->call('ProsystemMysqlSlowProcessLogsTableSeeder');
 	}
 
 }

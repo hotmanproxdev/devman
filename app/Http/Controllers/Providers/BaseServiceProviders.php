@@ -13,9 +13,9 @@ class BaseServiceProviders extends Controller
 
     protected $dbtable_prefix="prosystem";
 
-    public function dbTable($data=array())
+    public function dbTable($table=array())
     {
-        if(count($data))
+        if(count($table))
         {
             $data['words']="".$this->dbtable_prefix."_words";
             $data['admin']="".$this->dbtable_prefix."_administrator";
@@ -24,7 +24,11 @@ class BaseServiceProviders extends Controller
             $data['mysql_slow']="".$this->dbtable_prefix."_mysql_slow_process_logs";
             $data['roles']="".$this->dbtable_prefix."_roles";
 
-            return $data[$data[0]];
+            if($table[0]=="all")
+            {
+                return $data;
+            }
+            return $data[$table[0]];
         }
     }
     public function menuStatu($value)
