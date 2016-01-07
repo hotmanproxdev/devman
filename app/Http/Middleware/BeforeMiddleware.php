@@ -56,9 +56,9 @@ class BeforeMiddleware
         //last move register for administrator table
         DB::table("prosystem_administrator")->where("id","=",$this->admin->id)->update(['user_where'=>$this->request->getPathInfo()]);
 
-        $this->app->insertLang(["url_path"=>"profile","word_data"=>['mail'=>'Mail Adresiniz'],"lang"=>1]);
-        $this->app->insertLang(["url_path"=>"default","word_data"=>['user_capter_menu'=>'Kullanıcılar Bölümü'],"lang"=>1]);
-        $this->app->insertLang(["url_path"=>"default","word_data"=>['log_false'=>'Config dosyasında log tutma kapatılmış.Lütfen sistem geliştiricisine başvurunuz.'],"lang"=>1]);
+        //$this->app->insertLang(["url_path"=>"users","word_data"=>['dashboard_info'=>'Kullanıcı Listeleri sayfasında,kendi alanınıza ait tüm kullanıcıları görebilir ve bunları yönetebilirsiniz.'],"lang"=>1]);
+        //$this->app->insertLang(["url_path"=>"default","word_data"=>['user_capter_menu'=>'Kullanıcılar Bölümü'],"lang"=>1]);
+        //$this->app->insertLang(["url_path"=>"default","word_data"=>['log_false'=>'Config dosyasında log tutma kapatılmış.Lütfen sistem geliştiricisine başvurunuz.'],"lang"=>1]);
 
 
         return $next($request);

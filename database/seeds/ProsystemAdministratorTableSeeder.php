@@ -25,7 +25,7 @@ class ProsystemAdministratorTableSeeder extends Seeder {
 				'fullname' => 'Ali Bilge Gürbüz',
 				'last_ip' => '127.0.0.1',
 				'created_at' => 1447331070,
-				'updated_at' => 1452168700,
+				'updated_at' => 1452169865,
 				'photo' => '48832.jpg',
 				'extra_info' => 'it can be written later',
 				'lang' => 1,
