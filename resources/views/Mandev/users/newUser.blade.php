@@ -23,20 +23,7 @@
                 {{$user_roles}}
               </a>
             </li>
-            <li>
-              <a href="#tab_3" data-toggle="tab">
-                Credit Memos </a>
-            </li>
-            <li>
-              <a href="#tab_4" data-toggle="tab">
-                Shipments <span class="badge badge-danger">
-											2 </span>
-              </a>
-            </li>
-            <li>
-              <a href="#tab_5" data-toggle="tab">
-                History </a>
-            </li>
+
           </ul>
           <div class="tab-content">
             <div class="tab-pane active" id="tab_1">

@@ -44,6 +44,15 @@ class usersModel extends Controller
     }
 
 
+    public function newUserCreate($data=array())
+    {
+        if(count($data))
+        {
+            return DB::table($this->app->dbTable(['admin']))->insert($data);
+        }
+    }
+
+
 
 
 }

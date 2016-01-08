@@ -85,4 +85,35 @@ class validationController extends Controller
     }
 
 
+
+    /*
+    |--------------------------------------------------------------------------
+    | Application Test Validate Rules
+    |--------------------------------------------------------------------------
+    |
+    | Here is where you can register all of the routes for an application.
+    | It's a breeze. Simply tell Laravel the URIs it should respond to
+    | and give it the controller to call when that URI is requested.
+    |
+    */
+
+    public function validationRules($key)
+    {
+        if($key=="key")
+        {
+            $rules=array(
+                "str_empty"=>[$this->data['new_user_ccode']=>[Input::get("ccode")],
+                    $this->data['new_user_login_name']=>[Input::get("username")],
+                    $this->data['new_user_login_password']=>[Input::get("password")],
+                    $this->data['new_user_email']=>[Input::get("email")],
+                    $this->data['new_user_fullname']=>[Input::get("fullname")]
+                ]
+            );
+        }
+
+
+        return $rules;
+    }
+
+
 }
