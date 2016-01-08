@@ -16,7 +16,7 @@ class CreateProsystemRolesTable extends Migration {
      */
     public function up() {
         Schema::create('prosystem_roles', function(Blueprint $table) {
-$table->integer('id')
+$table->increments('id')
       ->unsigned();
 $table->string('role_define', 255);
 $table->text('role_info');
@@ -25,7 +25,6 @@ $table->integer('created_at');
 $table->integer('updated_at');
 $table->integer('statu');
 
-$table->primary('id', 'prim');
 $table->index(['role_define', 'lang', 'statu'], 'auth_define');
 $table->index('lang', 'lang');
 });

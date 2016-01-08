@@ -16,7 +16,7 @@ class CreateProsystemAdministratorProcessLogsTable extends Migration {
      */
     public function up() {
         Schema::create('prosystem_administrator_process_logs', function(Blueprint $table) {
-$table->integer('id')
+$table->increments('id')
       ->unsigned();
 $table->integer('userid');
 $table->string('userip', 255);
@@ -110,7 +110,6 @@ $table->text('msg')
 $table->text('postdata');
 $table->integer('created_at');
 
-$table->primary('id', 'prim');
 $table->index('userid', 'userid');
 $table->index('created_at', 'created_at');
 $table->index('log_process', 'log_process');

@@ -16,7 +16,7 @@ class CreateProsystemLocationsTable extends Migration {
      */
     public function up() {
         Schema::create('prosystem_locations', function(Blueprint $table) {
-$table->integer('id')
+$table->increments('id')
       ->unsigned();
 $table->string('location', 255);
 $table->integer('parent');
@@ -24,7 +24,6 @@ $table->string('seo_location', 255);
 $table->string('statu', 255);
 $table->integer('language');
 
-$table->primary('id', 'prim');
 });
     }
 

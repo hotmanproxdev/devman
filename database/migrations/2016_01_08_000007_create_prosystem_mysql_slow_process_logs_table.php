@@ -16,7 +16,7 @@ class CreateProsystemMysqlSlowProcessLogsTable extends Migration {
      */
     public function up() {
         Schema::create('prosystem_mysql_slow_process_logs', function(Blueprint $table) {
-$table->integer('id')
+$table->increments('id')
       ->unsigned();
 $table->text('url_path');
 $table->text('query_log')
@@ -30,7 +30,6 @@ $table->float('query_time')
       ->default(NULL);
 $table->integer('created_at');
 
-$table->primary('id', 'prim');
 $table->index('created_at', 'created_at');
 });
     }

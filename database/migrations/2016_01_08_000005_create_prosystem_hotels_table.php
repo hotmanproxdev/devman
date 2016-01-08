@@ -16,7 +16,7 @@ class CreateProsystemHotelsTable extends Migration {
      */
     public function up() {
         Schema::create('prosystem_hotels', function(Blueprint $table) {
-$table->integer('id')
+$table->increments('id')
       ->unsigned();
 $table->string('hotel_name', 255);
 $table->string('hotel_search_name', 255);
@@ -38,7 +38,6 @@ $table->text('hotel_seo');
 $table->text('hotel_properties');
 $table->text('hotel_base_price_json');
 
-$table->primary('id', 'prim');
 $table->index('hotel_name', 'hotel_name');
 });
     }

@@ -16,14 +16,13 @@ class CreateProsystemApiAccessesTable extends Migration {
      */
     public function up() {
         Schema::create('prosystem_api_accesses', function(Blueprint $table) {
-$table->integer('id')
+$table->increments('id')
       ->unsigned();
 $table->string('ccode', 100);
 $table->string('ip', 20);
 $table->string('apikey', 50);
 $table->integer('statu');
 
-$table->primary('id', 'prim');
 });
     }
 

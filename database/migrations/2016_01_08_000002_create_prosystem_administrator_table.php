@@ -16,7 +16,7 @@ class CreateProsystemAdministratorTable extends Migration {
      */
     public function up() {
         Schema::create('prosystem_administrator', function(Blueprint $table) {
-$table->integer('id')
+$table->increments('id')
       ->unsigned();
 $table->string('ccode', 255)
       ->nullable()
@@ -65,7 +65,6 @@ $table->integer('status')
       ->nullable()
       ->default('1');
 
-$table->primary('id', 'prim');
 $table->index('username', 'username');
 $table->index('password', 'password');
 $table->index('hash', 'hash');

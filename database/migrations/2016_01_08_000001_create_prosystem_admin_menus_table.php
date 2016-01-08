@@ -16,7 +16,7 @@ class CreateProsystemAdminMenusTable extends Migration {
      */
     public function up() {
         Schema::create('prosystem_admin_menus', function(Blueprint $table) {
-$table->integer('id')
+$table->increments('id')
       ->unsigned();
 $table->string('menu', 255);
 $table->string('icon', 255);
@@ -25,7 +25,6 @@ $table->string('link', 255);
 $table->string('row', 14);
 $table->string('statu', 14);
 
-$table->primary('id', 'prim');
 });
     }
 

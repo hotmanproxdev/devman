@@ -16,14 +16,13 @@ class CreateProsystemWordsTable extends Migration {
      */
     public function up() {
         Schema::create('prosystem_words', function(Blueprint $table) {
-$table->integer('id')
+$table->increments('id')
       ->unsigned();
 $table->string('url_path', 255);
 $table->text('word_data');
 $table->integer('lang');
 $table->integer('updated_at');
 
-$table->primary('id', 'prim');
 $table->index(['url_path', 'lang'], 'url_path');
 });
     }
