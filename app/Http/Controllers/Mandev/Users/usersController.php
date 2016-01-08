@@ -45,11 +45,14 @@ class usersController extends Controller
         //get all users
         $this->data['getUsers']=$this->model->getUsers();
 
-        if ($this->request->ajax()) {
-            return Response::json(view("".config("app.admin_dirname").".".$this->url_path.".main",$this->data)->render());
-        }
-
         //return view
         return view("".config("app.admin_dirname").".".$this->url_path.".main",$this->data);
+    }
+
+
+    public function getNewuser()
+    {
+        //return view
+        return view("".config("app.admin_dirname").".".$this->url_path.".newUser",$this->data);
     }
 }

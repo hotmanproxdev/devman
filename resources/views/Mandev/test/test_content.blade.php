@@ -2,6 +2,7 @@
     @include("".config("app.admin_dirname").".noauth")
 @else
 
+
 <form id="test" method="post">
   <input type="hidden" name="_token" value="{{csrf_token()}}">
   <input type="text" name="date" class="datetimepicker">

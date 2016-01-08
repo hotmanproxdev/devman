@@ -91,9 +91,9 @@ class Using extends Command
         //modal toggle helper
         if($this->argument("name")=="modal")
         {
-            $dd['responsive']='<a class="btn default xmodal" model="test/modal" title="test modal page" data-toggle="modal" href="#responsive">View Demo </a>';
-            $dd['stack1']='<a class="btn default xmodal" model="test/modal" title="test modal page" data-target="#stack1" data-toggle="modal">View Demo </a>';
-            $dd['full-width']='<a class="btn default xmodal" model="test/modal" title="test modal page" data-target="#full-width" data-toggle="modal">View Demo </a>';
+            $dd['responsive']='<a class="btn default xmodal" model="test/modal" modal-title="test modal page" data-toggle="modal" href="#responsive">View Demo </a>';
+            $dd['stack1']='<a class="btn default xmodal" model="test/modal" modal-title="test modal page" data-target="#stack1" href="#stack1" data-toggle="modal">View Demo </a>';
+            $dd['full-width']='<a class="btn default xmodal" model="test/modal" modal-title="test modal page" data-target="#full-width" href="#full-width" data-toggle="modal">View Demo </a>';
 
             dd($dd);
         }

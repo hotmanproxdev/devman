@@ -3,22 +3,19 @@
 @else
 
 
+  <div style="margin:0 0 5px 0;">
+    <a class="btn red xmodal" model="users/newuser" modal-title="Yeni Kullanıcı Oluşturma Formu" data-target="#full-width" href="#full-width" data-toggle="modal">
+      <i class="fa fa-plus"></i> Yeni Kullanıcı Oluştur </a>
+    </div>
+
+
     <!-- BEGIN SAMPLE TABLE PORTLET-->
     <div class="portlet box purple">
       <div class="portlet-title">
         <div class="caption">
           <i class="fa fa-cogs"></i>{{$defined_all_users}}
         </div>
-        <div class="tools">
-          <a href="javascript:;" class="collapse">
-          </a>
-          <a href="#portlet-config" data-toggle="modal" class="config">
-          </a>
-          <a href="javascript:;" class="reload">
-          </a>
-          <a href="javascript:;" class="remove">
-          </a>
-        </div>
+
       </div>
       <div class="portlet-body">
         <div class="table-scrollable getUsers">

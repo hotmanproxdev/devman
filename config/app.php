@@ -24,6 +24,7 @@ return [
     'mysql_slow_status'=>false,
     'default_lang'=>1,
     'online_expire_minute'=>15,
+    'paginator'=>10,
 
     //////////////MANDEV CONFİG SETTİNGS//////////////////////////////////////////////////
 
