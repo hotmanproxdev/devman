@@ -55,4 +55,10 @@ class usersController extends Controller
         //return view
         return view("".config("app.admin_dirname").".".$this->url_path.".newUser",$this->data);
     }
+
+    public function postNewuser()
+    {
+        //new user post
+        dd($_POST);
+    }
 }

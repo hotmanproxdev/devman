@@ -61,6 +61,9 @@ $table->integer('last_login_time')
 $table->string('user_where', 255)
       ->nullable()
       ->default(NULL);
+$table->integer('status')
+      ->nullable()
+      ->default('1');
 
 $table->primary('id', 'prim');
 $table->index('username', 'username');
