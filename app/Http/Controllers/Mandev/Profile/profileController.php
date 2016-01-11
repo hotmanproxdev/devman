@@ -43,7 +43,7 @@ class profileController extends Controller
              //admin data passing
              $this->data['admin']=$this->admin;
              //page role
-             $this->data['pageRole']=$this->app->pageRole(['pageRole'=>1,'admin'=>$this->admin->role]);
+             $this->data['pageRole']=$this->app->pageRole(['pageRole'=>3,'admin'=>$this->admin->role]);
              //get page model
              $this->model=$model;
              //notification

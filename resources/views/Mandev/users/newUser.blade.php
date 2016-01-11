@@ -1,3 +1,5 @@
+
+<form id="newuser" method="post" class="form-horizontal">
 <div class="row">
   <div class="col-md-12">
     <!-- Begin: life time stats -->
@@ -45,7 +47,6 @@
                            {{$new_user_create_rules}}
                         </p>
                       </div>
-                      <form id="newuser" method="post" class="form-horizontal">
                         <input type="hidden" name="_token" value="{{csrf_token()}}">
                         <div class="form-group">
                           <label class="col-md-3 control-label" for="title">{{$new_user_ccode}}:</label>
@@ -120,7 +121,6 @@
                             <span id="newuserresult"></span>
                           </div>
                         </div>
-                      </form>
                     </div>
                   </div>
                 </div>
@@ -139,30 +139,33 @@
                       <div class="caption">
                         <i class="fa fa-cogs"></i>{{$user_roles_capter}}
                       </div>
-                      <div class="actions">
-                        <a href="javascript:;" class="btn btn-default btn-sm">
-                          <i class="fa fa-pencil"></i> Edit </a>
-                      </div>
+
                     </div>
                     <div class="portlet-body">
-                      <div class="table-responsive">
-                        <table class="table table-hover table-bordered table-striped">
+                      <select class="form-control droles label label-warning" style="width:70%; margin:0 0 5px 0; color:#333; font-weight:bold;">
+                        @foreach ($roles['default_roles'] as $defkey=>$defroles)
+                          <option value="{{$roles['default_roles'][$defkey]['id']}}">{{$defkey}} Kullanıcı Statüsü</option>
+                        @endforeach
+                      </select>
+
+                      <div class="table-scrollable">
+                        <table class="table table-striped table-bordered table-hover">
                           <thead>
                           <tr>
-                            <th>
+                            <th scope="col">
                               Id:
                             </th>
-                            <th>
-                              Sayfa Rol Tanımı:
+                            <th scope="col">
+                              {{$user_page_role_define}}:
                             </th>
-                            <th>
-                              Rol Açıklaması:
+                            <th scope="col">
+                              {{$user_page_role_explain}}:
                             </th>
-                            <th>
-                              Rol Katmanı:
+                            <th scope="col">
+                              {{$user_page_role_layer}}:
                             </th>
-                            <th>
-                              Atama:
+                            <th scope="col">
+                              {{$user_page_role_assign}}:
                             </th>
 
                           </tr>
@@ -187,7 +190,7 @@
                             </td>
 
                             <td>
-                              <input type="checkbox" {{$roles['checkbox'][$role->id]}} name="role_assing[]" class="form-control" value="{{$role->id}}">
+                              <input type="checkbox"  class="roles role_{{$role->id}}" name="role_assign[]" value="{{$role->id}}">
                             </td>
 
                           </tr>
@@ -218,3 +221,23 @@
     <!-- End: life time stats -->
   </div>
 </div>
+  </form>
+
+
+<script>
+
+
+
+    $("select.droles").change(function()
+    {
+
+      var val=$(this).val();
+      alert(val);
+
+    });
+
+
+
+
+</script>
+

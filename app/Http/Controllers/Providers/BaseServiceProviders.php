@@ -34,6 +34,7 @@ class BaseServiceProviders extends Controller
             $data['api']="".$this->dbtable_prefix."_api_accesses";
             $data['mysql_slow']="".$this->dbtable_prefix."_mysql_slow_process_logs";
             $data['roles']="".$this->dbtable_prefix."_roles";
+            $data['default_roles']="".$this->dbtable_prefix."_default_roles";
 
             if($table[0]=="all")
             {
@@ -54,23 +55,33 @@ class BaseServiceProviders extends Controller
 
     }
 
-    public function getLang($data)
+    public function getLang($data=false,$lang=false)
     {
+        if($lang)
+        {
+            $data['lang']=$lang;
+        }
         //default word data
         $getWordDefault=DB::table($this->dbTable(['words']))->where(['url_path'=>'default','lang'=>$data['lang']])->get();
 
-        //requested word data
-        $getWord=DB::table($this->dbTable(['words']))->where($data)->get();
-
-        if(count($getWord)==false)
+        if($data)
         {
+            //requested word data
+            $getWord=DB::table($this->dbTable(['words']))->where($data)->get();
+
+            if(count($getWord)==false)
+            {
+                //return
+                $this->insertLang(['url_path'=>$data['url_path'],'word_data'=>['dashboard'=>'Test Sayfası','dashboard_info'=>'Test Sayfası Oluşturuldu'],'lang'=>1]);
+                return array_merge(json_decode($getWordDefault[0]->word_data,true),json_decode(json_encode(array()),true));
+            }
+
             //return
-            $this->insertLang(['url_path'=>$data['url_path'],'word_data'=>['dashboard'=>'Test Sayfası','dashboard_info'=>'Test Sayfası Oluşturuldu'],'lang'=>1]);
-            return array_merge(json_decode($getWordDefault[0]->word_data,true),json_decode(json_encode(array()),true));
+            return array_merge(json_decode($getWordDefault[0]->word_data,true),json_decode($getWord[0]->word_data,true));
         }
 
-        //return
-        return array_merge(json_decode($getWordDefault[0]->word_data,true),json_decode($getWord[0]->word_data,true));
+        return array_merge(json_decode($getWordDefault[0]->word_data,true),[]);
+
     }
 
 
@@ -281,7 +292,13 @@ class BaseServiceProviders extends Controller
             }
         }
 
-        return ['roles'=>$roles,'checkbox'=>$roleInput];
+        $default_roles=DB::table($this->dbTable(['default_roles']))->orderBy("role_row","asc")->get();
+        foreach ($default_roles as $defroles)
+        {
+            $def_roles[$this->getLang(false,$data['admin']->lang)[$defroles->role_name]]=['id'=>$defroles->id,'system_number'=>$defroles->system_number,'roles'=>$defroles->roles];
+        }
+
+        return ['roles'=>$roles,'checkbox'=>$roleInput,'default_roles'=>$def_roles];
     }
 
 

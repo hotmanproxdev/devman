@@ -84,9 +84,11 @@ class usersController extends Controller
         $_POST['photo']='default.png';
         $_POST['lang']=config("app.default_lang");
         $_POST['password']=$this->app->passwordHash($_POST['password']);
+        $_POST['role']=implode("-",$_POST['role_assign']);
+
 
         //new user post
-        if($this->model->newUserCreate($this->app->getvalidPostKey($_POST,['_token'])))
+        if($this->model->newUserCreate($this->app->getvalidPostKey($_POST,['_token','role_assign'])))
         {
             //new user sql true notification
             return $this->notification->success(['msg'=>$this->data['new_user_post_true'],'title'=>$this->data['new_user_post_header']]);

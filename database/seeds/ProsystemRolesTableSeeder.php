@@ -36,6 +36,17 @@ class ProsystemRolesTableSeeder extends Seeder {
 				'updated_at' => 0,
 				'status' => 1,
 			),
+			2 => 
+			array (
+				'id' => 3,
+				'role_define' => 'profile',
+				'role_info' => 'Kullanici kendi profil sayfasini gorebilsin mi?',
+				'role_layer' => 'page',
+				'lang' => 1,
+				'created_at' => 0,
+				'updated_at' => 0,
+				'status' => 1,
+			),
 		));
 	}
 
