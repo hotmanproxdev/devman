@@ -6,12 +6,30 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Session;
+use DB;
 
 class logoutController extends Controller
 {
+    public $app;
+    public $admin;
+
+    public function __construct()
+    {
+        //page protector
+        $this->middleware('auth');
+        //base service provider
+        $this->app=app()->make("Base");
+        //admin data
+        $this->admin=$this->app->admin();
+    }
+
     public function index()
     {
-        Session::forget('userHash');
-        return redirect("".strtolower(config("app.admin_dirname"))."/login");
+        if(DB::table($this->app->dbTable(['admin']))->where("id","=",$this->admin->id)->update(['updated_at'=>""]))
+        {
+            Session::forget('userHash');
+            return redirect("".strtolower(config("app.admin_dirname"))."/login");
+        }
+
     }
 }

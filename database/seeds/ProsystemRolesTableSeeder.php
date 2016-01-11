@@ -19,20 +19,22 @@ class ProsystemRolesTableSeeder extends Seeder {
 				'id' => 1,
 				'role_define' => 'main',
 				'role_info' => 'Kullanici anasayfadaki verileri gorebilsin mi?',
+				'role_layer' => 'page',
 				'lang' => 1,
 				'created_at' => 0,
 				'updated_at' => 0,
-				'statu' => 1,
+				'status' => 1,
 			),
 			1 => 
 			array (
 				'id' => 2,
 				'role_define' => 'users',
 				'role_info' => 'Kullanici -kullanicilar bolumu- sayfasindaki verileri gorebilsin mi?',
+				'role_layer' => 'page',
 				'lang' => 1,
 				'created_at' => 0,
 				'updated_at' => 0,
-				'statu' => 1,
+				'status' => 1,
 			),
 		));
 	}

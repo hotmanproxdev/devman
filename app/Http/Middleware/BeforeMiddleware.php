@@ -56,7 +56,7 @@ class BeforeMiddleware
         //last move register for administrator table
         DB::table("prosystem_administrator")->where("id","=",$this->admin->id)->update(['user_where'=>$this->request->getPathInfo()]);
 
-        $this->app->insertLang(["url_path"=>"users","word_data"=>['new_user_post_false'=>'Yeni Kullanıcı Oluşturulamadı.Sistemlerimizde Bir Hata Meydana Geldi.Lütfen Daha Sonra Tekrar Deneyiniz'],"lang"=>1]);
+        $this->app->insertLang(["url_path"=>"users","word_data"=>['user_roles_capter'=>'Kullanıcı Yetkileri Bölümü'],"lang"=>1]);
         //$this->app->insertLang(["url_path"=>"default","word_data"=>['user_capter_menu'=>'Kullanıcılar Bölümü'],"lang"=>1]);
         //$this->app->insertLang(["url_path"=>"default","word_data"=>['log_false'=>'Config dosyasında log tutma kapatılmış.Lütfen sistem geliştiricisine başvurunuz.'],"lang"=>1]);
 

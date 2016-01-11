@@ -40,7 +40,8 @@ $table->integer('user_lock')
       ->default('1');
 $table->text('role');
 $table->string('system_name', 255)
-      ->nullable();
+      ->nullable()
+      ->default(NULL);
 $table->integer('system_number')
       ->nullable()
       ->default(NULL);
@@ -51,7 +52,8 @@ $table->text('address')
       ->nullable()
       ->default(NULL);
 $table->string('occupation', 255)
-      ->nullable();
+      ->nullable()
+      ->default(NULL);
 $table->string('website', 255)
       ->nullable()
       ->default(NULL);

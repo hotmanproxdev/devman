@@ -60,6 +60,9 @@ class usersController extends Controller
 
     public function getNewuser()
     {
+        //get user roles
+        $this->data['roles']=$this->app->getUserRoles(['admin'=>$this->admin]);
+
         //return view
         return view("".config("app.admin_dirname").".".$this->url_path.".newUser",$this->data);
     }
@@ -75,6 +78,12 @@ class usersController extends Controller
             //validation false notification
             return $this->notification->warning(['msg'=>$validation['msg'],'title'=>$this->data['error']]);
         }
+
+        //additional fields
+        $_POST['created_at']=time();
+        $_POST['photo']='default.png';
+        $_POST['lang']=config("app.default_lang");
+        $_POST['password']=$this->app->passwordHash($_POST['password']);
 
         //new user post
         if($this->model->newUserCreate($this->app->getvalidPostKey($_POST,['_token'])))

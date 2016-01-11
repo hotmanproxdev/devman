@@ -20,12 +20,15 @@ $table->increments('id')
       ->unsigned();
 $table->string('role_define', 255);
 $table->text('role_info');
+$table->string('role_layer', 255)
+      ->nullable()
+      ->default(NULL);
 $table->integer('lang');
 $table->integer('created_at');
 $table->integer('updated_at');
-$table->integer('statu');
+$table->integer('status');
 
-$table->index(['role_define', 'lang', 'statu'], 'auth_define');
+$table->index(['role_define', 'lang', 'status'], 'auth_define');
 $table->index('lang', 'lang');
 });
     }

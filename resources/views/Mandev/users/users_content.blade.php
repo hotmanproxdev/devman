@@ -26,6 +26,12 @@
                 İd:
               </th>
               <th scope="col">
+                Online Durumu:
+              </th>
+              <th scope="col">
+                Profil:
+              </th>
+              <th scope="col">
                 Ccode:
               </th>
               <th scope="col">
@@ -45,9 +51,6 @@
               </th>
               <th scope="col">
                 Kullanıcı Yaratılma Tarihi:
-              </th>
-              <th scope="col">
-                Online Durumu:
               </th>
               <th scope="col">
                 Sistem Dili:
@@ -73,6 +76,18 @@
                 {{$users->id}}
               </td>
               <td>
+                @if(app()->make("Base")->getOnlineStatu($users->id)->status)
+                  <span class="label label-sm label-danger">
+											Aktif </span>
+                @else
+                  <span class="label label-sm label-danger">
+											Pasif </span>
+                @endif
+              </td>
+              <td>
+                <img src="{{$baseUrl}}/{{config("app.admin_profil_path")}}/{{$users->photo}}" class="img-responsive" alt=""/>
+              </td>
+              <td>
                 <span class="label label-sm label-warning">
 											<span style="color:#333; font-weight:bold;">{{$users->ccode}}</span> </span>
 
@@ -95,15 +110,7 @@
               <td>
                 {{app()->make("Base")->dateFormat($users->created_at)}}
               </td>
-              <td>
-                @if(app()->make("Base")->getOnlineStatu($users->id))
-                  <span class="label label-sm label-danger">
-											Aktif </span>
-                  @else
-                  <span class="label label-sm label-danger">
-											Pasif </span>
-                  @endif
-              </td>
+
               <td>
                 {{$users->lang}}
               </td>

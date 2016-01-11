@@ -261,4 +261,28 @@ class BaseServiceProviders extends Controller
 
     }
 
+
+    public function getUserRoles($data=array())
+    {
+        $roles=DB::table($this->dbTable(['roles']))->where("lang","=",$data['admin']->lang)->where("status","=","1")->get();
+        $admin_roles=DB::table($this->dbTable(['admin']))->select("role")->where("id","=",$data['admin']->id)->get();
+
+        $adminrole=explode("-",$admin_roles[0]->role);
+
+        foreach ($roles as $role)
+        {
+            if(in_array($role->id,$adminrole))
+            {
+                $roleInput[$role->id]='checked="checked"';
+            }
+            else
+            {
+                $roleInput[$role->id]='';
+            }
+        }
+
+        return ['roles'=>$roles,'checkbox'=>$roleInput];
+    }
+
+
 }

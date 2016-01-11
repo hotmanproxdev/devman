@@ -3,18 +3,18 @@
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
 
-class DatabaseSeeder extends Seeder
-{
-    /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
-    public function run()
-    {
+class DatabaseSeeder extends Seeder {
 
-        $this->command->info('table seeded!');
+	/**
+	 * Run the database seeds.
+	 *
+	 * @return void
+	 */
+	public function run()
+	{
+		Model::unguard();
 
+		// $this->call('UserTableSeeder');
 		$this->call('ProsystemWordsTableSeeder');
 		$this->call('ProsystemAdministratorTableSeeder');
 		$this->call('ProsystemAdministratorProcessLogsTableSeeder');

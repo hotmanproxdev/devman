@@ -137,7 +137,7 @@
                   <div class="portlet grey-cascade box">
                     <div class="portlet-title">
                       <div class="caption">
-                        <i class="fa fa-cogs"></i>Shopping Cart
+                        <i class="fa fa-cogs"></i>{{$user_roles_capter}}
                       </div>
                       <div class="actions">
                         <a href="javascript:;" class="btn btn-default btn-sm">
@@ -150,159 +150,49 @@
                           <thead>
                           <tr>
                             <th>
-                              Product
+                              Id:
                             </th>
                             <th>
-                              Item Status
+                              Sayfa Rol Tanımı:
                             </th>
                             <th>
-                              Original Price
+                              Rol Açıklaması:
                             </th>
                             <th>
-                              Price
+                              Rol Katmanı:
                             </th>
                             <th>
-                              Quantity
+                              Atama:
                             </th>
-                            <th>
-                              Tax Amount
-                            </th>
-                            <th>
-                              Tax Percent
-                            </th>
-                            <th>
-                              Discount Amount
-                            </th>
-                            <th>
-                              Total
-                            </th>
+
                           </tr>
                           </thead>
                           <tbody>
+
+                          @foreach ($roles['roles'] as $role)
                           <tr>
                             <td>
-                              <a href="javascript:;">
-                                Product 1 </a>
+
+                                {{$role->id}}
                             </td>
                             <td>
 																		<span class="label label-sm label-success">
-																		Available
+																		{{$role->role_define}}
                             </td>
                             <td>
-                              345.50$
+                              {{$role->role_info}}
                             </td>
                             <td>
-                              345.50$
+                              {{$role->role_layer}}
                             </td>
+
                             <td>
-                              2
+                              <input type="checkbox" {{$roles['checkbox'][$role->id]}} name="role_assing[]" class="form-control" value="{{$role->id}}">
                             </td>
-                            <td>
-                              2.00$
-                            </td>
-                            <td>
-                              4%
-                            </td>
-                            <td>
-                              0.00$
-                            </td>
-                            <td>
-                              691.00$
-                            </td>
+
                           </tr>
-                          <tr>
-                            <td>
-                              <a href="javascript:;">
-                                Product 1 </a>
-                            </td>
-                            <td>
-																		<span class="label label-sm label-success">
-																		Available
-                            </td>
-                            <td>
-                              345.50$
-                            </td>
-                            <td>
-                              345.50$
-                            </td>
-                            <td>
-                              2
-                            </td>
-                            <td>
-                              2.00$
-                            </td>
-                            <td>
-                              4%
-                            </td>
-                            <td>
-                              0.00$
-                            </td>
-                            <td>
-                              691.00$
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>
-                              <a href="javascript:;">
-                                Product 1 </a>
-                            </td>
-                            <td>
-																		<span class="label label-sm label-success">
-																		Available
-                            </td>
-                            <td>
-                              345.50$
-                            </td>
-                            <td>
-                              345.50$
-                            </td>
-                            <td>
-                              2
-                            </td>
-                            <td>
-                              2.00$
-                            </td>
-                            <td>
-                              4%
-                            </td>
-                            <td>
-                              0.00$
-                            </td>
-                            <td>
-                              691.00$
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>
-                              <a href="javascript:;">
-                                Product 1 </a>
-                            </td>
-                            <td>
-																		<span class="label label-sm label-success">
-																		Available
-                            </td>
-                            <td>
-                              345.50$
-                            </td>
-                            <td>
-                              345.50$
-                            </td>
-                            <td>
-                              2
-                            </td>
-                            <td>
-                              2.00$
-                            </td>
-                            <td>
-                              4%
-                            </td>
-                            <td>
-                              0.00$
-                            </td>
-                            <td>
-                              691.00$
-                            </td>
-                          </tr>
+                            @endforeach
+
                           </tbody>
                         </table>
                       </div>
