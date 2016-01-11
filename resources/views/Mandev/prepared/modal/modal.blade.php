@@ -3,7 +3,7 @@
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
     <h4 class="modal-title" style="font-weight:bold;">Responsive</h4>
   </div>
-  <div class="modal-body modalLoadresponsive">
+  <div class="modal-body modalLoadresponsive" style="min-height:500px;">
 
   </div>
 
@@ -15,7 +15,7 @@
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
     <h4 class="modal-title">Stack One</h4>
   </div>
-  <div class="modal-body modalLoadstack1">
+  <div class="modal-body modalLoadstack1" style="min-height:500px;">
 
   </div>
   <div class="modal-footer">
@@ -31,7 +31,7 @@
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
     <h4 class="modal-title">Full Width</h4>
   </div>
-  <div class="modal-body modalLoadfull-width">
+  <div class="modal-body modalLoadfull-width" style="min-height:500px;">
 
   </div>
 </div>
