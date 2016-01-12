@@ -65,11 +65,17 @@ class usersController extends Controller
 
     public function getNewuser()
     {
-        //get user roles
-        $this->data['roles']=$this->app->getUserRoles(['admin'=>$this->admin]);
+        if($this->request->ajax())
+        {
+            //get user roles
+            $this->data['roles']=$this->app->getUserRoles(['admin'=>$this->admin]);
 
-        //return view
-        return view("".config("app.admin_dirname").".".$this->url_path.".newUser",$this->data);
+            //return view
+            return view("".config("app.admin_dirname").".".$this->url_path.".newUser",$this->data);
+        }
+
+        return redirect("".strtolower(config("app.admin_dirname"))."/logout");
+
     }
 
     public function postNewuser()
