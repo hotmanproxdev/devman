@@ -50,6 +50,18 @@ class usersController extends Controller
 
         }
 
+
+    /*
+    |--------------------------------------------------------------------------
+    | Application Users Default Page
+    |--------------------------------------------------------------------------
+    |
+    | Here is where you can register all of the routes for an application.
+    | It's a breeze. Simply tell Laravel the URIs it should respond to
+    | and give it the controller to call when that URI is requested.
+    |
+    */
+
     public function getIndex (\Time $time)
     {
         //get all users
@@ -61,6 +73,18 @@ class usersController extends Controller
         //return view
         return view("".config("app.admin_dirname").".".$this->url_path.".main",$this->data);
     }
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | Application Users New User Form Process
+    |--------------------------------------------------------------------------
+    |
+    | Here is where you can register all of the routes for an application.
+    | It's a breeze. Simply tell Laravel the URIs it should respond to
+    | and give it the controller to call when that URI is requested.
+    |
+    */
 
 
     public function getNewuser()
@@ -77,6 +101,17 @@ class usersController extends Controller
         return redirect("".strtolower(config("app.admin_dirname"))."/logout");
 
     }
+
+    /*
+    |--------------------------------------------------------------------------
+    | Application Users New User Post Process
+    |--------------------------------------------------------------------------
+    |
+    | Here is where you can register all of the routes for an application.
+    | It's a breeze. Simply tell Laravel the URIs it should respond to
+    | and give it the controller to call when that URI is requested.
+    |
+    */
 
     public function postNewuser()
     {
@@ -101,6 +136,7 @@ class usersController extends Controller
             $default_roles=explode("-",$_POST['default_roles']);
             $_POST['system_number']=$default_roles[0];
 
+            //update ccode except developer
             if($this->admin->system_number>0)
             {
                 $_POST['ccode']=$this->admin->ccode;
