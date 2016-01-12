@@ -122,6 +122,7 @@
               </td>
               <td>
                 {{app()->make("Base")->dateFormat($users->last_login_time)}}
+                <div style="color:#e20a16; font-weight: bold;">{{$time->getPassing($users->last_login_time)->output}}</div>
               </td>
             </tr>
               @endforeach

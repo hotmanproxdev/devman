@@ -39,6 +39,8 @@ class usersController extends Controller
              $this->data['menu']=$this->app->menuStatu('normal');
              //page role
              $this->data['pageRole']=$this->app->pageRole(['pageRole'=>2,'admin'=>$this->admin->role]);
+             //admin view
+             $this->data['admin']=$this->admin;
              //get model
              $this->model=$model;
              //get validation
@@ -48,10 +50,13 @@ class usersController extends Controller
 
         }
 
-    public function getIndex ()
+    public function getIndex (\Time $time)
     {
         //get all users
         $this->data['getUsers']=$this->model->getUsers();
+
+        //time check process
+        $this->data['time']=$time;
 
         //return view
         return view("".config("app.admin_dirname").".".$this->url_path.".main",$this->data);
@@ -85,10 +90,17 @@ class usersController extends Controller
         $_POST['lang']=config("app.default_lang");
         $_POST['password']=$this->app->passwordHash($_POST['password']);
         $_POST['role']=implode("-",$_POST['role_assign']);
+        $default_roles=explode("-",$_POST['default_roles']);
+        $_POST['system_number']=$default_roles[0];
+
+        if($this->admin->system_number>0)
+        {
+            $_POST['ccode']=$this->admin->ccode;
+        }
 
 
         //new user post
-        if($this->model->newUserCreate($this->app->getvalidPostKey($_POST,['_token','role_assign'])))
+        if($this->model->newUserCreate($this->app->getvalidPostKey($_POST,['_token','role_assign','default_roles'])))
         {
             //new user sql true notification
             return $this->notification->success(['msg'=>$this->data['new_user_post_true'],'title'=>$this->data['new_user_post_header']]);

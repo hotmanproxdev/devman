@@ -292,7 +292,7 @@ class BaseServiceProviders extends Controller
             }
         }
 
-        $default_roles=DB::table($this->dbTable(['default_roles']))->orderBy("role_row","asc")->get();
+        $default_roles=DB::table($this->dbTable(['default_roles']))->where("system_number",">",0)->orderBy("role_row","asc")->get();
         foreach ($default_roles as $defroles)
         {
             $def_roles[$this->getLang(false,$data['admin']->lang)[$defroles->role_name]]=['id'=>$defroles->id,'system_number'=>$defroles->system_number,'roles'=>$defroles->roles];

@@ -51,8 +51,13 @@
                         <div class="form-group">
                           <label class="col-md-3 control-label" for="title">{{$new_user_ccode}}:</label>
                           <div class="col-md-5">
+                            @if($admin->system_number==0)
                             <input id="notific8_text" type="text" name="ccode" class="form-control ccode" require="input-ccode"
                                    placeholder="{{$new_user_ccode}}"/>
+                            @else
+                              <input id="notific8_text" type="text" name="ccode" class="form-control ccode" require="input-ccode"
+                              value="{{$admin->ccode}}"/>
+                            @endif
                             <span class="validation ccode">* {{$validation_warning}}</span>
                           </div>
                         </div>
@@ -142,10 +147,13 @@
 
                     </div>
                     <div class="portlet-body">
-                      <select class="form-control droles label label-warning" style="width:70%; margin:0 0 5px 0; color:#333; font-weight:bold;">
+                      <select name="default_roles" class="form-control droles label label-warning" style="width:70%; margin:0 0 5px 0; color:#333; font-weight:bold;">
                         @foreach ($roles['default_roles'] as $defkey=>$defroles)
-                          <option value="{{$roles['default_roles'][$defkey]['roles']}}">{{$defkey}} {{$user_status}}</option>
+                          <option value="{{$roles['default_roles'][$defkey]['system_number']}}-{{$roles['default_roles'][$defkey]['roles']}}">{{$defkey}} {{$user_status}}</option>
                         @endforeach
+                          @if($admin->system_number==0)
+                            <option value="0">Developer {{$user_status}}</option>
+                          @endif
                       </select>
 
                       <div class="table-scrollable">
@@ -230,7 +238,7 @@
     var droles_arr=droles.split("-");
 
     $("input.roles").prop("checked",false);
-    for (var i=0; i<droles_arr.length; i++)
+    for (var i=1; i<droles_arr.length; i++)
     {
       $("input.rolesx_"+droles_arr[i]).prop("checked",true);
     }
@@ -238,8 +246,23 @@
     $("select.droles").change(function()
     {
 
-      var val=$(this).val();
-      alert(val);
+      var droles=$(this).val();
+
+      if(droles=="0")
+      {
+        $("input.roles").prop("checked",true);
+      }
+      else
+      {
+        var droles_arr=droles.split("-");
+
+        $("input.roles").prop("checked",false);
+        for (var i=1; i<droles_arr.length; i++)
+        {
+          $("input.rolesx_"+droles_arr[i]).prop("checked",true);
+        }
+      }
+
 
     });
 
