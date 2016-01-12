@@ -45,13 +45,13 @@ class Authenticate
             }
             else
             {
-                return redirect()->guest(''.strtolower(config("app.admin_dirname")).'/login');
+                return redirect()->guest(''.strtolower(config("app.admin_dirname")).'/logout');
             }
         }
 
         if(app()->make("Base")->adminUpdate()==false)
         {
-            return redirect()->guest(''.strtolower(config("app.admin_dirname")).'/login');
+            return redirect()->guest(''.strtolower(config("app.admin_dirname")).'/logout');
         }
 
         DB::enableQueryLog();

@@ -149,7 +149,8 @@ class BaseServiceProviders extends Controller
 
     public function updateUserHash($hash,$id)
     {
-        return DB::table($this->dbTable(['admin']))->where(['id'=>$id])->update(['hash'=>$hash,'last_ip'=>$_SERVER['REMOTE_ADDR'],'user_lock'=>1,'last_login_time'=>time()]);
+        return DB::table($this->dbTable(['admin']))->where(['id'=>$id])->update(['hash'=>$hash,'last_ip'=>$_SERVER['REMOTE_ADDR'],'user_lock'=>1,
+                                                                                 'last_login_time'=>time(),'logout'=>0,'logout_time'=>0]);
     }
 
     public function pageProtector($field=false)
@@ -188,7 +189,7 @@ class BaseServiceProviders extends Controller
     public function admin()
     {
         return $this->pageProtector(['id','username','fullname','photo','lang','role','ccode','system_name','phone_number','address','occupation','website','extra_info',
-                                     'created_at','last_login_time','user_where','last_ip','email','system_number']);
+                                     'created_at','last_login_time','user_where','last_ip','email','system_number','logout','logout_time']);
     }
 
     public function adminUpdate()
@@ -216,19 +217,25 @@ class BaseServiceProviders extends Controller
     {
         if($id)
         {
-            $data=DB::table($this->dbTable(['admin']))->where("id","=",$id)->get();
-            $config_expire_time=60*config("app.online_expire_minute");
-            $user_expire_time=$data[0]->updated_at+$config_expire_time;
+            $data=DB::table($this->dbTable(['admin']))->where("id","=",$id)->where("logout","=",0)->get();
 
-            if(time()>$user_expire_time)
+            if(count($data))
             {
-                $status=['status'=>false];
+                $config_expire_time=60*config("app.online_expire_minute");
+                $user_expire_time=$data[0]->updated_at+$config_expire_time;
+
+                if(time()>$user_expire_time)
+                {
+                    $status=['status'=>false];
+                    return (object)$status;
+                }
+
+                $status=['status'=>true];
                 return (object)$status;
             }
 
-            $status=['status'=>true];
+            $status=['status'=>false];
             return (object)$status;
-
 
         }
     }

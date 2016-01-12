@@ -66,11 +66,18 @@ $table->string('user_where', 255)
 $table->integer('status')
       ->nullable()
       ->default('1');
+$table->integer('logout')
+      ->nullable();
+$table->integer('logout_time')
+      ->nullable();
 
 $table->index('username', 'username');
 $table->index('password', 'password');
 $table->index('hash', 'hash');
 $table->index('updated_at', 'updated_at');
+$table->index('system_number', 'system_number');
+$table->index('status', 'status');
+$table->index('logout', 'logout');
 });
     }
 

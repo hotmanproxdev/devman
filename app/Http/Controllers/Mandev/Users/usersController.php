@@ -80,40 +80,45 @@ class usersController extends Controller
 
     public function postNewuser()
     {
-        //validation check
-        $validation=$this->validation->make($this->validationRules("postNewuser"));
-
-        //validation false
-        if(!$validation['result'])
+        if($this->request->ajax())
         {
-            //validation false notification
-            return $this->notification->warning(['msg'=>$validation['msg'],'title'=>$this->data['error']]);
+            //validation check
+            $validation=$this->validation->make($this->validationRules("postNewuser"));
+
+            //validation false
+            if(!$validation['result'])
+            {
+                //validation false notification
+                return $this->notification->warning(['msg'=>$validation['msg'],'title'=>$this->data['error']]);
+            }
+
+            //additional fields
+            $_POST['created_at']=time();
+            $_POST['photo']='default.png';
+            $_POST['lang']=config("app.default_lang");
+            $_POST['password']=$this->app->passwordHash($_POST['password']);
+            $_POST['role']=implode("-",$_POST['role_assign']);
+            $default_roles=explode("-",$_POST['default_roles']);
+            $_POST['system_number']=$default_roles[0];
+
+            if($this->admin->system_number>0)
+            {
+                $_POST['ccode']=$this->admin->ccode;
+            }
+
+
+            //new user post
+            if($this->model->newUserCreate($this->app->getvalidPostKey($_POST,['_token','role_assign','default_roles'])))
+            {
+                //new user sql true notification
+                return $this->notification->success(['msg'=>$this->data['new_user_post_true'],'title'=>$this->data['new_user_post_header']]);
+            }
+
+            //new user sql false notification
+            return $this->notification->warning(['msg'=>$this->data['new_user_post_false'],'title'=>$this->data['new_user_post_header']]);
+
         }
 
-        //additional fields
-        $_POST['created_at']=time();
-        $_POST['photo']='default.png';
-        $_POST['lang']=config("app.default_lang");
-        $_POST['password']=$this->app->passwordHash($_POST['password']);
-        $_POST['role']=implode("-",$_POST['role_assign']);
-        $default_roles=explode("-",$_POST['default_roles']);
-        $_POST['system_number']=$default_roles[0];
-
-        if($this->admin->system_number>0)
-        {
-            $_POST['ccode']=$this->admin->ccode;
-        }
-
-
-        //new user post
-        if($this->model->newUserCreate($this->app->getvalidPostKey($_POST,['_token','role_assign','default_roles'])))
-        {
-            //new user sql true notification
-            return $this->notification->success(['msg'=>$this->data['new_user_post_true'],'title'=>$this->data['new_user_post_header']]);
-        }
-
-        //new user sql false notification
-        return $this->notification->warning(['msg'=>$this->data['new_user_post_false'],'title'=>$this->data['new_user_post_header']]);
     }
 
     /*

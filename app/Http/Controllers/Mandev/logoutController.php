@@ -25,9 +25,12 @@ class logoutController extends Controller
 
     public function index()
     {
-        if(DB::table($this->app->dbTable(['admin']))->where("id","=",$this->admin->id)->update(['updated_at'=>""]))
+        if(DB::table($this->app->dbTable(['admin']))->where("id","=",$this->admin->id)->update(['logout'=>1,'logout_time'=>time()]))
         {
+            //session forget userhash
             Session::forget('userHash');
+
+            //redirect to login
             return redirect("".strtolower(config("app.admin_dirname"))."/login");
         }
 

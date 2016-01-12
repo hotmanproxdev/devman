@@ -67,6 +67,10 @@
               <th scope="col">
                 Son Login Zamanı:
               </th>
+
+              <th scope="col">
+                Son Logout Zamanı:
+              </th>
             </tr>
             </thead>
             <tbody>
@@ -123,6 +127,16 @@
               <td>
                 {{app()->make("Base")->dateFormat($users->last_login_time)}}
                 <div style="color:#e20a16; font-weight: bold;">{{$time->getPassing($users->last_login_time)->output}}</div>
+              </td>
+
+              <td>
+                @if($users->logout==1)
+                {{app()->make("Base")->dateFormat($users->logout_time)}}
+                <div style="color:#e20a16; font-weight: bold;">{{$time->getPassing($users->logout_time)->output}}</div>
+                  @else
+                  -
+                  @endif
+
               </td>
             </tr>
               @endforeach

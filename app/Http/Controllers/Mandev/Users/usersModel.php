@@ -35,11 +35,11 @@ class usersModel extends Controller
         if($this->admin->system_number==0)
         {
             //for just system developers
-            return DB::table($this->app->dbTable(['admin']))->paginate(config("app.paginator"));
+            return DB::table($this->app->dbTable(['admin']))->orderBy("updated_at","desc")->paginate(config("app.paginator"));
         }
 
         //for system developers and managers
-        return DB::table($this->app->dbTable(['admin']))->where("ccode","=",$this->admin->ccode)->paginate(config("app.paginator"));
+        return DB::table($this->app->dbTable(['admin']))->where("ccode","=",$this->admin->ccode)->orderBy("updated_at","desc")->paginate(config("app.paginator"));
 
     }
 
