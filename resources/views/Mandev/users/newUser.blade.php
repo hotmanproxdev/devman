@@ -144,7 +144,7 @@
                     <div class="portlet-body">
                       <select class="form-control droles label label-warning" style="width:70%; margin:0 0 5px 0; color:#333; font-weight:bold;">
                         @foreach ($roles['default_roles'] as $defkey=>$defroles)
-                          <option value="{{$roles['default_roles'][$defkey]['id']}}">{{$defkey}} Kullanıcı Statüsü</option>
+                          <option value="{{$roles['default_roles'][$defkey]['roles']}}">{{$defkey}} {{$user_status}}</option>
                         @endforeach
                       </select>
 
@@ -190,7 +190,7 @@
                             </td>
 
                             <td>
-                              <input type="checkbox"  class="roles role_{{$role->id}}" name="role_assign[]" value="{{$role->id}}">
+                              <input type="checkbox"  class="roles rolesx_{{$role->id}} role_{{$role->id}}" name="role_assign[]" value="{{$role->id}}">
                             </td>
 
                           </tr>
@@ -226,7 +226,14 @@
 
 <script>
 
+    var droles=$("select.droles").val();
+    var droles_arr=droles.split("-");
 
+    $("input.roles").prop("checked",false);
+    for (var i=0; i<droles_arr.length; i++)
+    {
+      $("input.rolesx_"+droles_arr[i]).prop("checked",true);
+    }
 
     $("select.droles").change(function()
     {
