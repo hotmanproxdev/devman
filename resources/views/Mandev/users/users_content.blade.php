@@ -78,6 +78,10 @@
               </th>
 
               <th scope="col">
+                {{$user_where_time}}:
+              </th>
+
+              <th scope="col">
                 {{$created_by}}:
               </th>
               <th scope="col">
@@ -164,6 +168,18 @@
 
               <td>
                 {{$users->user_where}}
+              </td>
+
+              <td>
+                @if($admin->id==$users->id)
+                  <span style="color:#e20a16; font-weight:bold;">{{$hash_you}}</span>
+                @else
+                  @if($users->updated_at==0)
+                    <span style="color:#336699; font-weight:bold;">{{$never_login_time}}</span>
+                  @else
+                  {{$time->getPassing($users->updated_at)->output}}
+                    @endif
+                @endif
               </td>
 
               <td>
