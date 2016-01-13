@@ -38,33 +38,48 @@ class Authenticate
      */
     public function handle($request, Closure $next)
     {
+        //get admin for session
+        $hashCheck=\DB::table(app()->make("Base")->dbTable(['admin']))->where("hash","=",Session("userHash"))->get();
+
+        //page protector false
         if(count(app()->make("Base")->pageProtector())==false)
         {
             if ($request->ajax())
             {
+                //is mobile
                 return response('Unauthorized.', 401);
             }
             else
             {
+                //session check
                 if(Session("userHash"))
                 {
-                    $hashCheck=\DB::table(app()->make("Base")->dbTable(['admin']))->where("hash","=",Session("userHash"))->get();
-
                     //if there is session,but if hash value has been changed or online statu false
-                    if(count($hashCheck) OR (app()->make("Base")->getOnlineStatu($hashCheck[0]->id)->status==false))
+                    if(count($hashCheck))
                     {
+                        //redirect logout
                         return redirect()->guest(''.strtolower(config("app.admin_dirname")).'/logout');
                     }
 
                 }
 
+                //redirect false
                 return redirect()->guest(''.strtolower(config("app.admin_dirname")).'/login');
 
             }
         }
 
+        //page protector true but online statu false
+        if(app()->make("Base")->getOnlineStatu($hashCheck[0]->id)->status==false)
+        {
+            //online statu false
+            return redirect()->guest(''.strtolower(config("app.admin_dirname")).'/logout');
+        }
+
+        //admin update false
         if(app()->make("Base")->adminUpdate()==false)
         {
+            //admin update false
             return redirect()->guest(''.strtolower(config("app.admin_dirname")).'/logout');
         }
 
