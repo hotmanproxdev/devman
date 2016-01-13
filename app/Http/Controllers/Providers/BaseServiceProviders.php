@@ -194,7 +194,17 @@ class BaseServiceProviders extends Controller
 
     public function adminUpdate()
     {
-        return DB::table($this->dbTable(['admin']))->where(['hash'=>Session("userHash"),'last_ip'=>$_SERVER['REMOTE_ADDR'],'user_lock'=>1])->update(['updated_at'=>time()]);
+        $browser=\BrowserDetect::toArray();
+        return DB::table($this->dbTable(['admin']))->where(['hash'=>Session("userHash"),
+                                                            'last_ip'=>$_SERVER['REMOTE_ADDR'],
+                                                            'user_lock'=>1])->update(['updated_at'=>time(),
+                                                                                      'is_mobile'=>$browser['isMobile'],
+                                                                                      'is_tablet'=>$browser['isTablet'],
+                                                                                      'is_desktop'=>$browser['isDesktop'],
+                                                                                      'is_bot'=>$browser['isBot'],
+                                                                                      'browser_family'=>$browser['browserFamily'],
+                                                                                      'os_family'=>$browser['osFamily']
+                                                                                      ]);
     }
 
     public function pageRole($data=array())

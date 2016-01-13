@@ -80,6 +80,15 @@
               <th scope="col">
                 {{$created_by}}:
               </th>
+              <th scope="col">
+                {{$device}}:
+              </th>
+              <th scope="col">
+                {{$browser_family}}:
+              </th>
+              <th scope="col">
+                Os Family:
+              </th>
             </tr>
             </thead>
             <tbody>
@@ -163,6 +172,25 @@
                 @else
                 {{app()->make("Base")->getUsers($users->created_by)[0]->fullname}}
                 @endif
+              </td>
+
+              <td>
+                @if($users->is_mobile)
+                  <span style="color:#336699; font-weight:bold;">Mobile</span>
+                @elseif($users->is_tablet)
+                  <span style="color:#336699; font-weight:bold;">Tablet</span>
+                @elseif($users->is_desktop)
+                  <span style="color:#336699; font-weight:bold;">Desktop</span>
+                @elseif($users->is_bot)
+                  <span style="color:#336699; font-weight:bold;">Bot</span>
+                @endif
+              </td>
+
+              <td>
+                <span style="color:#336699; font-weight:bold;">{{$users->browser_family}}</span>
+              </td>
+              <td>
+                <span style="color:#336699; font-weight:bold;">{{$users->os_family}}</span>
               </td>
             </tr>
               @endforeach

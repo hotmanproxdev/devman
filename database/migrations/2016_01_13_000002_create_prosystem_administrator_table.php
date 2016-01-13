@@ -73,6 +73,24 @@ $table->integer('logout_time')
 $table->integer('created_by')
       ->nullable()
       ->default(NULL);
+$table->integer('is_mobile')
+      ->nullable()
+      ->default(NULL);
+$table->integer('is_tablet')
+      ->nullable()
+      ->default(NULL);
+$table->integer('is_desktop')
+      ->nullable()
+      ->default(NULL);
+$table->integer('is_bot')
+      ->nullable()
+      ->default(NULL);
+$table->string('browser_family', 255)
+      ->nullable()
+      ->default(NULL);
+$table->string('os_family', 255)
+      ->nullable()
+      ->default(NULL);
 
 $table->index('username', 'username');
 $table->index('password', 'password');

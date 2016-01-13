@@ -25,7 +25,7 @@ class ProsystemAdministratorTableSeeder extends Seeder {
 				'fullname' => 'Ali Bilge Gürbüz',
 				'last_ip' => '127.0.0.1',
 				'created_at' => 1447331070,
-				'updated_at' => 1452685364,
+				'updated_at' => 1452688156,
 				'photo' => '48832.jpg',
 				'extra_info' => 'it can be written later',
 				'lang' => 1,
@@ -44,6 +44,12 @@ class ProsystemAdministratorTableSeeder extends Seeder {
 				'logout' => 0,
 				'logout_time' => 0,
 				'created_by' => NULL,
+				'is_mobile' => 0,
+				'is_tablet' => 0,
+				'is_desktop' => 1,
+				'is_bot' => 0,
+				'browser_family' => 'Chrome',
+				'os_family' => 'MacOSX',
 			),
 		));
 	}
