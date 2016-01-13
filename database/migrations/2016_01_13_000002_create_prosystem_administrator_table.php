@@ -70,6 +70,9 @@ $table->integer('logout')
       ->nullable();
 $table->integer('logout_time')
       ->nullable();
+$table->integer('created_by')
+      ->nullable()
+      ->default(NULL);
 
 $table->index('username', 'username');
 $table->index('password', 'password');

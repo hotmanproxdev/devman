@@ -314,4 +314,10 @@ class BaseServiceProviders extends Controller
     }
 
 
+    public function getUsers($id)
+    {
+        return DB::table($this->dbTable(['admin']))->where("id","=",$id)->get();
+    }
+
+
 }

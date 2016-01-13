@@ -76,6 +76,10 @@
               <th scope="col">
                 {{$user_where}}:
               </th>
+
+              <th scope="col">
+                {{$created_by}}:
+              </th>
             </tr>
             </thead>
             <tbody>
@@ -151,6 +155,14 @@
 
               <td>
                 {{$users->user_where}}
+              </td>
+
+              <td>
+                @if($users->created_by==NULL)
+                  -
+                @else
+                {{app()->make("Base")->getUsers($users->created_by)[0]->fullname}}
+                @endif
               </td>
             </tr>
               @endforeach

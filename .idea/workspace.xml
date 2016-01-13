@@ -44,24 +44,35 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="BeforeMiddleware.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="BeforeMiddleware.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/Middleware/BeforeMiddleware.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.79262674" vertical-offset="152" max-vertical-offset="1020">
-              <caret line="60" column="17" selection-start-line="60" selection-start-column="17" selection-end-line="60" selection-end-column="17" />
+            <state vertical-scroll-proportion="-27.416666" vertical-offset="152" max-vertical-offset="1020">
+              <caret line="58" column="95" selection-start-line="58" selection-start-column="95" selection-end-line="58" selection-end-column="95" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="users_content.blade.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="BaseServiceProviders.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Providers/BaseServiceProviders.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-30.541666" vertical-offset="3917" max-vertical-offset="4875">
+              <caret line="314" column="0" selection-start-line="314" selection-start-column="0" selection-end-line="314" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="users_content.blade.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/resources/views/Mandev/users/users_content.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-23.041666" vertical-offset="587" max-vertical-offset="2610">
-              <caret line="76" column="29" selection-start-line="76" selection-start-column="29" selection-end-line="76" selection-end-column="29" />
+            <state vertical-scroll-proportion="0.7580645" vertical-offset="1787" max-vertical-offset="2790">
+              <caret line="163" column="80" selection-start-line="163" selection-start-column="80" selection-end-line="163" selection-end-column="80" />
               <folding>
-                <element signature="e#3125#3165#0#HTML" expanded="true" />
-                <element signature="e#3869#3909#0#HTML" expanded="true" />
+                <element signature="e#3210#3250#0#HTML" expanded="true" />
+                <element signature="e#3954#3994#0#HTML" expanded="true" />
+                <element signature="e#4443#4484#0#HTML" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -70,8 +81,8 @@
       <file leaf-file-name="usersController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Mandev/Users/usersController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-18.666666" vertical-offset="1727" max-vertical-offset="2925">
-              <caret line="145" column="0" selection-start-line="145" selection-start-column="0" selection-end-line="145" selection-end-column="0" />
+            <state vertical-scroll-proportion="-16.166666" vertical-offset="1682" max-vertical-offset="2940">
+              <caret line="138" column="50" selection-start-line="138" selection-start-column="50" selection-end-line="138" selection-end-column="50" />
               <folding>
                 <element signature="e#53#81#0#PHP" expanded="true" />
               </folding>
@@ -95,7 +106,7 @@
       <file leaf-file-name="usersModel.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Mandev/Users/usersModel.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="107" max-vertical-offset="975">
+            <state vertical-scroll-proportion="-16.791666" vertical-offset="107" max-vertical-offset="975">
               <caret line="34" column="42" selection-start-line="34" selection-start-column="42" selection-end-line="34" selection-end-column="42" />
               <folding>
                 <element signature="e#53#81#0#PHP" expanded="true" />
@@ -160,11 +171,11 @@
         <option value="$PROJECT_DIR$/app/Http/Controllers/Mandev/Users/usersModel.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Mandev/logoutController.php" />
         <option value="$PROJECT_DIR$/app/Http/Middleware/Authenticate.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/Providers/BaseServiceProviders.php" />
         <option value="db-console:/4280185a/6fe8c5a8-99d2-4b7e-a4dc-8b620b32f87d/" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/Providers/BaseServiceProviders.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Mandev/Users/usersController.php" />
-        <option value="$PROJECT_DIR$/resources/views/Mandev/users/users_content.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Middleware/BeforeMiddleware.php" />
+        <option value="$PROJECT_DIR$/resources/views/Mandev/users/users_content.blade.php" />
       </list>
     </option>
   </component>
@@ -308,7 +319,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Mandev" />
+              <option name="myItemId" value="Providers" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -823,22 +834,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Mandev/Users/usersModel.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="107" max-vertical-offset="975">
-          <caret line="34" column="42" selection-start-line="34" selection-start-column="42" selection-end-line="34" selection-end-column="42" />
-          <folding>
-            <element signature="e#53#81#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Mandev/logoutController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-16.875" vertical-offset="0" max-vertical-offset="765">
           <caret line="27" column="31" selection-start-line="27" selection-start-column="7" selection-end-line="27" selection-end-column="31" />
           <folding>
-            <element signature="e#47#75#0#PHP" expanded="true" />
+            <element signature="e#47#75#0#PHP" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -848,7 +849,7 @@
         <state vertical-scroll-proportion="-22.5" vertical-offset="195" max-vertical-offset="1170">
           <caret line="49" column="17" selection-start-line="49" selection-start-column="17" selection-end-line="49" selection-end-column="17" />
           <folding>
-            <element signature="e#39#51#0#PHP" expanded="true" />
+            <element signature="e#39#51#0#PHP" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -858,16 +859,6 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="561">
           <caret line="0" column="47" selection-start-line="0" selection-start-column="47" selection-end-line="0" selection-end-column="47" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Providers/BaseServiceProviders.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-29.291666" vertical-offset="3977" max-vertical-offset="4845">
-          <caret line="312" column="9" selection-start-line="312" selection-start-column="9" selection-end-line="312" selection-end-column="9" />
-          <folding>
-            <element signature="e#50#78#0#PHP" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -882,32 +873,51 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Mandev/Users/usersController.php">
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Mandev/Users/usersModel.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-18.666666" vertical-offset="1727" max-vertical-offset="2925">
-          <caret line="145" column="0" selection-start-line="145" selection-start-column="0" selection-end-line="145" selection-end-column="0" />
+        <state vertical-scroll-proportion="-16.791666" vertical-offset="107" max-vertical-offset="975">
+          <caret line="34" column="42" selection-start-line="34" selection-start-column="42" selection-end-line="34" selection-end-column="42" />
           <folding>
             <element signature="e#53#81#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/Mandev/users/users_content.blade.php">
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Providers/BaseServiceProviders.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-23.041666" vertical-offset="587" max-vertical-offset="2610">
-          <caret line="76" column="29" selection-start-line="76" selection-start-column="29" selection-end-line="76" selection-end-column="29" />
+        <state vertical-scroll-proportion="-30.541666" vertical-offset="3917" max-vertical-offset="4875">
+          <caret line="314" column="0" selection-start-line="314" selection-start-column="0" selection-end-line="314" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Mandev/Users/usersController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-16.166666" vertical-offset="1682" max-vertical-offset="2940">
+          <caret line="138" column="50" selection-start-line="138" selection-start-column="50" selection-end-line="138" selection-end-column="50" />
           <folding>
-            <element signature="e#3125#3165#0#HTML" expanded="true" />
-            <element signature="e#3869#3909#0#HTML" expanded="true" />
+            <element signature="e#53#81#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Middleware/BeforeMiddleware.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.79262674" vertical-offset="152" max-vertical-offset="1020">
-          <caret line="60" column="17" selection-start-line="60" selection-start-column="17" selection-end-line="60" selection-end-column="17" />
+        <state vertical-scroll-proportion="-27.416666" vertical-offset="152" max-vertical-offset="1020">
+          <caret line="58" column="95" selection-start-line="58" selection-start-column="95" selection-end-line="58" selection-end-column="95" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/Mandev/users/users_content.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.7580645" vertical-offset="1787" max-vertical-offset="2790">
+          <caret line="163" column="80" selection-start-line="163" selection-start-column="80" selection-end-line="163" selection-end-column="80" />
+          <folding>
+            <element signature="e#3210#3250#0#HTML" expanded="true" />
+            <element signature="e#3954#3994#0#HTML" expanded="true" />
+            <element signature="e#4443#4484#0#HTML" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
