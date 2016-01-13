@@ -6,6 +6,7 @@ use Closure;
 use Illuminate\Contracts\Auth\Guard;
 use DB;
 use Input;
+use Session;
 
 
 class Authenticate
@@ -45,7 +46,13 @@ class Authenticate
             }
             else
             {
-                return redirect()->guest(''.strtolower(config("app.admin_dirname")).'/logout');
+                if(Session("userHash"))
+                {
+                    return redirect()->guest(''.strtolower(config("app.admin_dirname")).'/logout');
+                }
+
+                return redirect()->guest(''.strtolower(config("app.admin_dirname")).'/login');
+
             }
         }
 
