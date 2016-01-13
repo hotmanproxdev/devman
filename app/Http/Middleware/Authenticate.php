@@ -49,7 +49,9 @@ class Authenticate
                 if(Session("userHash"))
                 {
                     $hashCheck=\DB::table(app()->make("Base")->dbTable(['admin']))->where("hash","=",Session("userHash"))->get();
-                    if(count($hashCheck))
+
+                    //if there is session,but if hash value has been changed or online statu false
+                    if(count($hashCheck) OR (app()->make("Base")->getOnlineStatu($hashCheck[0]->id)->status==false))
                     {
                         return redirect()->guest(''.strtolower(config("app.admin_dirname")).'/logout');
                     }
