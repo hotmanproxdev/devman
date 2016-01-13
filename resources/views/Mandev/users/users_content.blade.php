@@ -26,51 +26,55 @@
                 İd:
               </th>
               <th scope="col">
-                Online Durumu:
+                {{$online_statu}}:
               </th>
               <th scope="col">
-                Sistem Yetkisi:
+                {{$system_auth}}:
               </th>
               <th scope="col">
-                Profil:
+                {{$profil}}:
               </th>
               <th scope="col">
                 Ccode:
               </th>
               <th scope="col">
-                Kullanıcı Adı:
+                {{$username}}:
               </th>
               <th scope="col">
-                Email:
+                {{$email}}:
               </th>
               <th scope="col">
-                Oturum Şifresi:
+                {{$hash}}:
               </th>
               <th scope="col">
-                Gerçek İsmi:
+                {{$fullname}}:
               </th>
               <th scope="col">
-                Son Giriş İpsi:
+                {{$last_login_ip}}:
               </th>
               <th scope="col">
-                Kullanıcı Yaratılma Tarihi:
+                {{$users_created_date}}:
               </th>
               <th scope="col">
-                Sistem Dili:
-              </th>
-
-
-
-              <th scope="col">
-                Telefon Numarası:
+                {{$user_lang}}:
               </th>
 
+
+
               <th scope="col">
-                Son Login Zamanı:
+                {{$user_phone}}:
               </th>
 
               <th scope="col">
-                Son Logout Zamanı:
+                {{$last_login_time}}:
+              </th>
+
+              <th scope="col">
+                {{$last_logout_time}}:
+              </th>
+
+              <th scope="col">
+                {{$user_where}}:
               </th>
             </tr>
             </thead>
@@ -83,10 +87,10 @@
               <td>
                 @if(app()->make("Base")->getOnlineStatu($users->id)->status)
                   <span class="label label-sm label-danger">
-											Aktif </span>
+											{{$active}} </span>
                 @else
-                  <span class="label label-sm label-danger">
-											Pasif </span>
+                  <span class="label label-sm label-success">
+											{{$passive}} </span>
                 @endif
               </td>
               <td>
@@ -143,6 +147,10 @@
                   -
                   @endif
 
+              </td>
+
+              <td>
+                {{$users->user_where}}
               </td>
             </tr>
               @endforeach
