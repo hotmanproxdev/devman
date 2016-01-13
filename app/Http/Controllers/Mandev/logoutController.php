@@ -15,8 +15,6 @@ class logoutController extends Controller
 
     public function __construct()
     {
-        //page protector
-        $this->middleware('auth');
         //base service provider
         $this->app=app()->make("Base");
         //admin data
@@ -36,11 +34,9 @@ class logoutController extends Controller
                 return redirect("".strtolower(config("app.admin_dirname"))."/login");
             }
         }
-        else
-        {
+
             //redirect to login
             return redirect("".strtolower(config("app.admin_dirname"))."/login");
-        }
 
     }
 }

@@ -23,7 +23,7 @@ return [
     'log_status'=>false,
     'mysql_slow_status'=>false,
     'default_lang'=>1,
-    'online_expire_minute'=>15,
+    'online_expire_minute'=>2,
     'paginator'=>10,
 
     //////////////MANDEV CONFİG SETTİNGS//////////////////////////////////////////////////

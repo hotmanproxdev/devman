@@ -177,7 +177,11 @@
                   @if($users->updated_at==0)
                     <span style="color:#336699; font-weight:bold;">{{$never_login_time}}</span>
                   @else
+                    @if($users->logout==1)
+                      <span style="font-weight:bold;">{{$user_hash_terminated}}</span>
+                    @else
                   {{$time->getPassing($users->updated_at)->output}}
+                      @endif
                     @endif
                 @endif
               </td>

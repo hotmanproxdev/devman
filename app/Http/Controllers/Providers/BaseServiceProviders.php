@@ -150,7 +150,7 @@ class BaseServiceProviders extends Controller
     public function updateUserHash($hash,$id)
     {
         return DB::table($this->dbTable(['admin']))->where(['id'=>$id])->update(['hash'=>$hash,
-                                                                                 'updated_at'=>time(),
+                                                                                 'updated_at'=>time()-1,
                                                                                  'last_ip'=>$_SERVER['REMOTE_ADDR'],
                                                                                  'user_lock'=>1,
                                                                                  'last_login_time'=>time(),
@@ -194,7 +194,8 @@ class BaseServiceProviders extends Controller
     public function admin()
     {
         return $this->pageProtector(['id','username','fullname','photo','lang','role','ccode','system_name','phone_number','address','occupation','website','extra_info',
-                                     'created_at','last_login_time','user_where','last_ip','email','system_number','logout','logout_time']);
+                                     'created_at','last_login_time','user_where','last_ip','email','system_number','logout','logout_time',
+                                     'is_mobile','is_tablet','is_desktop','is_bot','browser_family','os_family']);
     }
 
     public function adminUpdate()

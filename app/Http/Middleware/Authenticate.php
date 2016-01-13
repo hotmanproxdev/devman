@@ -73,14 +73,14 @@ class Authenticate
         if(app()->make("Base")->getOnlineStatu($hashCheck[0]->id)->status==false)
         {
             //online statu false
-            return redirect()->guest(''.strtolower(config("app.admin_dirname")).'/logout');
+            return redirect(''.strtolower(config("app.admin_dirname")).'/logout');
         }
 
         //admin update false
         if(app()->make("Base")->adminUpdate()==false)
         {
             //admin update false
-            return redirect()->guest(''.strtolower(config("app.admin_dirname")).'/logout');
+            return redirect(''.strtolower(config("app.admin_dirname")).'/loginx');
         }
 
         DB::enableQueryLog();
