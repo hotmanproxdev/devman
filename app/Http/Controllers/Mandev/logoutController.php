@@ -36,10 +36,11 @@ class logoutController extends Controller
                 return redirect("".strtolower(config("app.admin_dirname"))."/login");
             }
         }
-
-        //redirect to login
-        return redirect("".strtolower(config("app.admin_dirname"))."/login");
-
+        else
+        {
+            //redirect to login
+            return redirect("".strtolower(config("app.admin_dirname"))."/login");
+        }
 
     }
 }

@@ -3,9 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="d16930e0-0a2c-4c3d-ba04-752e0816a6a5" name="Default" comment="">
       <change type="MOVED" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/readme.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Middleware/Authenticate.php" afterPath="$PROJECT_DIR$/app/Http/Middleware/Authenticate.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/Providers/BaseServiceProviders.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/Providers/BaseServiceProviders.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Middleware/BeforeMiddleware.php" afterPath="$PROJECT_DIR$/app/Http/Middleware/BeforeMiddleware.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/Mandev/logoutController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/Mandev/logoutController.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/Mandev/users/users_content.blade.php" afterPath="$PROJECT_DIR$/resources/views/Mandev/users/users_content.blade.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
@@ -57,8 +57,18 @@
       <file leaf-file-name="BaseServiceProviders.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Providers/BaseServiceProviders.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="35.083332" vertical-offset="3167" max-vertical-offset="5025">
-              <caret line="159" column="21" selection-start-line="159" selection-start-column="21" selection-end-line="159" selection-end-column="21" />
+            <state vertical-scroll-proportion="-14.291667" vertical-offset="1907" max-vertical-offset="5100">
+              <caret line="154" column="38" selection-start-line="154" selection-start-column="38" selection-end-line="154" selection-end-column="38" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="loginController.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Mandev/Login/loginController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-3.75" vertical-offset="285" max-vertical-offset="990">
+              <caret line="30" column="21" selection-start-line="30" selection-start-column="21" selection-end-line="30" selection-end-column="21" />
               <folding />
             </state>
           </provider>
@@ -90,8 +100,8 @@
       <file leaf-file-name="Authenticate.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/Http/Middleware/Authenticate.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.10518053" vertical-offset="728" max-vertical-offset="1440">
-              <caret line="57" column="41" selection-start-line="57" selection-start-column="41" selection-end-line="57" selection-end-column="41" />
+            <state vertical-scroll-proportion="0.48194662" vertical-offset="743" max-vertical-offset="1440">
+              <caret line="74" column="32" selection-start-line="74" selection-start-column="32" selection-end-line="74" selection-end-column="32" />
               <folding />
             </state>
           </provider>
@@ -100,8 +110,8 @@
       <file leaf-file-name="logoutController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Mandev/logoutController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-20.0" vertical-offset="0" max-vertical-offset="705">
-              <caret line="36" column="13" selection-start-line="29" selection-start-column="12" selection-end-line="36" selection-end-column="13" />
+            <state vertical-scroll-proportion="-22.791666" vertical-offset="23" max-vertical-offset="720">
+              <caret line="42" column="9" selection-start-line="42" selection-start-column="9" selection-end-line="42" selection-end-column="9" />
               <folding />
             </state>
           </provider>
@@ -210,13 +220,13 @@
         <option value="$PROJECT_DIR$/resources/views/Mandev/prepared/modal/modal.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/Mandev/users/newUser.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Mandev/Users/usersModel.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/Mandev/logoutController.php" />
         <option value="db-console:/4280185a/6fe8c5a8-99d2-4b7e-a4dc-8b620b32f87d/" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Mandev/Users/usersController.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/Providers/BaseServiceProviders.php" />
         <option value="$PROJECT_DIR$/app/Http/Middleware/BeforeMiddleware.php" />
         <option value="$PROJECT_DIR$/resources/views/Mandev/users/users_content.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Middleware/Authenticate.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/Mandev/logoutController.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/Providers/BaseServiceProviders.php" />
       </list>
     </option>
   </component>
@@ -383,6 +393,36 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="Mandev" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="devman" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="devman" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Http" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Controllers" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Mandev" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Login" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -880,13 +920,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Mandev/Login/loginController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.328341" vertical-offset="90" max-vertical-offset="990">
-          <caret line="30" column="21" selection-start-line="30" selection-start-column="21" selection-end-line="30" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
     <entry file="dbDummy://db-console:/4280185a/6fe8c5a8-99d2-4b7e-a4dc-8b620b32f87d/">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="561">
@@ -936,18 +969,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Mandev/logoutController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-20.0" vertical-offset="0" max-vertical-offset="705">
-          <caret line="36" column="13" selection-start-line="29" selection-start-column="12" selection-end-line="36" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Middleware/BeforeMiddleware.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-17.791666" vertical-offset="383" max-vertical-offset="1020">
           <caret line="58" column="103" selection-start-line="58" selection-start-column="103" selection-end-line="58" selection-end-column="103" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Mandev/Login/loginController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-3.75" vertical-offset="285" max-vertical-offset="990">
+          <caret line="30" column="21" selection-start-line="30" selection-start-column="21" selection-end-line="30" selection-end-column="21" />
           <folding />
         </state>
       </provider>
@@ -973,18 +1006,26 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Mandev/logoutController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-22.791666" vertical-offset="23" max-vertical-offset="720">
+          <caret line="42" column="9" selection-start-line="42" selection-start-column="9" selection-end-line="42" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Providers/BaseServiceProviders.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="35.083332" vertical-offset="3167" max-vertical-offset="5025">
-          <caret line="159" column="21" selection-start-line="159" selection-start-column="21" selection-end-line="159" selection-end-column="21" />
+        <state vertical-scroll-proportion="-14.291667" vertical-offset="1907" max-vertical-offset="5100">
+          <caret line="154" column="38" selection-start-line="154" selection-start-column="38" selection-end-line="154" selection-end-column="38" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Middleware/Authenticate.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.10518053" vertical-offset="728" max-vertical-offset="1440">
-          <caret line="57" column="41" selection-start-line="57" selection-start-column="41" selection-end-line="57" selection-end-column="41" />
+        <state vertical-scroll-proportion="0.48194662" vertical-offset="743" max-vertical-offset="1440">
+          <caret line="74" column="32" selection-start-line="74" selection-start-column="32" selection-end-line="74" selection-end-column="32" />
           <folding />
         </state>
       </provider>

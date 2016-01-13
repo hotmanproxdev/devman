@@ -149,8 +149,13 @@ class BaseServiceProviders extends Controller
 
     public function updateUserHash($hash,$id)
     {
-        return DB::table($this->dbTable(['admin']))->where(['id'=>$id])->update(['hash'=>$hash,'last_ip'=>$_SERVER['REMOTE_ADDR'],'user_lock'=>1,
-                                                                                 'last_login_time'=>time(),'logout'=>0,'logout_time'=>0]);
+        return DB::table($this->dbTable(['admin']))->where(['id'=>$id])->update(['hash'=>$hash,
+                                                                                 'updated_at'=>time(),
+                                                                                 'last_ip'=>$_SERVER['REMOTE_ADDR'],
+                                                                                 'user_lock'=>1,
+                                                                                 'last_login_time'=>time(),
+                                                                                 'logout'=>0,
+                                                                                 'logout_time'=>0]);
     }
 
     public function pageProtector($field=false)
