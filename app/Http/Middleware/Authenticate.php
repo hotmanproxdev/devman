@@ -48,7 +48,12 @@ class Authenticate
             {
                 if(Session("userHash"))
                 {
-                    return redirect()->guest(''.strtolower(config("app.admin_dirname")).'/logout');
+                    $hashCheck=\DB::table(app()->make("Base")->dbTable(['admin']))->where("hash","=",Session("userHash"))->get();
+                    if(count($hashCheck))
+                    {
+                        return redirect()->guest(''.strtolower(config("app.admin_dirname")).'/logout');
+                    }
+
                 }
 
                 return redirect()->guest(''.strtolower(config("app.admin_dirname")).'/login');
