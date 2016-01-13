@@ -135,6 +135,7 @@ class usersController extends Controller
             $_POST['role']=implode("-",$_POST['role_assign']);
             $default_roles=explode("-",$_POST['default_roles']);
             $_POST['system_number']=$default_roles[0];
+            $_POST['system_name']=$this->app->getUserRoles(['default_roles'=>$default_roles[0]])[0]->role_name;
 
             //update ccode except developer
             if($this->admin->system_number>0)

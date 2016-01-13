@@ -29,6 +29,9 @@
                 Online Durumu:
               </th>
               <th scope="col">
+                Sistem Yetkisi:
+              </th>
+              <th scope="col">
                 Profil:
               </th>
               <th scope="col">
@@ -56,9 +59,7 @@
                 Sistem Dili:
               </th>
 
-              <th scope="col">
-                Sistem Yetkisi:
-              </th>
+
 
               <th scope="col">
                 Telefon Numarası:
@@ -87,6 +88,9 @@
                   <span class="label label-sm label-danger">
 											Pasif </span>
                 @endif
+              </td>
+              <td>
+                {{ucfirst($users->system_name)}}
               </td>
               <td>
                 <img src="{{$baseUrl}}/{{config("app.admin_profil_path")}}/{{$users->photo}}" class="img-responsive" alt=""/>
@@ -118,15 +122,17 @@
               <td>
                 {{$users->lang}}
               </td>
-              <td>
-                {{$users->system_name}}
-              </td>
+
               <td>
                 {{$users->phone_number}}
               </td>
               <td>
+                @if($users->last_login_time==NULL)
+                  <span style="color:#336699; font-weight:bold;">{{$never_login_time}}</span>
+                @else
                 {{app()->make("Base")->dateFormat($users->last_login_time)}}
                 <div style="color:#e20a16; font-weight: bold;">{{$time->getPassing($users->last_login_time)->output}}</div>
+                @endif
               </td>
 
               <td>

@@ -282,30 +282,35 @@ class BaseServiceProviders extends Controller
 
     public function getUserRoles($data=array())
     {
-        $roles=DB::table($this->dbTable(['roles']))->where("lang","=",$data['admin']->lang)->where("status","=","1")->get();
-        $admin_roles=DB::table($this->dbTable(['admin']))->select("role")->where("id","=",$data['admin']->id)->get();
-
-        $adminrole=explode("-",$admin_roles[0]->role);
-
-        foreach ($roles as $role)
+        if(array_key_exists("admin",$data))
         {
-            if(in_array($role->id,$adminrole))
-            {
-                $roleInput[$role->id]='checked="checked"';
+            $roles = DB::table($this->dbTable(['roles']))->where("lang", "=", $data['admin']->lang)->where("status", "=", "1")->get();
+            $admin_roles = DB::table($this->dbTable(['admin']))->select("role")->where("id", "=", $data['admin']->id)->get();
+
+            $adminrole = explode("-", $admin_roles[0]->role);
+
+            foreach ($roles as $role) {
+                if (in_array($role->id, $adminrole)) {
+                    $roleInput[$role->id] = 'checked="checked"';
+                } else {
+                    $roleInput[$role->id] = '';
+                }
             }
-            else
-            {
-                $roleInput[$role->id]='';
+
+            $default_roles = DB::table($this->dbTable(['default_roles']))->where("system_number", ">", 0)->orderBy("role_row", "asc")->get();
+            foreach ($default_roles as $defroles) {
+                $def_roles[$this->getLang(false, $data['admin']->lang)[$defroles->role_name]] = ['id' => $defroles->id, 'system_number' => $defroles->system_number, 'roles' => $defroles->roles];
             }
+
+            return ['roles' => $roles, 'checkbox' => $roleInput, 'default_roles' => $def_roles];
+
         }
 
-        $default_roles=DB::table($this->dbTable(['default_roles']))->where("system_number",">",0)->orderBy("role_row","asc")->get();
-        foreach ($default_roles as $defroles)
+        if(array_key_exists("default_roles",$data))
         {
-            $def_roles[$this->getLang(false,$data['admin']->lang)[$defroles->role_name]]=['id'=>$defroles->id,'system_number'=>$defroles->system_number,'roles'=>$defroles->roles];
-        }
+            return DB::table($this->dbTable(['default_roles']))->where("system_number", "=", $data['default_roles'])->get();
 
-        return ['roles'=>$roles,'checkbox'=>$roleInput,'default_roles'=>$def_roles];
+        }
     }
 
 
