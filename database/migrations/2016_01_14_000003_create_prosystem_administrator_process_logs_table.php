@@ -20,10 +20,10 @@ $table->increments('id')
       ->unsigned();
 $table->integer('userid');
 $table->string('userip', 255);
-$table->string('user_hash', 255)
+$table->string('userHash', 255)
       ->nullable()
       ->default(NULL);
-$table->string('iso_code', 255)
+$table->string('isoCode', 255)
       ->nullable()
       ->default(NULL);
 $table->string('country', 255)
@@ -50,55 +50,55 @@ $table->string('timezone', 255)
 $table->string('continent', 255)
       ->nullable()
       ->default(NULL);
-$table->integer('is_mobile')
+$table->integer('isMobile')
       ->nullable()
       ->default(NULL);
-$table->integer('is_tablet')
+$table->integer('isTablet')
       ->nullable()
       ->default(NULL);
-$table->integer('is_desktop')
+$table->integer('isDesktop')
       ->nullable()
       ->default(NULL);
-$table->integer('is_bot')
+$table->integer('isBot')
       ->nullable()
       ->default(NULL);
-$table->string('browser_family', 255)
+$table->string('browserFamily', 255)
       ->nullable()
       ->default(NULL);
-$table->string('browser_version_major', 255)
+$table->string('browserVersionMajor', 255)
       ->nullable()
       ->default(NULL);
-$table->string('browser_version_minor', 255)
+$table->string('browserVersionMinor', 255)
       ->nullable()
       ->default(NULL);
-$table->string('browser_version_patch', 255)
+$table->string('browserVersionPatch', 255)
       ->nullable()
       ->default(NULL);
-$table->string('os_family', 255)
+$table->string('osFamily', 255)
       ->nullable()
       ->default(NULL);
-$table->string('os_version_major', 255)
+$table->string('osVersionMajor', 255)
       ->nullable()
       ->default(NULL);
-$table->string('os_version_minor', 255)
+$table->string('osVersionMinor', 255)
       ->nullable()
       ->default(NULL);
-$table->string('os_version_patch', 255)
+$table->string('osVersionPatch', 255)
       ->nullable()
       ->default(NULL);
-$table->string('device_family', 255)
+$table->string('deviceFamily', 255)
       ->nullable()
       ->default(NULL);
-$table->string('device_model', 255)
+$table->string('deviceModel', 255)
       ->nullable()
       ->default(NULL);
-$table->string('mobile_grade', 255)
+$table->string('mobileGrade', 255)
       ->nullable()
       ->default(NULL);
-$table->string('css_version', 255)
+$table->string('cssVersion', 255)
       ->nullable()
       ->default(NULL);
-$table->integer('java_script_support')
+$table->integer('javaScriptSupport')
       ->nullable()
       ->default(NULL);
 $table->string('referer', 255)

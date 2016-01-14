@@ -34,10 +34,7 @@ class putLogController extends Controller
 
         $data['userid']=$this->admin->id;
         $data['userip']=$this->request->ip();
-        if(Session("userHash"))
-        {
-            $data['userHash']=$this->admin->hash;
-        }
+
 
 
         foreach (GeoIP::getLocation() as $key=>$value)
