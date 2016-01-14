@@ -156,7 +156,8 @@ class BaseServiceProviders extends Controller
                                                                                  'user_lock'=>1,
                                                                                  'last_login_time'=>time(),
                                                                                  'logout'=>0,
-                                                                                 'logout_time'=>0]);
+                                                                                 'logout_time'=>0,
+                                                                                 'hash_clicked'=>0]);
     }
 
     public function pageProtector($field=false)
