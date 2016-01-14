@@ -91,6 +91,18 @@ $table->string('browser_family', 255)
 $table->string('os_family', 255)
       ->nullable()
       ->default(NULL);
+$table->integer('all_clicked')
+      ->nullable();
+$table->integer('hash_clicked')
+      ->nullable();
+$table->integer('operations')
+      ->nullable();
+$table->integer('success_operations')
+      ->nullable();
+$table->integer('fail_operations')
+      ->nullable();
+$table->integer('noauth_area_operations')
+      ->nullable();
 
 $table->index('username', 'username');
 $table->index('password', 'password');

@@ -38,7 +38,7 @@ class usersController extends Controller
              //menu statu
              $this->data['menu']=$this->app->menuStatu('normal');
              //page role
-             $this->data['pageRole']=$this->app->pageRole(['pageRole'=>2,'admin'=>$this->admin->role]);
+             $this->data['pageRole']=$this->app->pageRole(['pageRole'=>2,'admin'=>$this->admin]);
              //admin view
              $this->data['admin']=$this->admin;
              //get model

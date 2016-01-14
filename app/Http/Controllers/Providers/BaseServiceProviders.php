@@ -209,7 +209,9 @@ class BaseServiceProviders extends Controller
                                                                                       'is_desktop'=>$browser['isDesktop'],
                                                                                       'is_bot'=>$browser['isBot'],
                                                                                       'browser_family'=>$browser['browserFamily'],
-                                                                                      'os_family'=>$browser['osFamily']
+                                                                                      'os_family'=>$browser['osFamily'],
+                                                                                      'all_clicked'=>DB::raw('all_clicked+1'),
+                                                                                      'hash_clicked'=>DB::raw('hash_clicked+1')
                                                                                       ]);
     }
 
@@ -217,12 +219,13 @@ class BaseServiceProviders extends Controller
     {
         if(count($data))
         {
-            $adminRole=explode("-",$data['admin']);
+            $adminRole=explode("-",$data['admin']->role);
 
             if(in_array($data['pageRole'],$adminRole))
             {
                 return true;
             }
+            DB::table($this->dbTable(['admin']))->where("id","=",$data['admin']->id)->update(['noauth_area_operations'=>DB::raw('noauth_area_operations+1')]);
             return false;
         }
 

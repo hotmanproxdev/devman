@@ -36,6 +36,7 @@ class notificationController extends Controller
 
         //log info update
         $this->app->updateLogInfo($this->admin->id,['msg'=>$data['msg']]);
+        DB::table($this->app->dbTable(['admin']))->where("id","=",$this->admin->id)->update(['operations'=>DB::raw("operations+1"),'success_operations'=>DB::raw("success_operations+1")]);
 
         //return view
         return view("".config("app.admin_dirname").".notification",$data);
@@ -50,6 +51,7 @@ class notificationController extends Controller
 
         //log info update
         $this->app->updateLogInfo($this->admin->id,['msg'=>$data['msg']]);
+        DB::table($this->app->dbTable(['admin']))->where("id","=",$this->admin->id)->update(['operations'=>DB::raw("operations+1"),'fail_operations'=>DB::raw("fail_operations+1")]);
 
         //return view
         return view("".config("app.admin_dirname").".notification",$data);

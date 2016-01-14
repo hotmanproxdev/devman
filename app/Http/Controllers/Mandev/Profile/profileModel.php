@@ -27,7 +27,7 @@ class profileModel extends Controller
         //admin data
         $this->admin=$this->app->admin();
         //page role
-        $this->data['pageRole']=$this->app->pageRole(['pageRole'=>1,'admin'=>$this->admin->role]);
+        $this->data['pageRole']=$this->app->pageRole(['pageRole'=>1,'admin'=>$this->admin]);
 
     }
 

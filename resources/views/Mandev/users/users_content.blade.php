@@ -93,6 +93,30 @@
               <th scope="col">
                 Os Family:
               </th>
+
+              <th scope="col">
+                {{$all_admin_clickeds}}:
+              </th>
+
+              <th scope="col">
+                {{$hash_admin_clickeds}}:
+              </th>
+
+              <th scope="col">
+                {{$all_admin_operations}}:
+              </th>
+
+              <th scope="col">
+                {{$success_admin_operations}}:
+              </th>
+
+              <th scope="col">
+                {{$fail_admin_operations}}:
+              </th>
+
+              <th scope="col">
+                {{$noauth_area_operations}}:
+              </th>
             </tr>
             </thead>
             <tbody>
@@ -211,6 +235,30 @@
               </td>
               <td>
                 <span style="color:#336699; font-weight:bold;">{{$users->os_family}}</span>
+              </td>
+
+              <td>
+                <span style="color:#333; font-weight:bold;">{{$users->all_clicked}}</span>
+              </td>
+
+              <td>
+                <span style="color:#333; font-weight:bold;">{{$users->hash_clicked}}</span>
+              </td>
+
+              <td>
+                <span style="color:#333; font-weight:bold;">{{$users->operations}}</span>
+              </td>
+
+              <td>
+                <span style="color:#e20a16; font-weight:bold;">{{$users->success_operations}}</span>
+              </td>
+
+              <td>
+                <span style="color: #e20a16; font-weight:bold;">{{$users->fail_operations}}</span>
+              </td>
+
+              <td>
+                <span style="color: #e20a16; font-weight:bold;">{{$users->noauth_area_operations}}</span>
               </td>
             </tr>
               @endforeach
