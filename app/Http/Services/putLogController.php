@@ -31,8 +31,14 @@ class putLogController extends Controller
     }
     public function admin($log=array(),$post=array())
     {
+
         $data['userid']=$this->admin->id;
         $data['userip']=$this->request->ip();
+        if(Session("userHash"))
+        {
+            $data['userHash']=$this->admin->hash;
+        }
+
 
         foreach (GeoIP::getLocation() as $key=>$value)
         {
@@ -47,6 +53,7 @@ class putLogController extends Controller
             $data[$key]=$value;
         }
 
+        $data['referer']=$this->request->header("referer");
         $data['formprocess']=($this->request->ajax()) ? 'Ajax Request' : 'Normal Request';
         $data['user_agent']=$this->request->header('User-Agent');
         $data['user_host']=$this->request->header('HOST');

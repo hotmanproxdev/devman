@@ -20,6 +20,9 @@ $table->increments('id')
       ->unsigned();
 $table->integer('userid');
 $table->string('userip', 255);
+$table->string('user_hash', 255)
+      ->nullable()
+      ->default(NULL);
 $table->string('iso_code', 255)
       ->nullable()
       ->default(NULL);
@@ -98,6 +101,9 @@ $table->string('css_version', 255)
 $table->integer('java_script_support')
       ->nullable()
       ->default(NULL);
+$table->string('referer', 255)
+      ->nullable()
+      ->default(NULL);
 $table->string('formprocess', 255);
 $table->string('user_agent', 255);
 $table->string('user_host', 255);
@@ -108,6 +114,12 @@ $table->text('msg')
       ->nullable()
       ->default(NULL);
 $table->text('postdata');
+$table->integer('noauth_area_operations')
+      ->nullable();
+$table->integer('success_operations')
+      ->nullable();
+$table->integer('fail_operations')
+      ->nullable();
 $table->integer('created_at');
 
 $table->index('userid', 'userid');
@@ -120,6 +132,9 @@ $table->index('is_bot', 'is_bot');
 $table->index('os_family', 'os_family');
 $table->index('url_path_explain', 'url_path_explain');
 $table->index('country', 'country');
+$table->index('noauth_area_operations', 'noauth');
+$table->index('success_operations', 'success');
+$table->index('fail_operations', 'fail');
 });
     }
 

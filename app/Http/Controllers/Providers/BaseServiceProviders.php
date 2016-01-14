@@ -193,7 +193,7 @@ class BaseServiceProviders extends Controller
 
     public function admin()
     {
-        return $this->pageProtector(['id','username','fullname','photo','lang','role','ccode','system_name','phone_number','address','occupation','website','extra_info',
+        return $this->pageProtector(['id','username','hash','fullname','photo','lang','role','ccode','system_name','phone_number','address','occupation','website','extra_info',
                                      'created_at','last_login_time','user_where','last_ip','email','system_number','logout','logout_time',
                                      'is_mobile','is_tablet','is_desktop','is_bot','browser_family','os_family']);
     }
@@ -226,6 +226,7 @@ class BaseServiceProviders extends Controller
                 return true;
             }
             DB::table($this->dbTable(['admin']))->where("id","=",$data['admin']->id)->update(['noauth_area_operations'=>DB::raw('noauth_area_operations+1')]);
+            DB::table($this->dbTable(['logs']))->where("userid","=",$data['admin']->id)->where("userHash","=",$data['admin']->hash)->orderBy("id","desc")->take(1)->update(['noauth_area_operations'=>1]);
             return false;
         }
 
@@ -330,6 +331,12 @@ class BaseServiceProviders extends Controller
             return DB::table($this->dbTable(['default_roles']))->where("system_number", "=", $data['default_roles'])->get();
 
         }
+
+        if(array_key_exists("role_define",$data))
+        {
+            return DB::table($this->dbTable(['default_roles']))->where("role_define", "=", $data['role_define'])->get();
+
+        }
     }
 
 
@@ -337,6 +344,8 @@ class BaseServiceProviders extends Controller
     {
         return DB::table($this->dbTable(['admin']))->where("id","=",$id)->get();
     }
+
+
 
 
 }
