@@ -24,6 +24,8 @@ class loginController extends Controller
            $this->app=app()->make("Base");
            //page lang
            $this->data=$this->app->getLang(['url_path'=>$this->url_path,'lang'=>1]);
+           //make control to know user according to ip
+           $this->app->controlQuestToKnow($this->request->ip());
        }
 
     public function getIndex ()

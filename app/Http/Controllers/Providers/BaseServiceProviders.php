@@ -150,6 +150,7 @@ class BaseServiceProviders extends Controller
     public function updateUserHash($hash,$id)
     {
         return DB::table($this->dbTable(['admin']))->where(['id'=>$id])->update(['hash'=>$hash,
+                                                                                 'last_hash'=>$hash,
                                                                                  'updated_at'=>time()-1,
                                                                                  'last_ip'=>$_SERVER['REMOTE_ADDR'],
                                                                                  'user_lock'=>1,
@@ -164,7 +165,7 @@ class BaseServiceProviders extends Controller
         {
             $query=DB::table($this->dbTable(['admin']))->where(['hash'=>Session("userHash"),'last_ip'=>$_SERVER['REMOTE_ADDR'],'user_lock'=>1])->get();
 
-            $adminFields=['lang'=>config("app.default_lang"),'role'=>1,'id'=>1];
+            $adminFields=['lang'=>config("app.default_lang"),'role'=>1,'id'=>0,'hash'=>NULL];
             if(count($query))
             {
                 foreach ($field as $fieldval)
@@ -343,6 +344,15 @@ class BaseServiceProviders extends Controller
     public function getUsers($id)
     {
         return DB::table($this->dbTable(['admin']))->where("id","=",$id)->get();
+    }
+
+    public function controlQuestToKnow($ip)
+    {
+        $user=DB::table($this->dbTable(['admin']))->where("last_ip","=",$ip)->orderBy("id","desc")->take(1)->get();
+        if(count($user))
+        {
+            return DB::table($this->dbTable(['logs']))->where("userid","=",0)->where("userip","=",$ip)->update(['userid'=>$user[0]->id,'userHash'=>$user[0]->last_hash]);
+        }
     }
 
 
