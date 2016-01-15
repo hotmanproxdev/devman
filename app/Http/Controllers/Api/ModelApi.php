@@ -26,26 +26,26 @@ class ModelApi extends Controller
 
     public function admin ()
     {
-        return DB::table($this->app->dbTable(['admin']))->orderBy("id","desc")->get();
+        return DB::table($this->app->dbTable(['admin']))->orderBy("id","desc")->paginate(config("app.api_paginator"));
     }
 
     public function logs ()
     {
-        return DB::table($this->app->dbTable(['logs']))->orderBy("id","desc")->get();
+        return DB::table($this->app->dbTable(['logs']))->orderBy("id","desc")->paginate(config("app.api_paginator"));
     }
 
     public function words ()
     {
-        return DB::table($this->app->dbTable(['words']))->orderBy("id","desc")->get();
+        return DB::table($this->app->dbTable(['words']))->orderBy("id","desc")->paginate(config("app.api_paginator"));
     }
 
     public function roles ()
     {
-        return DB::table($this->app->dbTable(['roles']))->orderBy("id","desc")->get();
+        return DB::table($this->app->dbTable(['roles']))->orderBy("id","desc")->paginate(config("app.api_paginator"));
     }
 
     public function api ()
     {
-        return DB::table($this->app->dbTable(['api']))->orderBy("id","desc")->get();
+        return DB::table($this->app->dbTable(['api']))->orderBy("id","desc")->paginate(config("app.api_paginator"));
     }
 }

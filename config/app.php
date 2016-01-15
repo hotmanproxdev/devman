@@ -25,6 +25,7 @@ return [
     'default_lang'=>1,
     'online_expire_minute'=>15,
     'paginator'=>10,
+    'api_paginator'=>10,
     'api_ccode'=>'develop',
 
     //////////////MANDEV CONFİG SETTİNGS//////////////////////////////////////////////////
