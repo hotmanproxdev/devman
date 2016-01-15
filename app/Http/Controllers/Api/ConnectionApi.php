@@ -8,7 +8,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Contracts\Routing\ResponseFactory;
 use DB;
 
-class connectionApi extends Controller
+class ConnectionApi extends Controller
 {
 
     public function getIndex ()
