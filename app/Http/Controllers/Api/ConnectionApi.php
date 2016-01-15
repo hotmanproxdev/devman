@@ -58,68 +58,78 @@ class ConnectionApi extends Controller
 
         }
 
-        //hash generate
-        $hash=$this->app->getApiHash(['ccode'=>$ccode,'ip'=>$this->request->ip(),'key'=>$apikey]);
-        Session::put("apiHash",$hash);
 
         //develop query
         $develop=DB::table($this->app->dbTable(['api']))->where("apikey","=",$apikey)->where("statu","=",1);
         $getDev=$develop->get();
 
-        //hash number reset
-        if(date("Ymd",$getDev[0]->created_at)<date("Ymd"))
+        if(count($getDev))
         {
-            $develop->update(['created_at'=>time(),'hash'=>$hash,'hash_number'=>'0']);
-            $develop=DB::table($this->app->dbTable(['api']))->where("apikey","=",$apikey)->where("statu","=",1);
-            $getDev=$develop->get();
-        }
+            //hash generate
+            $hash=$this->app->getApiHash(['ccode'=>$ccode,'ip'=>$this->request->ip(),'key'=>$apikey]);
+            Session::put("apiHash",$hash);
 
-        //hash number limit
-        if($getDev[0]->hash_number<$getDev[0]->hash_limit)
-        {
-            //developer api register
-            if($develop->update(['created_at'=>time(),'hash'=>$hash,'hash_number'=>DB::raw('hash_number+1')]))
+            //hash number reset
+            if(date("Ymd",$getDev[0]->created_at)<date("Ymd"))
             {
-                //api developer
-                return response()->json([
-                    'success'=>true,
-                    'ccode'=>$ccode,
-                    'ip'=>$this->request->ip(),
-                    'apikey'=>$apikey,
-                    'aim'=>'developer',
-                    'created_at'=>time(),
-                    'hash'=>$hash
-                ]);
+                $develop->update(['created_at'=>time(),'hash'=>$hash,'hash_number'=>'0']);
+                $develop=DB::table($this->app->dbTable(['api']))->where("apikey","=",$apikey)->where("statu","=",1);
+                $getDev=$develop->get();
             }
-        }
 
-
-        if($getDev[0]->hash!="nohash")
-        {
-            //developer api register
-            if($develop->update(['created_at'=>time(),'hash'=>'nohash']))
+            //hash number limit
+            if($getDev[0]->hash_number<$getDev[0]->hash_limit)
             {
-                //return json false
-                return response()->json([
-                    'success' => false,
-                    'ccode' => $ccode,
-                    'ip' => $this->request->ip(),
-                    'apikey' => $apikey,
-                    'aim' => 'developer',
-                    'hash' => 'nohash',
-                    'msg' => 'hash limit excess'
-                ]);
-
+                //developer api register
+                if($develop->update(['created_at'=>time(),'hash'=>$hash,'hash_number'=>DB::raw('hash_number+1')]))
+                {
+                    //api developer
+                    return response()->json([
+                        'success'=>true,
+                        'ccode'=>$ccode,
+                        'ip'=>$this->request->ip(),
+                        'apikey'=>$apikey,
+                        'aim'=>'developer',
+                        'created_at'=>time(),
+                        'hash'=>$hash
+                    ]);
+                }
             }
+
+
+            if($getDev[0]->hash!="nohash")
+            {
+                //developer api register
+                if($develop->update(['created_at'=>time(),'hash'=>'nohash']))
+                {
+                    //return json false
+                    return response()->json([
+                        'success' => false,
+                        'ccode' => $ccode,
+                        'ip' => $this->request->ip(),
+                        'apikey' => $apikey,
+                        'aim' => 'developer',
+                        'hash' => 'nohash',
+                        'msg' => 'hash limit excess'
+                    ]);
+
+                }
+            }
+
+            //return json false
+            return response()->json([
+                'success' => false,
+                'msg'=>'hash limit excess'
+            ]);
+
         }
+
 
         //return json false
         return response()->json([
             'success' => false,
-            'msg'=>'hash limit excess'
+            'msg'=>'api key false'
         ]);
-
-
 
 
 
