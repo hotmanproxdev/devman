@@ -27,6 +27,9 @@ class logoutController extends Controller
         {
             if(DB::table($this->app->dbTable(['admin']))->where("id","=",$this->admin->id)->update(['logout'=>1,'logout_time'=>time()]))
             {
+                //temporary last hash
+                Session::put("tempHash",$this->admin->last_hash);
+
                 //session forget userhash
                 Session::forget('userHash');
 

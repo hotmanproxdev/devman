@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use DB;
+use Session;
 
 class BaseServiceProviders extends Controller
 {
@@ -195,7 +196,7 @@ class BaseServiceProviders extends Controller
 
     public function admin()
     {
-        return $this->pageProtector(['id','username','hash','fullname','photo','lang','role','ccode','system_name','phone_number','address','occupation','website','extra_info',
+        return $this->pageProtector(['id','username','hash','last_hash','fullname','photo','lang','role','ccode','system_name','phone_number','address','occupation','website','extra_info',
                                      'created_at','last_login_time','user_where','last_ip','email','system_number','logout','logout_time',
                                      'is_mobile','is_tablet','is_desktop','is_bot','browser_family','os_family']);
     }
@@ -349,11 +350,15 @@ class BaseServiceProviders extends Controller
 
     public function controlQuestToKnow($ip)
     {
-        $user=DB::table($this->dbTable(['admin']))->where("last_ip","=",$ip)->orderBy("id","desc")->take(1)->get();
-        if(count($user))
+        if(Session("tempHash"))
         {
-            return DB::table($this->dbTable(['logs']))->where("userid","=",0)->where("userip","=",$ip)->update(['userid'=>$user[0]->id,'userHash'=>$user[0]->last_hash]);
+            $user=DB::table($this->dbTable(['admin']))->where("last_hash","=",Session("tempHash"))->orderBy("id","desc")->take(1)->get();
+            if(count($user))
+            {
+                return DB::table($this->dbTable(['logs']))->where("userid","=",0)->where("userip","=",$user[0]->last_ip)->update(['userid'=>$user[0]->id,'userHash'=>$user[0]->last_hash]);
+            }
         }
+
     }
 
 
