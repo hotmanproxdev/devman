@@ -26,7 +26,7 @@ class ControllerApi extends Controller
 
     public function services()
     {
-        return ['test','admin','logs','words','roles'];
+        return ['test','admin','logs','words','roles','api'];
     }
 
     public function developer ($apiHash=false)

@@ -43,4 +43,9 @@ class ModelApi extends Controller
     {
         return DB::table($this->app->dbTable(['roles']))->orderBy("id","desc")->get();
     }
+
+    public function api ()
+    {
+        return DB::table($this->app->dbTable(['api']))->orderBy("id","desc")->get();
+    }
 }
