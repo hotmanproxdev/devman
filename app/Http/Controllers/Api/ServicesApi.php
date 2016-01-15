@@ -34,6 +34,11 @@ class ServicesApi extends Controller
 
     public function index ($serviceName=false)
     {
+        if($serviceName=="test")
+        {
+            return $this->testRequest();
+        }
+
         if(in_array($serviceName,$this->controller->services()))
         {
             if($this->controller->developer(Session("apiHash")))
@@ -49,5 +54,18 @@ class ServicesApi extends Controller
         return response()->json(['success'=>false,
                 'msg'=>'invalid service name'
                ]);
+    }
+
+
+    public function testRequest()
+    {
+        //api developer
+        return response()->json([
+            'success'=>true,
+            'ip'=>$this->request->ip(),
+            'aim'=>'developer',
+            'hash'=>Session("apiHash"),
+            'services'=>$this->controller->services()
+        ]);
     }
 }
