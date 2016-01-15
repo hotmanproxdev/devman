@@ -34,15 +34,14 @@ class ServicesApi extends Controller
 
     public function index ($serviceName=false)
     {
-        if($serviceName=="test")
-        {
-            return $this->testRequest();
-        }
-
         if(in_array($serviceName,$this->controller->services()))
         {
             if($this->controller->developer(Session("apiHash")))
             {
+                if($serviceName=="test")
+                {
+                    return $this->testRequest();
+                }
                 return $this->model->$serviceName();
             }
 

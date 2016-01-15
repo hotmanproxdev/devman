@@ -26,15 +26,14 @@ class ControllerApi extends Controller
 
     public function services()
     {
-        return ['admin','logs','words','roles'];
+        return ['test','admin','logs','words','roles'];
     }
 
     public function developer ($apiHash=false)
     {
         if($apiHash)
         {
-
-            $developer=DB::table($this->app->dbTable(['api']))->where("hash","=",$apiHash)->get();
+            $developer=DB::table($this->app->dbTable(['api']))->where("ccode","=",config("app.app_ccode"))->where("hash","=",$apiHash)->get();
             if(count($developer))
             {
                 return true;
