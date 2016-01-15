@@ -70,7 +70,7 @@ Route::group(['prefix' =>''.strtolower(config("app.admin_dirname")).'/','namespa
 Route::group(['prefix' =>'api/','namespace'=>'Api'], function () {
 
     //api route (http/api request)
-    Route::controllers(['test' => 'ConnectionApi']);
+    Route::get("{ccode}/{apikey}", "ConnectionApi@index");
 
 });
 

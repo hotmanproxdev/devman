@@ -361,6 +361,15 @@ class BaseServiceProviders extends Controller
 
     }
 
+    public function getApiHash($data=array())
+    {
+        $ccode=''.$data['ccode'].'__systemapiccode';
+        $ip=''.$data['ip'].'__systemapiip';
+        $key=''.$data['key'].'__systemapikey';
+
+        return md5(sha1(''.$ccode.'__'.$ip.'__'.$key.'__'.time().''));
+    }
+
 
 
 
