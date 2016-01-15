@@ -67,7 +67,7 @@ Route::group(['prefix' =>''.strtolower(config("app.admin_dirname")).'/','namespa
 });
 
 
-Route::group(['prefix' =>'Api/','namespace'=>'api'], function () {
+Route::group(['prefix' =>'api/','namespace'=>'api'], function () {
 
     //api route (http/api request)
     Route::controllers(['test' => 'connectionApi']);

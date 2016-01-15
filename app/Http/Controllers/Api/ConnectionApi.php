@@ -14,6 +14,7 @@ class connectionApi extends Controller
     public function getIndex ()
     {
         //return view
+
         return response()->json(['test'=>true]);
     }
 }
