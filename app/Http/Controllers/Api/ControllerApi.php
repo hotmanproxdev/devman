@@ -33,7 +33,7 @@ class ControllerApi extends Controller
     {
         if($apiHash)
         {
-            $developer=DB::table($this->app->dbTable(['api']))->where("ccode","=",config("app.app_ccode"))->where("hash","=",$apiHash)->get();
+            $developer=DB::table($this->app->dbTable(['api']))->where("ccode","=",config("app.api_ccode"))->where("hash","=",$apiHash)->get();
             if(count($developer))
             {
                 return true;
