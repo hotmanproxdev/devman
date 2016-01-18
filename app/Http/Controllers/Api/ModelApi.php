@@ -24,7 +24,7 @@ class ModelApi extends Controller
 
     }
 
-    public function admin ($coding=array())
+    public function get ($serviceName,$coding=array())
     {
         if(count($coding))
         {
@@ -34,45 +34,27 @@ class ModelApi extends Controller
                 if($this->request->header("update")!==NULL)
                 {
                     $update=json_decode($this->request->header("update"),true);
-                    if(DB::table($this->app->dbTable(['admin']))->whereRaw($update['where'][0],$update['where'][1])->update($update['select']))
+                    if(DB::table($this->app->dbTable([$serviceName]))->whereRaw($update['where'][0],$update['where'][1])->update($update['select']))
                     {
-                        return DB::table($this->app->dbTable(['admin']))->orderBy("id","desc")->paginate(config("app.api_paginator"));
+                        return DB::table($this->app->dbTable([$serviceName]))->orderBy("id","desc")->paginate(config("app.api_paginator"));
                     }
                 }
 
                 //default mode
                 if($this->request->header("select")==NULL)
                 {
-                    return DB::table($this->app->dbTable(['admin']))->orderBy("id","desc")->paginate(config("app.api_paginator"));
+                    return DB::table($this->app->dbTable([$serviceName]))->orderBy("id","desc")->paginate(config("app.api_paginator"));
                 }
 
                 //select mode
-                return DB::table($this->app->dbTable(['admin']))->select(json_decode($this->request->header("select"),true))->orderBy("id","desc")->paginate(config("app.api_paginator"));
+                return DB::table($this->app->dbTable([$serviceName]))->select(json_decode($this->request->header("select"),true))->orderBy("id","desc")->paginate(config("app.api_paginator"));
             }
 
         }
 
         //select mode
-        return DB::table($this->app->dbTable(['admin']))->orderBy("id","desc")->paginate(config("app.api_paginator"));
+        return DB::table($this->app->dbTable([$serviceName]))->orderBy("id","desc")->paginate(config("app.api_paginator"));
     }
 
-    public function logs ()
-    {
-        return DB::table($this->app->dbTable(['logs']))->orderBy("id","desc")->paginate(config("app.api_paginator"));
-    }
 
-    public function words ()
-    {
-        return DB::table($this->app->dbTable(['words']))->orderBy("id","desc")->paginate(config("app.api_paginator"));
-    }
-
-    public function roles ()
-    {
-        return DB::table($this->app->dbTable(['roles']))->orderBy("id","desc")->paginate(config("app.api_paginator"));
-    }
-
-    public function api ()
-    {
-        return DB::table($this->app->dbTable(['api']))->orderBy("id","desc")->paginate(config("app.api_paginator"));
-    }
 }
