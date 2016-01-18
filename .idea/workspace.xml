@@ -54,10 +54,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="usersController.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="usersController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Mandev/Users/usersController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.6132075" vertical-offset="585" max-vertical-offset="2940">
+            <state vertical-scroll-proportion="-16.25" vertical-offset="585" max-vertical-offset="2940">
               <caret line="65" column="5" selection-start-line="65" selection-start-column="5" selection-end-line="65" selection-end-column="5" />
               <folding>
                 <element signature="e#53#81#0#PHP" expanded="true" />
@@ -90,11 +90,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ServicesApi.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="ServicesApi.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Api/ServicesApi.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-14.625" vertical-offset="699" max-vertical-offset="1935">
-              <caret line="70" column="40" selection-start-line="70" selection-start-column="40" selection-end-line="70" selection-end-column="40" />
+            <state vertical-scroll-proportion="0.2688679" vertical-offset="699" max-vertical-offset="1935">
+              <caret line="58" column="19" selection-start-line="58" selection-start-column="19" selection-end-line="58" selection-end-column="19" />
               <folding>
                 <element signature="e#44#72#0#PHP" expanded="true" />
               </folding>
@@ -129,7 +129,7 @@
       <file leaf-file-name="ModelApi.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Api/ModelApi.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-21.5" vertical-offset="354" max-vertical-offset="990">
+            <state vertical-scroll-proportion="-24.0" vertical-offset="294" max-vertical-offset="990">
               <caret line="58" column="0" selection-start-line="58" selection-start-column="0" selection-end-line="58" selection-end-column="0" />
               <folding>
                 <element signature="e#44#72#0#PHP" expanded="true" />
@@ -450,10 +450,10 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1920" height="1010" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25054467" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25054467" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32897604" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32960597" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -849,6 +849,16 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Mandev/Users/usersController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-16.25" vertical-offset="585" max-vertical-offset="2940">
+          <caret line="65" column="5" selection-start-line="65" selection-start-column="5" selection-end-line="65" selection-end-column="5" />
+          <folding>
+            <element signature="e#53#81#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Services/apiRequestController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-9.708333" vertical-offset="292" max-vertical-offset="1020">
@@ -861,7 +871,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Api/ModelApi.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-21.5" vertical-offset="354" max-vertical-offset="990">
+        <state vertical-scroll-proportion="-24.0" vertical-offset="294" max-vertical-offset="990">
           <caret line="58" column="0" selection-start-line="58" selection-start-column="0" selection-end-line="58" selection-end-column="0" />
           <folding>
             <element signature="e#44#72#0#PHP" expanded="true" />
@@ -871,20 +881,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Api/ServicesApi.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-14.625" vertical-offset="699" max-vertical-offset="1935">
-          <caret line="70" column="40" selection-start-line="70" selection-start-column="40" selection-end-line="70" selection-end-column="40" />
+        <state vertical-scroll-proportion="0.2688679" vertical-offset="699" max-vertical-offset="1935">
+          <caret line="58" column="19" selection-start-line="58" selection-start-column="19" selection-end-line="58" selection-end-column="19" />
           <folding>
             <element signature="e#44#72#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Mandev/Users/usersController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6132075" vertical-offset="585" max-vertical-offset="2940">
-          <caret line="65" column="5" selection-start-line="65" selection-start-column="5" selection-end-line="65" selection-end-column="5" />
-          <folding>
-            <element signature="e#53#81#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
