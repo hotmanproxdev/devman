@@ -50,7 +50,7 @@ class ServicesApi extends Controller
                         return $this->testRequest();
                     }
                     //service call
-                    $this->model->$serviceName();
+                    return $this->model->$serviceName();
                 }
 
                 //developer false
@@ -72,7 +72,7 @@ class ServicesApi extends Controller
                         return $this->testRequest();
                     }
                     //service call
-                    return $this->model->$serviceName();
+                    return $this->model->$serviceName(['codingRequest'=>1]);
                 }
 
                 //developer coding header false

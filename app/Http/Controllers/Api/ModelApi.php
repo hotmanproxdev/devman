@@ -24,8 +24,25 @@ class ModelApi extends Controller
 
     }
 
-    public function admin ()
+    public function admin ($coding=array())
     {
+        if(count($coding))
+        {
+            if($coding['codingRequest'])
+            {
+                //default mode
+                if($this->request->header("select")==NULL)
+                {
+                    return DB::table($this->app->dbTable(['admin']))->orderBy("id","desc")->paginate(config("app.api_paginator"));
+                }
+
+                //select mode
+                return DB::table($this->app->dbTable(['admin']))->select(json_decode($this->request->header("select"),true))->orderBy("id","desc")->paginate(config("app.api_paginator"));
+            }
+
+        }
+
+        //select mode
         return DB::table($this->app->dbTable(['admin']))->orderBy("id","desc")->paginate(config("app.api_paginator"));
     }
 

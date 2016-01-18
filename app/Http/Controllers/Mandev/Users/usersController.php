@@ -64,7 +64,6 @@ class usersController extends Controller
 
     public function getIndex (\Time $time,\Api $api)
     {
-        dd($api->get(['service'=>'test']));
 
         //get all users
         $this->data['getUsers']=$this->model->getUsers();
