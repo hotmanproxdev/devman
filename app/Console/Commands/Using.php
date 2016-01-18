@@ -124,5 +124,15 @@ class Using extends Command
             $dd['fileupload']="file::upload(['input'=>Input::all(),'name'=>'file','path'=>'upload/test']);";
             dd($dd);
         }
+
+
+        //api
+        if($this->argument("name")=="api")
+        {
+            $dd['api']="this->api->get(['service'=>'test'])";
+            $dd['select']="this->api->get(['service'=>'test','select'=>['id'])";
+            $dd['update']="this->api->get(['service'=>'test','update'=>['select'=>['username'=>'newusername'],'where'=>['id=?',[1])";
+            dd($dd);
+        }
     }
 }

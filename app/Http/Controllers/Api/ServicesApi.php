@@ -98,7 +98,8 @@ class ServicesApi extends Controller
                        'aim'=>'developer',
                        'hash'=>Session("apiHash"),
                        'services'=>$this->controller->services(),
-                       'select'=>$this->request->header("select")
+                       'select'=>$this->request->header("select"),
+                       'update'=>$this->request->header("update")
                        ];
 
         if($json_content['select']!==NULL)
@@ -114,6 +115,7 @@ class ServicesApi extends Controller
 
             $json_content=$select_json;
         }
+
 
         //api developer
         return response()->json($json_content);

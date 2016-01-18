@@ -30,6 +30,16 @@ class ModelApi extends Controller
         {
             if($coding['codingRequest'])
             {
+                //update mode
+                if($this->request->header("update")!==NULL)
+                {
+                    $update=json_decode($this->request->header("update"),true);
+                    if(DB::table($this->app->dbTable(['admin']))->whereRaw($update['where'][0],$update['where'][1])->update($update['select']))
+                    {
+                        return DB::table($this->app->dbTable(['admin']))->orderBy("id","desc")->paginate(config("app.api_paginator"));
+                    }
+                }
+
                 //default mode
                 if($this->request->header("select")==NULL)
                 {

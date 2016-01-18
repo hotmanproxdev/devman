@@ -34,11 +34,18 @@ class apiRequestController extends Controller
             $init = curl_init();
             $url=''.$this->apiUrl.'/'.$data['service'].'';
 
+            //update for fields
+            if(array_key_exists("update",$data))
+            {
+                $this->header['update']='update:'.json_encode($data['update']);
+            }
+
             //select for fields
             if(array_key_exists("select",$data))
             {
-                $this->header[]='select:'.json_encode($data['select']);
+                $this->header['select']='select:'.json_encode($data['select']);
             }
+
 
             curl_setopt($init,CURLOPT_URL,$url);
             curl_setopt($init,CURLOPT_HTTPHEADER,$this->header);
