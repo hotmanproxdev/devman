@@ -67,7 +67,6 @@ class ConnectionApi extends Controller
         {
             //hash generate
             $hash=$this->app->getApiHash(['ccode'=>$ccode,'ip'=>$this->request->ip(),'key'=>$apikey]);
-            Session::put("apiHash",$hash);
 
             //hash number reset
             if(date("Ymd",$getDev[0]->created_at)<date("Ymd"))
@@ -83,6 +82,9 @@ class ConnectionApi extends Controller
                 //developer api register
                 if($develop->update(['created_at'=>time(),'hash'=>$hash,'hash_number'=>DB::raw('hash_number+1')]))
                 {
+                    //session initialize
+                    Session::put("apiHash",$hash);
+
                     //api developer
                     return response()->json([
                         'success'=>true,

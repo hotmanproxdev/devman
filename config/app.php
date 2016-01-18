@@ -222,6 +222,7 @@ return [
         'BrowserDetect' => hisorange\BrowserDetect\Facade\Parser::class,
         'GeoIP' => Torann\GeoIP\GeoIPFacade::class,
         'Pagination' => App\Http\Services\paginationController::class,
+        'Api' =>App\Http\Services\apiRequestController::class,
 
     ],
 

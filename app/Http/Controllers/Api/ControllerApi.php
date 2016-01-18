@@ -14,6 +14,10 @@ class ControllerApi extends Controller
 
     public $request;
     public $app;
+    protected $headers=['device','mode','company'];
+    protected $device=['ios','android','web'];
+    protected $mode=['select'];
+    protected $company=['teknasyon'];
 
     public function __construct (Request $request)
     {
@@ -40,6 +44,33 @@ class ControllerApi extends Controller
             }
 
             return false;
+        }
+    }
+
+
+    public function coding ($active=false)
+    {
+        if($active)
+        {
+            $list=[];
+            foreach ($this->headers as $headers)
+            {
+                if(in_array($this->request->header($headers),$this->$headers))
+                {
+                    $list[]=1;
+                }
+                else
+                {
+                    $list[]=0;
+                }
+            }
+
+            if(in_array(false,$list))
+            {
+                return false;
+            }
+
+            return true;
 
         }
     }
