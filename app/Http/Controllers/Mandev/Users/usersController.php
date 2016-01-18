@@ -64,12 +64,6 @@ class usersController extends Controller
 
     public function getIndex (\Time $time,\Api $api)
     {
-        if($api->get(['service'=>'admin','update'=>['select'=>['username'=>'aligurbuz'],'where'=>['id=?',[1]]]]))
-        {
-            return $api->get(['service'=>'admin']);
-        }
-
-
         //get all users
         $this->data['getUsers']=$this->model->getUsers();
 
