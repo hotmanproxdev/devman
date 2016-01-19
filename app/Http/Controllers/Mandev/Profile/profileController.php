@@ -67,13 +67,42 @@ class profileController extends Controller
     |
     */
 
-    public function getIndex ()
+    public function getIndex ($id=false)
     {
-        //variables will be sent
-        $this->data['last_login_time']=$this->time->getPassing($this->admin->last_login_time)->output;
+        if($id)
+        {
+            if($this->admin->system_number==0)
+            {
+                //user viewed
+                $this->data['admin']=$this->app->admin($id);
 
-        //get logs
-        $this->data['logs']=$this->app->getLogs(['id'=>$this->admin->id]);
+                //variables will be sent
+                $this->data['last_login_time']=$this->time->getPassing($this->admin->last_login_time)->output;
+
+                //get logs
+                $this->data['logs']=$this->app->getLogs(['id'=>$this->admin->id]);
+
+                //get roles
+                $this->data['roles']=$this->app->getUserRoles(['admin'=>$this->admin]);
+            }
+            else
+            {
+                return abort("404");
+            }
+
+        }
+        else
+        {
+            //variables will be sent
+            $this->data['last_login_time']=$this->time->getPassing($this->admin->last_login_time)->output;
+
+            //get logs
+            $this->data['logs']=$this->app->getLogs(['id'=>$this->admin->id]);
+
+            //get roles
+            $this->data['roles']=$this->app->getUserRoles(['admin'=>$this->admin]);
+        }
+
 
         //return view
         return view("".config("app.admin_dirname").".".$this->url_path.".main",$this->data);

@@ -33,6 +33,7 @@ class dataComposer {
     public function compose(View $view)
     {
         $view->with('baseUrl', 'http://'.$this->request->getHttpHost().''.$this->request->getBaseUrl().'');
+        $view->with('mandev', 'http://'.$this->request->getHttpHost().''.$this->request->getBaseUrl().'/'.strtolower(config("app.admin_dirname")).'');
     }
 
 }

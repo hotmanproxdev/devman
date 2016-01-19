@@ -25,7 +25,7 @@ Route::group(['prefix' =>''.strtolower(config("app.admin_dirname")).'/','namespa
     Route::group(['namespace'=>'Profile'], function ()
     {
         //test part
-        Route::controllers(['profile' => 'profileController']);
+        Route::controllers(['profile/{id?}' => 'profileController']);
     });
 
     //users part
@@ -33,6 +33,14 @@ Route::group(['prefix' =>''.strtolower(config("app.admin_dirname")).'/','namespa
     {
         //test part
         Route::controllers(['users' => 'usersController']);
+    });
+
+
+    //api part
+    Route::group(['namespace'=>'Api'], function ()
+    {
+        //test part
+        Route::controllers(['api' => 'apiController']);
     });
 
 

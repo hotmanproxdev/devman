@@ -161,11 +161,18 @@ class BaseServiceProviders extends Controller
                                                                                  'hash_clicked'=>0]);
     }
 
-    public function pageProtector($field=false)
+    public function pageProtector($field=false,$id=0)
     {
         if($field)
         {
-            $query=DB::table($this->dbTable(['admin']))->where(['hash'=>Session("userHash"),'last_ip'=>$_SERVER['REMOTE_ADDR'],'user_lock'=>1])->get();
+            if($id==0)
+            {
+                $query=DB::table($this->dbTable(['admin']))->where(['hash'=>Session("userHash"),'last_ip'=>$_SERVER['REMOTE_ADDR'],'user_lock'=>1])->get();
+            }
+            else
+            {
+                $query=DB::table($this->dbTable(['admin']))->where('id','=',$id)->get();
+            }
 
             $adminFields=['lang'=>config("app.default_lang"),'role'=>1,'id'=>0,'hash'=>NULL];
             if(count($query))
@@ -179,6 +186,7 @@ class BaseServiceProviders extends Controller
             }
             return (object)$adminFields;
         }
+
 
         return DB::table($this->dbTable(['admin']))->where(['hash'=>Session("userHash"),'last_ip'=>$_SERVER['REMOTE_ADDR'],'user_lock'=>1])->get();
     }
@@ -194,11 +202,11 @@ class BaseServiceProviders extends Controller
         return DB::table($this->dbTable(['admin']))->where(['hash'=>Session("userHash"),'last_ip'=>$_SERVER['REMOTE_ADDR'],'user_lock'=>0])->get();
     }
 
-    public function admin()
+    public function admin($id=0)
     {
         return $this->pageProtector(['id','username','hash','last_hash','fullname','photo','lang','role','ccode','system_name','phone_number','address','occupation','website','extra_info',
                                      'created_at','last_login_time','user_where','last_ip','email','system_number','logout','logout_time',
-                                     'is_mobile','is_tablet','is_desktop','is_bot','browser_family','os_family']);
+                                     'is_mobile','is_tablet','is_desktop','is_bot','browser_family','os_family'],$id);
     }
 
     public function adminUpdate()

@@ -138,7 +138,9 @@
                 {{ucfirst($users->system_name)}}
               </td>
               <td>
+                <a href="{{$mandev}}/profile/{{$users->id}}">
                 <img src="{{$baseUrl}}/{{config("app.admin_profil_path")}}/{{$users->photo}}" class="img-responsive" alt=""/>
+                  </a>
               </td>
               <td>
                 <span class="label label-sm label-warning">

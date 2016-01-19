@@ -150,17 +150,17 @@
                           <thead>
                           <tr>
                             <th>
-                              <i class="fa fa-briefcase"></i> İşlem Mesajı
+                              <i class="fa fa-briefcase"></i> {{$formprocess}}
                             </th>
                             <th class="hidden-xs">
-                              <i class="fa fa-question"></i> Link Yolu
+                              <i class="fa fa-question"></i> {{$route}}
                             </th>
                             <th>
-                              <i class="fa fa-bookmark"></i> Log İşlemi
+                              <i class="fa fa-bookmark"></i> {{$logprocess}}
                             </th>
 
                             <th>
-                              <i class="fa fa-bookmark">Tarih</i>
+                              <i class="fa fa-bookmark">{{$date}}</i>
                             </th>
 
                           </tr>
@@ -420,115 +420,73 @@
             <div class="row">
               <div class="col-md-12">
                 <div class="add-portfolio">
-												<span>
-												502 Items sold this week </span>
-                  <a href="javascript:;" class="btn icn-only green">
-                    Add a new Project <i class="m-icon-swapright m-icon-white"></i>
-                  </a>
-                </div>
-              </div>
-            </div>
-            <!--end add-portfolio-->
-            <div class="row portfolio-block">
-              <div class="col-md-5">
-                <div class="portfolio-text">
-                  <img src="../../assets/admin/pages/media/profile/logo_metronic.jpg" alt=""/>
-                  <div class="portfolio-text-info">
-                    <h4>Metronic - Responsive Template</h4>
-                    <p>
-                      Lorem ipsum dolor sit consectetuer adipiscing elit.
-                    </p>
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="note note-bordered note-success">
+                        <p>
+                          {{$profile_roles_auth_info}}
+                        </p>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
-              <div class="col-md-5 portfolio-stat">
-                <div class="portfolio-info">
-                  Today Sold <span>
-												187 </span>
+            </div>
+
+            <!-- BEGIN SAMPLE TABLE PORTLET-->
+            <div class="portlet box purple">
+              <div class="portlet-title">
+                <div class="caption">
+                  <i class="fa fa-cogs"></i>{{$profile_auth_list}}
                 </div>
-                <div class="portfolio-info">
-                  Total Sold <span>
-												1789 </span>
-                </div>
-                <div class="portfolio-info">
-                  Earns <span>
-												$37.240 </span>
-                </div>
+
               </div>
-              <div class="col-md-2">
-                <div class="portfolio-btn">
-                  <a href="javascript:;" class="btn bigicn-only">
-												<span>
-												Manage </span>
-                  </a>
+              <div class="portlet-body">
+                <div class="table-scrollable">
+                  <table class="table table-striped table-bordered table-hover">
+                    <thead>
+                    <tr>
+                      <th scope="col">
+                       Durum:
+                      </th>
+                      <th scope="col">
+                        Sayfa Rol Tanımı:
+                      </th>
+                      <th scope="col">
+                        Rol Açıklaması:
+                      </th>
+                      <th scope="col">
+                        Rol Katmanı:
+                      </th>
+
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach ($roles['roles'] as $role)
+                    <tr>
+                      <td>
+                        <input type="checkbox" {{$roles['checkbox'][$role->id]}} class="roles rolesx_1 role_1" name="role_assign[]" value="1">
+                      </td>
+                      <td>
+                        {{$role->role_define}}
+                      </td>
+                      <td>
+                        {{$role->role_info}}
+                      </td>
+                      <td>
+                        {{$role->role_layer}}
+                      </td>
+
+                    </tr>
+                      @endforeach
+
+                    </tbody>
+                  </table>
                 </div>
               </div>
             </div>
-            <!--end row-->
-            <div class="row portfolio-block">
-              <div class="col-md-5 col-sm-12 portfolio-text">
-                <img src="../../assets/admin/pages/media/profile/logo_azteca.jpg" alt=""/>
-                <div class="portfolio-text-info">
-                  <h4>Metronic - Responsive Template</h4>
-                  <p>
-                    Lorem ipsum dolor sit consectetuer adipiscing elit.
-                  </p>
-                </div>
-              </div>
-              <div class="col-md-5 portfolio-stat">
-                <div class="portfolio-info">
-                  Today Sold <span>
-												24 </span>
-                </div>
-                <div class="portfolio-info">
-                  Total Sold <span>
-												660 </span>
-                </div>
-                <div class="portfolio-info">
-                  Earns <span>
-												$7.060 </span>
-                </div>
-              </div>
-              <div class="col-md-2 col-sm-12 portfolio-btn">
-                <a href="javascript:;" class="btn bigicn-only">
-											<span>
-											Manage </span>
-                </a>
-              </div>
-            </div>
-            <!--end row-->
-            <div class="row portfolio-block">
-              <div class="col-md-5 portfolio-text">
-                <img src="../../assets/admin/pages/media/profile/logo_conquer.jpg" alt=""/>
-                <div class="portfolio-text-info">
-                  <h4>Metronic - Responsive Template</h4>
-                  <p>
-                    Lorem ipsum dolor sit consectetuer adipiscing elit.
-                  </p>
-                </div>
-              </div>
-              <div class="col-md-5 portfolio-stat">
-                <div class="portfolio-info">
-                  Today Sold <span>
-												24 </span>
-                </div>
-                <div class="portfolio-info">
-                  Total Sold <span>
-												975 </span>
-                </div>
-                <div class="portfolio-info">
-                  Earns <span>
-												$21.700 </span>
-                </div>
-              </div>
-              <div class="col-md-2 portfolio-btn">
-                <a href="javascript:;" class="btn bigicn-only">
-											<span>
-											Manage </span>
-                </a>
-              </div>
-            </div>
-            <!--end row-->
+            <!-- END SAMPLE TABLE PORTLET-->
+
           </div>
           <!--end tab-pane-->
           <div class="tab-pane" id="tab_1_6">
