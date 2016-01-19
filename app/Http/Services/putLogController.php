@@ -31,38 +31,42 @@ class putLogController extends Controller
     }
     public function admin($log=array(),$post=array())
     {
-
-        $data['userid']=$this->admin->id;
-        $data['userip']=$this->request->ip();
-        $data['userHash']=$this->admin->hash;
-
-        foreach (GeoIP::getLocation() as $key=>$value)
+        if(!preg_match('@\/api.*@',$this->request->getPathInfo()))
         {
-            if(($key!=="ip") AND ($key!=="default"))
+            $data['userid']=$this->admin->id;
+            $data['userip']=$this->request->ip();
+            $data['userHash']=$this->admin->hash;
+
+            foreach (GeoIP::getLocation() as $key=>$value)
+            {
+                if(($key!=="ip") AND ($key!=="default"))
+                {
+                    $data[$key]=$value;
+                }
+            }
+
+            foreach (BrowserDetect::toArray() as $key=>$value)
             {
                 $data[$key]=$value;
             }
+
+            $data['referer']=$this->request->header("referer");
+            $data['formprocess']=($this->request->ajax()) ? 'Ajax Request' : 'Normal Request';
+
+            $data['user_agent']=$this->request->header('user-Agent');
+            $data['user_host']=$this->request->header('host');
+            $data['user_host']='';
+
+            $data['url_path']=$this->request->fullUrl();
+            $data['url_path_explain']=$this->request->getPathInfo();
+            $data['log_process']=(count($post)) ? 2 : 1;
+            $data['msg']='access';
+            $data['postdata']=json_encode($post);
+            $data['created_at']=time();
+
+            return DB::table("prosystem_administrator_process_logs")->insert($data);
         }
 
-        foreach (BrowserDetect::toArray() as $key=>$value)
-        {
-            $data[$key]=$value;
-        }
-
-        $data['referer']=$this->request->header("referer");
-        $data['formprocess']=($this->request->ajax()) ? 'Ajax Request' : 'Normal Request';
-
-        $data['user_agent']='';
-        $data['user_host']='';
-
-        $data['url_path']=$this->request->fullUrl();
-        $data['url_path_explain']=$this->request->getPathInfo();
-        $data['log_process']=(count($post)) ? 2 : 1;
-        $data['msg']='access';
-        $data['postdata']=json_encode($post);
-        $data['created_at']=time();
-
-        return DB::table("prosystem_administrator_process_logs")->insert($data);
 
     }
 

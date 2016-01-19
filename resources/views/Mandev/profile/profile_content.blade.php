@@ -338,6 +338,10 @@
                     <form id="changepassword" method="post">
 
                       <input type="hidden" name="_token" value="{{csrf_token()}}">
+                      @if($hidden_input)
+                        <input type="hidden" name="hidden_input" value="{{$admin->id}}">
+                      @endif
+
 
                       <div class="form-group">
                         <label class="control-label">{{$new_password}}</label>

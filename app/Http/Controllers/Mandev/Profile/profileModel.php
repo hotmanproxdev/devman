@@ -36,15 +36,19 @@ class profileModel extends Controller
         return DB::table($this->app->dbTable(['admin']))->where("id","=",$this->admin->id)->update($this->app->getValidPostKey($data,['_token','ccode']));
     }
 
-    public function changePassword($data=false)
+    public function changePassword($data=false,$id)
     {
         if($data)
         {
             //db table update true
-            if(DB::table($this->app->dbTable(['admin']))->where("id","=",$this->admin->id)->update(['password'=>$this->app->passwordHash($data)]));
+            if(DB::table($this->app->dbTable(['admin']))->where("id","=",$id)->update(['password'=>$this->app->passwordHash($data)]));
             {
-                //userhash forget
-                Session::forget('userHash');
+                if($this->admin->id==$id)
+                {
+                    //userhash forget
+                    Session::forget('userHash');
+                }
+
                 return true;
             }
 

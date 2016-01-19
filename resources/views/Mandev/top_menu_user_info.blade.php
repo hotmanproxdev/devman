@@ -10,7 +10,7 @@
   </a>
   <ul class="dropdown-menu dropdown-menu-default">
     <li>
-      <a href="{{$baseUrl}}/{{strtolower(config("app.admin_dirname"))}}/profile">
+      <a href="{{$baseUrl}}/{{strtolower(config("app.admin_dirname"))}}/profile/{{app()->make("Base")->admin()->id}}">
         <i class="icon-user"></i>{{$Profile}} </a>
     </li>
     <!--<li>

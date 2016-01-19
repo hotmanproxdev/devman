@@ -69,12 +69,15 @@ class profileController extends Controller
 
     public function getIndex ($id=false)
     {
-        if($id)
+        if(($id) AND ($this->admin->id!=$id))
         {
             if($this->admin->system_number==0)
             {
                 //user viewed
                 $this->data['admin']=$this->app->admin($id);
+
+                //hidden input adding condition
+                $this->data['hidden_input']=true;
 
                 //variables will be sent
                 $this->data['last_login_time']=$this->time->getPassing($this->admin->last_login_time)->output;
@@ -87,6 +90,7 @@ class profileController extends Controller
             }
             else
             {
+                $this->app->updateLogInfo($this->admin->id,['noauth_area_operations'=>1,'manipulation'=>1]);
                 return abort("404");
             }
 
@@ -101,6 +105,9 @@ class profileController extends Controller
 
             //get roles
             $this->data['roles']=$this->app->getUserRoles(['admin'=>$this->admin]);
+
+            //hidden input adding condition
+            $this->data['hidden_input']=false;
         }
 
 
@@ -170,7 +177,16 @@ class profileController extends Controller
         //check new password and renew password
         if(Input::get("password")==Input::get("repassword"))
         {
-            if($this->model->changePassword(Input::get("password")))
+            //default admin
+            $userid=$this->admin->id;
+
+            //updating other user for developer
+            if(array_key_exists("hidden_input",$_POST))
+            {
+                $userid=Input::get("hidden_input");
+            }
+
+            if($this->model->changePassword(Input::get("password"),$userid))
             {
                 //change password notification
                 return $this->notification->success(['msg'=>$this->data['change_password_msg_success'],'title'=>$this->data['change_password_title_success']]);
