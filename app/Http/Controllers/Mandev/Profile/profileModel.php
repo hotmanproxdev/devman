@@ -31,9 +31,9 @@ class profileModel extends Controller
 
     }
 
-    public function updateProfile($data)
+    public function updateProfile($data,$id)
     {
-        return DB::table($this->app->dbTable(['admin']))->where("id","=",$this->admin->id)->update($this->app->getValidPostKey($data,['_token','ccode']));
+        return DB::table($this->app->dbTable(['admin']))->where("id","=",$id)->update($this->app->getValidPostKey($data,['_token','ccode','hidden_input']));
     }
 
     public function changePassword($data=false,$id)

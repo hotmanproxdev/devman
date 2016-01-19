@@ -31,7 +31,7 @@ class putLogController extends Controller
     }
     public function admin($log=array(),$post=array())
     {
-        if(!preg_match('@\/api.*@',$this->request->getPathInfo()))
+        if(!preg_match('@^\/api.*@',$this->request->getPathInfo()))
         {
             $data['userid']=$this->admin->id;
             $data['userip']=$this->request->ip();

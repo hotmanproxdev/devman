@@ -117,6 +117,9 @@
               <th scope="col">
                 {{$noauth_area_operations}}:
               </th>
+              <th scope="col">
+                {{$manipulation}}:
+              </th>
             </tr>
             </thead>
             <tbody>
@@ -261,6 +264,10 @@
 
               <td>
                 <span style="color: #e20a16; font-weight:bold;">{{$users->noauth_area_operations}}</span>
+              </td>
+
+              <td>
+                <span style="color: #e20a16; font-weight:bold;">{{$users->manipulation}}</span>
               </td>
             </tr>
               @endforeach

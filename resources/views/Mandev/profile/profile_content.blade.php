@@ -241,6 +241,9 @@
                   <div id="tab_1-1" class="tab-pane active">
                     <form id="profile_update" method="post" role="form">
                       <input type="hidden" name="_token" value="{{csrf_token()}}">
+                      @if($hidden_input)
+                        <input type="hidden" name="hidden_input" value="{{$admin->id}}">
+                      @endif
                       <div class="form-group">
                         <label class="control-label">{{$login_name}}</label>
                         <input type="text" name="username" value="{{$admin->username}}" class="form-control username tooltips" data-placement="top" data-original-title="{{$username_info}}" require="input-username"/>

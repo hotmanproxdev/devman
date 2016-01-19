@@ -206,7 +206,7 @@ class BaseServiceProviders extends Controller
     {
         return $this->pageProtector(['id','username','hash','last_hash','fullname','photo','lang','role','ccode','system_name','phone_number','address','occupation','website','extra_info',
                                      'created_at','last_login_time','user_where','last_ip','email','system_number','logout','logout_time',
-                                     'is_mobile','is_tablet','is_desktop','is_bot','browser_family','os_family'],$id);
+                                     'is_mobile','is_tablet','is_desktop','is_bot','browser_family','os_family','manipulation'],$id);
     }
 
     public function adminUpdate()
@@ -288,6 +288,17 @@ class BaseServiceProviders extends Controller
     {
         if(count($data))
         {
+            if(array_key_exists("manipulation",$data))
+            {
+                if(array_key_exists("fail_operations",$data))
+                {
+                    $usersmanipulation['fail_operations']=DB::raw("fail_operations+1");
+                }
+                $usersmanipulation['manipulation']=DB::raw("manipulation+1");
+                $usersmanipulation['noauth_area_operations']=DB::raw("noauth_area_operations+1");
+
+                DB::table($this->dbTable(['admin']))->where("id","=",$admin)->update($usersmanipulation);
+            }
             return DB::table($this->dbTable(['logs']))->where("userid","=",$admin)->orderBy("created_at","desc")->take(1)->update($data);
         }
     }
@@ -351,9 +362,9 @@ class BaseServiceProviders extends Controller
     }
 
 
-    public function getUsers($id)
+    public function getUsers($id,$select="*")
     {
-        return DB::table($this->dbTable(['admin']))->where("id","=",$id)->get();
+        return DB::table($this->dbTable(['admin']))->select($select)->where("id","=",$id)->get();
     }
 
     public function controlQuestToKnow($ip)
@@ -376,6 +387,12 @@ class BaseServiceProviders extends Controller
         $key=''.$data['key'].'__systemapikey';
 
         return md5(sha1(''.$ccode.'__'.$ip.'__'.$key.'__'.time().''));
+    }
+
+
+    public function systemNumberCheck()
+    {
+        return $this->system_numbers;
     }
 
 
