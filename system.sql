@@ -7,7 +7,7 @@
 #
 # Host: 127.0.0.1 (MySQL 5.6.24)
 # Database: Prosystem
-# Generation Time: 2016-01-19 15:22:14 +0000
+# Generation Time: 2016-01-19 15:25:01 +0000
 # ************************************************************
 
 
@@ -127,7 +127,7 @@ LOCK TABLES `prosystem_administrator` WRITE;
 
 INSERT INTO `prosystem_administrator` (`id`, `ccode`, `username`, `password`, `email`, `hash`, `last_hash`, `fullname`, `last_ip`, `created_at`, `updated_at`, `photo`, `extra_info`, `lang`, `user_lock`, `role`, `system_name`, `system_number`, `phone_number`, `address`, `occupation`, `website`, `last_login_time`, `user_where`, `status`, `logout`, `logout_time`, `created_by`, `is_mobile`, `is_tablet`, `is_desktop`, `is_bot`, `browser_family`, `os_family`, `all_clicked`, `hash_clicked`, `operations`, `success_operations`, `fail_operations`, `manipulation`, `noauth_area_operations`)
 VALUES
-	(1,'devSde','aligurbuz','7ada520f7fb0eb935a11f392511fe86e','galiant781@gmail.com','c683a698d3c841f8ad41d2019a824c9f','c683a698d3c841f8ad41d2019a824c9f','Ali Bilge Gürbüz','127.0.0.1',1447331070,1453216797,'48832.jpg','it can be written later',1,1,'1-2-3','Developer\n',0,'0545 906 29 92','İstanbul','Software Developer','http://sw.devx.net',1453216507,'/mandev/home',1,0,0,NULL,0,0,1,0,'Chrome','MacOSX',14,14,0,0,0,0,0);
+	(1,'devSde','aligurbuz','7ada520f7fb0eb935a11f392511fe86e','galiant781@gmail.com','c683a698d3c841f8ad41d2019a824c9f','c683a698d3c841f8ad41d2019a824c9f','Ali Bilge Gürbüz','127.0.0.1',1447331070,1453216797,'48832.jpg','it can be written later',1,1,'1-2-3','Developer\n',0,'0545 906 29 92','İstanbul','Software Developer','http://sw.devx.net',1453216507,'/mandev/home',1,0,0,NULL,0,0,1,0,'Chrome','MacOSX',0,0,0,0,0,0,0);
 
 /*!40000 ALTER TABLE `prosystem_administrator` ENABLE KEYS */;
 UNLOCK TABLES;
