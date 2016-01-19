@@ -8,9 +8,10 @@
   </a>
   <ul class="dropdown-menu">
     <li class="external">
-      <h3>You have <span class="bold">7 New</span> Messages</h3>
-      <a href="page_inbox.html">view all</a>
+      <h3>Bekleyen <span class="bold">0</span> Mesaj</h3>
+      <a href="page_inbox.html">Tümü</a>
     </li>
+    <!--
     <li>
       <ul class="dropdown-menu-list scroller" style="height: 275px;" data-handle-color="#637283">
         <li>
@@ -84,7 +85,7 @@
           </a>
         </li>
       </ul>
-    </li>
+    </li>-->
   </ul>
 </li>
 <!-- END INBOX DROPDOWN -->

@@ -8,9 +8,10 @@
   </a>
   <ul class="dropdown-menu extended tasks">
     <li class="external">
-      <h3>You have <span class="bold">12 pending</span> tasks</h3>
-      <a href="page_todo.html">view all</a>
+      <h3> <span class="bold">0 Bekleyen</span> Görev</h3>
+      <a href="page_todo.html">Tümü</a>
     </li>
+    <!--
     <li>
       <ul class="dropdown-menu-list scroller" style="height: 275px;" data-handle-color="#637283">
         <li>
@@ -91,7 +92,7 @@
           </a>
         </li>
       </ul>
-    </li>
+    </li>-->
   </ul>
 </li>
 <!-- END TODO DROPDOWN -->

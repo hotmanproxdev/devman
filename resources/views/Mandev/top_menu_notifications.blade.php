@@ -8,9 +8,10 @@
   </a>
   <ul class="dropdown-menu">
     <li class="external">
-      <h3><span class="bold">12 pending</span> notifications</h3>
-      <a href="extra_profile.html">view all</a>
+      <h3><span class="bold">0 Bekleyen</span> Bildirim</h3>
+      <a href="extra_profile.html">Tümü</a>
     </li>
+    <!--
     <li>
       <ul class="dropdown-menu-list scroller" style="height: 250px;" data-handle-color="#637283">
         <li>
@@ -104,7 +105,7 @@
           </a>
         </li>
       </ul>
-    </li>
+    </li>-->
   </ul>
 </li>
 <!-- END NOTIFICATION DROPDOWN -->
