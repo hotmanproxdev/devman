@@ -303,6 +303,9 @@
                     </p>
                     <form id="profilephoto" method="post" role="form" enctype="multipart/form-data">
                       <input type="hidden" name="_token" value="{{csrf_token()}}">
+                      @if($hidden_input)
+                        <input type="hidden" name="hidden_input" value="{{$admin->id}}">
+                      @endif
                       <div class="form-group">
                         <div class="fileinput fileinput-new" data-provides="fileinput">
                           <div class="fileinput-new thumbnail" style="width: 200px; height: 150px;">

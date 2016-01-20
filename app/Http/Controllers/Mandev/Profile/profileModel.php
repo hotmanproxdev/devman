@@ -58,9 +58,9 @@ class profileModel extends Controller
     }
 
 
-    public function uploadUpdate($file)
+    public function uploadUpdate($file,$id)
     {
-        return DB::table($this->app->dbTable(['admin']))->where("id","=",$this->admin->id)->update(['photo'=>$file]);
+        return DB::table($this->app->dbTable(['admin']))->where("id","=",$id)->update(['photo'=>$file]);
     }
 
 

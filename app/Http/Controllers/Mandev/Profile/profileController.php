@@ -150,9 +150,7 @@ class profileController extends Controller
             //manager
             if(($this->admin->system_number==1) AND ($this->admin->ccode!==$this->app->getUsers($userid,['ccode'])[0]->ccode))
             {
-                //update profil false notification manipulation
-                $this->app->updateLogInfo($this->admin->id,['noauth_area_operations'=>1,'fail_operations'=>1,'manipulation'=>1]);
-                return $this->notification->warning(['msg'=>$this->data['update_profile_manipulation'],'title'=>$this->data['update_profile_title_warning']]);
+                return $this->notification->manipulation(['msg'=>$this->data['update_profile_manipulation'],'title'=>$this->data['update_profile_title_warning']]);
             }
         }
 
@@ -238,7 +236,16 @@ class profileController extends Controller
         //result true upload
         if($upload['result'])
         {
-           if($this->model->uploadUpdate($upload['file']))
+            //default admin
+            $userid=$this->admin->id;
+
+            //updating other user for developer
+            if(array_key_exists("hidden_input",$_POST))
+            {
+                $userid=Input::get("hidden_input");
+            }
+
+           if($this->model->uploadUpdate($upload['file'],$userid))
            {
                //file upload notification
                return $this->notification->success(['msg'=>$this->data['file_upload_msg_success'],'title'=>$this->data['file_upload_title_success']]);
