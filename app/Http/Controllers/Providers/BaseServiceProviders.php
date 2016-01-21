@@ -36,6 +36,7 @@ class BaseServiceProviders extends Controller
             $data['mysql_slow']="".$this->dbtable_prefix."_mysql_slow_process_logs";
             $data['roles']="".$this->dbtable_prefix."_roles";
             $data['default_roles']="".$this->dbtable_prefix."_default_roles";
+            $data['api_custom']="".$this->dbtable_prefix."_api_custom_models";
 
             if($table[0]=="all")
             {

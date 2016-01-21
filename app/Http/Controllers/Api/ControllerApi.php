@@ -30,7 +30,28 @@ class ControllerApi extends Controller
 
     public function services()
     {
-        return ['test','admin','logs','words','roles','api','myme'];
+        //default service
+        $services[]='test';
+
+        //db table services
+        foreach ($this->app->dbTable(['all']) as $tabkey=>$tabindex)
+        {
+            $services[]=$tabkey;
+        }
+
+        $apicustom=DB::table($this->app->dbTable(['api_custom']))->get();
+
+        if(count($apicustom))
+        {
+            foreach ($apicustom as $custom)
+            {
+                $services[]=$custom->custom_models;
+            }
+        }
+
+
+        //return
+        return $services;
     }
 
     public function developer ($apiHash=false)
