@@ -27,10 +27,15 @@ class apiRequestController extends Controller
 
     }
 
-    public function get($data=array())
+    public function get($data=array(),$hash=false)
     {
         if(count($data))
         {
+            if($hash)
+            {
+                $this->header[]='hash:'.$hash;
+            }
+
             $init = curl_init();
             $url=''.$this->apiUrl.'/'.$data['service'].'';
 

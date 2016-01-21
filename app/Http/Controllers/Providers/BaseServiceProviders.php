@@ -389,6 +389,12 @@ class BaseServiceProviders extends Controller
         return md5(sha1(''.$ccode.'__'.$ip.'__'.$key.'__'.time().''));
     }
 
+    public function getApiStandartKey($id)
+    {
+        $standart_key=''.$id.'__%&___??';
+        return md5(sha1(base64_encode($standart_key)));
+    }
+
 
     public function systemNumberCheck()
     {

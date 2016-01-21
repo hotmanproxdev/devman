@@ -40,8 +40,11 @@ class ServicesApi extends Controller
             //just developer ['select mode']
             if($this->request->header("codingRequest")==false)
             {
+                //developer get info
+                $developer=$this->controller->developer(Session("apiHash"));
+
                 //developer true
-                if($this->controller->developer(Session("apiHash")))
+                if($developer['success'])
                 {
                     //test mode
                     if($serviceName=="test")
@@ -55,15 +58,18 @@ class ServicesApi extends Controller
 
                 //developer false
                 return response()->json(['success'=>false,
-                    'msg'=>'invalid api hash'
+                    'msg'=>$developer['msg']
                 ]);
             }
 
             //developer coding mode (header obligatory)
             if($this->request->header("codingRequest")==true)
             {
+                //coding control
+                $coding=$this->controller->coding($this->request->header("hash"));
+
                 //coding headers true
-                if($this->controller->coding(true))
+                if($coding['success'])
                 {
                     //test mode
                     if($serviceName=="test")
@@ -77,7 +83,7 @@ class ServicesApi extends Controller
 
                 //developer coding header false
                 return response()->json(['success'=>false,
-                    'msg'=>'there are invalid headers '
+                    'msg'=>$coding['msg']
                 ]);
             }
 

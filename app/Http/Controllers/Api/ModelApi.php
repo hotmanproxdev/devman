@@ -26,7 +26,7 @@ class ModelApi extends Controller
 
     public function get ($serviceName,$coding=array())
     {
-        if(count($coding))
+        if(count($coding)>0)
         {
             if($coding['codingRequest'])
             {
@@ -43,17 +43,45 @@ class ModelApi extends Controller
                 //default mode
                 if($this->request->header("select")==NULL)
                 {
-                    return DB::table($this->app->dbTable([$serviceName]))->orderBy("id","desc")->paginate(config("app.api_paginator"));
+                    if(array_key_exists($serviceName,$this->app->dbTable(['all'])))
+                    {
+                        return DB::table($this->app->dbTable([$serviceName]))->orderBy("id", "desc")->paginate(config("app.api_paginator"));
+                    }
+                    else
+                    {
+                        $serviceName='App\Http\Controllers\Api\Custom\\'.ucfirst($serviceName).'Api';
+                        return App($serviceName)->get();
+                    }
                 }
 
-                //select mode
-                return DB::table($this->app->dbTable([$serviceName]))->select(json_decode($this->request->header("select"),true))->orderBy("id","desc")->paginate(config("app.api_paginator"));
+                if(array_key_exists($serviceName,$this->app->dbTable(['all'])))
+                {
+                    //select mode
+                    return DB::table($this->app->dbTable([$serviceName]))->select(json_decode($this->request->header("select"), true))->orderBy("id", "desc")->paginate(config("app.api_paginator"));
+                }
+                else
+                {
+                    $serviceName='App\Http\Controllers\Api\Custom\\'.ucfirst($serviceName).'Api';
+                    return App($serviceName)->get();
+                }
+
+
             }
 
         }
 
-        //select mode
-        return DB::table($this->app->dbTable([$serviceName]))->orderBy("id","desc")->paginate(config("app.api_paginator"));
+        if(array_key_exists($serviceName,$this->app->dbTable(['all'])))
+        {
+            //select mode
+            return DB::table($this->app->dbTable([$serviceName]))->orderBy("id","desc")->paginate(config("app.api_paginator"));
+        }
+        else
+        {
+            $serviceName='App\Http\Controllers\Api\Custom\\'.ucfirst($serviceName).'Api';
+            return App($serviceName)->get();
+
+        }
+
     }
 
 

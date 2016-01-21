@@ -30,7 +30,7 @@ class ControllerApi extends Controller
 
     public function services()
     {
-        return ['test','admin','logs','words','roles','api'];
+        return ['test','admin','logs','words','roles','api','myme'];
     }
 
     public function developer ($apiHash=false)
@@ -40,18 +40,38 @@ class ControllerApi extends Controller
             $developer=DB::table($this->app->dbTable(['api']))->where("ccode","=",config("app.api_ccode"))->where("hash","=",$apiHash)->get();
             if(count($developer))
             {
-                return true;
+                if($developer[0]->access_service_key)
+                {
+                    return ['success'=>true];
+                }
+
+                return ['success'=>false,'msg'=>'access service key closed'];
+
             }
 
-            return false;
+            return ['success'=>false,'msg'=>'invalid api hash'];
         }
     }
 
 
     public function coding ($active=false)
     {
-        if($active)
-        {
+            if(!$active) $active='';
+
+            $coding_developer=DB::table($this->app->dbTable(['api']))->where("standart_key","=",$active)->get();
+
+            if(count($coding_developer)==false)
+            {
+                return ['success'=>false,'msg'=>'invalid standart key'];
+            }
+            else
+            {
+                if($coding_developer[0]->access_service_key==false)
+                {
+                    return ['success'=>false,'msg'=>'access service key closed'];
+                }
+            }
+
             $list=[];
             foreach ($this->headers as $headers)
             {
@@ -67,11 +87,10 @@ class ControllerApi extends Controller
 
             if(in_array(false,$list))
             {
-                return false;
+                return ['success'=>false,'msg'=>'you have invalid headers'];
             }
 
-            return true;
+            return ['success'=>true];
 
-        }
     }
 }

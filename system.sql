@@ -7,7 +7,7 @@
 #
 # Host: 127.0.0.1 (MySQL 5.6.24)
 # Database: Prosystem
-# Generation Time: 2016-01-19 15:25:01 +0000
+# Generation Time: 2016-01-21 09:15:17 +0000
 # ************************************************************
 
 
@@ -127,7 +127,10 @@ LOCK TABLES `prosystem_administrator` WRITE;
 
 INSERT INTO `prosystem_administrator` (`id`, `ccode`, `username`, `password`, `email`, `hash`, `last_hash`, `fullname`, `last_ip`, `created_at`, `updated_at`, `photo`, `extra_info`, `lang`, `user_lock`, `role`, `system_name`, `system_number`, `phone_number`, `address`, `occupation`, `website`, `last_login_time`, `user_where`, `status`, `logout`, `logout_time`, `created_by`, `is_mobile`, `is_tablet`, `is_desktop`, `is_bot`, `browser_family`, `os_family`, `all_clicked`, `hash_clicked`, `operations`, `success_operations`, `fail_operations`, `manipulation`, `noauth_area_operations`)
 VALUES
-	(1,'devSde','aligurbuz','7ada520f7fb0eb935a11f392511fe86e','galiant781@gmail.com','c683a698d3c841f8ad41d2019a824c9f','c683a698d3c841f8ad41d2019a824c9f','Ali Bilge Gürbüz','127.0.0.1',1447331070,1453216797,'48832.jpg','it can be written later',1,1,'1-2-3','Developer\n',0,'0545 906 29 92','İstanbul','Software Developer','http://sw.devx.net',1453216507,'/mandev/home',1,0,0,NULL,0,0,1,0,'Chrome','MacOSX',0,0,0,0,0,0,0);
+	(1,'devSde','aligurbuz','7ada520f7fb0eb935a11f392511fe86e','galiant781@gmail.com','c2ab8e590bae344223904415d80bbb1c','c2ab8e590bae344223904415d80bbb1c','Ali Bilge Gürbüz','127.0.0.1',1447331070,1453367620,'48832.jpg','it can be written later',1,1,'1-2-3','Developer\n',0,'0545 906 29 92','İstanbul','Software Developer','http://sw.devx.net',1453366668,'/mandev/users',1,0,0,NULL,0,0,1,0,'Chrome','MacOSX',133,27,0,0,0,0,0),
+	(34,'Test','test','9edd76cdc6cf159d988bad2b360d16ec','testing@gmail.com','165d6c52a510b0dcb79afdbf371a2db5','165d6c52a510b0dcb79afdbf371a2db5','Test User','127.0.0.1',1453278320,1453290164,'default.png','',1,1,'1-3','normal',2,'','','','',1453290012,'/mandev/logout',1,1,1453290166,1,0,0,1,0,'Chrome','MacOSX',0,0,0,0,0,0,0),
+	(35,'Promedia','zeynep','7dcf147776a5e2e80f4bd5cee9ea9ceb','zeynep@gmail.com','2d29c556b32345ecd2b04d3d353c3c15','2d29c556b32345ecd2b04d3d353c3c15','Zeynep Kasırgalı','127.0.0.1',1453290208,1453292912,'default.png','',1,1,'1-2-3','manager',1,'',NULL,NULL,NULL,1453291577,'/mandev/logout',1,1,1453296251,1,0,0,1,0,'Chrome','MacOSX',23,16,1,0,1,0,0),
+	(36,'Promedia','selin','f19d5fef88b35bc8beb28074bb03a05b','selin@gmail.com','c142412acd921778e22682979e25a8ad','c142412acd921778e22682979e25a8ad','Selin Kartacalı','127.0.0.1',1453290255,1453291564,'90877.jpg','',1,1,'1-3','normal',2,'0532 212 34 44','','','',1453291560,'/mandev/logout',1,1,1453291566,35,0,0,1,0,'Chrome','MacOSX',2,2,0,0,0,0,1);
 
 /*!40000 ALTER TABLE `prosystem_administrator` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -215,19 +218,25 @@ CREATE TABLE `prosystem_api_accesses` (
   `statu` int(11) NOT NULL DEFAULT '1',
   `created_at` int(11) DEFAULT NULL,
   `hash` char(255) COLLATE utf8_unicode_ci DEFAULT '0',
+  `standart_key` char(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `hash_number` int(11) DEFAULT '0',
   `hash_limit` int(2) DEFAULT '3',
+  `access_service_key` int(11) DEFAULT '1',
+  `access_services` longtext COLLATE utf8_unicode_ci,
+  `api_coding_insert` int(2) DEFAULT '1',
+  `api_coding_update` int(2) DEFAULT '1',
+  `api_coding_delete` int(2) DEFAULT '1',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 LOCK TABLES `prosystem_api_accesses` WRITE;
 /*!40000 ALTER TABLE `prosystem_api_accesses` DISABLE KEYS */;
 
-INSERT INTO `prosystem_api_accesses` (`id`, `ccode`, `ip`, `apikey`, `statu`, `created_at`, `hash`, `hash_number`, `hash_limit`)
+INSERT INTO `prosystem_api_accesses` (`id`, `ccode`, `ip`, `apikey`, `statu`, `created_at`, `hash`, `standart_key`, `hash_number`, `hash_limit`, `access_service_key`, `access_services`, `api_coding_insert`, `api_coding_update`, `api_coding_delete`)
 VALUES
-	(1,'develop','127.0.0.1','ali',1,1453204248,'ee1e086ff6ef010d18136743c12dd9dc',1,3),
-	(2,'develop','127.0.0.1','alialparslan',1,NULL,NULL,0,3),
-	(3,'develop','127.0.0.1','yasindulger',1,1452865683,NULL,0,3);
+	(1,'develop','127.0.0.1','ali',1,1453363398,'10663fe1a4cde5b825b1ad8798501375','7d40c8cdfa699c26138080090c09a678',1,3,1,NULL,1,1,1),
+	(2,'develop','127.0.0.1','alialparslan',1,NULL,NULL,NULL,0,3,1,NULL,1,1,1),
+	(3,'develop','127.0.0.1','yasindulger',1,1452865683,NULL,NULL,0,3,1,NULL,1,1,1);
 
 /*!40000 ALTER TABLE `prosystem_api_accesses` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -380,7 +389,7 @@ LOCK TABLES `prosystem_words` WRITE;
 INSERT INTO `prosystem_words` (`id`, `url_path`, `word_data`, `lang`, `updated_at`)
 VALUES
 	(1,'login','{\"login_password\":\"\\u015eifreniz\",\"loginTop\":\"Panel Giri\\u015f Formu\",\"login_warning\":\"Herhangi bir kullan\\u0131c\\u0131 ad\\u0131 yada \\u015fifre girmediniz\",\"ccode\":\"Kullan\\u0131c\\u0131 Kodunuz\"}',1,1450861289),
-	(2,'default','{\"username\":\"Kullan\\u0131c\\u0131 Ad\\u0131\",\"login\":\"Giri\\u015f\",\"remember\":\"Beni Hat\\u0131rla\",\"not\":\"De\\u011filim?\",\"approximately\":\"Yakla\\u015f\\u0131k\",\"second\":\"Saniye\",\"before\":\"\\u00d6nce\",\"minute\":\"Dakika\",\"hour\":\"Saat\",\"day\":\"G\\u00fcn\",\"month\":\"Ay\",\"year\":\"Y\\u0131l\",\"mainsearch\":\"Bir data aray\\u0131n\",\"dashboard\":\"\",\"dashboard_info\":\"\",\"lockscreen\":\"Kilit Ekran\\u0131\",\"logout\":\"\\u00c7\\u0131k\\u0131\\u015f Yap\",\"tasks\":\"G\\u00f6revlerim\",\"Profile\":\"Profilim\",\"save_changes\":\"De\\u011fi\\u015fiklikleri Kaydet\",\"validation_warning\":\"Bu alan\\u0131 bo\\u015f b\\u0131rakamazs\\u0131n\\u0131z\",\"warning\":\"Uyar\\u0131.\",\"error\":\"Hata Kayd\\u0131\",\"empty_warning\":\"Se\\u00e7ene\\u011fini Bo\\u015f G\\u00f6nderemezsiniz.L\\u00fctfen \\u0130lgili Alan\\u0131 Doldurunuz\",\"minchar_warning\":\"Se\\u00e7ene\\u011fi \\u0130\\u00e7in En Az 8 Karakter Bekleniyor\",\"summary\":\"\\u00d6zet Bilgi\",\"active\":\"Aktif\",\"passive\":\"Pasif\",\"log_false\":\"Config dosyas\\u0131nda log tutma kapat\\u0131lm\\u0131\\u015f.L\\u00fctfen sistem geli\\u015ftiricisine ba\\u015fvurunuz.\",\"user_capter_menu\":\"Y\\u00f6neticiler B\\u00f6l\\u00fcm\\u00fc\",\"developer\":\"Geli\\u015ftirici\",\"manager\":\"Y\\u00f6netici\",\"normal\":\"Normal\",\"user_status\":\"Kullan\\u0131c\\u0131 Stat\\u00fcs\\u00fc\",\"never_login_time\":\"Bu Kullan\\u0131c\\u0131 Hi\\u00e7 Login Olmad\\u0131\",\"online_statu\":\"Online Durumu\",\"system_auth\":\"Sistem Yetkisi\",\"profil\":\"Profil\",\"email\":\"Email\",\"hash\":\"Oturum \\u015eifresi\",\"fullname\":\"Ger\\u00e7ek \\u0130smi\",\"user_where\":\"Kullan\\u0131c\\u0131n\\u0131n Son Bulundu\\u011fu Yer\",\"browser_family\":\"Taray\\u0131c\\u0131\",\"hash_you\":\"Oturum Sahibi Sizsiniz\",\"api_center\":\"Api Merkezi\",\"formprocess\":\"Form \\u0130\\u015flemi\",\"route\":\"Rota\",\"logprocess\":\"Form Y\\u00f6ntemi\",\"date\":\"Tarih\",\"update_profile_manipulation\":\"Manipulation Yapt\\u0131n\\u0131z,Kendi grubunuz harici ki\\u015filere m\\u00fcdahale edemezsiniz\"}',1,1453216797),
+	(2,'default','{\"username\":\"Kullan\\u0131c\\u0131 Ad\\u0131\",\"login\":\"Giri\\u015f\",\"remember\":\"Beni Hat\\u0131rla\",\"not\":\"De\\u011filim?\",\"approximately\":\"Yakla\\u015f\\u0131k\",\"second\":\"Saniye\",\"before\":\"\\u00d6nce\",\"minute\":\"Dakika\",\"hour\":\"Saat\",\"day\":\"G\\u00fcn\",\"month\":\"Ay\",\"year\":\"Y\\u0131l\",\"mainsearch\":\"Bir data aray\\u0131n\",\"dashboard\":\"\",\"dashboard_info\":\"\",\"lockscreen\":\"Kilit Ekran\\u0131\",\"logout\":\"\\u00c7\\u0131k\\u0131\\u015f Yap\",\"tasks\":\"G\\u00f6revlerim\",\"Profile\":\"Profilim\",\"save_changes\":\"De\\u011fi\\u015fiklikleri Kaydet\",\"validation_warning\":\"Bu alan\\u0131 bo\\u015f b\\u0131rakamazs\\u0131n\\u0131z\",\"warning\":\"Uyar\\u0131.\",\"error\":\"Hata Kayd\\u0131\",\"empty_warning\":\"Se\\u00e7ene\\u011fini Bo\\u015f G\\u00f6nderemezsiniz.L\\u00fctfen \\u0130lgili Alan\\u0131 Doldurunuz\",\"minchar_warning\":\"Se\\u00e7ene\\u011fi \\u0130\\u00e7in En Az 8 Karakter Bekleniyor\",\"summary\":\"\\u00d6zet Bilgi\",\"active\":\"Aktif\",\"passive\":\"Pasif\",\"log_false\":\"Config dosyas\\u0131nda log tutma kapat\\u0131lm\\u0131\\u015f.L\\u00fctfen sistem geli\\u015ftiricisine ba\\u015fvurunuz.\",\"user_capter_menu\":\"Y\\u00f6neticiler B\\u00f6l\\u00fcm\\u00fc\",\"developer\":\"Geli\\u015ftirici\",\"manager\":\"Y\\u00f6netici\",\"normal\":\"Normal\",\"user_status\":\"Kullan\\u0131c\\u0131 Stat\\u00fcs\\u00fc\",\"never_login_time\":\"Bu Kullan\\u0131c\\u0131 Hi\\u00e7 Login Olmad\\u0131\",\"online_statu\":\"Online Durumu\",\"system_auth\":\"Sistem Yetkisi\",\"profil\":\"Profil\",\"email\":\"Email\",\"hash\":\"Oturum \\u015eifresi\",\"fullname\":\"Ger\\u00e7ek \\u0130smi\",\"user_where\":\"Kullan\\u0131c\\u0131n\\u0131n Son Bulundu\\u011fu Yer\",\"browser_family\":\"Taray\\u0131c\\u0131\",\"hash_you\":\"Oturum Sahibi Sizsiniz\",\"api_center\":\"Api Merkezi\",\"formprocess\":\"Form \\u0130\\u015flemi\",\"route\":\"Rota\",\"logprocess\":\"Form Y\\u00f6ntemi\",\"date\":\"Tarih\",\"update_profile_manipulation\":\"Manipulation Yapt\\u0131n\\u0131z,Kendi grubunuz harici ki\\u015filere m\\u00fcdahale edemezsiniz\"}',1,1453367620),
 	(3,'lockScreen','{\"info\":\"Hesap Kilitli\",\"not\":\"De\\u011fil misin?\"}',1,1447765078),
 	(4,'home','{\"mainsearch\":\"Bir data aray\\u0131n\",\"dashboard\":\"Anasayfa - Genel \\u0130statistikler\",\"dashboard_info\":\"Sisteminizdeki genel istatistiklerin bulundu\\u011fu b\\u00f6l\\u00fcmdesiniz...\"}',1,1447683519),
 	(7,'test','{\"dashboard\":\"Test Sayfas\\u0131\",\"dashboard_info\":\"Test Sayfas\\u0131 Olu\\u015fturuldu\"}',1,1448369582),

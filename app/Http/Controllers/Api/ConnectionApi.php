@@ -71,7 +71,7 @@ class ConnectionApi extends Controller
             //hash number reset
             if(date("Ymd",$getDev[0]->created_at)<date("Ymd"))
             {
-                $develop->update(['created_at'=>time(),'hash'=>$hash,'hash_number'=>'0']);
+                $develop->update(['created_at'=>time(),'hash'=>$hash,'standart_key'=>$this->app->getApiStandartKey($getDev[0]->id),'hash_number'=>'0']);
                 $develop=DB::table($this->app->dbTable(['api']))->where("apikey","=",$apikey)->where("statu","=",1);
                 $getDev=$develop->get();
             }
@@ -80,7 +80,7 @@ class ConnectionApi extends Controller
             if($getDev[0]->hash_number<$getDev[0]->hash_limit)
             {
                 //developer api register
-                if($develop->update(['created_at'=>time(),'hash'=>$hash,'hash_number'=>DB::raw('hash_number+1')]))
+                if($develop->update(['created_at'=>time(),'hash'=>$hash,'standart_key'=>$this->app->getApiStandartKey($getDev[0]->id),'hash_number'=>DB::raw('hash_number+1')]))
                 {
                     //session initialize
                     Session::put("apiHash",$hash);
@@ -93,7 +93,8 @@ class ConnectionApi extends Controller
                         'apikey'=>$apikey,
                         'aim'=>'developer',
                         'created_at'=>time(),
-                        'hash'=>$hash
+                        'hash'=>$hash,
+                        'standart_key'=>$this->app->getApiStandartKey($getDev[0]->id)
                     ]);
                 }
             }
