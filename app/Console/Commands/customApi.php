@@ -37,9 +37,30 @@ class customApi extends Command
      */
     public function handle()
     {
+
         if(\DB::table(app()->make("Base")->dbTable(['api_custom']))->insert(['custom_models'=>$this->argument("custom"),'users'=>0,'created_at'=>time()]))
         {
-            dd("custom api model has been created");
+            $slashes='/';
+
+            $app_path="".str_replace("".$slashes."storage","",storage_path("app"))."".$slashes."Http".$slashes."Controllers".$slashes."Api".$slashes."Custom".$slashes."";
+
+            if(!file_exists("".$app_path."".ucfirst($this->argument("custom"))."Api.php"))
+            {
+                if(touch("".$app_path."".ucfirst($this->argument("custom"))."Api.php"))
+                {
+
+                    $dosya = "" . storage_path("app") . "" . $slashes . "apiCustom.txt";
+                    $dt = fopen($dosya, "rb");
+                    $icerik = fread($dt, filesize($dosya));
+                    $dosya = "".$app_path."".ucfirst($this->argument("custom"))."Api.php";
+                    $dt = fopen($dosya, 'w');
+                    $icerik=str_replace("{custom}",ucfirst($this->argument("custom")),$icerik);
+                    fwrite($dt, $icerik);
+                    fclose($dt);
+
+                    dd("api custom model has been created");
+                }
+            }
         }
     }
 }

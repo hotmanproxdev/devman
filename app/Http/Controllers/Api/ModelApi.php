@@ -24,6 +24,7 @@ class ModelApi extends Controller
 
     }
 
+
     public function get ($serviceName,$coding=array())
     {
         if(count($coding)>0)
@@ -49,8 +50,13 @@ class ModelApi extends Controller
                     }
                     else
                     {
-                        $serviceName='App\Http\Controllers\Api\Custom\\'.ucfirst($serviceName).'Api';
-                        return App($serviceName)->get();
+                        if($this->customApiCheck($serviceName,$coding['apiId']))
+                        {
+                            $serviceName='App\Http\Controllers\Api\Custom\\'.ucfirst($serviceName).'Api';
+                            return App($serviceName)->get();
+                        }
+
+                        return ['success'=>false,'msg'=>'you dont have service access'];
                     }
                 }
 
@@ -61,8 +67,14 @@ class ModelApi extends Controller
                 }
                 else
                 {
-                    $serviceName='App\Http\Controllers\Api\Custom\\'.ucfirst($serviceName).'Api';
-                    return App($serviceName)->get();
+                    if($this->customApiCheck($serviceName,$coding['apiId']))
+                    {
+                        $serviceName='App\Http\Controllers\Api\Custom\\'.ucfirst($serviceName).'Api';
+                        return App($serviceName)->get();
+                    }
+
+                    return ['success'=>false,'msg'=>'you dont have service access'];
+
                 }
 
 
@@ -82,6 +94,21 @@ class ModelApi extends Controller
 
         }
 
+    }
+
+    public function customApiCheck($serviceName,$user)
+    {
+        $customModel=DB::table($this->app->dbTable(['api_custom']))->where("custom_models","=",$serviceName)->where("statu","=",1)->get();
+
+        if(count($customModel))
+        {
+            $users=explode("-",$customModel[0]->users);
+            if((in_array($user,$users)) OR (in_array(0,$users)))
+            {
+                return true;
+            }
+            return false;
+        }
     }
 
 

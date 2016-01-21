@@ -26,6 +26,7 @@ class MymeApi extends Controller
     public function get ()
     {
         //make somethings
+        return ['success'=>'myme'];
     }
 
     public function table ($table)

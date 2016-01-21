@@ -32,6 +32,8 @@ class ServicesApi extends Controller
 
     }
 
+
+
     public function index ($serviceName=false)
     {
         //services control
@@ -78,7 +80,7 @@ class ServicesApi extends Controller
                         return $this->testRequest();
                     }
                     //service call
-                    return $this->model->get($serviceName,['codingRequest'=>1]);
+                    return $this->model->get($serviceName,['codingRequest'=>1,'apiId'=>$coding['apiId']]);
                 }
 
                 //developer coding header false
