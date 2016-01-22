@@ -307,6 +307,7 @@ class BaseServiceProviders extends Controller
 
     public function getvalidPostKey($data,$invalid=array())
     {
+        $validKeys=[];
         if(count($invalid))
         {
             foreach ($data as $valid_key=>$valid_val)

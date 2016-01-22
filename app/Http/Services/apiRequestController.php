@@ -67,6 +67,7 @@ class apiRequestController extends Controller
             curl_setopt($init,CURLOPT_URL,$url);
 
             //post data
+            $this->header[]='POSTDATA:'.json_encode(['_token'=>'']);
             if(array_key_exists("post",$data))
             {
                 //x-csrf-token

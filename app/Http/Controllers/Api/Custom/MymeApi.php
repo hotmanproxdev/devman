@@ -25,18 +25,18 @@ class MymeApi extends Controller
 
     public function get ()
     {
-       return ['myme'];
+       return ['success'=>true];
     }
 
 
-    public function table ($table)
+    private function table($table)
     {
         return $this->app->dbTable([$table]);
     }
 
     private function postdata()
     {
-        return json_decode($this->request->header("postdata"),1);
+        return $this->app->getvalidPostKey(json_decode($this->request->header("postdata"),1),['_token']);
     }
 
 }
