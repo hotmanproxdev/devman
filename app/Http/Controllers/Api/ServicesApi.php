@@ -55,7 +55,7 @@ class ServicesApi extends Controller
                         return $this->testRequest();
                     }
                     //service call
-                    return $this->model->get($serviceName,false);
+                    return $this->model->get($serviceName,['codingRequest'=>false,'apiId'=>$developer['apiId']]);
                 }
 
                 //developer false

@@ -52,8 +52,9 @@ class ModelApi extends Controller
                     {
                         if($this->customApiCheck($serviceName,$coding['apiId']))
                         {
+                            $method=$this->request->header("method");
                             $serviceName='App\Http\Controllers\Api\Custom\\'.ucfirst($serviceName).'Api';
-                            return App($serviceName)->get();
+                            return App($serviceName)->$method();
                         }
 
                         return ['success'=>false,'msg'=>'you dont have service access'];
@@ -89,8 +90,13 @@ class ModelApi extends Controller
         }
         else
         {
-            $serviceName='App\Http\Controllers\Api\Custom\\'.ucfirst($serviceName).'Api';
-            return App($serviceName)->get();
+            if($this->customApiCheck($serviceName,$coding['apiId']))
+            {
+                $serviceName='App\Http\Controllers\Api\Custom\\'.ucfirst($serviceName).'Api';
+                return App($serviceName)->get();
+            }
+
+            return ['success'=>false,'msg'=>'you dont have service access'];
 
         }
 
@@ -109,6 +115,8 @@ class ModelApi extends Controller
             }
             return false;
         }
+
+        return false;
     }
 
 

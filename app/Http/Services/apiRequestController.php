@@ -36,6 +36,17 @@ class apiRequestController extends Controller
                 $this->header[]='hash:'.$hash;
             }
 
+            //method send
+            if(array_key_exists("method",$data))
+            {
+                $this->header[]='method:'.$data['method'];
+            }
+            else
+            {
+                //default method
+                $this->header[]='method:get';
+            }
+
             $init = curl_init();
             $url=''.$this->apiUrl.'/'.$data['service'].'';
 
@@ -52,12 +63,24 @@ class apiRequestController extends Controller
             }
 
 
+
             curl_setopt($init,CURLOPT_URL,$url);
+
+            //post data
+            if(array_key_exists("post",$data))
+            {
+                //x-csrf-token
+                $this->header[]='X-CSRF-TOKEN:'.$data['post']['_token'];
+                $this->header[]='POSTDATA:'.json_encode($data['post']);
+            }
+
+
             curl_setopt($init,CURLOPT_HTTPHEADER,$this->header);
             curl_setopt($init,CURLOPT_RETURNTRANSFER,true);
             $data = curl_exec($init);
             curl_close($init);
 
+            return $data;
             return json_decode($data,true);
         }
 

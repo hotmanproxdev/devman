@@ -78,10 +78,10 @@ Route::group(['prefix' =>''.strtolower(config("app.admin_dirname")).'/','namespa
 Route::group(['prefix' =>'api/','namespace'=>'Api'], function () {
 
     //api connection (http/api request)
-    Route::get("connect/{ccode}/{apikey}", "ConnectionApi@index");
+    Route::any("connect/{ccode}/{apikey}", "ConnectionApi@index");
 
     //api services (http/api/services request)
-    Route::get("services/{serviceName}", "ServicesApi@index");
+    Route::any("services/{serviceName}", "ServicesApi@index");
 
 });
 

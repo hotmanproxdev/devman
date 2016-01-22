@@ -25,13 +25,18 @@ class MymeApi extends Controller
 
     public function get ()
     {
-        //make somethings
-        return ['success'=>'myme'];
+       return ['myme'];
     }
+
 
     public function table ($table)
     {
         return $this->app->dbTable([$table]);
+    }
+
+    private function postdata()
+    {
+        return json_decode($this->request->header("postdata"),1);
     }
 
 }

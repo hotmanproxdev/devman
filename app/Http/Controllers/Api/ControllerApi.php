@@ -63,7 +63,7 @@ class ControllerApi extends Controller
             {
                 if($developer[0]->access_service_key)
                 {
-                    return ['success'=>true];
+                    return ['success'=>true,'apiId'=>$developer[0]->id];
                 }
 
                 return ['success'=>false,'msg'=>'access service key closed'];
@@ -72,6 +72,8 @@ class ControllerApi extends Controller
 
             return ['success'=>false,'msg'=>'invalid api hash'];
         }
+
+        return ['success'=>false,'msg'=>'you dont have valid hash'];
     }
 
 
