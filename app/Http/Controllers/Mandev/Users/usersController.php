@@ -64,7 +64,7 @@ class usersController extends Controller
 
     public function getIndex (\Time $time)
     {
-        return app('\Api')->get(['service'=>'myme'],'7d40c8cdfa699c26138080090c09a678');
+        //return app('\Api')->get(['service'=>'myme'],'7d40c8cdfa699c26138080090c09a678');
 
         //get all users
         $this->data['getUsers']=$this->model->getUsers();
