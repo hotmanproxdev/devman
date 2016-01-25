@@ -3,6 +3,7 @@
     "type": "library",
     "description": "aligurbuz maxroyal",
     "minimum-stability": "dev",
+    "prefer-stable" : true,
     "keywords": [
         "aligurbuz",
         "maxroyal"
