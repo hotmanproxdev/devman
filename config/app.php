@@ -167,7 +167,7 @@ return [
         Torann\GeoIP\GeoIPServiceProvider::class,
         ViKon\DbExporter\DbExporterServiceProvider::class,
         Orangehill\Iseed\IseedServiceProvider::class,
-        //JeroenG\Packager\PackagerServiceProvider::class,
+        JeroenG\Packager\PackagerServiceProvider::class,
 
 
     ],
