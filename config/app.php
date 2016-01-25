@@ -160,18 +160,14 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
-        aligurbuz\test\testServiceProvider::class,
 
-        
-
-        
         App\Providers\BaseServiceProvider::class,
         App\Providers\ComposerServiceProvider::class,
         hisorange\BrowserDetect\Provider\BrowserDetectService::class,
         Torann\GeoIP\GeoIPServiceProvider::class,
         ViKon\DbExporter\DbExporterServiceProvider::class,
         Orangehill\Iseed\IseedServiceProvider::class,
-        JeroenG\Packager\PackagerServiceProvider::class,
+        //JeroenG\Packager\PackagerServiceProvider::class,
 
 
     ],
