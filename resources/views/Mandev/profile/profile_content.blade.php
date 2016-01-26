@@ -230,10 +230,7 @@
                     <a data-toggle="tab" href="#tab_3-3">
                       <i class="fa fa-lock"></i>{{$change_password}} </a>
                   </li>
-                  <li>
-                    <a data-toggle="tab" href="#tab_4-4">
-                      <i class="fa fa-eye"></i>{{$private_settings}} </a>
-                  </li>
+
                 </ul>
               </div>
               <div class="col-md-9">
@@ -427,6 +424,13 @@
           </div>
           <!--end tab-pane-->
           <div class="tab-pane" id="tab_1_4">
+
+
+            <form id="profileroleupdate" method="post">
+              <input type="hidden" name="_token" value="{{csrf_token()}}">
+              @if($hidden_input)
+                <input type="hidden" name="hidden_input" value="{{$admin->id}}">
+              @endif
             <div class="row">
               <div class="col-md-12">
                 <div class="add-portfolio">
@@ -447,35 +451,62 @@
             <div class="portlet box purple">
               <div class="portlet-title">
                 <div class="caption">
-                  <i class="fa fa-cogs"></i>{{$profile_auth_list}}
+                  <i class="fa fa-cogs"></i>{{$admin->fullname}} {{$profile_auth_list}}
                 </div>
 
               </div>
               <div class="portlet-body">
+
+                @if(($hidden_input) OR ($admin->system_number==1))
+
+                <select name="default_roles" class="form-control droles label label-warning" style="width:70%; margin:0 0 5px 0; color:#333; font-weight:bold;">
+                  @foreach ($roles['default_roles'] as $defkey=>$defroles)
+                    @if($admin->system_number==$roles['default_roles'][$defkey]['system_number'])
+                    <option value="{{$roles['default_roles'][$defkey]['system_number']}}-{{$roles['default_roles'][$defkey]['roles']}}">{{$defkey}} {{$user_status}}</option>
+                    @endif
+                  @endforeach
+
+                    @foreach ($roles['default_roles'] as $defkey=>$defroles)
+                      @if($admin->system_number!=$roles['default_roles'][$defkey]['system_number'])
+                        <option value="{{$roles['default_roles'][$defkey]['system_number']}}-{{$roles['default_roles'][$defkey]['roles']}}">{{$defkey}} {{$user_status}}</option>
+                      @endif
+                    @endforeach
+                </select>
+
+                @endif
+
                 <div class="table-scrollable">
+
                   <table class="table table-striped table-bordered table-hover">
                     <thead>
                     <tr>
                       <th scope="col">
-                       Durum:
+                       {{$statu}}:
                       </th>
                       <th scope="col">
-                        Sayfa Rol Tanımı:
+                        {{$page_role_define}}:
                       </th>
                       <th scope="col">
-                        Rol Açıklaması:
+                        {{$role_explain}}:
                       </th>
                       <th scope="col">
-                        Rol Katmanı:
+                        {{$role_layer}}:
                       </th>
 
                     </tr>
                     </thead>
                     <tbody>
+
+
+                    @if($admin->system_number==0)
+                      <tr>
+                        <td colspan="4" style="background-color: #ffef8f; font-weight:bold;">{{$develop_no_role}}</td>
+                      </tr>
+                    @else
                     @foreach ($roles['roles'] as $role)
                     <tr>
                       <td>
-                        <input type="checkbox" {{$roles['checkbox'][$role->id]}} class="roles rolesx_1 role_1" name="role_assign[]" value="1">
+                        <input type="checkbox" {{$roles['checkbox'][$role->id]}} class="roles rolesx_{{$role->id}} role_{{$role->id}} form-control" name="role_assign[]" value="{{$role->id}}">
                       </td>
                       <td>
                         {{$role->role_define}}
@@ -489,13 +520,33 @@
 
                     </tr>
                       @endforeach
+                      @endif
 
                     </tbody>
                   </table>
+
+
+
+
                 </div>
+
+
+                @if(($hidden_input) OR ($admin->system_number==1))
+
+                <div style="margin:10px 0 0 0;">
+                  <a class="submit btn green" ajax-form="profileroleupdate" action="profile/roleupdate">
+                    {{$save_changes}} </a>
+                  <span id="profileroleupdateresult"></span>
+
+                </div>
+
+                  @endif
+
               </div>
             </div>
             <!-- END SAMPLE TABLE PORTLET-->
+
+              </form>
 
           </div>
           <!--end tab-pane-->
@@ -841,5 +892,41 @@
       <!--END TABS-->
     </div>
   </div>
+
+
+  <script>
+
+
+    $("select.droles").change(function()
+    {
+
+      $(".checker").addClass("atr");
+      $(".checker").removeClass("checker");
+
+      var droles=$(this).val();
+
+      if(droles=="0")
+      {
+        $(".roles").attr("checked",true);
+      }
+      else
+      {
+        var droles_tire=droles.split("-");
+        var droles_arr=droles_tire[1].split("@");
+
+        $("input.roles").prop("checked",false);
+        for (var i=0; i<droles_arr.length; i++)
+        {
+          $("input.rolesx_"+droles_arr[i]).prop("checked",true);
+        }
+      }
+
+
+    });
+
+
+
+
+  </script>
 
 @endif

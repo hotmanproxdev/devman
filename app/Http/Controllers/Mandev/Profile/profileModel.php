@@ -63,5 +63,20 @@ class profileModel extends Controller
         return DB::table($this->app->dbTable(['admin']))->where("id","=",$id)->update(['photo'=>$file]);
     }
 
+    public function roleUpdate($data,$id)
+    {
+        $datarole=explode("-",$data['default_roles']);
+        $getrole=DB::table($this->app->dbTable(['default_roles']))->where("system_number","=",$datarole[0])->get();
+
+        if(count($getrole))
+        {
+            $role_assign=implode("@",$_POST['role_assign']);
+            return DB::table($this->app->dbTable(['admin']))->where("id","=",$id)->update(['system_name'=>$getrole[0]->role_name,'system_number'=>$getrole[0]->system_number,'role'=>$getrole[0]->roles]);
+        }
+
+        return false;
+
+    }
+
 
 }

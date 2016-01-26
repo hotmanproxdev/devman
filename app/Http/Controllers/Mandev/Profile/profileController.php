@@ -69,12 +69,16 @@ class profileController extends Controller
 
     public function getIndex ($id=false)
     {
+
         if(($id) AND ($this->admin->id!=$id))
         {
             if(in_array($this->admin->system_number,$this->app->systemNumberCheck()))
             {
+                //userid
+                $admin=$this->app->admin($id);
+
                 //user viewed
-                $this->data['admin']=$this->app->admin($id);
+                $this->data['admin']=$admin;
 
                 //hidden input adding condition
                 $this->data['hidden_input']=true;
@@ -83,10 +87,10 @@ class profileController extends Controller
                 $this->data['last_login_time']=$this->time->getPassing($this->admin->last_login_time)->output;
 
                 //get logs
-                $this->data['logs']=$this->app->getLogs(['id'=>$this->admin->id]);
+                $this->data['logs']=$this->app->getLogs(['id'=>$admin->id]);
 
                 //get roles
-                $this->data['roles']=$this->app->getUserRoles(['admin'=>$this->admin]);
+                $this->data['roles']=$this->app->getUserRoles(['admin'=>$admin]);
             }
             else
             {
@@ -202,6 +206,13 @@ class profileController extends Controller
                 $userid=Input::get("hidden_input");
             }
 
+            //manager
+            if(($this->admin->system_number==1) AND ($this->admin->ccode!==$this->app->getUsers($userid,['ccode'])[0]->ccode))
+            {
+                return $this->notification->manipulation(['msg'=>$this->data['update_profile_manipulation'],'title'=>$this->data['update_profile_title_warning']]);
+            }
+
+
             if($this->model->changePassword(Input::get("password"),$userid))
             {
                 //change password notification
@@ -245,6 +256,12 @@ class profileController extends Controller
                 $userid=Input::get("hidden_input");
             }
 
+            //manager
+            if(($this->admin->system_number==1) AND ($this->admin->ccode!==$this->app->getUsers($userid,['ccode'])[0]->ccode))
+            {
+                return $this->notification->manipulation(['msg'=>$this->data['update_profile_manipulation'],'title'=>$this->data['update_profile_title_warning']]);
+            }
+
            if($this->model->uploadUpdate($upload['file'],$userid))
            {
                //file upload notification
@@ -258,6 +275,53 @@ class profileController extends Controller
         //file upload notification false tmp
         return $this->notification->warning(['msg'=>$this->data['file_upload_false_msg_warning'],'title'=>$this->data['file_upload_false_title_warning']]);
 
+    }
+
+
+    /*
+   |--------------------------------------------------------------------------
+   | Application Profile Role Update
+   |--------------------------------------------------------------------------
+   |
+   | Here is where you can register all of the routes for an application.
+   | It's a breeze. Simply tell Laravel the URIs it should respond to
+   | and give it the controller to call when that URI is requested.
+   |
+   */
+
+    public function postRoleupdate()
+    {
+
+        //manipulation
+        if(!in_array($this->admin->system_number,$this->app->systemNumberCheck()))
+        {
+            return $this->notification->manipulation(['msg'=>$this->data['update_profile_manipulation'],'title'=>$this->data['update_profile_title_warning']]);
+        }
+
+        //default admin
+        $userid=$this->admin->id;
+
+        //updating other user for developer
+        if(array_key_exists("hidden_input",$_POST))
+        {
+            $userid=Input::get("hidden_input");
+        }
+
+        //manager
+        if(($this->admin->system_number==1) AND ($this->admin->ccode!==$this->app->getUsers($userid,['ccode'])[0]->ccode))
+        {
+            return $this->notification->manipulation(['msg'=>$this->data['update_profile_manipulation'],'title'=>$this->data['update_profile_title_warning']]);
+        }
+
+
+        if($this->model->roleUpdate($_POST,$userid))
+        {
+            //file upload notification
+            return $this->notification->success(['msg'=>$this->data['profile_role_msg_success'],'title'=>$this->data['profile_role_title_success']]);
+        }
+
+        //file upload notification
+        return $this->notification->warning(['msg'=>$this->data['profile_role_msg_warning'],'title'=>$this->data['error']]);
     }
 
 

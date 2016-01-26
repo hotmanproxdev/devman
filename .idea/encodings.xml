@@ -1,17 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="Encoding" useUTFGuessing="true" native2AsciiForPropertiesFiles="false">
-    <file url="file://$PROJECT_DIR$/packages/aligurbuz/maxroyal/composer.json" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/packages/aligurbuz/test/README.md" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/packages/aligurbuz/test/README.md" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/packages/aligurbuz/test/composer.json" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/packages/aligurbuz/test/composer.json" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/packages/aligurbuz/test/composer.json" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/packages/aligurbuz/test/src/routes.php" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/packages/aligurbuz/test/src/routes.php" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/packages/aligurbuz/test/src/routes.php" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/packages/aligurbuz/test/src/testServiceProvider.php" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/packages/aligurbuz/test/src/testServiceProvider.php" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/packages/aligurbuz/test/src/testServiceProvider.php" charset="UTF-8" />
-  </component>
+  <component name="Encoding" useUTFGuessing="true" native2AsciiForPropertiesFiles="false" />
 </project>

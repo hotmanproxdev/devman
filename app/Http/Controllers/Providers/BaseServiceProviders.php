@@ -175,7 +175,7 @@ class BaseServiceProviders extends Controller
                 $query=DB::table($this->dbTable(['admin']))->where('id','=',$id)->get();
             }
 
-            $adminFields=['lang'=>config("app.default_lang"),'role'=>1,'id'=>0,'hash'=>NULL];
+            $adminFields=['lang'=>config("app.default_lang"),'role'=>1,'id'=>0,'hash'=>NULL,'system_number'=>0];
             if(count($query))
             {
                 foreach ($field as $fieldval)
@@ -231,7 +231,11 @@ class BaseServiceProviders extends Controller
     {
         if(count($data))
         {
-            $adminRole=explode("-",$data['admin']->role);
+            if($data['admin']->system_number==0)
+            {
+                return true;
+            }
+            $adminRole=explode("@",$data['admin']->role);
 
             if(in_array($data['pageRole'],$adminRole))
             {
@@ -331,7 +335,7 @@ class BaseServiceProviders extends Controller
             $roles = DB::table($this->dbTable(['roles']))->where("lang", "=", $data['admin']->lang)->where("status", "=", "1")->get();
             $admin_roles = DB::table($this->dbTable(['admin']))->select("role")->where("id", "=", $data['admin']->id)->get();
 
-            $adminrole = explode("-", $admin_roles[0]->role);
+            $adminrole = explode("@", $admin_roles[0]->role);
 
             foreach ($roles as $role) {
                 if (in_array($role->id, $adminrole)) {

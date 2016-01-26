@@ -4,9 +4,63 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "8244f9c5dc50c78c26230643b7db5642",
-    "content-hash": "a6c567f3b14319aede23db308adb13ce",
+    "hash": "5c580ba3fb7ceadeab604f188751e172",
+    "content-hash": "ae196f3a322f95aa59bf0e467d617015",
     "packages": [
+        {
+            "name": "aligurbuz/maxroyal",
+            "version": "1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/aligurbuz/maxroyal.git",
+                "reference": "872ece71964008b026cba8a1352eb998ecec0a91"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/aligurbuz/maxroyal/zipball/872ece71964008b026cba8a1352eb998ecec0a91",
+                "reference": "872ece71964008b026cba8a1352eb998ecec0a91",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "~5.1",
+                "php": ">=5.4.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "4.*",
+                "scrutinizer/ocular": "~1.1",
+                "squizlabs/php_codesniffer": "~2.3"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "aligurbuz\\maxroyal\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": ":aligurbuz",
+                    "email": "galiant781@gmail.com",
+                    "homepage": "https://github.com/aligurbuz/maxroyal",
+                    "role": "Developer"
+                }
+            ],
+            "description": "max royal dentry",
+            "homepage": "https://github.com/aligurbuz/maxroyal",
+            "keywords": [
+                "aligurbuz",
+                "maxroyal"
+            ],
+            "time": "2016-01-25 14:22:26"
+        },
         {
             "name": "classpreloader/classpreloader",
             "version": "3.0.0",

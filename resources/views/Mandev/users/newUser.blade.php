@@ -1,4 +1,6 @@
-
+@if($pageRole==false)
+  @include("".config("app.admin_dirname").".noauth")
+@else
 <form id="newuser" method="post" class="form-horizontal">
 <div class="row">
   <div class="col-md-12">
@@ -180,6 +182,7 @@
                           </thead>
                           <tbody>
 
+
                           @foreach ($roles['roles'] as $role)
                           <tr>
                             <td>
@@ -234,8 +237,12 @@
 
 <script>
 
+
     var droles=$("select.droles").val();
-    var droles_arr=droles.split("-");
+
+    var droles_tire=droles.split("-");
+    var droles_arr=droles_tire[1].split("@");
+
 
     $("input.roles").prop("checked",false);
     for (var i=1; i<droles_arr.length; i++)
@@ -254,10 +261,11 @@
       }
       else
       {
-        var droles_arr=droles.split("-");
+        var droles_tire=droles.split("-");
+        var droles_arr=droles_tire[1].split("@");
 
         $("input.roles").prop("checked",false);
-        for (var i=1; i<droles_arr.length; i++)
+        for (var i=0; i<droles_arr.length; i++)
         {
           $("input.rolesx_"+droles_arr[i]).prop("checked",true);
         }
@@ -270,4 +278,6 @@
 
 
 </script>
+
+  @endif
 

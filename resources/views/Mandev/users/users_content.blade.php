@@ -5,7 +5,7 @@
 
   <div style="margin:0 0 5px 0;">
     <a class="btn red xmodal" model="users/newuser" modal-title="Yeni Kullanıcı Oluşturma Formu" data-target="#full-width" href="#full-width" data-toggle="modal">
-      <i class="fa fa-plus"></i> Yeni Kullanıcı Oluştur </a>
+      <i class="fa fa-plus"></i> {{$new_user_create}} </a>
     </div>
 
 

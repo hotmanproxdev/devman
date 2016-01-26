@@ -93,6 +93,9 @@ class usersController extends Controller
     {
         if($this->request->ajax())
         {
+            //page role
+            $this->data['pageRole']=$this->app->pageRole(['pageRole'=>4,'admin'=>$this->admin]);
+
             //get user roles
             $this->data['roles']=$this->app->getUserRoles(['admin'=>$this->admin]);
 
@@ -117,8 +120,18 @@ class usersController extends Controller
 
     public function postNewuser()
     {
+
         if($this->request->ajax())
         {
+            //page role
+            $this->data['pageRole']=$this->app->pageRole(['pageRole'=>5,'admin'=>$this->admin]);
+
+            if($this->data['pageRole']==false)
+            {
+                //validation false notification
+                return $this->notification->warning(['msg'=>$this->data['noauth'],'title'=>$this->data['error']]);
+            }
+
             //validation check
             $validation=$this->validation->make($this->validationRules("postNewuser"));
 
