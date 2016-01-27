@@ -45,6 +45,8 @@ class BaseServiceProviders extends Controller
             return $data[$table[0]];
         }
     }
+
+
     public function menuStatu($value)
     {
         $menu['small']['ul']='page-sidebar-menu page-sidebar-menu-hover-submenu page-sidebar-menu-closed ';
@@ -56,6 +58,7 @@ class BaseServiceProviders extends Controller
         return $menu[$value];
 
     }
+
 
     public function getLang($data=false,$lang=false)
     {
@@ -175,7 +178,7 @@ class BaseServiceProviders extends Controller
                 $query=DB::table($this->dbTable(['admin']))->where('id','=',$id)->get();
             }
 
-            $adminFields=['lang'=>config("app.default_lang"),'role'=>1,'id'=>0,'hash'=>NULL,'system_number'=>0];
+            $adminFields=$this->getTableFields("admin",1);
             if(count($query))
             {
                 foreach ($field as $fieldval)
@@ -205,9 +208,7 @@ class BaseServiceProviders extends Controller
 
     public function admin($id=0)
     {
-        return $this->pageProtector(['id','username','hash','last_hash','fullname','photo','lang','role','ccode','system_name','phone_number','address','occupation','website','extra_info',
-                                     'created_at','last_login_time','user_where','last_ip','email','system_number','logout','logout_time',
-                                     'is_mobile','is_tablet','is_desktop','is_bot','browser_family','os_family','manipulation'],$id);
+        return $this->pageProtector($this->getTableFields("admin"),$id);
     }
 
     public function adminUpdate()
@@ -405,6 +406,24 @@ class BaseServiceProviders extends Controller
     public function systemNumberCheck()
     {
         return $this->system_numbers;
+    }
+
+    public function getTableFields($table,$data=false)
+    {
+        $query=DB::table($this->dbTable([$table]))->take(1)->get();
+        $query=json_decode(json_encode($query[0]),1);
+
+        foreach ($query as $field=>$val)
+        {
+            $list[]=$field;
+        }
+
+        if($data)
+        {
+            return $query;
+        }
+        return $list;
+
     }
 
 
