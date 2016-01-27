@@ -71,7 +71,7 @@ class profileModel extends Controller
         if(count($getrole))
         {
             $role_assign=implode("@",$_POST['role_assign']);
-            return DB::table($this->app->dbTable(['admin']))->where("id","=",$id)->update(['system_name'=>$getrole[0]->role_name,'system_number'=>$getrole[0]->system_number,'role'=>$getrole[0]->roles]);
+            return DB::table($this->app->dbTable(['admin']))->where("id","=",$id)->update(['system_name'=>$getrole[0]->role_name,'system_number'=>$getrole[0]->system_number,'role'=>$role_assign]);
         }
 
         return false;

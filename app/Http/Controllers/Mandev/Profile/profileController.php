@@ -313,7 +313,6 @@ class profileController extends Controller
             return $this->notification->manipulation(['msg'=>$this->data['update_profile_manipulation'],'title'=>$this->data['update_profile_title_warning']]);
         }
 
-
         if($this->model->roleUpdate($_POST,$userid))
         {
             //file upload notification

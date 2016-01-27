@@ -147,10 +147,22 @@ class usersController extends Controller
             $_POST['photo']='default.png';
             $_POST['lang']=config("app.default_lang");
             $_POST['password']=$this->app->passwordHash($_POST['password']);
-            $_POST['role']=implode("-",$_POST['role_assign']);
-            $default_roles=explode("-",$_POST['default_roles']);
-            $_POST['system_number']=$default_roles[0];
-            $_POST['system_name']=$this->app->getUserRoles(['default_roles'=>$default_roles[0]])[0]->role_name;
+
+            $datarole=explode("-",$_POST['default_roles']);
+            $getrole=DB::table($this->app->dbTable(['default_roles']))->where("system_number","=",$datarole[0])->get();
+
+            if(count($getrole))
+            {
+                $_POST['role']=$getrole[0]->roles;
+                $_POST['system_number']=$getrole[0]->system_number;
+                $_POST['system_name']=$getrole[0]->role_name;
+            }
+            else
+            {
+                //file upload notification
+                return $this->notification->warning(['msg'=>$this->data['manipulation'],'title'=>$this->data['error']]);
+            }
+
             $_POST['created_by']=$this->admin->id;
 
             //update ccode except developer
