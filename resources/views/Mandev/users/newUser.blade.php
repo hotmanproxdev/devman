@@ -149,6 +149,12 @@
 
                     </div>
                     <div class="portlet-body">
+
+                      @if(!$new_user_role)
+                      <div style="display:none;">
+                        @else
+                          <div style="">
+                            @endif
                       <select name="default_roles" class="form-control droles label label-warning" style="width:70%; margin:0 0 5px 0; color:#333; font-weight:bold;">
                         @foreach ($roles['default_roles'] as $defkey=>$defroles)
                           <option value="{{$roles['default_roles'][$defkey]['system_number']}}-{{$roles['default_roles'][$defkey]['roles']}}">{{$defkey}} {{$user_status}}</option>
@@ -157,6 +163,11 @@
                             <option value="0">Developer {{$user_status}}</option>
                           @endif
                       </select>
+                        </div>
+
+                      @if(!$new_user_role)
+                        <div style="color:#e20a16; font-weight:bold;">Kullanıcının rollerini değiştirme yetkiniz yok</div>
+                      @endif
 
                       <div class="table-scrollable">
                         <table class="table table-striped table-bordered table-hover">
@@ -245,7 +256,7 @@
 
 
     $("input.roles").prop("checked",false);
-    for (var i=1; i<droles_arr.length; i++)
+    for (var i=0; i<droles_arr.length; i++)
     {
       $("input.rolesx_"+droles_arr[i]).prop("checked",true);
     }

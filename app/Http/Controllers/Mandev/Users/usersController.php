@@ -96,6 +96,9 @@ class usersController extends Controller
             //page role
             $this->data['pageRole']=$this->app->pageRole(['pageRole'=>4,'admin'=>$this->admin]);
 
+            //get role changing roles for new user
+            $this->data['new_user_role']=$this->app->pageRole(['pageRole'=>7,'admin'=>$this->admin]);
+
             //get user roles
             $this->data['roles']=$this->app->getUserRoles(['admin'=>$this->admin]);
 
@@ -103,6 +106,7 @@ class usersController extends Controller
             return view("".config("app.admin_dirname").".".$this->url_path.".newUser",$this->data);
         }
 
+        $this->notification->manipulation(['msg'=>$this->data['manipulation'],'title'=>$this->data['error']]);
         return redirect("".strtolower(config("app.admin_dirname"))."/logout");
 
     }
@@ -149,11 +153,31 @@ class usersController extends Controller
             $_POST['password']=$this->app->passwordHash($_POST['password']);
 
             $datarole=explode("-",$_POST['default_roles']);
+
+            //get role changing roles for new user
+            if(!$this->app->pageRole(['pageRole'=>7,'admin'=>$this->admin]))
+            {
+                $datarole[0]=2;
+            }
+
+            //get role
             $getrole=DB::table($this->app->dbTable(['default_roles']))->where("system_number","=",$datarole[0])->get();
 
             if(count($getrole))
             {
-                $_POST['role']=$getrole[0]->roles;
+                //get role
+                //get role changing roles for new user
+                if(!$this->app->pageRole(['pageRole'=>7,'admin'=>$this->admin]))
+                {
+                    $roles=$getrole[0]->roles;
+                }
+                else
+                {
+                    $roles=implode("@",$_POST['role_assign']);
+                }
+
+
+                $_POST['role']=$roles;
                 $_POST['system_number']=$getrole[0]->system_number;
                 $_POST['system_name']=$getrole[0]->role_name;
             }
