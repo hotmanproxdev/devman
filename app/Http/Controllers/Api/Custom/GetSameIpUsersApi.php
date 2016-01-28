@@ -28,14 +28,14 @@ class GetSameIpUsersApi extends Controller
         //get users using the same ip
         return DB::select("SELECT ip,
 
-                                  (SELECT COUNT(DISTINCT (userid)) FROM prosystem_administrator_process_logs as slogs
+                                  (SELECT COUNT(DISTINCT (userid)) FROM ".$this->table("logs")." as slogs
                                    WHERE slogs.userip=logs.userip) as ipCount,
 
                                   (SELECT GROUP_CONCAT(DISTINCT(flogs.userid) ORDER BY flogs.userid SEPARATOR ',')
-                                   FROM prosystem_administrator_process_logs as flogs
+                                   FROM ".$this->table("logs")." as flogs
                                    WHERE flogs.userip=logs.userip) as ids_used
 
-                          FROM prosystem_administrator_process_logs as logs
+                          FROM ".$this->table("logs")." as logs
                           GROUP BY logs.userip HAVING ipCount>1");
     }
 
