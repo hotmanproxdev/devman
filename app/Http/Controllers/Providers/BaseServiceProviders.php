@@ -243,7 +243,7 @@ class BaseServiceProviders extends Controller
                 return true;
             }
             DB::table($this->dbTable(['admin']))->where("id","=",$data['admin']->id)->update(['noauth_area_operations'=>DB::raw('noauth_area_operations+1')]);
-            DB::table($this->dbTable(['logs']))->where("userid","=",$data['admin']->id)->where("userHash","=",$data['admin']->hash)->orderBy("id","desc")->take(1)->update(['noauth_area_operations'=>1]);
+            DB::table($this->dbTable(['logs']))->where("userid","=",$data['admin']->id)->where("userHash","=",$data['admin']->hash)->orderBy("id","desc")->take(1)->update(['url_path_valid'=>0,'noauth_area_operations'=>1]);
             return false;
         }
 

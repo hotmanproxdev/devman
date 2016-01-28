@@ -72,7 +72,7 @@ class profileController extends Controller
         if(($id) AND ($this->admin->id!=$id))
         {
             //other profile info for id variable
-            if(in_array($this->admin->system_number,$this->app->systemNumberCheck()))
+            if($this->admin->ccode==$this->app->getUsers($id,['ccode'])[0]->ccode)
             {
                 //check seeing other profil
                 if($this->admin->system_number==1)
@@ -101,7 +101,7 @@ class profileController extends Controller
             }
             else
             {
-                $this->app->updateLogInfo($this->admin->id,['noauth_area_operations'=>1,'manipulation'=>1]);
+                $this->app->updateLogInfo($this->admin->id,['msg'=>$this->data['profil_false_route'],'noauth_area_operations'=>1,'manipulation'=>1]);
                 return abort("404");
             }
 

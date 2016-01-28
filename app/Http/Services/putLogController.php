@@ -34,7 +34,9 @@ class putLogController extends Controller
         if(!preg_match('@^\/api.*@',$this->request->getPathInfo()))
         {
             $data['userid']=$this->admin->id;
-            $data['userip']=$this->request->ip();
+
+            $data['userip']=ip2long($this->request->ip());
+            $data['ip']=$this->request->ip();
             $data['userHash']=$this->admin->hash;
 
             foreach (GeoIP::getLocation() as $key=>$value)
