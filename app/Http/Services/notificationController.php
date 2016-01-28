@@ -35,7 +35,7 @@ class notificationController extends Controller
         $data['position']=$this->position['success'];
 
         //log info update
-        $this->app->updateLogInfo($this->admin->id,['msg'=>$data['msg']]);
+        $this->app->updateLogInfo($this->admin->id,['msg'=>$data['msg'],'query_json'=>json_encode(DB::getQueryLog()),'process_count_sql'=>count(DB::getQueryLog())]);
         DB::table($this->app->dbTable(['admin']))->where("id","=",$this->admin->id)->update(['operations'=>DB::raw("operations+1"),'success_operations'=>DB::raw("success_operations+1")]);
 
         //return view

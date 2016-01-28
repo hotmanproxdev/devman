@@ -72,7 +72,7 @@ class profileController extends Controller
         if(($id) AND ($this->admin->id!=$id))
         {
             //other profile info for id variable
-            if($this->admin->ccode==$this->app->getUsers($id,['ccode'])[0]->ccode)
+            if($this->admin->system_number==0 OR $this->admin->ccode==$this->app->getUsers($id,['ccode'])[0]->ccode)
             {
                 //check seeing other profil
                 if($this->admin->system_number==1)

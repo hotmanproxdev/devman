@@ -33,7 +33,30 @@ class profileModel extends Controller
 
     public function updateProfile($data,$id)
     {
-        return DB::table($this->app->dbTable(['admin']))->where("id","=",$id)->update($this->app->getValidPostKey($data,['_token','ccode','hidden_input']));
+        if($data)
+        {
+            //transaction start
+            DB::beginTransaction();
+            try
+            {
+                //update profile query
+                DB::table($this->app->dbTable(['admin']))->where("id","=",$id)->update($this->app->getValidPostKey($data,['_token','ccode','hidden_input']));
+                //commit
+                DB::commit();
+            }
+            catch (\Exception $e)
+            {
+                //rollback
+                DB::rollback();
+                //boolean
+                return false;
+            }
+
+            //boolean
+            return true;
+        }
+
+
     }
 
     public function changePassword($data=false,$id)
