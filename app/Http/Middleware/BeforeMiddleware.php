@@ -56,7 +56,7 @@ class BeforeMiddleware
         //last move register for administrator table
         DB::table("prosystem_administrator")->where("id","=",$this->admin->id)->update(['user_where'=>$this->request->getPathInfo()]);
 
-        $this->app->insertLang(["url_path"=>"profile","word_data"=>['profil_false_route'=>'Alanınız dışındaki profil bilgisine giriş yapmaya çalışıyorsunuz.'],"lang"=>1]);
+        $this->app->insertLang(["url_path"=>"profile","word_data"=>['profil_no_user'=>'Böyle bir kullanıcı mevcut değil.Lütfen manipulation yapmadan sistemi kullanınız'],"lang"=>1]);
         //$this->app->insertLang(["url_path"=>"default","word_data"=>['user_capter_menu'=>'Kullanıcılar Bölümü'],"lang"=>1]);
         //$this->app->insertLang(["url_path"=>"default","word_data"=>['log_false'=>'Config dosyasında log tutma kapatılmış.Lütfen sistem geliştiricisine başvurunuz.'],"lang"=>1]);
 

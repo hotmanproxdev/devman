@@ -69,6 +69,13 @@ class profileController extends Controller
 
     public function getIndex ($id=false)
     {
+        if(count($this->app->getUsers($id,['id']))==false)
+        {
+            //no user in database
+            $this->app->updateLogInfo($this->admin->id,['msg'=>$this->data['profil_no_user'],'noauth_area_operations'=>1,'manipulation'=>1]);
+            return abort("404");
+        }
+
         if(($id) AND ($this->admin->id!=$id))
         {
             //other profile info for id variable
