@@ -154,15 +154,45 @@ class BaseServiceProviders extends Controller
 
     public function updateUserHash($hash,$id)
     {
-        return DB::table($this->dbTable(['admin']))->where(['id'=>$id])->update(['hash'=>$hash,
-                                                                                 'last_hash'=>$hash,
-                                                                                 'updated_at'=>time()-1,
-                                                                                 'last_ip'=>$_SERVER['REMOTE_ADDR'],
-                                                                                 'user_lock'=>1,
-                                                                                 'last_login_time'=>time(),
-                                                                                 'logout'=>0,
-                                                                                 'logout_time'=>0,
-                                                                                 'hash_clicked'=>0]);
+        $update=DB::table($this->dbTable(['admin']))->where(['id'=>$id]);
+        $user=$update->get();
+
+        if(count($user))
+        {
+            if($user[0]->first_hash_time==0)
+            {
+                $update->update(['hash'=>$hash,
+                    'first_hash_time'=>time(),
+                    'last_hash'=>$hash,
+                    'updated_at'=>time()-1,
+                    'last_ip'=>$_SERVER['REMOTE_ADDR'],
+                    'user_lock'=>1,
+                    'last_login_time'=>time(),
+                    'logout'=>0,
+                    'logout_time'=>0,
+                    'hash_clicked'=>0,
+                    'all_hash_number'=>DB::raw('all_hash_number+1')]);
+
+                return true;
+            }
+             else
+             {
+                 $update->update(['hash'=>$hash,
+                     'last_hash'=>$hash,
+                     'updated_at'=>time()-1,
+                     'last_ip'=>$_SERVER['REMOTE_ADDR'],
+                     'user_lock'=>1,
+                     'last_login_time'=>time(),
+                     'logout'=>0,
+                     'logout_time'=>0,
+                     'hash_clicked'=>0,
+                     'all_hash_number'=>DB::raw('all_hash_number+1')]);
+
+                 return true;
+             }
+        }
+
+        return false;
     }
 
     public function pageProtector($field=false,$id=0)
@@ -179,6 +209,11 @@ class BaseServiceProviders extends Controller
             }
 
             $adminFields=$this->getTableFields("admin",1);
+            if(!$id)
+            {
+                $adminFields['id']=0;
+            }
+
             if(count($query))
             {
                 foreach ($field as $fieldval)
@@ -424,6 +459,35 @@ class BaseServiceProviders extends Controller
         }
         return $list;
 
+    }
+
+
+    public function admin_success_point($id)
+    {
+        $user=$this->getUsers($id,['all_clicked','all_average_time_spent_for_every_hash','all_hash_number','success_operations','fail_operations','manipulation','noauth_area_operations']);
+
+        $totalclicks=DB::select("select sum(all_clicked) as total from ".$this->dbTable(['admin'])." WHERE status=1");
+
+        $success_operations=$user[0]->success_operations+1;
+        $fail_operations=$user[0]->fail_operations+1;
+        $manipulation=$user[0]->manipulation+1;
+        $noauth_area_operations=$user[0]->noauth_area_operations+1;
+
+        $operation_process=$success_operations/$fail_operations/$manipulation/$noauth_area_operations;
+
+        if($user[0]->all_hash_number==0)
+        {
+            return 0;
+        }
+
+        $all_average_time_spent_for_every_hash=(int)$user[0]->all_average_time_spent_for_every_hash;
+        $all_hash_number=$user[0]->all_hash_number+1;
+
+        $point=$all_average_time_spent_for_every_hash*$all_hash_number;
+        $point=$point/$totalclicks[0]->total;
+        $point=$point*$operation_process;
+
+        return (int)$point/1000;
     }
 
 }

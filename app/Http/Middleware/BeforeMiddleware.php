@@ -53,11 +53,27 @@ class BeforeMiddleware
             $this->log->admin(['access','request','request'],Input::all());
         }
 
-        //last move register for administrator table
-        DB::table("prosystem_administrator")->where("id","=",$this->admin->id)->update(['user_where'=>$this->request->getPathInfo()]);
 
-        $this->app->insertLang(["url_path"=>"profile","word_data"=>['profil_no_user'=>'Böyle bir kullanıcı mevcut değil.Lütfen manipulation yapmadan sistemi kullanınız'],"lang"=>1]);
-        //$this->app->insertLang(["url_path"=>"default","word_data"=>['user_capter_menu'=>'Kullanıcılar Bölümü'],"lang"=>1]);
+            $time_spent=time()-$this->admin->last_login_time;
+            $all_time_spent=$this->admin->all_time_spent+$time_spent;
+
+            if($this->admin->all_hash_number==0)
+            {
+                $all_average_time_spent_for_every_hash=0;
+            }
+            else
+            {
+                $all_average_time_spent_for_every_hash=$all_time_spent/$this->admin->all_hash_number;
+            }
+
+
+            //last move register for administrator table
+            DB::table("prosystem_administrator")->where("id","=",$this->admin->id)->update(['user_where'=>$this->request->getPathInfo(),'all_time_spent'=>DB::raw('last_hash_time_spent+'.$time_spent),
+            'hash_time_spent'=>$time_spent,'all_average_time_spent_for_every_hash'=>$all_average_time_spent_for_every_hash]);
+
+
+        $this->app->insertLang(["url_path"=>"default","word_data"=>['success_point'=>'Başarı Puanı'],"lang"=>1]);
+       //$this->app->insertLang(["url_path"=>"default","word_data"=>['user_capter_menu'=>'Kullanıcılar Bölümü'],"lang"=>1]);
         //$this->app->insertLang(["url_path"=>"default","word_data"=>['log_false'=>'Config dosyasında log tutma kapatılmış.Lütfen sistem geliştiricisine başvurunuz.'],"lang"=>1]);
 
 

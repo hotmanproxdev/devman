@@ -80,7 +80,7 @@ class Authenticate
         if(app()->make("Base")->adminUpdate()==false)
         {
             //admin update false
-            return redirect(''.strtolower(config("app.admin_dirname")).'/loginx');
+            return redirect(''.strtolower(config("app.admin_dirname")).'/login');
         }
 
         DB::enableQueryLog();

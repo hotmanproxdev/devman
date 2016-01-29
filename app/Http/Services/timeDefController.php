@@ -89,4 +89,11 @@ class timeDefController extends Controller
         }
 
     }
+
+
+
+    public function convertDate($data)
+    {
+       return $data/60;
+    }
 }

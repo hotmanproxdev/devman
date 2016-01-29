@@ -26,6 +26,9 @@
                 İd:
               </th>
               <th scope="col">
+                {{$success_point}}:
+              </th>
+              <th scope="col">
                 {{$online_statu}}:
               </th>
               <th scope="col">
@@ -120,6 +123,24 @@
               <th scope="col">
                 {{$manipulation}}:
               </th>
+
+              <th scope="col">
+                {{$all_time_spent}}:
+              </th>
+
+              <th scope="col">
+                {{$hash_time_spent}}:
+              </th>
+
+              <th scope="col">
+                {{$all_average_time_spent_for_every_hash}}:
+              </th>
+
+              <th scope="col">
+                {{$all_hash_number}}:
+              </th>
+
+
             </tr>
             </thead>
             <tbody>
@@ -127,6 +148,9 @@
             <tr>
               <td>
                 {{$users->id}}
+              </td>
+              <td style="background-color: #eee;">
+                <span style="color: #333; font-weight:bold;">{{app()->make("Base")->admin_success_point($users->id)}}</span>
               </td>
               <td>
                 @if(app()->make("Base")->getOnlineStatu($users->id)->status)
@@ -269,6 +293,26 @@
               <td>
                 <span style="color: #e20a16; font-weight:bold;">{{$users->manipulation}}</span>
               </td>
+
+              <td style="background-color: #ffffdd;">
+                <span style="color: #e20a16; font-weight:bold;">{{(int)app("\Time")->convertDate($users->all_time_spent)}} {{$minute}}</span>
+              </td>
+
+              <td style="background-color: #ffffdd;">
+                <span style="color: #e20a16; font-weight:bold;">{{(int)app("\Time")->convertDate($users->hash_time_spent) }} {{$minute}}</span>
+              </td>
+
+
+              <td style="background-color: #ffffdd;">
+                <span style="color: #e20a16; font-weight:bold;">{{(int)app("\Time")->convertDate($users->all_average_time_spent_for_every_hash)}} {{$minute}}</span>
+              </td>
+
+
+              <td style="background-color: #ffffdd;">
+                <span style="color: #e20a16; font-weight:bold;">{{$users->all_hash_number}}</span>
+              </td>
+
+
             </tr>
               @endforeach
 
