@@ -52,6 +52,11 @@
               <th scope="col">
                 {{$fullname}}:
               </th>
+
+              <th scope="col">
+                {{$first_hash_time}}:
+              </th>
+
               <th scope="col">
                 {{$last_login_ip}}:
               </th>
@@ -185,6 +190,14 @@
               </td>
               <td>
                 {{$users->fullname}}
+              </td>
+
+              <td>
+                @if($users->first_hash_time==0)
+                  <span style="color:#336699; font-weight:bold;">{{$never_login_time}}</span>
+                @else
+                {{app()->make("Base")->dateFormat($users->first_hash_time)}}
+                  @endif
               </td>
               <td>
                 {{$users->last_ip}}

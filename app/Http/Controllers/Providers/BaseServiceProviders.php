@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers\Providers;
 
-use Illuminate\Http\Request;
-
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use DB;
@@ -464,7 +462,7 @@ class BaseServiceProviders extends Controller
 
     public function admin_success_point($id)
     {
-        $user=$this->getUsers($id,['all_clicked','all_average_time_spent_for_every_hash','all_hash_number','success_operations','fail_operations','manipulation','noauth_area_operations']);
+        $user=$this->getUsers($id,['all_time_spent','all_clicked','all_average_time_spent_for_every_hash','all_hash_number','success_operations','fail_operations','manipulation','noauth_area_operations']);
 
         $totalclicks=DB::select("select sum(all_clicked) as total from ".$this->dbTable(['admin'])." WHERE status=1");
 
@@ -480,7 +478,7 @@ class BaseServiceProviders extends Controller
             return 0;
         }
 
-        $all_average_time_spent_for_every_hash=(int)$user[0]->all_average_time_spent_for_every_hash;
+        $all_average_time_spent_for_every_hash=(int)$user[0]->all_time_spent;
         $all_hash_number=$user[0]->all_hash_number+1;
 
         $point=$all_average_time_spent_for_every_hash*$all_hash_number;

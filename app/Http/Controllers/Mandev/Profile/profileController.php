@@ -147,48 +147,55 @@ class profileController extends Controller
 
     public function postIndex()
     {
-        //validation check
-        $validation=$this->validation->make($this->validationRules("postIndex"));
-
-        //validation false
-        if(!$validation['result'])
+        return app("\Token")->valid(function()
         {
-            //validation false notification
-            return $this->notification->warning(['msg'=>$validation['msg'],'title'=>$this->data['error']]);
-        }
+            //validation check
+            $validation=$this->validation->make($this->validationRules("postIndex"));
 
-        //default admin
-        $userid=$this->admin->id;
-
-        //updating other user for developer
-        if(array_key_exists("hidden_input",$_POST))
-        {
-            $userid=Input::get("hidden_input");
-
-            //manager
-            if(($this->admin->system_number==1) AND ($this->admin->ccode!==$this->app->getUsers($userid,['ccode'])[0]->ccode))
+            //validation false
+            if(!$validation['result'])
             {
-                return $this->notification->manipulation(['msg'=>$this->data['update_profile_manipulation'],'title'=>$this->data['update_profile_title_warning']]);
+                //validation false notification
+                return $this->notification->warning(['msg'=>$validation['msg'],'title'=>$this->data['error']]);
             }
 
-            //check users role for personal info button
-            if(!$this->app->pageRole(['pageRole'=>8,'admin'=>$this->admin]))
+
+            //default admin
+            $userid=$this->admin->id;
+
+            //updating other user for developer
+            if(array_key_exists("hidden_input",$_POST))
             {
-                //update profil false notification
-                return $this->notification->warning(['msg'=>$this->data['noauth'],'title'=>$this->data['error']]);
+                $userid=Input::get("hidden_input");
+
+                //manager
+                if(($this->admin->system_number==1) AND ($this->admin->ccode!==$this->app->getUsers($userid,['ccode'])[0]->ccode))
+                {
+                    return $this->notification->manipulation(['msg'=>$this->data['update_profile_manipulation'],'title'=>$this->data['update_profile_title_warning']]);
+                }
+
+                //check users role for personal info button
+                if(!$this->app->pageRole(['pageRole'=>8,'admin'=>$this->admin]))
+                {
+                    //update profil false notification
+                    return $this->notification->warning(['msg'=>$this->data['noauth'],'title'=>$this->data['error']]);
+                }
             }
-        }
+
+            //update profil for session admin
+            if($this->model->updateProfile(Input::all(),$userid))
+            {
+                //update profil notification
+                return $this->notification->success(['msg'=>$this->data['update_profile_msg_success'],'title'=>$this->data['update_profile_title_success']]);
+            }
+
+            //update profil false notification
+            return $this->notification->warning(['msg'=>$this->data['update_profile_msg_warning'],'title'=>$this->data['update_profile_title_warning']]);
 
 
-        //update profil for session admin
-        if($this->model->updateProfile(Input::all(),$userid))
-        {
-            //update profil notification
-            return $this->notification->success(['msg'=>$this->data['update_profile_msg_success'],'title'=>$this->data['update_profile_title_success']]);
-        }
+        });
 
-        //update profil false notification
-        return $this->notification->warning(['msg'=>$this->data['update_profile_msg_warning'],'title'=>$this->data['update_profile_title_warning']]);
+
     }
 
 

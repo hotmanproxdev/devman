@@ -50,7 +50,7 @@
 <div class="content">
   <!-- BEGIN LOGIN FORM -->
   <form class="login-form" action="" method="post">
-    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+    <input type="hidden" name="_token" value="{{csrf_token()}}">
     <h3 class="form-title">{{$loginTop}}</h3>
     <div class="alert alert-danger display-hide">
       <button class="close" data-close="alert"></button>

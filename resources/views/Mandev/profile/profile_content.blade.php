@@ -237,7 +237,8 @@
                 <div class="tab-content">
                   <div id="tab_1-1" class="tab-pane active">
                     <form id="profile_update" method="post" role="form">
-                      <input type="hidden" name="_token" value="{{csrf_token()}}">
+                      <input type="hidden" name="_token" value="{{$token}}">
+                      {{Session::put("_token",$token)}}
                       @if($hidden_input)
                         <input type="hidden" name="hidden_input" value="{{$admin->id}}">
                       @endif

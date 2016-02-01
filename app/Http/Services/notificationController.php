@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use DB;
+use Input;
 
 class notificationController extends Controller
 {
@@ -36,7 +37,8 @@ class notificationController extends Controller
 
         //log info update
         $this->app->updateLogInfo($this->admin->id,['msg'=>$data['msg'],'query_json'=>json_encode(DB::getQueryLog()),'process_count_sql'=>count(DB::getQueryLog())]);
-        DB::table($this->app->dbTable(['admin']))->where("id","=",$this->admin->id)->update(['operations'=>DB::raw("operations+1"),'success_operations'=>DB::raw("success_operations+1")]);
+        DB::table($this->app->dbTable(['admin']))->where("id","=",$this->admin->id)->update(['operations'=>DB::raw("operations+1"),'success_operations'=>DB::raw("success_operations+1"),
+        'last_token'=>Input::get("_token"),'last_post'=>base64_encode(json_encode(Input::all()))]);
 
         //return view
         return view("".config("app.admin_dirname").".notification",$data);

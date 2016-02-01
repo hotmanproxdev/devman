@@ -27,6 +27,7 @@ return [
     'paginator'=>10,
     'api_paginator'=>10,
     'api_ccode'=>'develop',
+    'token'=>md5(uniqid(rand(), true)),
 
     //////////////MANDEV CONFİG SETTİNGS//////////////////////////////////////////////////
 
@@ -225,6 +226,7 @@ return [
         'BrowserDetect' => hisorange\BrowserDetect\Facade\Parser::class,
         'GeoIP' => Torann\GeoIP\GeoIPFacade::class,
         'Pagination' => App\Http\Services\paginationController::class,
+        'Token' => App\Http\Services\tokenController::class,
         'Api' =>App\Http\Services\apiRequestController::class,
 
     ],

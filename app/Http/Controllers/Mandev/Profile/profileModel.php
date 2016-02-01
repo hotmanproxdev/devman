@@ -33,7 +33,7 @@ class profileModel extends Controller
 
     public function updateProfile($data,$id)
     {
-        if($data)
+        if(count($data))
         {
             //transaction start
             DB::beginTransaction();

@@ -10,28 +10,20 @@ use App\Http\Controllers\Controller;
 class paginationController extends Controller
 {
 
-    public $page;
-    public $maxresult;
-
-    public function number($foo)
+    public function test($callback)
     {
-        $this->maxresult=$foo;
-        return $this;
-    }
+        $val=false;
 
-    public function number2($max)
-    {
-        $this->maxresult=$this->maxresult*$max;
-        return $this;
-    }
+        if($val)
+        {
+            if(is_callable($callback))
+            {
+                return call_user_func($callback);
+            }
+        }
 
-    public function calc()
-    {
-        return $this->maxresult;
-    }
-
-    public function xx()
-    {
         return 'asa';
+
+
     }
 }

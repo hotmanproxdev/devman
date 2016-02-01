@@ -2,6 +2,7 @@
 
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
+use Session;
 
 class dataComposer {
 
@@ -11,6 +12,7 @@ class dataComposer {
      * @var UserRepository
      */
     protected $request;
+    protected $token;
 
     /**
      * Create a new profile composer.
@@ -22,6 +24,8 @@ class dataComposer {
     {
         // Dependencies automatically resolved by service container...
         $this->request = $request;
+        $this->token=config("app.token");
+
     }
 
     /**
@@ -34,6 +38,7 @@ class dataComposer {
     {
         $view->with('baseUrl', 'http://'.$this->request->getHttpHost().''.$this->request->getBaseUrl().'');
         $view->with('mandev', 'http://'.$this->request->getHttpHost().''.$this->request->getBaseUrl().'/'.strtolower(config("app.admin_dirname")).'');
+        $view->with('token',$this->token);
     }
 
 }
