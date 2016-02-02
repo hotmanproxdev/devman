@@ -147,6 +147,7 @@ class profileController extends Controller
 
     public function postIndex()
     {
+        //same token one process
         return app("\Token")->valid(function()
         {
             //validation check

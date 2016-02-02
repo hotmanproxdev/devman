@@ -227,6 +227,7 @@ return [
         'GeoIP' => Torann\GeoIP\GeoIPFacade::class,
         'Pagination' => App\Http\Services\paginationController::class,
         'Token' => App\Http\Services\tokenController::class,
+        'Transaction' => App\Http\Services\dbTransactionController::class,
         'Api' =>App\Http\Services\apiRequestController::class,
 
     ],
