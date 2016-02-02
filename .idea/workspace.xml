@@ -68,8 +68,8 @@
       <file leaf-file-name="profileController.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Mandev/Profile/profileController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.36290324" vertical-offset="2070" max-vertical-offset="6465">
-              <caret line="159" column="17" selection-start-line="159" selection-start-column="17" selection-end-line="159" selection-end-column="17" />
+            <state vertical-scroll-proportion="0.96543777" vertical-offset="2852" max-vertical-offset="6375">
+              <caret line="246" column="173" selection-start-line="246" selection-start-column="173" selection-end-line="246" selection-end-column="173" />
               <folding>
                 <element signature="e#55#83#0#PHP" expanded="true" />
               </folding>
@@ -899,8 +899,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Mandev/Profile/profileController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.36290324" vertical-offset="2070" max-vertical-offset="6465">
-          <caret line="159" column="17" selection-start-line="159" selection-start-column="17" selection-end-line="159" selection-end-column="17" />
+        <state vertical-scroll-proportion="0.96543777" vertical-offset="2852" max-vertical-offset="6375">
+          <caret line="246" column="173" selection-start-line="246" selection-start-column="173" selection-end-line="246" selection-end-column="173" />
           <folding>
             <element signature="e#55#83#0#PHP" expanded="true" />
           </folding>

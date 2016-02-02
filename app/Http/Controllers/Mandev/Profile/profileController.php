@@ -205,53 +205,47 @@ class profileController extends Controller
     public function postChangepassword()
     {
         //validation check
-        $validation=$this->validation->make($this->validationRules("postChangepassword"));
-
-        //validation false
-        if(!$validation['result'])
+        return $this->validation->make($this->validationRules("postChangepassword"),function()
         {
-            //validation false notification
-            return $this->notification->warning(['msg'=>$validation['msg'],'title'=>$this->data['error']]);
-        }
-
-        //check new password and renew password
-        if(Input::get("password")==Input::get("repassword"))
-        {
-            //default admin
-            $userid=$this->admin->id;
-
-            //updating other user for developer
-            if(array_key_exists("hidden_input",$_POST))
+            //check new password and renew password
+            if(Input::get("password")==Input::get("repassword"))
             {
-                $userid=Input::get("hidden_input");
+                //default admin
+                $userid=$this->admin->id;
 
-                //check users role for personal change password button
-                if(!$this->app->pageRole(['pageRole'=>10,'admin'=>$this->admin]))
+                //updating other user for developer
+                if(array_key_exists("hidden_input",$_POST))
                 {
-                    //update profil false notification
-                    return $this->notification->warning(['msg'=>$this->data['noauth'],'title'=>$this->data['error']]);
+                    $userid=Input::get("hidden_input");
+
+                    //check users role for personal change password button
+                    if(!$this->app->pageRole(['pageRole'=>10,'admin'=>$this->admin]))
+                    {
+                        //update profil false notification
+                        return $this->notification->warning(['msg'=>$this->data['noauth'],'title'=>$this->data['error']]);
+                    }
                 }
+
+
+                //manager
+                if(($this->admin->system_number==1) AND ($this->admin->ccode!==$this->app->getUsers($userid,['ccode'])[0]->ccode))
+                {
+                    return $this->notification->manipulation(['msg'=>$this->data['update_profile_manipulation'],'title'=>$this->data['update_profile_title_warning']]);
+                }
+
+
+                if($this->model->changePassword(Input::get("password"),$userid))
+                {
+                    //change password notification
+                    return $this->notification->success(['msg'=>$this->data['change_password_msg_success'],'title'=>$this->data['change_password_title_success']]);
+                }
+
+                return false;
             }
 
-
-            //manager
-            if(($this->admin->system_number==1) AND ($this->admin->ccode!==$this->app->getUsers($userid,['ccode'])[0]->ccode))
-            {
-                return $this->notification->manipulation(['msg'=>$this->data['update_profile_manipulation'],'title'=>$this->data['update_profile_title_warning']]);
-            }
-
-
-            if($this->model->changePassword(Input::get("password"),$userid))
-            {
-                //change password notification
-                return $this->notification->success(['msg'=>$this->data['change_password_msg_success'],'title'=>$this->data['change_password_title_success']]);
-            }
-
-            return false;
-        }
-
-        //not same for password warning
-        return $this->notification->warning(['msg'=>$this->data['change_password_not_same_warning_msg'],'title'=>$this->data['change_password_not_same_warning_title']]);
+            //not same for password warning
+            return $this->notification->warning(['msg'=>$this->data['change_password_not_same_warning_msg'],'title'=>$this->data['change_password_not_same_warning_title']]);
+        });
 
     }
 
