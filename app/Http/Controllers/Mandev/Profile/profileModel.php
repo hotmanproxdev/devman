@@ -36,15 +36,9 @@ class profileModel extends Controller
         //data true
         if(count($data))
         {
-            //transaction commit for query
-            return app("\Transaction")->commit(function() use ($data,$id)
-            {
-                //update profile query
-                return DB::table($this->app->dbTable(['admin']))->where("id","=",$id)->update($this->app->getValidPostKey($data,['_token','ccode','hidden_input']));
-            });
+            //update profile query
+            return DB::table($this->app->dbTable(['admin']))->where("id","=",$id)->update($this->app->getValidPostKey($data,['_token','ccode','hidden_input']));
         }
-
-
     }
 
     public function changePassword($data=false,$id)

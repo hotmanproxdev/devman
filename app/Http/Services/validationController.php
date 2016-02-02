@@ -27,16 +27,20 @@ class validationController extends Controller
         $this->data=$this->app->getLang(['url_path'=>'default','lang'=>$this->admin->lang]);
     }
 
-    public function make($data)
+    public function make($data,$callback)
     {
         $make=$this->check($data);
 
         if(count($make))
         {
-            return ["result"=>false,"msg"=>$make['msg']];
+            //validation false
+            return app("\Notification")->warning(['msg'=>$make['msg'],'title'=>$this->data['error']]);
         }
 
-        return ["result"=>true];
+        if(is_callable($callback))
+        {
+            return call_user_func($callback);
+        }
     }
 
 

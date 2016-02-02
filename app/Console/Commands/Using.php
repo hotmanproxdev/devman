@@ -134,5 +134,20 @@ class Using extends Command
             $dd['update']="this->api->get(['service'=>'test','update'=>['select'=>['username'=>'newusername'],'where'=>['id=?',[1])";
             dd($dd);
         }
+
+
+        //api
+        if($this->argument("name")=="token")
+        {
+            $dd['token']="return app('Token')->valid(function() { //somethings });";
+            dd($dd);
+        }
+
+        //api
+        if($this->argument("name")=="transaction")
+        {
+            $dd['transaction']="return app('transaction')->commit(function() { //somethings });";
+            dd($dd);
+        }
     }
 }
