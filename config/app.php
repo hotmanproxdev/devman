@@ -228,6 +228,7 @@ return [
         'Pagination' => App\Http\Services\paginationController::class,
         'Token' => App\Http\Services\tokenController::class,
         'Transaction' => App\Http\Services\dbTransactionController::class,
+        'Data' => App\Http\Services\dataController::class,
         'Api' =>App\Http\Services\apiRequestController::class,
 
     ],

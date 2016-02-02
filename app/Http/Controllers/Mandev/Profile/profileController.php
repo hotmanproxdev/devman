@@ -69,68 +69,66 @@ class profileController extends Controller
 
     public function getIndex ($id=false)
     {
-        if(count($this->app->getUsers($id,['id']))==false)
+        //data control for page access
+        return app("\Data")->control(['admin',$id],function() use ($id)
         {
-            //no user in database
-            $this->app->updateLogInfo($this->admin->id,['msg'=>$this->data['profil_no_user'],'noauth_area_operations'=>1,'manipulation'=>1]);
-            return abort("404");
-        }
-
-        if(($id) AND ($this->admin->id!=$id))
-        {
-            //other profile info for id variable
-            if(($this->admin->system_number==0) OR ($this->admin->system_number==1 AND $this->admin->ccode==$this->app->getUsers($id,['ccode'])[0]->ccode))
+            if(($id) AND ($this->admin->id!=$id))
             {
-                //check seeing other profil
-                if($this->admin->system_number==1)
+                //other profile info for id variable
+                if(($this->admin->system_number==0) OR ($this->admin->system_number==1 AND $this->admin->ccode==$this->app->getUsers($id,['ccode'])[0]->ccode))
                 {
-                    //page role
-                    $this->data['pageRole']=$this->app->pageRole(['pageRole'=>6,'admin'=>$this->admin]);
+                    //check seeing other profil
+                    if($this->admin->system_number==1)
+                    {
+                        //page role
+                        $this->data['pageRole']=$this->app->pageRole(['pageRole'=>6,'admin'=>$this->admin]);
+                    }
+
+                    //userid
+                    $admin=$this->app->admin($id);
+
+                    //user viewed
+                    $this->data['admin']=$admin;
+
+                    //hidden input adding condition
+                    $this->data['hidden_input']=true;
+
+                    //variables will be sent
+                    $this->data['last_login_time']=$this->time->getPassing($this->admin->last_login_time)->output;
+
+                    //get logs
+                    $this->data['logs']=$this->app->getLogs(['id'=>$admin->id]);
+
+                    //get roles
+                    $this->data['roles']=$this->app->getUserRoles(['admin'=>$admin]);
+                }
+                else
+                {
+                    $this->app->updateLogInfo($this->admin->id,['msg'=>$this->data['profil_false_route'],'noauth_area_operations'=>1,'manipulation'=>1]);
+                    return abort("404");
                 }
 
-                //userid
-                $admin=$this->app->admin($id);
-
-                //user viewed
-                $this->data['admin']=$admin;
-
-                //hidden input adding condition
-                $this->data['hidden_input']=true;
-
+            }
+            else
+            {
                 //variables will be sent
                 $this->data['last_login_time']=$this->time->getPassing($this->admin->last_login_time)->output;
 
                 //get logs
-                $this->data['logs']=$this->app->getLogs(['id'=>$admin->id]);
+                $this->data['logs']=$this->app->getLogs(['id'=>$this->admin->id]);
 
                 //get roles
-                $this->data['roles']=$this->app->getUserRoles(['admin'=>$admin]);
-            }
-            else
-            {
-                $this->app->updateLogInfo($this->admin->id,['msg'=>$this->data['profil_false_route'],'noauth_area_operations'=>1,'manipulation'=>1]);
-                return abort("404");
+                $this->data['roles']=$this->app->getUserRoles(['admin'=>$this->admin]);
+
+                //hidden input adding condition
+                $this->data['hidden_input']=false;
             }
 
-        }
-        else
-        {
-            //variables will be sent
-            $this->data['last_login_time']=$this->time->getPassing($this->admin->last_login_time)->output;
 
-            //get logs
-            $this->data['logs']=$this->app->getLogs(['id'=>$this->admin->id]);
+            //return view
+            return view("".config("app.admin_dirname").".".$this->url_path.".main",$this->data);
+        });
 
-            //get roles
-            $this->data['roles']=$this->app->getUserRoles(['admin'=>$this->admin]);
-
-            //hidden input adding condition
-            $this->data['hidden_input']=false;
-        }
-
-
-        //return view
-        return view("".config("app.admin_dirname").".".$this->url_path.".main",$this->data);
     }
 
 
