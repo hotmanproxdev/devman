@@ -22,6 +22,7 @@
 
 .xdsoft_datetimepicker iframe {
 	position: absolute;
+    z-index: 999999;
 	left: 0;
 	top: 0;
 	width: 75px;
@@ -52,6 +53,7 @@
 	display: inline-block;
 	position: static;
 	box-shadow: none;
+    z-index: 999999;
 }
 
 .xdsoft_datetimepicker * {

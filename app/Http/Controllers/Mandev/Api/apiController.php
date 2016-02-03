@@ -55,4 +55,15 @@ class apiController extends Controller
         //return view
         return view("".config("app.admin_dirname").".".$this->url_path.".main",$this->data);
     }
+
+    public function getTest()
+    {
+        //return view
+        return view("".config("app.admin_dirname").".".$this->url_path.".apitest",[]);
+    }
+
+    public function getAutocomplete()
+    {
+        return app("\Autocomplete")->get();
+    }
 }

@@ -28,6 +28,7 @@ return [
     'api_paginator'=>10,
     'api_ccode'=>'develop',
     'token'=>md5(uniqid(rand(), true)),
+    'dateFormat'=>'Y-m-d h:i:s',
 
     //////////////MANDEV CONFİG SETTİNGS//////////////////////////////////////////////////
 
@@ -230,6 +231,7 @@ return [
         'Transaction' => App\Http\Services\dbTransactionController::class,
         'Data' => App\Http\Services\dataController::class,
         'Api' =>App\Http\Services\apiRequestController::class,
+        'Autocomplete' =>App\Http\Services\autoCompleteController::class,
 
     ],
 

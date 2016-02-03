@@ -149,5 +149,14 @@ class Using extends Command
             $dd['transaction']="return app('transaction')->commit(function() { //somethings });";
             dd($dd);
         }
+
+        //autocomplete
+        if($this->argument("name")=="autocomplete")
+        {
+            $dd['autocomplete']='<input class="form-control autocomplete" model="admin/fullname" context="input" autocomplete="off">
+            <div class="autocomplete_result"></div>';
+            dd($dd);
+        }
+
     }
 }

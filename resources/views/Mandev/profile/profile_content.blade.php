@@ -2,7 +2,6 @@
     @include("".config("app.admin_dirname").".noauth")
 @else
 
-
   <div class="row profile">
     <div class="col-md-12">
       <!--BEGIN TABS-->

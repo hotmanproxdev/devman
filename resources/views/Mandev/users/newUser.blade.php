@@ -1,6 +1,9 @@
 @if($pageRole==false)
   @include("".config("app.admin_dirname").".noauth")
 @else
+
+  <div id="newuser">
+
 <form id="newuser" method="post" class="form-horizontal">
 <div class="row">
   <div class="col-md-12">
@@ -289,6 +292,9 @@
 
 
 </script>
+
+
+  </div>
 
   @endif
 

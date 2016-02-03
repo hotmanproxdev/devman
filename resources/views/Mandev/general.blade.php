@@ -329,12 +329,7 @@
 
 <!-- END PAGE LEVEL PLUGINS -->
 <script>
-
-
-
-
   $.datetimepicker.setLocale('en');
-
   $('#datetimepicker_format').datetimepicker({value:'2015/04/15 05:03', format: $("#datetimepicker_format_value").val()});
   $("#datetimepicker_format_change").on("click", function(e){
     $("#datetimepicker_format").data('xdsoft_datetimepicker').setOptions({format: $("#datetimepicker_format_value").val()});
@@ -343,16 +338,29 @@
     $.datetimepicker.setLocale($(e.currentTarget).val());
   });
 
-  $('.datetimepicker').datetimepicker({
-    dayOfWeekStart : 1,
-    lang:'tr',
-    format:'Y-m-d H:i',
-    step:10,
+    $('.datetimepicker').datetimepicker({
+      dayOfWeekStart : 1,
+      lang:'tr',
+      format:'{{config("app.dateFormat")}}',
+      step:10,
+    });
+
+
+  $("body").on("click",".datetimepicker",function()
+  {
+    $(this).datetimepicker({
+      dayOfWeekStart : 1,
+      lang:'tr',
+      format:'{{config("app.dateFormat")}}',
+      step:10,
+    });
+    $(this).datetimepicker("show");
+    var style=$(".xdsoft_").attr("style");
+    $(".xdsoft_").attr("style",""+style+" z-index:9999999;");
   });
+
   $('#datetimepicker').datetimepicker({value:'2015/04/15 05:03',step:10});
-
   $('.some_class').datetimepicker();
-
   $('#default_datetimepicker').datetimepicker({
     formatTime:'H:i',
     formatDate:'d.m.Y',
@@ -361,7 +369,6 @@
     defaultTime:'10:00',
     timepickerScrollbar:false
   });
-
   $('#datetimepicker10').datetimepicker({
     step:5,
     inline:true
@@ -369,7 +376,6 @@
   $('#datetimepicker_mask').datetimepicker({
     mask:'9999/19/39 29:59'
   });
-
   $('#datetimepicker1').datetimepicker({
     datepicker:false,
     format:'H:i',
@@ -450,7 +456,6 @@
       if (date.getMonth() == dateToDisable.getMonth() && date.getDate() == dateToDisable.getDate()) {
         return [false, ""]
       }
-
       return [true, ""];
     }
   });
@@ -459,14 +464,13 @@
       if (date.getMonth() == dateToDisable.getMonth() && date.getDate() == dateToDisable.getDate()) {
         return [true, "custom-date-style"];
       }
-
       return [true, ""];
     }
   });
   $('#datetimepicker_dark').datetimepicker({theme:'dark'})
-
-
 </script>
+
+
 
 <!-- END PAGE LEVEL SCRIPTS -->
 <script>
@@ -490,6 +494,18 @@
 <!-- END JAVASCRIPTS -->
 
 <script>
+
+  $(window).load(function()
+  {
+    $(".select2").select2({allowClear: true});
+  });
+
+  $("body").on("hover",".select2",function()
+  {
+    $(this).select2({allowClear: true});
+
+  });
+
   $(document).on("click","a.xmodal",function(event)
   {
     event.preventDefault();
@@ -499,20 +515,36 @@
     var title=$(this).attr("modal-title");
     $(".modalLoad"+href2).load(model);
     $("h4.modal-title").html(title);
-
   });
 </script>
 
 <script>
+
+  $(document).on("keyup","input.autocomplete",function()
+  {
+    var method=$(this).attr("autocomplete_method");
+    var model=$(this).attr("model");
+    var context=$(this).attr("context");
+    var val=$(this).val();
+    var rval=val.replace(/ /g,"____");
+    if(rval.length>0)
+    {
+      $(".autocomplete_result").show();
+      $(".autocomplete_result").load("{{$baseUrl}}/{{strtolower(config("app.admin_dirname"))}}/test/autocomplete?autoval="+rval+"&automodel="+model+"&context="+context);
+    }
+    else
+    {
+      $(".autocomplete_result").html("");
+      $(".autocomplete_result").hide();
+    }
+
+  });
+
   $(document).on("click","a.submit",function(){
-
     var form=$(this).attr("ajax-form");
-
     $("form#"+form).find(".form-control").each(function(index,value)
     {
-
       var required=$(this).attr("require");
-
       if(required!==undefined)
       {
         var require_split=required.split("-");
@@ -529,7 +561,6 @@
     var loading='<img src="{{$baseUrl}}/reload.gif" width="32">';
     document.getElementById(""+form+"result").innerHTML=loading;
     var data = new window.FormData($('form#'+form)[0]);
-
     $.ajax({
       url:action,
       type:"POST",
@@ -542,16 +573,13 @@
       },
       error: function () { $("span#"+form+"result").html("error"); }
     });
-
   });
 </script>
 
 <script>
   var dbchart = function () {
-
     return {
       initCharts: function () {
-
         function showChartTooltip(x, y, xValue, yValue) {
           $('<div id="tooltip" class="chart-tooltip">' + yValue + '<\/div>').css({
             position: 'absolute',
@@ -563,14 +591,11 @@
             'background-color': '#fff'
           }).appendTo("body").fadeIn(200);
         }
-
-
         if ($('#site_activities2').size() != 0) {
           //site activities
           var previousPoint2 = null;
           $('#site_activities_loading').hide();
           $('#site_activities_content').show();
-
           var data1 = [
             ['DEC', 400],
             ['JAN', 600],
@@ -583,10 +608,7 @@
             ['AUG', 1200],
             ['SEP', 600]
           ];
-
-
           var plot_statistics = $.plot($("#site_activities2"),
-
               [{
                 data: data1,
                 lines: {
@@ -615,9 +637,7 @@
                 color: '#9ACAE6',
                 shadowSize: 0
               }],
-
               {
-
                 xaxis: {
                   tickLength: 0,
                   tickDecimals: 0,
@@ -649,7 +669,6 @@
                   borderWidth: 1
                 }
               });
-
           $("#site_activities2").bind("plothover", function (event, pos, item) {
             $("#x").text(pos.x.toFixed(2));
             $("#y").text(pos.y.toFixed(2));
@@ -663,17 +682,13 @@
               }
             }
           });
-
           $('#site_activities2').bind("mouseleave", function () {
             $("#tooltip").remove();
           });
         }
       },
     };
-
   }();
-
-
   dbchart.initCharts();
 </script>
 

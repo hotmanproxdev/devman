@@ -26,24 +26,18 @@ class testController extends Controller
              //base service provider
              $this->app=app()->make("Base");
              //page lang
-             $this->data=$this->app->getLang(['url_path'=>$this->url_path,'lang'=>1]);
+             $this->data=$this->app->getLang(['url_path'=>"default",'lang'=>1]);
              //menu statu
              $this->data['menu']=$this->app->menuStatu('normal');
              //admin data
              $this->admin=$this->app->admin();
-            //page role
-            $this->data['pageRole']=$this->app->pageRole(['pageRole'=>1,'admin'=>$this->admin->role]);
 
         }
 
-    public function getIndex ()
+    public function getAutocomplete ()
     {
         //return view
-        return view("".config("app.admin_dirname").".".$this->url_path.".main",$this->data);
+        return app("\Autocomplete")->get();
     }
 
-    public function postIndex()
-    {
-        dd($_POST);
-    }
 }

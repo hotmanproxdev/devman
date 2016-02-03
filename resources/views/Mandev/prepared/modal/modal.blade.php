@@ -32,7 +32,7 @@
     <h4 class="modal-title">Full Width</h4>
   </div>
   <div class="modal-body modalLoadfull-width" style="min-height:1000px;">
-
   </div>
+
 </div>
 

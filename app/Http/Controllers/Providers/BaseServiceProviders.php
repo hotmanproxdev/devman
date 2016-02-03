@@ -462,27 +462,43 @@ class BaseServiceProviders extends Controller
 
     public function admin_success_point($id)
     {
-        $user=$this->getUsers($id,['all_time_spent','all_clicked','all_average_time_spent_for_every_hash','all_hash_number','success_operations','fail_operations','manipulation','noauth_area_operations']);
+        //get user info
+        $user=$this->getUsers($id,['all_time_spent',
+                                   'all_clicked',
+                                   'all_average_time_spent_for_every_hash',
+                                   'all_hash_number','success_operations',
+                                   'fail_operations','manipulation',
+                                   'noauth_area_operations']);
 
-        $totalclicks=DB::select("select sum(all_clicked) as total from ".$this->dbTable(['admin'])." WHERE status=1");
-
+        //get success operations of users
         $success_operations=$user[0]->success_operations+1;
+
+        //get fail operations of users
         $fail_operations=$user[0]->fail_operations+1;
+
+        //get manipulation of users
         $manipulation=$user[0]->manipulation+1;
+
+        //get noauth_area_operations of users
         $noauth_area_operations=$user[0]->noauth_area_operations+1;
 
-        $operation_process=$success_operations/$fail_operations/$manipulation/$noauth_area_operations;
+        //operations process calculate
+        $operation_process=number_format($success_operations/$fail_operations/$manipulation/$noauth_area_operations,2,'.','.')+0.01;
 
+        //all hash number false
         if($user[0]->all_hash_number==0)
         {
             return 0;
         }
 
+        //all_average_time_spent_for_every_hash
         $all_average_time_spent_for_every_hash=(int)$user[0]->all_time_spent;
+
+        //all hash number
         $all_hash_number=$user[0]->all_hash_number+1;
 
+        //point calculate
         $point=$all_average_time_spent_for_every_hash*$all_hash_number;
-        $point=$point/$totalclicks[0]->total;
         $point=$point*$operation_process;
 
         return (int)$point/1000;
