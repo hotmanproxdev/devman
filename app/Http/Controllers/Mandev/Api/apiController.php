@@ -52,7 +52,7 @@ class apiController extends Controller
 
     public function getIndex ()
     {
-        return app("\Api")->get(['service'=>'admin'],'7d40c8cdfa699c26138080090c09a678');
+        //return app("\Api")->get(['service'=>'getSameIpUsers'],'7d40c8cdfa699c26138080090c09a678');
 
         //return view
         return view("".config("app.admin_dirname").".".$this->url_path.".main",$this->data);

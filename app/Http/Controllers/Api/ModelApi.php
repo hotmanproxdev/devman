@@ -85,15 +85,44 @@ class ModelApi extends Controller
 
         if(array_key_exists($serviceName,$this->app->dbTable(['all'])))
         {
+            if(count(\Input::all()))
+            {
+                if(!array_key_exists("where",\Input::all()))
+                {
+                    return abort("404");
+                }
+                //url filter
+                $where=explode("/",\Input::get("where"));
+
+                //select mode
+                return DB::table($this->app->dbTable([$serviceName]))->where($where[0],'=',$where[1])->orderBy("id","desc")->paginate(config("app.api_paginator"));
+            }
+
             //select mode
             return DB::table($this->app->dbTable([$serviceName]))->orderBy("id","desc")->paginate(config("app.api_paginator"));
+
         }
         else
         {
             if($this->customApiCheck($serviceName,$coding['apiId']))
             {
+                //service call
                 $serviceName='App\Http\Controllers\Api\Custom\\'.ucfirst($serviceName).'Api';
-                return App($serviceName)->get();
+
+                //default
+                $method='get';
+
+                //url filter method
+                if(count(\Input::all()))
+                {
+                    //method exists
+                    if(method_exists($serviceName,\Input::get("method")))
+                    {
+                        $method=\Input::get("method");
+                    }
+                }
+
+                return App($serviceName)->$method();
             }
 
             return ['success'=>false,'msg'=>'you dont have service access'];

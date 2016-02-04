@@ -52,8 +52,21 @@ class ServicesApi extends Controller
                     if($serviceName=="test")
                     {
                         //test mode call
-                        return $this->testRequest();
+                        return $this->testRequest($developer['user']);
                     }
+
+                    //access services
+                    if(count($developer['access_services']))
+                    {
+                        if(!in_array($serviceName,$developer['access_services']))
+                        {
+                            //developer false
+                            return response()->json(['success'=>false,
+                                'msg'=>'you are not authorized for this service access'
+                            ]);
+                        }
+                    }
+
                     //service call
                     return $this->model->get($serviceName,['codingRequest'=>false,'apiId'=>$developer['apiId']]);
                 }
@@ -83,7 +96,7 @@ class ServicesApi extends Controller
                         }
 
                         //test mode call
-                        return $this->testRequest();
+                        return $this->testRequest($coding['user']);
                     }
 
                     //out source forbidden (like postman)
@@ -112,14 +125,27 @@ class ServicesApi extends Controller
     }
 
 
-    public function testRequest()
+    public function testRequest($apiuser)
     {
+        //general servicess
+        $services=$this->controller->services();
+
+        //authorized services
+        if($apiuser[0]->access_services!==NULL)
+        {
+            $test=['test'];
+            $access_service=explode("-",$apiuser[0]->access_services);
+            $services=array_merge($test,$access_service);
+        }
         $json_content=[
                        'success'=>true,
+                       'ccode'=>$apiuser[0]->ccode,
+                       'apikey'=>$apiuser[0]->apikey,
+                       'standart_key'=>$apiuser[0]->standart_key,
                        'ip'=>$this->request->ip(),
-                       'aim'=>'developer',
+                       'aim'=>'select-develop',
                        'hash'=>Session("apiHash"),
-                       'services'=>$this->controller->services(),
+                       'services'=>$services,
                        'select'=>$this->request->header("select"),
                        'update'=>$this->request->header("update")
                        ];

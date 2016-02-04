@@ -59,11 +59,21 @@ class ControllerApi extends Controller
         if($apiHash)
         {
             $developer=DB::table($this->app->dbTable(['api']))->where("ccode","=",config("app.api_ccode"))->where("hash","=",$apiHash)->get();
+            if($developer[0]->access_services!==NULL)
+            {
+                $access_services=explode("-",$developer[0]->access_services);
+            }
+            else
+            {
+                $access_services=array();
+            }
+
+
             if(count($developer))
             {
                 if($developer[0]->access_service_key)
                 {
-                    return ['success'=>true,'apiId'=>$developer[0]->id];
+                    return ['success'=>true,'apiId'=>$developer[0]->id,'access_services'=>$access_services,'user'=>$developer];
                 }
 
                 return ['success'=>false,'msg'=>'access service key closed'];
@@ -82,6 +92,15 @@ class ControllerApi extends Controller
             if(!$active) $active='';
 
             $coding_developer=DB::table($this->app->dbTable(['api']))->where("standart_key","=",$active)->get();
+
+            if($coding_developer[0]->access_services!==NULL)
+            {
+                $access_services=explode("-",$coding_developer[0]->access_services);
+            }
+            else
+            {
+                $access_services=array();
+            }
 
             if(count($coding_developer)==false)
             {
@@ -113,7 +132,7 @@ class ControllerApi extends Controller
                 return ['success'=>false,'msg'=>'you have invalid headers'];
             }
 
-            return ['success'=>true,'apiId'=>$coding_developer[0]->id];
+            return ['success'=>true,'apiId'=>$coding_developer[0]->id,'access_services'=>$access_services,'user'=>$coding_developer];
 
     }
 }

@@ -39,6 +39,11 @@ class GetSameIpUsersApi extends Controller
                           GROUP BY logs.userip HAVING ipCount>1");
     }
 
+    public function test()
+    {
+        return DB::table($this->table("admin"))->get();
+    }
+
     private function table ($table)
     {
        return $this->app->dbTable([$table]);
