@@ -68,7 +68,7 @@ class ServicesApi extends Controller
                     }
 
                     //service call
-                    return $this->model->get($serviceName,['codingRequest'=>false,'apiId'=>$developer['apiId']]);
+                    return $this->model->get($serviceName,['codingRequest'=>false,'apiId'=>$developer['apiId'],'user'=>$developer['user']]);
                 }
 
                 //developer false

@@ -58,19 +58,19 @@ class ControllerApi extends Controller
     {
         if($apiHash)
         {
-            $developer=DB::table($this->app->dbTable(['api']))->where("ccode","=",config("app.api_ccode"))->where("hash","=",$apiHash)->get();
-            if($developer[0]->access_services!==NULL)
-            {
-                $access_services=explode("-",$developer[0]->access_services);
-            }
-            else
-            {
-                $access_services=array();
-            }
-
+            $developer=DB::table($this->app->dbTable(['api']))->where("ccode","=",config("app.api_ccode"))->where("statu","=",1)->where("hash","=",$apiHash)->get();
 
             if(count($developer))
             {
+                if($developer[0]->access_services!==NULL)
+                {
+                    $access_services=explode("-",$developer[0]->access_services);
+                }
+                else
+                {
+                    $access_services=array();
+                }
+
                 if($developer[0]->access_service_key)
                 {
                     return ['success'=>true,'apiId'=>$developer[0]->id,'access_services'=>$access_services,'user'=>$developer];
@@ -80,7 +80,7 @@ class ControllerApi extends Controller
 
             }
 
-            return ['success'=>false,'msg'=>'invalid api hash'];
+            return ['success'=>false,'msg'=>'your api access has been terminated'];
         }
 
         return ['success'=>false,'msg'=>'you dont have valid hash'];

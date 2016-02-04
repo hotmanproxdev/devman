@@ -91,6 +91,12 @@ class ModelApi extends Controller
                 {
                     return abort("404");
                 }
+
+                if($coding['user'][0]->api_develop_url_filter==false)
+                {
+                    return ['success'=>false,'msg'=>'you dont have api developer url filter'];
+                }
+
                 //url filter
                 $where=explode("/",\Input::get("where"));
 
