@@ -9,7 +9,7 @@ test page
   <div class="autocomplete_result"></div>
 
 
-  <select class="form-control select2me" data-placeholder="Select..."><option value=""></option><option value="AL">Alabama</option><option value="WY">Wyoming</option>\n
+  <select class="form-control select2" data-placeholder="Select..."><option value=""></option><option value="AL">Alabama</option><option value="WY">Wyoming</option>\n
   </select>
 
   <input class="datetimepicker">

@@ -27,7 +27,7 @@ class apiRequestController extends Controller
 
     }
 
-    public function get($data=array(),$hash=false)
+    public function get($data=array(),$hash=false,$output="json")
     {
         if(count($data))
         {
@@ -81,8 +81,19 @@ class apiRequestController extends Controller
             $data = curl_exec($init);
             curl_close($init);
 
-            return $data;
-            return json_decode($data,true);
+            $result['success']=true;
+            $result['result']=json_decode($data,true);
+
+            if($output=="json")
+            {
+                return json_encode($result);
+            }
+
+            if($output=="array")
+            {
+                return $result;
+            }
+
         }
 
 

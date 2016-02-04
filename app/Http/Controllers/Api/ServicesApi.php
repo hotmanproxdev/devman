@@ -76,9 +76,23 @@ class ServicesApi extends Controller
                     //test mode
                     if($serviceName=="test")
                     {
+                        if($this->request->header('Postman-Token'))
+                        {
+                            //developer coding header false
+                            return 'You dont have any permission for data access from out source';
+                        }
+
                         //test mode call
                         return $this->testRequest();
                     }
+
+                    //out source forbidden (like postman)
+                    if($this->request->header('Postman-Token'))
+                    {
+                        //developer coding header false
+                        return 'You dont have any permission for data access from out source';
+                    }
+
                     //service call
                     return $this->model->get($serviceName,['codingRequest'=>1,'apiId'=>$coding['apiId']]);
                 }

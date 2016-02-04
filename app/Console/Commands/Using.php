@@ -102,7 +102,7 @@ class Using extends Command
         //select using
         if($this->argument("name")=="select")
         {
-            $dd['select']=' <select class="form-control select2me" data-placeholder="Select..."><option value=""></option><option value="AL">Alabama</option><option value="WY">Wyoming</option>
+            $dd['select']=' <select class="form-control select2" data-placeholder="Select..."><option value=""></option><option value="AL">Alabama</option><option value="WY">Wyoming</option>
                             </select>';
 
             dd($dd);
