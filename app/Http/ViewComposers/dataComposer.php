@@ -39,6 +39,7 @@ class dataComposer {
         $view->with('baseUrl', 'http://'.$this->request->getHttpHost().''.$this->request->getBaseUrl().'');
         $view->with('mandev', 'http://'.$this->request->getHttpHost().''.$this->request->getBaseUrl().'/'.strtolower(config("app.admin_dirname")).'');
         $view->with('token',$this->token);
+        //$view->with('activites_chart',"blablachart");
     }
 
 }

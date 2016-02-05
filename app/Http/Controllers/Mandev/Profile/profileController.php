@@ -104,7 +104,6 @@ class profileController extends Controller
                 }
                 else
                 {
-                    $this->app->updateLogInfo($this->admin->id,['msg'=>$this->data['profil_false_route'],'noauth_area_operations'=>1,'manipulation'=>1]);
                     return abort("404");
                 }
 

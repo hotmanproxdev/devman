@@ -52,7 +52,10 @@ class apiController extends Controller
 
     public function getIndex ()
     {
-        //return app("\Api")->get(['service'=>'getSameIpUsers'],'7d40c8cdfa699c26138080090c09a678');
+        $linedata=['Ali'=>78,'Nihan'=>97,'Salih'=>22,'Kasım'=>110,'Mert'=>123];
+        $linedata3=['Ali'=>780,'Nihan'=>97,'Salih'=>22,'Kasım'=>110,'Mert'=>123];
+
+        $this->data['linechart']=app("\Chart")->lineChart(['chart_number'=>[2,3],'data'=>[$linedata,$linedata3]]);
 
         //return view
         return view("".config("app.admin_dirname").".".$this->url_path.".main",$this->data);

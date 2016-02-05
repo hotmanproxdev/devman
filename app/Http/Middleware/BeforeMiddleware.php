@@ -72,7 +72,7 @@ class BeforeMiddleware
             'hash_time_spent'=>$time_spent,'all_average_time_spent_for_every_hash'=>$all_average_time_spent_for_every_hash]);
 
 
-        $this->app->insertLang(["url_path"=>"default","word_data"=>['token_invalid'=>'Bir sayfada bir işlemi sadece aynı token ile yapabilirsiniz.'],"lang"=>1]);
+        $this->app->insertLang(["url_path"=>"default","word_data"=>['linechart'=>''],"lang"=>1]);
 
 
         return $next($request);

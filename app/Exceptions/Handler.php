@@ -46,7 +46,7 @@ class Handler extends ExceptionHandler
             $e = new NotFoundHttpException($e->getMessage(), $e);
         }
 
-        app()->make("Base")->updateLogInfo(app()->make("Base")->admin()->id,['url_path_valid'=>0,'noauth_area_operations'=>1,'manipulation'=>1]);
+        app()->make("Base")->updateLogInfo(app()->make("Base")->admin()->id,['msg'=>'Unauthorized access','url_path_valid'=>0,'no_route'=>1,'noauth_area_operations'=>1,'manipulation'=>1]);
         return parent::render($request, $e);
     }
 }

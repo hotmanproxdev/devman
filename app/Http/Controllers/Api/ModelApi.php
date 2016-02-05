@@ -71,7 +71,11 @@ class ModelApi extends Controller
                     if($this->customApiCheck($serviceName,$coding['apiId']))
                     {
                         $serviceName='App\Http\Controllers\Api\Custom\\'.ucfirst($serviceName).'Api';
-                        return App($serviceName)->get();
+
+                        $method=$this->request->header('method');
+
+                        return App($serviceName)->$method();
+
                     }
 
                     return ['success'=>false,'msg'=>'you dont have service access'];

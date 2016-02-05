@@ -232,6 +232,7 @@ return [
         'Data' => App\Http\Services\dataController::class,
         'Api' =>App\Http\Services\apiRequestController::class,
         'Autocomplete' =>App\Http\Services\autoCompleteController::class,
+        'Chart' =>App\Http\Services\activitiesChartController::class,
 
     ],
 

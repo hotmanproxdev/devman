@@ -25,6 +25,8 @@ class GetSameIpUsersApi extends Controller
 
     public function get ()
     {
+        $select=json_decode($this->request->header("select"));
+
         //get users using the same ip
         return DB::select("SELECT ip,
 

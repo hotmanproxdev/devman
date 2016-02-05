@@ -59,9 +59,16 @@ class apiRequestController extends Controller
             //select for fields
             if(array_key_exists("select",$data))
             {
-                $this->header['select']='select:'.json_encode($data['select']);
-            }
+                if(is_array($data['select']))
+                {
+                    $this->header['select']='select:'.json_encode($data['select']);
+                }
+                else
+                {
+                    $this->header['select']='select:'.$data['select'];
+                }
 
+            }
 
 
             curl_setopt($init,CURLOPT_URL,$url);
