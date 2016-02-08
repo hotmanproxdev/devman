@@ -20,6 +20,8 @@
       </div>
       <div class="portlet-body form">
         <form id="apiedit" method="post" class="form-horizontal form-bordered">
+          <input type="hidden" name="_token" value="{{$token}}">
+          {{Session::put("_token",$token)}}
           <div class="form-group">
             <label class="col-sm-3 control-label">Static Ip:</label>
             <div class="col-sm-4">
@@ -27,7 +29,7 @@
 												<span class="input-group-addon">
 												<i class="fa fa-qrcode"></i>
 												</span>
-                <input type="text" id="typeahead_example_1" name="static_ip" class="form-control" value=""/>
+                <input type="text" id="typeahead_example_1" name="ip" class="form-control" value=""/>
               </div>
               <p class="help-block">
                 {{$api_static_ip_info}}.<br>
@@ -151,7 +153,8 @@
           <div class="form-actions">
             <div class="row">
               <div class="col-md-offset-3 col-md-9">
-                <button type="submit" class="btn purple"><i class="fa fa-check"></i> Submit</button>
+                <a class="submit btn purple" ajax-form="apiedit" action="api/edit"><i class="fa fa-check"></i> Submit</a>
+                <span id="apieditresult"></span>
               </div>
             </div>
           </div>

@@ -65,8 +65,20 @@ class apiController extends Controller
         return view("".config("app.admin_dirname").".".$this->url_path.".apiEdit",$this->data);
     }
 
-    public function getAutocomplete()
+    public function postEdit()
     {
-        return app("\Autocomplete")->get();
+        //accept post in with ajax method
+        return app("\Ajax")->control(function()
+        {
+            //same token control
+            return app("\Token")->valid(function()
+            {
+                //return view
+                dd($_POST);
+            });
+
+        });
+
     }
+
 }
