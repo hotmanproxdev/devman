@@ -38,7 +38,7 @@ class apiController extends Controller
              //menu statu
              $this->data['menu']=$this->app->menuStatu('normal');
              //page role
-             $this->data['pageRole']=$this->app->pageRole(['pageRole'=>1,'admin'=>$this->admin]);
+             $this->data['pageRole']=$this->app->pageRole(['pageRole'=>13,'admin'=>$this->admin]);
              //admin view
              $this->data['admin']=$this->admin;
              //get model
@@ -52,19 +52,17 @@ class apiController extends Controller
 
     public function getIndex ()
     {
-        $linedata=['Ali'=>78,'Nihan'=>97,'Salih'=>22,'Kasım'=>110,'Mert'=>123];
-        $linedata3=['Ali'=>780,'Nihan'=>97,'Salih'=>22,'Kasım'=>110,'Mert'=>123];
-
-        $this->data['linechart']=app("\Chart")->lineChart(['chart_number'=>[2,3],'data'=>[$linedata,$linedata3]]);
+        //get api accesses from query
+        $this->data['apiAccesses']=$this->model->getApiAccesses();
 
         //return view
         return view("".config("app.admin_dirname").".".$this->url_path.".main",$this->data);
     }
 
-    public function getTest()
+    public function getEdit()
     {
         //return view
-        return view("".config("app.admin_dirname").".".$this->url_path.".apitest",[]);
+        return view("".config("app.admin_dirname").".".$this->url_path.".apiEdit",$this->data);
     }
 
     public function getAutocomplete()

@@ -30,9 +30,14 @@ class apiModel extends Controller
 
     }
 
-    public function index($data)
+    public function getApiAccesses()
     {
-        dd($data);
+        //system developer query callback
+        return app("\DevSource")->control(['api'],function()
+        {
+            //if callback false, call query according to admin's system_code
+            return DB::table($this->app->dbTable(['api']))->where("system_code","=",$this->admin->ccode)->orderBy("id","desc")->paginate(config("app.paginator"));
+        });
     }
 
 

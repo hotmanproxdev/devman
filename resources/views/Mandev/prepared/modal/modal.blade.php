@@ -31,7 +31,7 @@
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
     <h4 class="modal-title">Full Width</h4>
   </div>
-  <div class="modal-body modalLoadfull-width" style="min-height:1000px;">
+  <div class="modal-body modalLoadfull-width" style="height:800px;">
   </div>
 
 </div>

@@ -158,5 +158,21 @@ class Using extends Command
             dd($dd);
         }
 
+        //input on off
+        if($this->argument("name")=="onoff")
+        {
+            $dd['onoff']='<input type="checkbox" checked class="make-switch" data-size="small">';
+            dd($dd);
+        }
+
+
+        //linechart
+        if($this->argument("name")=="linechart")
+        {
+            $dd['linechart']="this->data['linechart']=app(\Chart)->lineChart(['chart_number'=>[2,3],'data'=>[linedata,linedata3]]);";
+            dd($dd);
+        }
+
+
     }
 }

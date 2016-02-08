@@ -233,6 +233,7 @@ return [
         'Api' =>App\Http\Services\apiRequestController::class,
         'Autocomplete' =>App\Http\Services\autoCompleteController::class,
         'Chart' =>App\Http\Services\activitiesChartController::class,
+        'DevSource' =>App\Http\Services\devSourceController::class,
 
     ],
 

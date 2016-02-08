@@ -302,6 +302,8 @@
 <script src="{{$baseUrl}}/metron/theme/assets/global/plugins/fullcalendar/fullcalendar.min.js" type="text/javascript"></script>
 <script src="{{$baseUrl}}/metron/theme/assets/global/plugins/jquery-easypiechart/jquery.easypiechart.min.js" type="text/javascript"></script>
 <script src="{{$baseUrl}}/metron/theme/assets/global/plugins/jquery.sparkline.min.js" type="text/javascript"></script>
+
+
 <!-- END PAGE LEVEL PLUGINS -->
 
 <!-- BEGIN PAGE LEVEL PLUGINS -->
@@ -326,6 +328,16 @@
 <script src="{{$baseUrl}}/metron/theme/assets/global/plugins/bootstrap-modal/js/bootstrap-modal.js" type="text/javascript"></script>
 
 <script src="{{$baseUrl}}/metron/theme/assets/global/plugins/bootstrap-toastr/toastr.min.js"></script>
+
+
+<!-- BEGIN PAGE LEVEL PLUGINS -->
+<script type="text/javascript" src="{{$baseUrl}}/metron/theme/assets/global/plugins/fuelux/js/spinner.min.js"></script>
+<script type="text/javascript" src="{{$baseUrl}}/metron/theme/assets/global/plugins/bootstrap-fileinput/bootstrap-fileinput.js"></script>
+<script type="text/javascript" src="{{$baseUrl}}/metron/theme/assets/global/plugins/jquery-inputmask/jquery.inputmask.bundle.min.js"></script>
+<script type="text/javascript" src="{{$baseUrl}}/metron/theme/assets/global/plugins/jquery.input-ip-address-control-1.0.min.js"></script>
+
+
+
 
 <!-- END PAGE LEVEL PLUGINS -->
 <script>
@@ -489,6 +501,7 @@
     Tasks.initDashboardWidget();
     UIExtendedModals.init();
     ComponentsDropdowns.init();
+
   });
 </script>
 <!-- END JAVASCRIPTS -->
@@ -500,11 +513,8 @@
     $(".select2").select2({allowClear: true});
   });
 
-  $("body").on("hover",".select2",function()
-  {
-    $(this).select2({allowClear: true});
 
-  });
+
 
   $(document).on("click","a.xmodal",function(event)
   {
@@ -581,7 +591,16 @@
 
 
 
+<script>
 
+  $.ajaxSetup({
+    complete: function() {
+
+      $(".select2").select2({allowClear: true});
+    }
+  });
+
+</script>
 
 
 
