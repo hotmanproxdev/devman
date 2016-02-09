@@ -136,75 +136,71 @@ class usersController extends Controller
                 return $this->notification->warning(['msg'=>$this->data['noauth'],'title'=>$this->data['error']]);
             }
 
-            //validation check
-            $validation=$this->validation->make($this->validationRules("postNewuser"));
 
-            //validation false
-            if(!$validation['result'])
+            return $this->validation->make($this->validationRules("postNewuser"),function()
             {
-                //validation false notification
-                return $this->notification->warning(['msg'=>$validation['msg'],'title'=>$this->data['error']]);
-            }
+                //additional fields
+                $_POST['created_at']=time();
+                $_POST['photo']='default.png';
+                $_POST['lang']=config("app.default_lang");
+                $_POST['password']=$this->app->passwordHash($_POST['password']);
 
-            //additional fields
-            $_POST['created_at']=time();
-            $_POST['photo']='default.png';
-            $_POST['lang']=config("app.default_lang");
-            $_POST['password']=$this->app->passwordHash($_POST['password']);
+                $datarole=explode("-",$_POST['default_roles']);
 
-            $datarole=explode("-",$_POST['default_roles']);
-
-            //get role changing roles for new user
-            if(!$this->app->pageRole(['pageRole'=>7,'admin'=>$this->admin]))
-            {
-                $datarole[0]=2;
-            }
-
-            //get role
-            $getrole=DB::table($this->app->dbTable(['default_roles']))->where("system_number","=",$datarole[0])->get();
-
-            if(count($getrole))
-            {
-                //get role
                 //get role changing roles for new user
                 if(!$this->app->pageRole(['pageRole'=>7,'admin'=>$this->admin]))
                 {
-                    $roles=$getrole[0]->roles;
+                    $datarole[0]=2;
+                }
+
+                //get role
+                $getrole=DB::table($this->app->dbTable(['default_roles']))->where("system_number","=",$datarole[0])->get();
+
+                if(count($getrole))
+                {
+                    //get role
+                    //get role changing roles for new user
+                    if(!$this->app->pageRole(['pageRole'=>7,'admin'=>$this->admin]))
+                    {
+                        $roles=$getrole[0]->roles;
+                    }
+                    else
+                    {
+                        $roles=implode("@",$_POST['role_assign']);
+                    }
+
+
+                    $_POST['role']=$roles;
+                    $_POST['system_number']=$getrole[0]->system_number;
+                    $_POST['system_name']=$getrole[0]->role_name;
                 }
                 else
                 {
-                    $roles=implode("@",$_POST['role_assign']);
+                    //file upload notification
+                    return $this->notification->warning(['msg'=>$this->data['manipulation'],'title'=>$this->data['error']]);
+                }
+
+                $_POST['created_by']=$this->admin->id;
+
+                //update ccode except developer
+                if($this->admin->system_number>0)
+                {
+                    $_POST['ccode']=$this->admin->ccode;
                 }
 
 
-                $_POST['role']=$roles;
-                $_POST['system_number']=$getrole[0]->system_number;
-                $_POST['system_name']=$getrole[0]->role_name;
-            }
-            else
-            {
-                //file upload notification
-                return $this->notification->warning(['msg'=>$this->data['manipulation'],'title'=>$this->data['error']]);
-            }
+                //new user post
+                if($this->model->newUserCreate($this->app->getvalidPostKey($_POST,['_token','role_assign','default_roles'])))
+                {
+                    //new user sql true notification
+                    return $this->notification->success(['msg'=>$this->data['new_user_post_true'],'title'=>$this->data['new_user_post_header']]);
+                }
 
-            $_POST['created_by']=$this->admin->id;
-
-            //update ccode except developer
-            if($this->admin->system_number>0)
-            {
-                $_POST['ccode']=$this->admin->ccode;
-            }
+                //new user sql false notification
+                return $this->notification->warning(['msg'=>$this->data['new_user_post_false'],'title'=>$this->data['new_user_post_header']]);
+            });
 
 
-            //new user post
-            if($this->model->newUserCreate($this->app->getvalidPostKey($_POST,['_token','role_assign','default_roles'])))
-            {
-                //new user sql true notification
-                return $this->notification->success(['msg'=>$this->data['new_user_post_true'],'title'=>$this->data['new_user_post_header']]);
-            }
-
-            //new user sql false notification
-            return $this->notification->warning(['msg'=>$this->data['new_user_post_false'],'title'=>$this->data['new_user_post_header']]);
 
         }
 

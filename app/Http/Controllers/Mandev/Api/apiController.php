@@ -81,4 +81,9 @@ class apiController extends Controller
 
     }
 
+    public function postTest()
+    {
+        return $this->notification->warning(['msg'=>$this->data['manipulation'],'title'=>$this->data['error']]);
+    }
+
 }
