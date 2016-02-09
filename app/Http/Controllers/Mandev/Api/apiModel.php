@@ -61,6 +61,29 @@ class apiModel extends Controller
     }
 
 
+    public function updateUserApi()
+    {
+        return app("\Transaction")->commit(function()
+        {
+            //reel key post data
+            $postdata=$this->app->getvalidPostKey(\Input::all(),['_token','id']);
+
+            //access services implode string key converter
+            if(array_key_exists("access_services",\Input::all()))
+            {
+                $postdata['access_services']=implode("-",$postdata['access_services']);
+            }
+            else
+            {
+                $postdata['access_services']=NULL;
+            }
+
+            //query booelean true
+            return DB::table($this->app->dbTable(['api']))->where("id","=",\Input::get("id"))->update($postdata);
+        });
+    }
+
+
 
 
 }

@@ -236,6 +236,7 @@ return [
         'DevSource' =>App\Http\Services\devSourceController::class,
         'Ajax' =>App\Http\Services\ajaxController::class,
         'Query' =>App\Http\Services\queryController::class,
+        'ApiServices' =>App\Http\Services\apiServicesController::class,
 
     ],
 

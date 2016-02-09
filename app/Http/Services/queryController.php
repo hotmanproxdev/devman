@@ -57,4 +57,26 @@ class queryController extends Controller
 
 
     }
+
+    public function isTrue($data,$callback)
+    {
+        $val=false;
+
+        if($data)
+        {
+            $val=true;
+        }
+
+        if($val)
+        {
+            if(is_callable($callback))
+            {
+                return call_user_func($callback);
+            }
+        }
+
+        //redirect to logout
+        return $this->notification->warning(['msg'=>$this->data['warning_info'],'title'=>$this->data['error']]);
+
+    }
 }

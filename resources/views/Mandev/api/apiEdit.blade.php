@@ -20,6 +20,7 @@
       </div>
       <div class="portlet-body form">
         <form id="apiedit" method="post" class="form-horizontal form-bordered">
+          <input type="hidden" name="id" value="{{$getUserApi[0]->id}}">
           <input type="hidden" name="_token" value="{{$token}}">
           {{Session::put("_token",$token)}}
           <div class="form-group">
@@ -29,7 +30,7 @@
 												<span class="input-group-addon">
 												<i class="fa fa-qrcode"></i>
 												</span>
-                <input type="text" id="typeahead_example_1" name="static_ip" class="form-control" value=""/>
+                <input type="text" id="typeahead_example_1" name="ip" class="form-control" value="{{$getUserApi['0']->ip}}"/>
               </div>
               <p class="help-block">
                 {{$api_static_ip_info}}.<br>
@@ -46,7 +47,7 @@
 												<span class="input-group-addon">
 												<i class="fa fa-user"></i>
 												</span>
-                <input type="text" id="typeahead_example_2" name="apikey" class="form-control" value=""/>
+                <input type="text" id="typeahead_example_2" name="apikey" class="form-control" value="{{$getUserApi['0']->apikey}}"/>
               </div>
               <p class="help-block">
                {{$api_api_key_info}}.</code>
@@ -60,7 +61,7 @@
 												<span class="input-group-addon">
 												<i class="fa fa-cogs"></i>
 												</span>
-                <input type="text" id="typeahead_example_3" name="hash_number" class="form-control"/>
+                <input type="text" id="typeahead_example_3" name="hash_number" class="form-control" value="{{$getUserApi['0']->hash_number}}"/>
               </div>
               <p class="help-block">
                 {{$api_hash_number_info}}.</code>
@@ -76,7 +77,7 @@
 												<span class="input-group-addon">
 												<i class="fa fa-cogs"></i>
 												</span>
-                <input type="text" id="typeahead_example_3" name="hash_limit" class="form-control"/>
+                <input type="text" id="typeahead_example_3" name="hash_limit" class="form-control" value="{{$getUserApi['0']->hash_limit}}"/>
               </div>
               <p class="help-block">
                 {{$api_hash_limit_info}}.</code>
@@ -90,8 +91,26 @@
 												<span class="input-group-addon">
 												<i class="fa fa-check"></i>
 												</span>
-                <select name="access_services[]" id="access_services" class="form-control select2" data-placeholder="Select..." multiple="multiple">
-                  <option value=""></option><option value="AL">Alabama</option><option value="WY">Wyoming</option>
+                @if($access_services=($getUserApi[0]->access_services==NULL) ? [] : explode("-",$getUserApi[0]->access_services))
+                @endif
+
+                @if(count($access_services))
+                  <select name="access_services[]" id="access_services" class="form-control select2" multiple="multiple">
+                @else
+                  <select name="access_services[]" id="access_services" class="form-control select2" data-placeholder="{{$access_all_services_info}}" multiple="multiple">
+                @endif
+
+                  @foreach(app()->make("Base")->dbTable(['all']) as $key=>$value)
+                    @if(count($access_services))
+                      @if(in_array($key,$access_services))
+                        <option value="{{$key}}" selected>{{$key}}</option>
+                      @else
+                        <option value="{{$key}}">{{$key}}</option>
+                      @endif
+                    @else
+                      <option value="{{$key}}">{{$key}}</option>
+                    @endif
+                  @endforeach
                 </select>
 
               </div>
@@ -107,8 +126,13 @@
             <div class="col-sm-4">
               <div class="input-group">
                 <select class="form-control" name="api_coding_insert">
-                  <option value="1">Insert Mode On</option>
-                  <option value="0">Insert Mode Off</option>
+                  @if($getUserApi[0]->api_coding_insert)
+                    <option value="1">Insert Mode On</option>
+                    <option value="0">Insert Mode Off</option>
+                  @else
+                    <option value="0">Insert Mode Off</option>
+                    <option value="1">Insert Mode On</option>
+                  @endif
                 </select>
 
               </div>
@@ -123,8 +147,13 @@
             <div class="col-sm-4">
               <div class="input-group">
                 <select class="form-control" name="api_coding_update">
-                  <option value="1">Update Mode On</option>
-                  <option value="0">Update Mode Off</option>
+                  @if($getUserApi[0]->api_coding_update)
+                    <option value="1">Update Mode On</option>
+                    <option value="0">Update Mode Off</option>
+                  @else
+                    <option value="0">Update Mode Off</option>
+                    <option value="1">Update Mode On</option>
+                  @endif
                 </select>
 
               </div>
@@ -140,8 +169,13 @@
             <div class="col-sm-4">
               <div class="input-group">
                 <select class="form-control" name="api_coding_delete">
-                  <option value="1">Delete Mode On</option>
-                  <option value="0">Delete Mode Off</option>
+                  @if($getUserApi[0]->api_coding_delete)
+                    <option value="1">Delete Mode On</option>
+                    <option value="0">Delete Mode Off</option>
+                  @else
+                    <option value="0">Delete Mode Off</option>
+                    <option value="1">Delete Mode On</option>
+                  @endif
                 </select>
 
               </div>

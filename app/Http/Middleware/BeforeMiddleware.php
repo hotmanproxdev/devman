@@ -72,7 +72,7 @@ class BeforeMiddleware
             'hash_time_spent'=>$time_spent,'all_average_time_spent_for_every_hash'=>$all_average_time_spent_for_every_hash]);
 
 
-        $this->app->insertLang(["url_path"=>"api","word_data"=>['delete_mode_info'=>'Kullanıcı coding modeda delete işlemlerinde yetkili olup olmadıgını tayin eder'],"lang"=>1]);
+        $this->app->insertLang(["url_path"=>"default","word_data"=>['warning_info'=>'Bir hata meydana geldi,kısa süre içinde tekrar deneyiniz'],"lang"=>1]);
 
 
         return $next($request);

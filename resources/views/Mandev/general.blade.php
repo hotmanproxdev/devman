@@ -513,10 +513,12 @@
     $(".select2").select2({allowClear: true,multiple:true });
   });
 
-  $("body").on("mouseover","select.select2",function()
+
+  $("body").on("mouseover",".select2",function()
   {
     $(".select2").select2({});
   });
+
 
   $(document).on("click","a.xmodal",function(event)
   {

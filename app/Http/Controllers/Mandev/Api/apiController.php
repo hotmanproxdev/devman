@@ -61,6 +61,7 @@ class apiController extends Controller
 
     public function getEdit()
     {
+        //it just accepts ajax request
         return app("\Ajax")->control(function()
         {
             //get user's api info
@@ -80,8 +81,11 @@ class apiController extends Controller
             //same token control
             return app("\Token")->valid(function()
             {
-                //return view
-                dd($_POST);
+                //post data query is true
+                return app("\Query")->isTrue($this->model->updateUserApi(),function()
+                {
+                    return $this->notification->success(['msg'=>$this->data['api_update_user'],'title'=>$this->data['successful']]);
+                });
             });
 
         });
