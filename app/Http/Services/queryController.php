@@ -6,53 +6,39 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Notification;
 
-class devSourceController extends Controller
+class queryController extends Controller
 {
 
+    public $request;
+    public $notification;
     public $app;
+    public $data;
 
-    public function __construct()
+    public function __construct(Request $request,Notification $notification)
     {
         //page protector
         $this->middleware('auth');
+        //request method
+        $this->request=$request;
+        //notification method
+        $this->notification=$notification;
         //base service provider
         $this->app=app()->make("Base");
         //admin data
         $this->admin=$this->app->admin();
+        //page lang
+        $this->data=$this->app->getLang(['url_path'=>'default','lang'=>$this->admin->lang]);
     }
 
-    public function control($data=array(),$callback)
-    {
-        if($this->admin->system_number==0)
-        {
-            return \DB::table($this->app->dbTable([$data[0]]))->orderBy("id","asc")->paginate(config("app.paginator"));
-        }
-        else
-        {
-            if(is_callable($callback))
-            {
-                return call_user_func($callback);
-            }
-        }
-
-    }
-
-
-    public function ccode($ccode,$callback)
+    public function isCountTrue($data=array(),$callback)
     {
         $val=false;
 
-        if($this->admin->system_number==0)
+        if(count($data))
         {
             $val=true;
-        }
-        else
-        {
-            if($this->admin->ccode==$ccode)
-            {
-                $val=true;
-            }
         }
 
         if($val)

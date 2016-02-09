@@ -90,7 +90,8 @@
 												<span class="input-group-addon">
 												<i class="fa fa-check"></i>
 												</span>
-                <select class="form-control select2" data-placeholder="Bütün servisler..." multiple="multiple" name="access_services"><option value=""></option><option value="AL">Alabama</option><option value="WY">Wyoming</option>\n
+                <select name="access_services[]" id="access_services" class="form-control select2" data-placeholder="Select..." multiple="multiple">
+                  <option value=""></option><option value="AL">Alabama</option><option value="WY">Wyoming</option>
                 </select>
 
               </div>
@@ -153,7 +154,7 @@
           <div class="form-actions">
             <div class="row">
               <div class="col-md-offset-3 col-md-9">
-                <a class="submit btn purple" ajax-form="apiedit" action="api/test"><i class="fa fa-check"></i> {{$save_changes}}</a>
+                <a class="submit btn purple" ajax-form="apiedit" action="api/edit"><i class="fa fa-check"></i> {{$save_changes}}</a>
                 <span id="apieditresult"></span>
               </div>
             </div>

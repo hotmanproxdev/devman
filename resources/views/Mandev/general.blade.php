@@ -510,11 +510,13 @@
 
   $(window).load(function()
   {
-    $(".select2").select2({allowClear: true});
+    $(".select2").select2({allowClear: true,multiple:true });
   });
 
-
-
+  $("body").on("mouseover","select.select2",function()
+  {
+    $(".select2").select2({});
+  });
 
   $(document).on("click","a.xmodal",function(event)
   {
@@ -549,6 +551,10 @@
     }
 
   });
+
+
+
+
 
   $(document).on("click","a.submit",function(){
     var form=$(this).attr("ajax-form");
@@ -591,16 +597,7 @@
 
 
 
-<script>
 
-  $.ajaxSetup({
-    complete: function() {
-
-      $(".select2").select2({allowClear: true});
-    }
-  });
-
-</script>
 
 
 

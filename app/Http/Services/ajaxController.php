@@ -50,7 +50,10 @@ class ajaxController extends Controller
         }
 
         //redirect to logout
-        return $this->notification->manipulation(['msg'=>$this->data['manipulation'],'title'=>$this->data['error']]);
+        $this->notification->manipulation(['msg'=>$this->data['manipulation'],'title'=>$this->data['error']]);
+
+        //redirect to logout
+        return redirect("".strtolower(config("app.admin_dirname"))."/logout");
 
 
     }

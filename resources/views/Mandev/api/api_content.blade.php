@@ -108,7 +108,7 @@
             </td>
 
             <td>
-              <a class="btn default xmodal" model="api/edit" modal-title="{{$api_edit_page_title}}" data-toggle="modal" href="#full-width">
+              <a class="btn default xmodal" model="api/edit?id={{$result->id}}" modal-title="{{$api_edit_page_title}}" data-toggle="modal" href="#full-width">
                 <span style="color:#336699; font-weight:bold;">{{$edit}}</span> </a>
             </td>
             <td>

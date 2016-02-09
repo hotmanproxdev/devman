@@ -235,6 +235,7 @@ return [
         'Chart' =>App\Http\Services\activitiesChartController::class,
         'DevSource' =>App\Http\Services\devSourceController::class,
         'Ajax' =>App\Http\Services\ajaxController::class,
+        'Query' =>App\Http\Services\queryController::class,
 
     ],
 

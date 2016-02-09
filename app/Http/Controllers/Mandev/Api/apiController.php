@@ -61,8 +61,15 @@ class apiController extends Controller
 
     public function getEdit()
     {
-        //return view
-        return view("".config("app.admin_dirname").".".$this->url_path.".apiEdit",$this->data);
+        return app("\Ajax")->control(function()
+        {
+            //get user's api info
+            $this->data['getUserApi']=$this->model->getUserApi(Input::get("id"));
+
+            //return view
+            return view("".config("app.admin_dirname").".".$this->url_path.".apiEdit",$this->data);
+        });
+
     }
 
     public function postEdit()
@@ -81,9 +88,5 @@ class apiController extends Controller
 
     }
 
-    public function postTest()
-    {
-        return $this->notification->warning(['msg'=>$this->data['manipulation'],'title'=>$this->data['error']]);
-    }
 
 }
