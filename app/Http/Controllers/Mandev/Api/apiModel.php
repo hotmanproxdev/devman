@@ -36,7 +36,7 @@ class apiModel extends Controller
         return app("\DevSource")->control(['api'],function()
         {
             //if callback false, call query according to admin's system_code
-            return DB::table($this->app->dbTable(['api']))->where("system_code","=",$this->admin->ccode)->orderBy("id","desc")->paginate(config("app.paginator"));
+            return DB::table($this->app->dbTable(['api']))->where("system_ccode","=",$this->admin->ccode)->orderBy("id","desc")->paginate(config("app.paginator"));
         });
     }
 
