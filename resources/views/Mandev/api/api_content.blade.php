@@ -84,6 +84,10 @@
             </th>
 
             <th scope="col">
+              {{$forbidden_access_services}}:
+            </th>
+
+            <th scope="col">
               Insert Mode:
             </th>
 
@@ -97,6 +101,12 @@
 
             <th scope="col">
               Url Filter Mode:
+            </th>
+            <th scope="col">
+              {{$daily_request_limit}}:
+            </th>
+            <th scope="col">
+              {{$daily_request_limit_number}}:
             </th>
           </tr>
           </thead>
@@ -155,6 +165,15 @@
               @endif
 
             </td>
+
+            <td>
+              @if($result->forbidden_access_services==NULL)
+                <span style="color:#e20a16; font-weight:bold;">No Service Restricted</span>
+              @else
+                {{$result->forbidden_access_services}}
+              @endif
+
+            </td>
             <td>
               @if($result->api_coding_insert)
                 <input type="checkbox" checked class="make-switch" data-size="small">
@@ -182,6 +201,14 @@
               @else
                 <input type="checkbox" class="make-switch" data-size="small">
               @endif
+            </td>
+
+            <td>
+              {{$result->request}}
+            </td>
+
+            <td>
+              {{$result->request_number}}
             </td>
           </tr>
             @endforeach

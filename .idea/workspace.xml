@@ -3,13 +3,14 @@
   <component name="ChangeListManager">
     <list default="true" id="d16930e0-0a2c-4c3d-ba04-752e0816a6a5" name="Default" comment="">
       <change type="MOVED" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/readme.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/Providers/BaseServiceProviders.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/Providers/BaseServiceProviders.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Middleware/BeforeMiddleware.php" afterPath="$PROJECT_DIR$/app/Http/Middleware/BeforeMiddleware.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/Mandev/Api/apiController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/Mandev/Api/apiController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/ControllerApi.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/ControllerApi.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/ModelApi.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/ModelApi.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/ServicesApi.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/ServicesApi.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/Mandev/api/apiEdit.blade.php" afterPath="$PROJECT_DIR$/resources/views/Mandev/api/apiEdit.blade.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/Mandev/Api/apiModel.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/Mandev/Api/apiModel.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/app.php" afterPath="$PROJECT_DIR$/config/app.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/Mandev/general.blade.php" afterPath="$PROJECT_DIR$/resources/views/Mandev/general.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Services/queryController.php" afterPath="$PROJECT_DIR$/app/Http/Services/queryController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/Mandev/api/api_content.blade.php" afterPath="$PROJECT_DIR$/resources/views/Mandev/api/api_content.blade.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="devman.iws" />
@@ -65,11 +66,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="apiController.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="modal.blade.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resources/views/Mandev/prepared/modal/modal.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-20.625" vertical-offset="0" max-vertical-offset="660">
+              <caret line="33" column="55" selection-start-line="33" selection-start-column="55" selection-end-line="33" selection-end-column="55" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="apiController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Mandev/Api/apiController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.648986" vertical-offset="844" max-vertical-offset="1530">
-              <caret line="84" column="66" selection-start-line="84" selection-start-column="66" selection-end-line="84" selection-end-column="66" />
+            <state vertical-scroll-proportion="-20.541666" vertical-offset="662" max-vertical-offset="1530">
+              <caret line="77" column="41" selection-start-line="77" selection-start-column="41" selection-end-line="77" selection-end-column="41" />
               <folding>
                 <element signature="e#51#79#0#PHP" expanded="true" />
               </folding>
@@ -77,14 +88,12 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="queryController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Http/Services/queryController.php">
+      <file leaf-file-name="BaseServiceProviders.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Providers/BaseServiceProviders.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-20.458334" vertical-offset="679" max-vertical-offset="1320">
-              <caret line="78" column="77" selection-start-line="78" selection-start-column="77" selection-end-line="78" selection-end-column="77" />
-              <folding>
-                <element signature="e#37#65#0#PHP" expanded="true" />
-              </folding>
+            <state vertical-scroll-proportion="-6.7843137" vertical-offset="7289" max-vertical-offset="8130">
+              <caret line="512" column="29" selection-start-line="512" selection-start-column="29" selection-end-line="512" selection-end-column="29" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -92,50 +101,40 @@
       <file leaf-file-name="apiEdit.blade.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/Mandev/api/apiEdit.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-8.916667" vertical-offset="1106" max-vertical-offset="3105">
-              <caret line="88" column="34" selection-start-line="88" selection-start-column="34" selection-end-line="88" selection-end-column="34" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ServicesApi.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Api/ServicesApi.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="52.666668" vertical-offset="1714" max-vertical-offset="2550">
-              <caret line="37" column="5" selection-start-line="37" selection-start-column="5" selection-end-line="37" selection-end-column="5" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="apiServicesController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Http/Services/apiServicesController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-20.0" vertical-offset="0" max-vertical-offset="615">
-              <caret line="32" column="41" selection-start-line="32" selection-start-column="41" selection-end-line="32" selection-end-column="41" />
+            <state vertical-scroll-proportion="-22.333334" vertical-offset="2149" max-vertical-offset="4890">
+              <caret line="192" column="0" selection-start-line="192" selection-start-column="0" selection-end-line="192" selection-end-column="0" />
               <folding>
-                <element signature="e#37#65#0#PHP" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#select#0;n#div#0;n#div#0;n#div#1;n#form#0;n#div#1;n#div#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#div#3;n#form#0;n#div#1;n#div#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="false" />
+                <element signature="n#style#0;n#input#0;n#div#0;n#div#0;n#div#6;n#form#0;n#div#1;n#div#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="usersController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Mandev/Users/usersController.php">
+      <file leaf-file-name="api_content.blade.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resources/views/Mandev/api/api_content.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-19.833334" vertical-offset="2419" max-vertical-offset="3525">
-              <caret line="201" column="0" selection-start-line="201" selection-start-column="0" selection-end-line="201" selection-end-column="0" />
-              <folding />
+            <state vertical-scroll-proportion="-29.291666" vertical-offset="1877" max-vertical-offset="3405">
+              <caret line="172" column="37" selection-start-line="172" selection-start-column="37" selection-end-line="172" selection-end-column="37" />
+              <folding>
+                <element signature="e#1200#1230#0#HTML" expanded="true" />
+                <element signature="e#1297#1327#0#HTML" expanded="true" />
+                <element signature="e#1404#1434#0#HTML" expanded="true" />
+                <element signature="e#3635#3675#0#HTML" expanded="true" />
+                <element signature="e#4492#4532#0#HTML" expanded="true" />
+                <element signature="e#4767#4807#0#HTML" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="apiModel.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="apiModel.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Mandev/Api/apiModel.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-19.041666" vertical-offset="728" max-vertical-offset="1425">
-              <caret line="79" column="0" selection-start-line="79" selection-start-column="0" selection-end-line="79" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.44700462" vertical-offset="677" max-vertical-offset="1665">
+              <caret line="71" column="13" selection-start-line="71" selection-start-column="13" selection-end-line="71" selection-end-column="13" />
               <folding>
                 <element signature="e#51#79#0#PHP" expanded="true" />
               </folding>
@@ -160,7 +159,6 @@
         <option value="$PROJECT_DIR$/app/Http/Services/tokenController.php" />
         <option value="$PROJECT_DIR$/app/Http/Services/validationController.php" />
         <option value="$PROJECT_DIR$/app/Http/Services/dataController.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/Providers/BaseServiceProviders.php" />
         <option value="$PROJECT_DIR$/public/datetimep/jquery.datetimepicker.css" />
         <option value="$PROJECT_DIR$/resources/views/Mandev/users/newUser.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/routes.php" />
@@ -171,9 +169,6 @@
         <option value="$PROJECT_DIR$/resources/views/Mandev/autocomplete/admin_input.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/Mandev/autocomplete/admin_link.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Api/ConnectionApi.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/Api/ControllerApi.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/Api/ServicesApi.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/Api/ModelApi.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Api/Custom/GetSameIpUsersApi.php" />
         <option value="$PROJECT_DIR$/app/Http/Services/apiRequestController.php" />
         <option value="$PROJECT_DIR$/app/Exceptions/Handler.php" />
@@ -187,12 +182,10 @@
         <option value="$PROJECT_DIR$/resources/views/Mandev/prepared/form2cols.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/Mandev/api/apitest.blade.php" />
         <option value="$PROJECT_DIR$/app/Console/Commands/Using.php" />
-        <option value="$PROJECT_DIR$/resources/views/Mandev/prepared/modal/modal.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Services/notificationController.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Mandev/Users/usersController.php" />
         <option value="$PROJECT_DIR$/composer.json" />
         <option value="$PROJECT_DIR$/composer.lock" />
-        <option value="$PROJECT_DIR$/resources/views/Mandev/api/api_content.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Services/ajaxController.php" />
         <option value="$PROJECT_DIR$/app/Http/Services/devSourceController.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/testController.php" />
@@ -200,10 +193,16 @@
         <option value="$PROJECT_DIR$/config/app.php" />
         <option value="$PROJECT_DIR$/resources/views/Mandev/general.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Services/queryController.php" />
+        <option value="$PROJECT_DIR$/resources/views/Mandev/prepared/modal/modal.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Middleware/BeforeMiddleware.php" />
+        <option value="$PROJECT_DIR$/resources/views/Mandev/api/api_content.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Mandev/Api/apiController.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/Mandev/Api/apiModel.php" />
         <option value="$PROJECT_DIR$/resources/views/Mandev/api/apiEdit.blade.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/Api/ModelApi.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/Api/ServicesApi.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/Api/ControllerApi.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/Providers/BaseServiceProviders.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/Mandev/Api/apiModel.php" />
       </list>
     </option>
   </component>
@@ -239,7 +238,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -260,6 +258,7 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -295,17 +294,20 @@
     <configuration default="true" type="PhpLocalRunConfigurationType" factoryName="PHP Console">
       <method />
     </configuration>
-    <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug">
-      <method />
-    </configuration>
     <configuration default="true" type="com.intellij.database.run.ConsoleRunConfigurationType" factoryName="Query Language Console">
       <option name="VM_PARAMETERS" value="" />
       <option name="USER_CFG_CLASS" />
       <option name="CONTEXT_PROVIDER" />
       <method />
     </configuration>
+    <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug">
+      <method />
+    </configuration>
     <configuration default="true" type="PhpBehatConfigurationType" factoryName="Behat">
       <BehatRunner />
+      <method />
+    </configuration>
+    <configuration default="true" type="PhpUnitRemoteRunConfigurationType" factoryName="PHPUnit on Server">
       <method />
     </configuration>
     <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
@@ -315,9 +317,6 @@
       <arguments />
       <pass-parent-envs>true</pass-parent-envs>
       <envs />
-      <method />
-    </configuration>
-    <configuration default="true" type="PhpUnitRemoteRunConfigurationType" factoryName="PHPUnit on Server">
       <method />
     </configuration>
     <list size="1">
@@ -401,15 +400,15 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1920" height="1010" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32934782" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24673913" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24673913" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32026145" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32960597" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2518637" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25452608" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3919063" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3209352" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="LuaJ" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -417,14 +416,14 @@
       <window_info id="Database Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32717392" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -470,13 +469,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="195" max-vertical-offset="2115">
           <caret line="27" column="5" selection-start-line="27" selection-start-column="5" selection-end-line="27" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Api/ModelApi.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="635" max-vertical-offset="2520">
-          <caret line="77" column="0" selection-start-line="77" selection-start-column="0" selection-end-line="77" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -655,13 +647,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/Mandev/prepared/modal/modal.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.725429" vertical-offset="0" max-vertical-offset="660">
-          <caret line="31" column="43" selection-start-line="31" selection-start-column="43" selection-end-line="31" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Services/tokenController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.6396256" vertical-offset="130" max-vertical-offset="795">
@@ -707,14 +692,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/Mandev/api/api_content.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1206" max-vertical-offset="3000">
-          <caret line="111" column="84" selection-start-line="111" selection-start-column="84" selection-end-line="111" selection-end-column="84" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Mandev/logoutController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-21.458334" vertical-offset="205" max-vertical-offset="900">
@@ -747,41 +724,24 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="3055" max-vertical-offset="3735">
           <caret line="234" column="50" selection-start-line="234" selection-start-column="50" selection-end-line="234" selection-end-column="50" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Api/ControllerApi.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.6848674" vertical-offset="1444" max-vertical-offset="2085">
-          <caret line="72" column="0" selection-start-line="72" selection-start-column="0" selection-end-line="72" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Api/ServicesApi.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="52.666668" vertical-offset="1714" max-vertical-offset="2550">
-          <caret line="37" column="5" selection-start-line="37" selection-start-column="5" selection-end-line="37" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Providers/BaseServiceProviders.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.40561622" vertical-offset="4870" max-vertical-offset="7650">
-          <caret line="345" column="35" selection-start-line="345" selection-start-column="20" selection-end-line="345" selection-end-column="35" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Services/apiServicesController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-20.0" vertical-offset="0" max-vertical-offset="615">
+        <state vertical-scroll-proportion="0.0" vertical-offset="480" max-vertical-offset="615">
           <caret line="32" column="41" selection-start-line="32" selection-start-column="41" selection-end-line="32" selection-end-column="41" />
           <folding>
-            <element signature="e#37#65#0#PHP" expanded="true" />
+            <element signature="e#37#65#0#PHP" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Mandev/Users/usersController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="2419" max-vertical-offset="3525">
+          <caret line="201" column="0" selection-start-line="201" selection-start-column="0" selection-end-line="201" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -793,25 +753,42 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Mandev/Users/usersController.php">
+    <entry file="file://$PROJECT_DIR$/resources/views/Mandev/prepared/modal/modal.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-19.833334" vertical-offset="2419" max-vertical-offset="3525">
-          <caret line="201" column="0" selection-start-line="201" selection-start-column="0" selection-end-line="201" selection-end-column="0" />
+        <state vertical-scroll-proportion="-20.625" vertical-offset="0" max-vertical-offset="660">
+          <caret line="33" column="55" selection-start-line="33" selection-start-column="55" selection-end-line="33" selection-end-column="55" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Middleware/BeforeMiddleware.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-20.208334" vertical-offset="565" max-vertical-offset="1230">
-          <caret line="74" column="141" selection-start-line="74" selection-start-column="141" selection-end-line="74" selection-end-column="141" />
-          <folding />
+        <state vertical-scroll-proportion="-28.666666" vertical-offset="422" max-vertical-offset="1290">
+          <caret line="74" column="157" selection-start-line="74" selection-start-column="157" selection-end-line="74" selection-end-column="157" />
+          <folding>
+            <element signature="e#39#51#0#PHP" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/Mandev/api/api_content.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-29.291666" vertical-offset="1877" max-vertical-offset="3405">
+          <caret line="172" column="37" selection-start-line="172" selection-start-column="37" selection-end-line="172" selection-end-column="37" />
+          <folding>
+            <element signature="e#1200#1230#0#HTML" expanded="true" />
+            <element signature="e#1297#1327#0#HTML" expanded="true" />
+            <element signature="e#1404#1434#0#HTML" expanded="true" />
+            <element signature="e#3635#3675#0#HTML" expanded="true" />
+            <element signature="e#4492#4532#0#HTML" expanded="true" />
+            <element signature="e#4767#4807#0#HTML" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Services/queryController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-20.458334" vertical-offset="679" max-vertical-offset="1320">
+        <state vertical-scroll-proportion="-29.916666" vertical-offset="452" max-vertical-offset="1320">
           <caret line="78" column="77" selection-start-line="78" selection-start-column="77" selection-end-line="78" selection-end-column="77" />
           <folding>
             <element signature="e#37#65#0#PHP" expanded="true" />
@@ -819,28 +796,65 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Mandev/Api/apiModel.php">
+    <entry file="file://$PROJECT_DIR$/resources/views/Mandev/api/apiEdit.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-19.041666" vertical-offset="728" max-vertical-offset="1425">
-          <caret line="79" column="0" selection-start-line="79" selection-start-column="0" selection-end-line="79" selection-end-column="0" />
+        <state vertical-scroll-proportion="-22.333334" vertical-offset="2149" max-vertical-offset="4890">
+          <caret line="192" column="0" selection-start-line="192" selection-start-column="0" selection-end-line="192" selection-end-column="0" />
           <folding>
-            <element signature="e#51#79#0#PHP" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#select#0;n#div#0;n#div#0;n#div#1;n#form#0;n#div#1;n#div#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#div#3;n#form#0;n#div#1;n#div#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="false" />
+            <element signature="n#style#0;n#input#0;n#div#0;n#div#0;n#div#6;n#form#0;n#div#1;n#div#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/Mandev/api/apiEdit.blade.php">
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Providers/BaseServiceProviders.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-8.916667" vertical-offset="1106" max-vertical-offset="3105">
-          <caret line="88" column="34" selection-start-line="88" selection-start-column="34" selection-end-line="88" selection-end-column="34" />
+        <state vertical-scroll-proportion="-6.7843137" vertical-offset="7289" max-vertical-offset="8130">
+          <caret line="512" column="29" selection-start-line="512" selection-start-column="29" selection-end-line="512" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Api/ModelApi.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.53341013" vertical-offset="1097" max-vertical-offset="2595">
+          <caret line="109" column="0" selection-start-line="109" selection-start-column="0" selection-end-line="109" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Api/ServicesApi.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="2.436636" vertical-offset="120" max-vertical-offset="2985">
+          <caret line="156" column="21" selection-start-line="156" selection-start-column="21" selection-end-line="156" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Api/ControllerApi.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.36059907" vertical-offset="17" max-vertical-offset="1935">
+          <caret line="27" column="0" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Mandev/Api/apiController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.648986" vertical-offset="844" max-vertical-offset="1530">
-          <caret line="84" column="66" selection-start-line="84" selection-start-column="66" selection-end-line="84" selection-end-column="66" />
+        <state vertical-scroll-proportion="-20.541666" vertical-offset="662" max-vertical-offset="1530">
+          <caret line="77" column="41" selection-start-line="77" selection-start-column="41" selection-end-line="77" selection-end-column="41" />
+          <folding>
+            <element signature="e#51#79#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Mandev/Api/apiModel.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.44700462" vertical-offset="677" max-vertical-offset="1665">
+          <caret line="71" column="13" selection-start-line="71" selection-start-column="13" selection-end-line="71" selection-end-column="13" />
           <folding>
             <element signature="e#51#79#0#PHP" expanded="true" />
           </folding>

@@ -504,4 +504,36 @@ class BaseServiceProviders extends Controller
         return (int)$point/1000;
     }
 
+
+
+    public function services($access=false)
+    {
+        if($access)
+        {
+            //default service
+            $services[]='test';
+
+            //db table services
+            foreach ($this->dbTable(['all']) as $tabkey=>$tabindex)
+            {
+                $services[]=$tabkey;
+            }
+
+            $apicustom=DB::table($this->dbTable(['api_custom']))->get();
+
+            if(count($apicustom))
+            {
+                foreach ($apicustom as $custom)
+                {
+                    $services[]=$custom->custom_models;
+                }
+            }
+
+
+            //return
+            return $services;
+        }
+
+    }
+
 }

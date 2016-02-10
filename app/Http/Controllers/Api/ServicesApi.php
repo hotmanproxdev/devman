@@ -67,6 +67,19 @@ class ServicesApi extends Controller
                         }
                     }
 
+
+                    //forbidden access services
+                    if(count($developer['forbidden_access_services']))
+                    {
+                        if(in_array($serviceName,$developer['forbidden_access_services']))
+                        {
+                            //developer false
+                            return response()->json(['success'=>false,
+                                'msg'=>'you are not authorized for this service access'
+                            ]);
+                        }
+                    }
+
                     //service call
                     return $this->model->get($serviceName,['codingRequest'=>false,'apiId'=>$developer['apiId'],'user'=>$developer['user']]);
                 }
@@ -130,12 +143,28 @@ class ServicesApi extends Controller
         //general servicess
         $services=$this->controller->services();
 
-        //authorized services
+        //authorized access services
         if($apiuser[0]->access_services!==NULL)
         {
             $test=['test'];
             $access_service=explode("-",$apiuser[0]->access_services);
             $services=array_merge($test,$access_service);
+        }
+
+        //authorized forbidden access services
+        if($apiuser[0]->forbidden_access_services!==NULL)
+        {
+            $test=[];
+            $forbidden_access_service=explode("-",$apiuser[0]->forbidden_access_services);
+            foreach ($services as $servicenames)
+            {
+                if(!in_array($servicenames,$forbidden_access_service))
+                {
+                    $serviceNames[]=$servicenames;
+                }
+
+            }
+            $services=array_merge($test,$serviceNames);
         }
         $json_content=[
                        'success'=>true,

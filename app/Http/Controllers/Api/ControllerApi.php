@@ -30,28 +30,8 @@ class ControllerApi extends Controller
 
     public function services()
     {
-        //default service
-        $services[]='test';
-
-        //db table services
-        foreach ($this->app->dbTable(['all']) as $tabkey=>$tabindex)
-        {
-            $services[]=$tabkey;
-        }
-
-        $apicustom=DB::table($this->app->dbTable(['api_custom']))->get();
-
-        if(count($apicustom))
-        {
-            foreach ($apicustom as $custom)
-            {
-                $services[]=$custom->custom_models;
-            }
-        }
-
-
-        //return
-        return $services;
+        //return services from app
+        return $this->app->services(true);
     }
 
     public function developer ($apiHash=false)
@@ -71,9 +51,19 @@ class ControllerApi extends Controller
                     $access_services=array();
                 }
 
+                if($developer[0]->forbidden_access_services!==NULL)
+                {
+                    $forbidden_access_services=explode("-",$developer[0]->forbidden_access_services);
+                }
+                else
+                {
+                    $forbidden_access_services=array();
+                }
+
+
                 if($developer[0]->access_service_key)
                 {
-                    return ['success'=>true,'apiId'=>$developer[0]->id,'access_services'=>$access_services,'user'=>$developer];
+                    return ['success'=>true,'apiId'=>$developer[0]->id,'access_services'=>$access_services,'forbidden_access_services'=>$forbidden_access_services,'user'=>$developer];
                 }
 
                 return ['success'=>false,'msg'=>'access service key closed'];

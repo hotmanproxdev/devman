@@ -65,6 +65,12 @@ class apiModel extends Controller
     {
         return app("\Transaction")->commit(function()
         {
+            //post id control for manipulation
+            if(!is_array($this->getUserApi(\Input::get("id"))))
+            {
+                return false;
+            }
+
             //reel key post data
             $postdata=$this->app->getvalidPostKey(\Input::all(),['_token','id']);
 
@@ -76,6 +82,16 @@ class apiModel extends Controller
             else
             {
                 $postdata['access_services']=NULL;
+            }
+
+            //forbidden access services implode string key converter
+            if(array_key_exists("forbidden_access_services",\Input::all()))
+            {
+                $postdata['forbidden_access_services']=implode("-",$postdata['forbidden_access_services']);
+            }
+            else
+            {
+                $postdata['forbidden_access_services']=NULL;
             }
 
             //query booelean true
