@@ -514,7 +514,7 @@
   });
 
 
-  $("body").on("mouseover",".select2",function()
+  $("body").on("mouseover","#apiedit",function()
   {
     $(".select2").select2({});
   });
@@ -527,8 +527,9 @@
     var href2=href.replace("#","",href);
     var model=$(this).attr("model");
     var title=$(this).attr("modal-title");
-    $(".modalLoad"+href2).load(model);
     $("h4.modal-title").html(title);
+    $(".modalLoad"+href2).load(model);
+
   });
 </script>
 

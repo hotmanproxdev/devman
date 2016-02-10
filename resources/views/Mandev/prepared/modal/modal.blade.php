@@ -26,12 +26,12 @@
 
 
 
-<div id="full-width" class="modal container fade" tabindex="-1">
+<div id="full-width" class="modal container fade" tabindex="-1" style="height:800px;">
   <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
     <h4 class="modal-title">Full Width</h4>
   </div>
-  <div class="modal-body modalLoadfull-width" style="height:800px;">
+  <div class="modal-body modalLoadfull-width">
   </div>
 
 </div>
