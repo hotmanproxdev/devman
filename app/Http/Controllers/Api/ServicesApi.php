@@ -42,7 +42,6 @@ class ServicesApi extends Controller
             //just developer ['select mode']
             if($this->request->header("codingRequest")==false)
             {
-                Session::forget('apiHash');
                 //developer get info
                 if(Session("apiHash"))
                 {
