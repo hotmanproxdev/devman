@@ -72,7 +72,7 @@ class BeforeMiddleware
             'hash_time_spent'=>$time_spent,'all_average_time_spent_for_every_hash'=>$all_average_time_spent_for_every_hash]);
 
 
-        $this->app->insertLang(["url_path"=>"api","word_data"=>['forbidden_access_services_info'=>'Api kullanıcısı burada belirtilen servislere asla erişemez'],"lang"=>1]);
+        $this->app->insertLang(["url_path"=>"api","word_data"=>['service_request_type'=>'Servis İstek Şartı'],"lang"=>1]);
 
 
         return $next($request);

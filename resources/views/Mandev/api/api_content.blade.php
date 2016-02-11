@@ -108,6 +108,10 @@
             <th scope="col">
               {{$daily_request_limit_number}}:
             </th>
+
+            <th scope="col">
+              {{$service_request_type}}:
+            </th>
           </tr>
           </thead>
           <tbody>
@@ -209,6 +213,14 @@
 
             <td>
               {{$result->request_number}}
+            </td>
+
+            <td>
+              @if($result->request_type)
+                <span style="color:#e20a16; font-weight:bold;">{{$one_service}}</span>
+              @else
+                <span style="color:#e20a16; font-weight:bold;">{{$all_total_service}}</span>
+              @endif
             </td>
           </tr>
             @endforeach

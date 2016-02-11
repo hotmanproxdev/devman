@@ -61,9 +61,9 @@
                 <select name="ccode" class="form-control" style="background-color: #ffffdd;;">
                   @if($getUserApi['0']->ccode=="develop")
                     <option value="develop">Develop Mode</option>
-                    <option value="quest">Quest Mode</option>
+                    <option value="guest">Guest Mode</option>
                   @else
-                    <option value="quest">Quest Mode</option>
+                    <option value="guest">Guest Mode</option>
                     <option value="develop">Develop Mode</option>
                   @endif
                 </select>
@@ -103,7 +103,7 @@
                 <input type="text" id="typeahead_example_2" name="apikey" class="form-control" value="{{$getUserApi['0']->apikey}}"/>
               </div>
               <p class="help-block">
-               {{$api_api_key_info}}.</code>
+               {{$api_api_key_info}}.
               </p>
             </div>
           </div>
@@ -117,7 +117,7 @@
                 <input type="text" id="typeahead_example_3" name="hash_number" class="form-control" value="{{$getUserApi['0']->hash_number}}"/>
               </div>
               <p class="help-block">
-                {{$api_hash_number_info}}.</code>
+                {{$api_hash_number_info}}.
               </p>
             </div>
           </div>
@@ -133,7 +133,7 @@
                 <input type="text" id="typeahead_example_3" name="hash_limit" class="form-control" value="{{$getUserApi['0']->hash_limit}}"/>
               </div>
               <p class="help-block">
-                {{$api_hash_limit_info}}.</code>
+                {{$api_hash_limit_info}}.
               </p>
             </div>
           </div>
@@ -142,6 +142,27 @@
           <div class="form-group">
             <label class="col-sm-3 control-label">{{$daily_request_limit}}</label>
             <div class="col-sm-4">
+
+              <div class="input-group">
+												<span class="input-group-addon">
+												<i class="fa fa-cogs"></i>
+												</span>
+                <select  name="request_type" class="form-control" style="background-color: #ffffdd;">
+                  @if($getUserApi[0]->request_type)
+                    <option value="1">{{$one_service}}</option>
+                    <option value="0">{{$all_total_service}}</option>
+                  @else
+                    <option value="0">{{$all_total_service}}</option>
+                    <option value="1">{{$one_service}}</option>
+                  @endif
+                </select>
+              </div>
+              <p class="help-block">
+                {{$api_request_type_limit_info}}.
+              </p>
+
+              <br>
+
               <div class="input-group">
 												<span class="input-group-addon">
 												<i class="fa fa-cogs"></i>
@@ -149,7 +170,7 @@
                 <input type="text" id="typeahead_example_3" name="request" class="form-control" value="{{$getUserApi['0']->request}}" style="background-color: #ffffdd;"/>
               </div>
               <p class="help-block">
-                {{$api_request_limit_info}}.</code>
+                {{$api_request_limit_info}}.
               </p>
             </div>
           </div>

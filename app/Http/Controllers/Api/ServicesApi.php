@@ -42,12 +42,58 @@ class ServicesApi extends Controller
             //just developer ['select mode']
             if($this->request->header("codingRequest")==false)
             {
+                Session::forget('apiHash');
                 //developer get info
-                $developer=$this->controller->developer(Session("apiHash"));
+                if(Session("apiHash"))
+                {
+                    $developer=$this->controller->developer(Session("apiHash"));
+                }
+                else
+                {
+                    $developer=$this->controller->guest();
+                }
+
 
                 //developer true
                 if($developer['success'])
                 {
+
+                //services except test
+                if($serviceName!=="test")
+                {
+                    //limit condition
+                    if($developer['user'][0]->request_type)
+                    {
+                        $service_request_number=json_decode($developer['user'][0]->service_request_number,true);
+
+                        if(array_key_exists($serviceName,$service_request_number))
+                        {
+                            if($developer['user'][0]->request<$service_request_number[$serviceName]+1)
+                            {
+                                //developer false
+                                return response()->json(['success'=>false,
+                                    'msg'=>'you have limit timeout for this service'
+                                ]);
+                            }
+                        }
+
+                    }
+                    else
+                    {
+                        if($developer['user'][0]->request<$developer['user'][0]->request_number+1)
+                        {
+                            //developer false
+                            return response()->json(['success'=>false,
+                                'msg'=>'you have limit timeout for all service total limit right'
+                            ]);
+                        }
+                    }
+                }
+
+                //user request register
+                $this->controller->userRequest(['service'=>$serviceName,'user'=>$developer['user']]);
+
+
                     //test mode
                     if($serviceName=="test")
                     {
@@ -83,6 +129,7 @@ class ServicesApi extends Controller
                     //service call
                     return $this->model->get($serviceName,['codingRequest'=>false,'apiId'=>$developer['apiId'],'user'=>$developer['user']]);
                 }
+
 
                 //developer false
                 return response()->json(['success'=>false,
@@ -148,7 +195,7 @@ class ServicesApi extends Controller
         {
             $test=['test'];
             $access_service=explode("-",$apiuser[0]->access_services);
-            $services=array_merge($test,$access_service);
+            $services=json_encode(array_merge($test,$access_service));
         }
 
         //authorized forbidden access services
@@ -164,24 +211,40 @@ class ServicesApi extends Controller
                 }
 
             }
-            $services=array_merge($test,$serviceNames);
+            $services=json_encode(array_merge($test,$serviceNames));
         }
         $json_content=[
                        'success'=>true,
-                       'ccode'=>$apiuser[0]->ccode,
-                       'apikey'=>$apiuser[0]->apikey,
-                       'standart_key'=>$apiuser[0]->standart_key,
-                       'ip'=>$this->request->ip(),
-                       'aim'=>'select-develop',
-                       'hash'=>Session("apiHash"),
-                       'services'=>$services,
-                       'select'=>$this->request->header("select"),
-                       'update'=>$this->request->header("update")
+                       'static'=>
+                           [
+                           'ip'=>$this->request->ip(),
+                           'aim'=>'select-develop',
+                           'hash'=>Session("apiHash"),
+                           'ccode'=>$apiuser[0]->ccode,
+                           'apikey'=>$apiuser[0]->apikey,
+                           'standart_key'=>$apiuser[0]->standart_key
+                           ],
+                       'request'=>
+                          [
+                           'daily_request_limit'=>$apiuser[0]->request,
+                           'service_number_requested_user_today'=>$apiuser[0]->request_number,
+                           'service_number_requested_user_all'=>$apiuser[0]->all_request_number,
+                           'request_type'=>$apiuser[0]->request_type,
+                           'today_service_request_json'=>json_decode($apiuser[0]->service_request_number,true),
+                           'all_service_request_json'=>json_decode($apiuser[0]->all_service_request_number,true)
+                           ],
+                       'api'=>
+                           [
+                           'access_services'=>$services,
+                               'forbidden_access_services'=>json_encode(explode("-",$apiuser[0]->forbidden_access_services),true),
+                           'select'=>$this->request->header("select"),
+                           'update'=>$this->request->header("update")
+                           ]
                        ];
 
-        if($json_content['select']!==NULL)
+        if($json_content['api']['select']!==NULL)
         {
-            $selectMode=json_decode($json_content['select'],true);
+            $selectMode=json_decode($json_content['api']['select'],true);
             foreach ($json_content as $key=>$content)
             {
                 if(in_array($key,$selectMode))

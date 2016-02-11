@@ -29,7 +29,7 @@ class ConnectionApi extends Controller
         if(($ccode!=config("app.api_ccode")))
         {
             //api query
-            $apiQuery=DB::table($this->app->dbTable(['api']))->where("ccode","=",$ccode)->where("ip","=",$this->request->ip())->where("apikey","=",$apikey)->where("statu","=",1)->get();
+            $apiQuery=DB::table($this->app->dbTable(['api']))->where("ccode","=",$ccode)->where("ip","=",$this->request->ip())->where("apikey","=",$apikey)->get();
 
             if(count($apiQuery))
             {
@@ -60,7 +60,7 @@ class ConnectionApi extends Controller
 
 
         //develop query
-        $develop=DB::table($this->app->dbTable(['api']))->where("apikey","=",$apikey)->where("statu","=",1);
+        $develop=DB::table($this->app->dbTable(['api']))->where("apikey","=",$apikey);
         $getDev=$develop->get();
 
         if(count($getDev))
@@ -71,8 +71,24 @@ class ConnectionApi extends Controller
             //hash number reset
             if(date("Ymd",$getDev[0]->created_at)<date("Ymd"))
             {
-                $develop->update(['created_at'=>time(),'hash'=>$hash,'standart_key'=>$this->app->getApiStandartKey($getDev[0]->id),'hash_number'=>'0']);
-                $develop=DB::table($this->app->dbTable(['api']))->where("apikey","=",$apikey)->where("statu","=",1);
+                if($getDev[0]->service_request_number!==NULL)
+                {
+                    $service_request_number=json_decode($getDev[0]->service_request_number,true);
+                    foreach ($service_request_number as $skey=>$sval)
+                    {
+                        $update_service_request_number[$skey]=0;
+                    }
+
+                    $develop->update(['created_at'=>time(),'hash'=>$hash,'standart_key'=>$this->app->getApiStandartKey($getDev[0]->id),'hash_number'=>0,'request_number'=>0,
+                    'service_request_number'=>json_encode($update_service_request_number)]);
+                }
+                else
+                {
+                    $develop->update(['created_at'=>time(),'hash'=>$hash,'standart_key'=>$this->app->getApiStandartKey($getDev[0]->id),'hash_number'=>0,'request_number'=>0]);
+                }
+
+
+                $develop=DB::table($this->app->dbTable(['api']))->where("apikey","=",$apikey);
                 $getDev=$develop->get();
             }
 
