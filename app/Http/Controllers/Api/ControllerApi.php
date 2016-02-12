@@ -39,7 +39,7 @@ class ControllerApi extends Controller
         if($apiHash)
         {
             $developer=DB::table($this->app->dbTable(['api']))->where("ccode","=",config("app.api_ccode"))->where("statu","=",1)->where("hash","=",$apiHash)->get();
-
+            
             if(count($developer))
             {
                 if($developer[0]->access_services!==NULL)
@@ -81,7 +81,15 @@ class ControllerApi extends Controller
     {
             if(array_key_exists("key",\Input::all()) and array_key_exists("hash",\Input::all()))
             {
-                $developer=DB::table($this->app->dbTable(['api']))->where("ip","=",$this->request->ip())->where("apikey","=",\Input::get("key"))->where("standart_key","=",\Input::get("hash"))->get();
+                $ip=$this->request->ip();
+                if($this->request->ip()=="::1")
+                {
+                    $ip='127.0.0.1';
+                }
+
+
+                $developer=DB::table($this->app->dbTable(['api']))->
+                where("ccode","=","guest")->where("ip","=",$ip)->where("apikey","=",\Input::get("key"))->where("standart_key","=",\Input::get("hash"))->get();
 
                 if(count($developer))
                 {
@@ -113,12 +121,12 @@ class ControllerApi extends Controller
 
                 }
 
-                return ['success'=>false,'msg'=>'please,have any session info or guest mode for that your api access'];
+                return ['success'=>false,'msg'=>'please,you must have any develop session info or guest mode conditions for that your api access'];
 
             }
 
 
-            return ['success'=>false,'msg'=>'please,have any session info or guest mode for that your api access'];
+            return ['success'=>false,'msg'=>'please,you must have any develop session info or guest mode conditions for that your api access'];
 
 
     }

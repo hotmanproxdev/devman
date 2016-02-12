@@ -89,7 +89,7 @@ class ModelApi extends Controller
 
         if(array_key_exists($serviceName,$this->app->dbTable(['all'])))
         {
-            if(count(\Input::all()))
+            if(count(\Input::all()) and !array_key_exists("key",\Input::all()) and !array_key_exists("hash",\Input::all()))
             {
                 if(!array_key_exists("where",\Input::all()))
                 {

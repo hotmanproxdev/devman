@@ -28,7 +28,7 @@ class GetSameIpUsersApi extends Controller
         $select=json_decode($this->request->header("select"));
 
         //get users using the same ip
-        return DB::select("SELECT ip,
+        $query=DB::select("SELECT ip,
 
                                   (SELECT COUNT(DISTINCT (userid)) FROM ".$this->table("logs")." as slogs
                                    WHERE slogs.userip=logs.userip) as ipCount,
@@ -39,6 +39,8 @@ class GetSameIpUsersApi extends Controller
 
                           FROM ".$this->table("logs")." as logs
                           GROUP BY logs.userip HAVING ipCount>1");
+
+        return $this->output($query);
     }
 
 
@@ -50,6 +52,20 @@ class GetSameIpUsersApi extends Controller
     private function postdata()
     {
        return $this->app->getvalidPostKey(json_decode($this->request->header("postdata"),1),['_token']);
+    }
+
+    private function output($query)
+    {
+        if(count($query))
+        {
+            $result=['success'=>true,'query'=>$query];
+        }
+        else
+        {
+            $result=['success'=>false,'query'=>$query];
+        }
+
+        return json_encode($result);
     }
 
 }
