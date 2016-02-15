@@ -192,6 +192,7 @@
                 @endif
 
                   @foreach(app()->make("Base")->services(true) as $key=>$value)
+                    @if($value!=="test")
                     @if(count($access_services))
                       @if(in_array($key,$access_services))
                         <option value="{{$value}}" selected>{{$value}}</option>
@@ -201,6 +202,7 @@
                     @else
                       <option value="{{$value}}">{{$value}}</option>
                     @endif
+                      @endif
                   @endforeach
                 </select>
 
@@ -223,21 +225,23 @@
                 @if($forbidden_access_services=($getUserApi[0]->forbidden_access_services==NULL) ? [] : explode("-",$getUserApi[0]->forbidden_access_services))
                 @endif
 
-                @if(count($access_services))
+                @if(count($forbidden_access_services))
                   <select name="forbidden_access_services[]" id="forbidden_access_services" class="form-control select2" multiple="multiple">
                     @else
                       <select name="forbidden_access_services[]" id="forbidden_access_services" class="form-control select2" data-placeholder="{{$access_all_services_info}}" multiple="multiple">
                         @endif
 
                         @foreach(app()->make("Base")->services(true) as $key=>$value)
+                          @if($value!=="test")
                           @if(count($forbidden_access_services))
-                            @if(in_array($key,$forbidden_access_services))
+                            @if(in_array($value,$forbidden_access_services))
                               <option value="{{$value}}" selected>{{$value}}</option>
                             @else
                               <option value="{{$value}}">{{$value}}</option>
                             @endif
                           @else
                             <option value="{{$value}}">{{$value}}</option>
+                          @endif
                           @endif
                         @endforeach
                       </select>

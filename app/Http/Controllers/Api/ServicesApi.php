@@ -42,16 +42,14 @@ class ServicesApi extends Controller
             //just developer ['select mode']
             if($this->request->header("codingRequest")==false)
             {
-                //developer get info
-                if(Session("apiHash"))
-                {
-                    $developer=$this->controller->developer(Session("apiHash"));
-                }
-                else
+                //developer controller
+                $developer=$this->controller->developer(Session("apiHash"));
+
+                //guest mode
+                if($developer['success']==false)
                 {
                     $developer=$this->controller->guest();
                 }
-
 
                 //developer true
                 if($developer['success'])

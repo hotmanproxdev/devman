@@ -36,44 +36,57 @@ class ControllerApi extends Controller
 
     public function developer ($apiHash=false)
     {
-        if($apiHash)
+        $condHash=false;
+
+        if((array_key_exists("key",\Input::all())) AND (array_key_exists("hash",\Input::all())))
         {
-            $developer=DB::table($this->app->dbTable(['api']))->where("ccode","=",config("app.api_ccode"))->where("statu","=",1)->where("hash","=",$apiHash)->get();
-            
-            if(count($developer))
-            {
-                if($developer[0]->access_services!==NULL)
-                {
-                    $access_services=explode("-",$developer[0]->access_services);
-                }
-                else
-                {
-                    $access_services=array();
-                }
-
-                if($developer[0]->forbidden_access_services!==NULL)
-                {
-                    $forbidden_access_services=explode("-",$developer[0]->forbidden_access_services);
-                }
-                else
-                {
-                    $forbidden_access_services=array();
-                }
-
-
-                if($developer[0]->access_service_key)
-                {
-                    return ['success'=>true,'apiId'=>$developer[0]->id,'access_services'=>$access_services,'forbidden_access_services'=>$forbidden_access_services,'user'=>$developer];
-                }
-
-                return ['success'=>false,'msg'=>'access service key closed'];
-
-            }
-
-            return ['success'=>false,'msg'=>'please,have any session info or guest mode for that your api access'];
+            $condHash=true;
         }
 
-        return ['success'=>false,'msg'=>'you dont have valid hash'];
+
+        if(($apiHash) AND (!$condHash))
+        {
+            $developer=DB::table($this->app->dbTable(['api']))->where("ccode","=",config("app.api_ccode"))->where("hash","=",$apiHash)->get();
+        }
+        else
+        {
+            $developer=DB::table($this->app->dbTable(['api']))->where("ccode","=",config("app.api_ccode"))->where("apikey","=",\Input::get("key"))->where("standart_key","=",\Input::get("hash"))->get();
+        }
+
+            
+        if(count($developer))
+        {
+            if($developer[0]->access_services!==NULL)
+            {
+                $access_services=explode("-",$developer[0]->access_services);
+            }
+            else
+            {
+                $access_services=array();
+            }
+
+            if($developer[0]->forbidden_access_services!==NULL)
+            {
+                $forbidden_access_services=explode("-",$developer[0]->forbidden_access_services);
+            }
+            else
+            {
+                $forbidden_access_services=array();
+            }
+
+
+            if($developer[0]->access_service_key)
+            {
+                return ['success'=>true,'apiId'=>$developer[0]->id,'access_services'=>$access_services,'forbidden_access_services'=>$forbidden_access_services,'user'=>$developer];
+            }
+
+            return ['success'=>false,'msg'=>'access service key closed'];
+
+        }
+
+        return ['success'=>false,'msg'=>'please,you must have any develop session info or guest mode conditions for that your api access'];
+
+
     }
 
 
@@ -88,11 +101,37 @@ class ControllerApi extends Controller
                 }
 
 
-                $developer=DB::table($this->app->dbTable(['api']))->
-                where("ccode","=","guest")->where("ip","=",$ip)->where("apikey","=",\Input::get("key"))->where("standart_key","=",\Input::get("hash"))->get();
+                $develop=DB::table($this->app->dbTable(['api']))->
+                where("ccode","=","guest")->where("ip","=",$ip)->where("apikey","=",\Input::get("key"))->where("standart_key","=",\Input::get("hash"));
+
+                $developer=$develop->get();
 
                 if(count($developer))
                 {
+                    //hash generate
+                    $hash=$this->app->getApiHash(['ccode'=>$developer[0]->system_ccode,'ip'=>$this->request->ip(),'key'=>\Input::get("key")]);
+
+                    //hash number reset
+                    if(date("Ymd",$developer[0]->created_at)<date("Ymd"))
+                    {
+                        if($developer[0]->service_request_number!==NULL)
+                        {
+                            $service_request_number=json_decode($developer[0]->service_request_number,true);
+                            foreach ($service_request_number as $skey=>$sval)
+                            {
+                                $update_service_request_number[$skey]=0;
+                            }
+
+                            $develop->update(['created_at'=>time(),'hash'=>$hash,'standart_key'=>$this->app->getApiStandartKey($developer[0]->id),'hash_number'=>0,'request_number'=>0,
+                                'service_request_number'=>json_encode($update_service_request_number)]);
+                        }
+                        else
+                        {
+                            $develop->update(['created_at'=>time(),'hash'=>$hash,'standart_key'=>$this->app->getApiStandartKey($developer[0]->id),'hash_number'=>0,'request_number'=>0]);
+                        }
+
+                    }
+
                     if($developer[0]->access_services!==NULL)
                     {
                         $access_services=explode("-",$developer[0]->access_services);
