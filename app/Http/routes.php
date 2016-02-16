@@ -73,12 +73,6 @@ Route::group(['prefix' =>''.strtolower(config("app.admin_dirname")).'/','namespa
     });
 
 
-    //login part
-    Route::group(['namespace'=>'Test'], function ()
-    {
-        //login route (loginController)
-        Route::controllers(['test' => 'testController']);
-    });
 
 });
 

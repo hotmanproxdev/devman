@@ -595,10 +595,20 @@
   });
 </script>
 
+
 <!--test-->
 {!! $linechart !!}
 
 
+<script>
+
+  $.ajaxSetup({
+    complete: function() {
+      dbchart.initCharts();
+    }
+  });
+
+</script>
 
 
 

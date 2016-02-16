@@ -1,6 +1,7 @@
 
 @foreach ($chartData['data'] as $key=>$value)
 <script>
+
   var dbchart = function () {
     return {
       initCharts: function () {

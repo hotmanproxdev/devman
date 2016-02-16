@@ -44,7 +44,7 @@
     </div>
     <div class="portlet-body">
       <div id="site_activities_loading">
-        <img src="{{config("app.project_path")}}/metron/theme/assets/admin/layout2/img/loading.gif" alt="loading"/>
+        <img src="{{$baseUrl}}/metron/theme/assets/admin/layout2/img/loading.gif" alt="loading"/>
       </div>
       <div id="site_activities_content" class="display-none">
         <div id="site_activities" style="height: 228px;">
