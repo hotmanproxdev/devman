@@ -41,10 +41,10 @@ class apiModel extends Controller
     }
 
 
-    public function getUserApi($id)
+    public function getUserApi()
     {
         //get query users api
-        $query=DB::table($this->app->dbTable(['api']))->where("id","=",$id)->get();
+        $query=DB::table($this->app->dbTable(['api']))->where("id","=",\Input::get("id"))->get();
 
         //query count is true
         return app("\Query")->isCountTrue($query,function() use ($query)

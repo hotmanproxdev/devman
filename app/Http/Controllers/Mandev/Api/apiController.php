@@ -65,10 +65,19 @@ class apiController extends Controller
         return app("\Ajax")->control(function()
         {
             //get user's api info
-            $this->data['getUserApi']=$this->model->getUserApi(Input::get("id"));
+            $getUserApi=$this->model->getUserApi();
 
-            //return view
-            return view("".config("app.admin_dirname").".".$this->url_path.".apiEdit",$this->data);
+            //post data query is true
+            return app("\Query")->isCountTrue($getUserApi,function() use ($getUserApi)
+            {
+                //data passing user api
+                $this->data['getUserApi'] =$getUserApi;
+
+                //return view
+                return view("".config("app.admin_dirname").".".$this->url_path.".apiEdit",$this->data);
+            });
+
+
         });
 
     }
