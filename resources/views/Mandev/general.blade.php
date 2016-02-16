@@ -529,6 +529,7 @@
     var title=$(this).attr("modal-title");
     $("h4.modal-title").html(title);
     $(".modalLoad"+href2).load(model);
+    //$(".modalLoad"+href2).load(model, function () { dbchart.initCharts() });
 
   });
 </script>
@@ -598,22 +599,6 @@
 
 <!--test-->
 {!! $linechart !!}
-
-
-<script>
-
-  $.ajaxSetup({
-    complete: function() {
-      dbchart.initCharts();
-    }
-  });
-
-</script>
-
-
-
-
-
 
 
 </body>
