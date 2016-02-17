@@ -58,6 +58,15 @@ class apiController extends Controller
         //system code distinct data
         $this->data['system_codes']=$this->model->getSystemCodes();
 
+        //api1 return
+        $api1chart=['A'=>1];
+
+        //api2 return
+        $api2chart=['A'=>1];
+
+        //api 1 and 2 graph
+        $this->data['linechart']=app("\Chart")->linechart(["chart_number"=>["1api","2api"],'data'=>[$api1chart,$api2chart]]);
+
         //return view
         return view("".config("app.admin_dirname").".".$this->url_path.".main",$this->data);
     }

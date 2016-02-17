@@ -244,7 +244,10 @@
 
         </div>
         <!-- END PAGE HEADER-->
-        @yield('content')
+        <div style="min-height:1200px;">
+          @yield('content')
+        </div>
+
       </div>
 
       @include("".config("app.admin_dirname").".sidebar_chat")
