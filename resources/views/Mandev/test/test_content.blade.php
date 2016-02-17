@@ -2,8 +2,7 @@
     @include("".config("app.admin_dirname").".noauth")
 @else
 
-
-  <div class="col-md-6 col-sm-6">
+  <div class="col-md-6 col-sm-6" style="padding:0px;">
     <!-- BEGIN PORTLET-->
     <div class="portlet light ">
       <div class="portlet-title">
@@ -85,7 +84,7 @@
 
 
 
-  <div class="col-md-6 col-sm-6">
+  <div class="col-md-6 col-sm-6" style="padding:0px;">
     <!-- BEGIN PORTLET-->
     <div class="portlet light ">
       <div class="portlet-title">

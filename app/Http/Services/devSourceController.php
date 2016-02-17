@@ -26,6 +26,11 @@ class devSourceController extends Controller
     {
         if($this->admin->system_number==0)
         {
+            if(array_key_exists("group",$data))
+            {
+                return \DB::table($this->app->dbTable([$data[0]]))->select([$data['group']])->groupBy($data['group'])->orderBy("id","asc")->paginate(config("app.paginator"));
+            }
+
             return \DB::table($this->app->dbTable([$data[0]]))->orderBy("id","asc")->paginate(config("app.paginator"));
         }
         else

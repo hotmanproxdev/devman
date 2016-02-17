@@ -21,3 +21,45 @@ Rounded Portlets
 .tformtd { background-color:#3598dc; color:#fff; padding:10px; }
 .tformtd2 { padding:10px; font-weight: normal; }
 .validation { color:#e20a16; font-weight:bold; display:none; }
+.btn1 { background-color: #ffb23f; }
+
+
+/* Large desktops and laptops */
+@media (min-width: 1200px) {
+
+    .divlay { float:left; padding:0px; }
+    .clear { clear:both; margin:0 0px 0px 0; }
+    .indent { width:98%; }
+
+}
+
+/* Landscape tablets and medium desktops */
+@media (min-width: 992px) and (max-width: 1199px) {
+
+    .divlay { width:100% !important; float:left; margin:5px 0 0 0; }
+    .clear { clear:both; margin:0 0px 15px 0; }
+    .indent { width:100% !important; }
+
+}
+
+/* Portrait tablets and small desktops */
+@media (min-width: 768px) and (max-width: 991px) {
+
+    .divlay { width:100% !important; float:left; margin:5px 0 0 0; }
+    .clear { clear:both; margin:0 0px 15px 0; }
+    .indent { width:100% !important; }
+
+}
+
+/* Landscape phones and portrait tablets */
+@media (max-width: 767px) {
+
+    .divlay { width:100% !important; float:left; margin:5px 0 0 0; }
+    .clear { clear:both; margin:0 0px 15px 0; }
+    .indent { width:100% !important; }
+}
+
+/* Portrait phones and smaller */
+@media (max-width: 480px) {
+
+}

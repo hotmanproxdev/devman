@@ -40,6 +40,20 @@ class apiModel extends Controller
         });
     }
 
+    public function getSystemCodes()
+    {
+        //system developer query callback
+        return app("\DevSource")->control(['api','group'=>'system_ccode'],function()
+        {
+            //if callback false, call query according to admin's system_code group by
+            return DB::table($this->app->dbTable(['api']))->select(['system_ccode'])
+                                                          ->where("system_ccode","=",$this->admin->ccode)
+                                                          ->groupBy("system_ccode")
+                                                          ->orderBy("id","desc")
+                                                          ->paginate(config("app.paginator"));
+        });
+    }
+
 
     public function getUserApi()
     {

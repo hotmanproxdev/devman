@@ -55,6 +55,9 @@ class apiController extends Controller
         //get api accesses from query
         $this->data['apiAccesses']=$this->model->getApiAccesses();
 
+        //system code distinct data
+        $this->data['system_codes']=$this->model->getSystemCodes();
+
         //return view
         return view("".config("app.admin_dirname").".".$this->url_path.".main",$this->data);
     }

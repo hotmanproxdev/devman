@@ -24,19 +24,54 @@
       <div class="caption">
         <i class="fa fa-cogs"></i>{{$api_table_info}}
       </div>
-      <div class="tools">
-        <a href="javascript:;" class="collapse">
-        </a>
-        <a href="#portlet-config" data-toggle="modal" class="config">
-        </a>
-        <a href="javascript:;" class="reload">
-        </a>
-        <a href="javascript:;" class="remove">
-        </a>
-      </div>
+
     </div>
+
     <div class="portlet-body">
+
+      <!--filter-->
+      <div style="">
+
+        <div class="divlay" style="width:20%;">
+          <select class="indent form-control">
+            <option value="-1">Sistem Koduna Göre</option>
+            @foreach ($system_codes as $scodes)
+              <option>{{$scodes->system_ccode}}</option>
+            @endforeach
+          </select>
+        </div>
+
+        <div class="divlay" style="width:20%;">
+          <select class="indent form-control">
+            <option value="-1">Api Grubuna Göre</option>
+            <option value="develop">Developer</option>
+            <option value="guest">Guest</option>
+          </select>
+        </div>
+
+        <div class="divlay" style="width:20%;">
+          <input type="text" class="indent form-control" placeholder="Apikey Belirtin...">
+        </div>
+
+        <div class="divlay" style="width:20%;">
+          <select class="indent form-control">
+            <option value="-1">Api Durumu</option>
+            <option value="1">Aktif</option>
+            <option value="0">Pasif</option>
+          </select>
+        </div>
+
+        <div class="divlay" style="width:20%;">
+          <input type="submit" name="apifilter" class="form-control btn1" value="Api Filtrele">
+        </div>
+
+        <div class="clear"></div>
+
+      </div>
+      <!--filter end-->
+
       <div class="table-scrollable">
+
         <table class="table table-striped table-bordered table-hover">
           <thead>
           <tr>
