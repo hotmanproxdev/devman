@@ -30,44 +30,44 @@
     <div class="portlet-body">
 
       <!--filter-->
+      <form action="api/filter" method="post">
+        <input type="hidden" name="_token" value="{{csrf_token()}}">
       <div style="">
 
         <div class="divlay" style="width:20%;">
-          <select class="indent form-control">
-            <option value="-1">Sistem Koduna Göre</option>
-            @foreach ($system_codes as $scodes)
-              <option>{{$scodes->system_ccode}}</option>
-            @endforeach
+          <select name="system_ccode" class="indent form-control">
+
+            {!! app("\Filter")->get(['none'=>$systemCode,'data'=>$system_codes,'name'=>'system_ccode']) !!}
+
           </select>
         </div>
 
         <div class="divlay" style="width:20%;">
-          <select class="indent form-control">
-            <option value="-1">Api Grubuna Göre</option>
-            <option value="develop">Developer</option>
-            <option value="guest">Guest</option>
+          <select name="ccode" class="indent form-control">
+
+            {!! app("\Filter")->get(['none'=>$apiGroup,'develop'=>'Developer','Guest'=>'Guest','name'=>'ccode']) !!}
           </select>
         </div>
 
         <div class="divlay" style="width:20%;">
-          <input type="text" class="indent form-control" placeholder="Apikey Belirtin...">
+          <input type="text" name="apikey" class="indent form-control" placeholder="Apikey Belirtin...">
         </div>
 
         <div class="divlay" style="width:20%;">
-          <select class="indent form-control">
-            <option value="-1">Api Durumu</option>
-            <option value="1">Aktif</option>
-            <option value="0">Pasif</option>
+          <select name="access_service_key" class="indent form-control">
+
+            {!! app("\Filter")->get(['none'=>$statu,'1'=>$active,'2'=>$passive,'name'=>'access_service_key']) !!}
           </select>
         </div>
 
         <div class="divlay" style="width:20%;">
-          <input type="submit" name="apifilter" class="form-control btn1" value="Api Filtrele">
+          <input type="submit" name="filter" class="form-control btn1" value="Api Filtrele">
         </div>
 
         <div class="clear"></div>
 
       </div>
+      </form>
       <!--filter end-->
 
       <div class="table-scrollable">

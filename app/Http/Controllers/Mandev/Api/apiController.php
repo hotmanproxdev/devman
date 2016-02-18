@@ -71,6 +71,17 @@ class apiController extends Controller
         return view("".config("app.admin_dirname").".".$this->url_path.".main",$this->data);
     }
 
+
+    public function postFilter()
+    {
+        //form filter tool register
+        return app("\Filter")->data(function()
+        {
+            return redirect($this->request->header("Referer"));
+        });
+
+    }
+
     public function getEdit()
     {
         //it just accepts ajax request

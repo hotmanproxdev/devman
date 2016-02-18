@@ -237,6 +237,7 @@ return [
         'Ajax' =>App\Http\Services\ajaxController::class,
         'Query' =>App\Http\Services\queryController::class,
         'ApiServices' =>App\Http\Services\apiServicesController::class,
+        'Filter' =>App\Http\Services\filterController::class,
 
     ],
 

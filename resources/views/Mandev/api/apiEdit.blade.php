@@ -22,8 +22,7 @@
       <div class="portlet-body form">
         <form id="apiedit" method="post" class="form-horizontal form-bordered">
           <input type="hidden" name="id" value="{{$getUserApi[0]->id}}">
-          <input type="hidden" name="_token" value="{{$token}}">
-          {{Session::put("_token",$token)}}
+          <input type="hidden" name="_token" value="{{csrf_token()}}">
 
           <div class="form-group">
             <label class="col-sm-3 control-label">Api Statu:</label>
