@@ -50,20 +50,11 @@ class testController extends Controller
 
         }
 
-    public function getIndex ()
+    public function postFoo ()
     {
-        $this->data['linechart']=app("\Chart")->lineChart(['chart_number'=>[2,3],'data'=>[['a'=>2,'b'=>4,'c'=>1],['a'=>8,'b'=>3,'c'=>2]]]);
-
-        //return view
-        return view("".config("app.admin_dirname").".".$this->url_path.".main",$this->data);
+        dd(\Input::all());
     }
 
 
-    public function getModal()
-    {
-        $this->data['linechart']=app("\Chart")->lineChart(['chart_number'=>[4,5],'data'=>[['a'=>2,'b'=>4,'c'=>1],['a'=>8,'b'=>3,'c'=>2]]]);
 
-        //return view
-        return view("".config("app.admin_dirname").".".$this->url_path.".modal",$this->data);
-    }
 }
