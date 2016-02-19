@@ -37,7 +37,7 @@
         <div class="divlay" style="width:20%;">
           <select name="system_ccode" class="indent form-control">
 
-            {!! app("\Filter")->get(['none'=>$systemCode,'data'=>$system_codes,'name'=>'system_ccode']) !!}
+            {!! app("\Filter")->get(['none'=>$systemCode,'data'=>$system_codes,'name'=>'system_ccode','type'=>'select']) !!}
 
           </select>
         </div>
@@ -45,18 +45,18 @@
         <div class="divlay" style="width:20%;">
           <select name="ccode" class="indent form-control">
 
-            {!! app("\Filter")->get(['none'=>$apiGroup,'develop'=>'Developer','Guest'=>'Guest','name'=>'ccode']) !!}
+            {!! app("\Filter")->get(['none'=>$apiGroup,'develop'=>'Developer','guest'=>'Guest','name'=>'ccode','type'=>'select']) !!}
           </select>
         </div>
 
         <div class="divlay" style="width:20%;">
-          <input type="text" name="apikey" class="indent form-control" placeholder="Apikey Belirtin...">
+          {!! app("\Filter")->get(['name'=>'apikey','placeholder'=>'Apikey Belirtin...','type'=>'input','class'=>'indent form-control']) !!}
         </div>
 
         <div class="divlay" style="width:20%;">
           <select name="access_service_key" class="indent form-control">
 
-            {!! app("\Filter")->get(['none'=>$statu,'1'=>$active,'2'=>$passive,'name'=>'access_service_key']) !!}
+            {!! app("\Filter")->get(['none'=>$statu,'1'=>$active,'2'=>$passive,'name'=>'access_service_key','type'=>'select']) !!}
           </select>
         </div>
 

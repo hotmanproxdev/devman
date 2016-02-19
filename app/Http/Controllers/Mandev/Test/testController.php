@@ -50,11 +50,15 @@ class testController extends Controller
 
         }
 
-    public function postFoo ()
+    public function getIndex ()
     {
-        dd(\Input::all());
+        //return view
+        return view("".config("app.admin_dirname").".".$this->url_path.".main",$this->data);
     }
 
 
-
+    public function postFoo()
+    {
+        dd(\Input::all());
+    }
 }

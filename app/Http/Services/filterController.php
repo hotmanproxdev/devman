@@ -37,14 +37,14 @@ class filterController extends Controller
 
         $log=\DB::table($this->app->dbTable(['admin']))->where("id","=",$this->admin->id)->update(['last_token'=>\Input::get("_token"),
                                                                                            'last_post'=>base64_encode(json_encode(\Input::all())),
-                                                                                           'last_filter_data'=>1]);
+                                                                                           'last_filter_data'=>time()]);
 
         if($log)
         {
             $postfilterdata=array();
             foreach ($this->app->getvalidPostKey(\Input::all(),['_token','filter','request']) as $key=>$value)
             {
-                if(($value!=="none") and (strlen(trim($value))))
+                if((strlen(trim($value))))
                 {
                     $postfilterdata[$key]=$value;
                 }
@@ -80,8 +80,14 @@ class filterController extends Controller
         $list=array();
         $option=array();
         $object=array();
-        $option[]='<option value="none">'.$data['none'].'</option>';
-        $object[]='none';
+
+        if($data['type']=="select")
+        {
+            $option[]='<option value="none">'.$data['none'].'</option>';
+            $object[]='none';
+        }
+
+
 
         if(array_key_exists("data",$data))
         {
@@ -89,45 +95,65 @@ class filterController extends Controller
             foreach ($data['data'] as $result)
             {
                 $option[]='<option>'.$result->system_ccode.'</option>';
+                $data[$result->system_ccode]=$result->system_ccode;
                 $object[]=$result->system_ccode;
             }
         }
         else
         {
-
-            foreach ($data as $key=>$result)
+            if($data['type']=="select")
             {
-                if($key!="none" && $key!="name")
-                {
-                    $option[]='<option>'.$result.'</option>';
-                    $object[]=$result;
-                }
 
+                foreach ($data as $key => $result) {
+                    if ($key != "none" && $key != "name" && $key != "type") {
+                        $option[] = '<option value="' . $key . '">' . $result . '</option>';
+                        $object[] = $result;
+                    }
+
+                }
+            }
+
+
+            if($data['type']=="input")
+            {
+
+                $option[] = '<input type="text" name="'.$data['name'].'" class="'.$data['class'].'" placeholder="' . $data['placeholder'] . '">';
+                $object[] = $data['name'];
             }
         }
 
 
         if(\Session::has("filterdata"))
         {
-            //$list[]='<option>'.\Session::get("filterdata")[$data['name']].'</option>';
             if(array_key_exists($data['name'],\Session::get("filterdata")))
             {
-                $list[]='<option>'.\Session::get("filterdata")[$data['name']].'</option>';
-                foreach ($object as $obj)
+                $filterdata=\Session::get("filterdata");
+
+                if($data['type']=="select")
                 {
-                    if($obj!=\Session::get("filterdata")[$data['name']])
+                    $list[]='<option value="'.$filterdata[$data['name']].'">'.$data[$filterdata[$data['name']]].'</option>';
+                    foreach ($object as $obj)
                     {
-                        if($obj!="none")
+                        if($obj!=$data[$filterdata[$data['name']]])
                         {
-                            $list[]='<option>'.$obj.'</option>';
+                            if($obj!="none")
+                            {
+                                $list[]='<option value="'.array_search($obj,$data).'">'.$obj.'</option>';
+                            }
                         }
+                    }
+
+                    if($data['none']!=$data[$filterdata[$data['name']]])
+                    {
+                        $list[]='<option value="none">'.$data['none'].'</option>';
                     }
                 }
 
-                if($data['none']!=\Session::get("filterdata")[$data['name']])
+                if($data['type']=="input")
                 {
-                    $list[]='<option>'.$data['none'].'</option>';
+                    $list[] = '<input type="text" name="'.$data['name'].'" class="'.$data['class'].'" value="' . $filterdata[$data['name']] . '">';
                 }
+
 
             }
             else

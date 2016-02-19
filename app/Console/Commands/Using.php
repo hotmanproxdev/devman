@@ -173,6 +173,14 @@ class Using extends Command
             dd($dd);
         }
 
+        //filter
+        if($this->argument("name")=="filter")
+        {
+            $dd['select']="{!! app(\Filter)->get(['none'=>'apiGroup','develop'=>'Developer','guest'=>'Guest','name'=>'ccode','type'=>'select']) !!}";
+            $dd['input']="{!! app(\Filter)->get(['name'=>'apikey','placeholder'=>'Apikey Belirtin...','type'=>'input','class'=>'indent form-control']) !!}";
+            dd($dd);
+        }
+
 
     }
 }
