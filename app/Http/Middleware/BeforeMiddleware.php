@@ -67,9 +67,35 @@ class BeforeMiddleware
             }
 
 
+        if($this->admin->last_filter_data>0)
+        {
+            $lastpost=base64_decode($this->admin->last_post);
+            $lastpost=json_decode($lastpost,true);
+
+            if(!preg_match('@'.$this->request->getPathInfo().'@',$lastpost['request']))
+            {
+                if(!preg_match('@^\/api.*@',$this->request->getPathInfo()))
+                {
+                    //last move register for administrator table
+                    $query=DB::table("prosystem_administrator")->where("id","=",$this->admin->id)->update(['user_where'=>$this->request->getPathInfo(),'all_time_spent'=>DB::raw('last_hash_time_spent+'.$time_spent),
+                        'hash_time_spent'=>$time_spent,'all_average_time_spent_for_every_hash'=>$all_average_time_spent_for_every_hash,'last_filter_data'=>0]);
+
+                    if($query)
+                    {
+                        \Session::forget("filterdata");
+                    }
+                }
+
+            }
+        }
+        else
+        {
             //last move register for administrator table
             DB::table("prosystem_administrator")->where("id","=",$this->admin->id)->update(['user_where'=>$this->request->getPathInfo(),'all_time_spent'=>DB::raw('last_hash_time_spent+'.$time_spent),
-            'hash_time_spent'=>$time_spent,'all_average_time_spent_for_every_hash'=>$all_average_time_spent_for_every_hash]);
+                'hash_time_spent'=>$time_spent,'all_average_time_spent_for_every_hash'=>$all_average_time_spent_for_every_hash]);
+        }
+
+
 
 
         $this->app->insertLang(["url_path"=>"api","word_data"=>['apiGroup'=>'Api Grubuna Göre'],"lang"=>1]);
