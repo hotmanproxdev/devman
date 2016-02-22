@@ -181,6 +181,20 @@ class Using extends Command
             dd($dd);
         }
 
+        //changesql
+        if($this->argument("name")=="changesql")
+        {
+            $dd['changesql']='changesql="api//system_ccode//ccode//api//ccode" changesqlresult="ccode"';
+            dd($dd);
+        }
+
+        //make switch
+        if($this->argument("name")=="make-switch")
+        {
+            $dd['make-switch']="name='field' data-model='table/field/where'";
+            dd($dd);
+        }
+
 
     }
 }

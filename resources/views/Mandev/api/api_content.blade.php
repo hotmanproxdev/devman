@@ -43,7 +43,7 @@
         </div>
 
         <div class="divlay" style="width:20%;">
-          <select name="ccode" class="indent form-control">
+          <select name="ccode" class="indent form-control ccode">
 
             {!! app("\Filter")->get(['none'=>$apiGroup,'develop'=>'Developer','guest'=>'Guest','name'=>'ccode','type'=>'select']) !!}
           </select>
@@ -176,9 +176,9 @@
             </td>
             <td>
               @if($result->access_service_key)
-                <input type="checkbox" checked class="make-switch" data-size="small">
+                <input name="access_service_key" type="checkbox" checked class="make-switch" data-model="api/access_service_key/{{$result->id}}" data-size="small">
               @else
-                <input type="checkbox" class="make-switch" data-size="small">
+                <input name="access_service_key" type="checkbox" class="make-switch" data-model="api/access_service_key/{{$result->id}}" data-size="small">
               @endif
             </td>
             <td>
@@ -215,30 +215,30 @@
             </td>
             <td>
               @if($result->api_coding_insert)
-                <input type="checkbox" checked class="make-switch" data-size="small">
+                <input name="api_coding_insert" data-model="api/api_coding_insert/{{$result->id}}" type="checkbox" checked class="make-switch" data-size="small">
               @else
-                <input type="checkbox" class="make-switch" data-size="small">
+                <input name="api_coding_insert" data-model="api/api_coding_insert/{{$result->id}}" type="checkbox" class="make-switch" data-size="small">
               @endif
             </td>
             <td>
               @if($result->api_coding_update)
-                <input type="checkbox" checked class="make-switch" data-size="small">
+                <input name="api_coding_update" data-model="api/api_coding_update/{{$result->id}}" type="checkbox" checked class="make-switch" data-size="small">
               @else
-                <input type="checkbox" class="make-switch" data-size="small">
+                <input name="api_coding_update" data-model="api/api_coding_update/{{$result->id}}" type="checkbox" class="make-switch" data-size="small">
               @endif
             </td>
             <td>
               @if($result->api_coding_delete)
-                <input type="checkbox" checked class="make-switch" data-size="small">
+                <input name="api_coding_delete" data-model="api/api_coding_delete/{{$result->id}}" type="checkbox" checked class="make-switch" data-size="small">
               @else
-                <input type="checkbox" class="make-switch" data-size="small">
+                <input name="api_coding_delete" data-model="api/api_coding_delete/{{$result->id}}" type="checkbox" class="make-switch" data-size="small">
               @endif
             </td>
             <td>
               @if($result->api_develop_url_filter)
-                <input type="checkbox" checked class="make-switch" data-size="small">
+                <input name="api_develop_url_filter" data-model="api/api_develop_url_filter/{{$result->id}}" type="checkbox" checked class="make-switch" data-size="small">
               @else
-                <input type="checkbox" class="make-switch" data-size="small">
+                <input name="api_develop_url_filter" data-model="api/api_develop_url_filter/{{$result->id}}" type="checkbox" class="make-switch" data-size="small">
               @endif
             </td>
 
@@ -263,9 +263,17 @@
           </tbody>
         </table>
       </div>
+
+      <div style="">
+        {{$total}} : <b> {{$apiAccesses->count()}} </b> {{$result_available}}
+      </div>
+
+
     </div>
   </div>
   <!-- END SAMPLE TABLE PORTLET-->
+
+
 
   <div class="row">
     <div class="col-md-12">

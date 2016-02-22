@@ -73,6 +73,8 @@
 <!-- DOC: Apply "page-full-width" class to the body element to have full width page without the sidebar menu -->
 <body class="{{$menu['body']}}">
 
+<div class="preon"></div>
+
 @include("".config("app.admin_dirname").".prepared.modal.modal")
 
 <!-- BEGIN HEADER -->
@@ -538,6 +540,24 @@
 </script>
 
 <script>
+
+  $('input[class="make-switch"]').on('switchChange.bootstrapSwitch', function(event, state) {
+
+    var model=$(this).attr("data-model");
+    $(".preon").load("{{$baseUrl}}/{{strtolower(config("app.admin_dirname"))}}/test/makeswitch?model="+model+"&state="+state);
+  });
+
+  $(document).on("change","select.changesql",function()
+  {
+
+    var changesql=$(this).attr("changesql");
+    var val=$(this).val();
+    var result=$(this).attr("changesqlresult");
+
+    $("select."+result).load("{{$baseUrl}}/{{strtolower(config("app.admin_dirname"))}}/test/changesql?changesql="+changesql+"&val="+val);
+
+
+  });
 
   $(document).on("keyup","input.autocomplete",function()
   {

@@ -35,7 +35,6 @@ class devSourceController extends Controller
                                     ->paginate(config("app.paginator"));
             }
 
-
             return \DB::table($this->app->dbTable([$data[0]]))->orderBy("id","desc")
                                                         ->where(function($query) use ($data)
                                                         {
@@ -47,6 +46,12 @@ class devSourceController extends Controller
                                                                     if($key=="apikey")
                                                                     {
                                                                         $query->where("apikey","like","%".$value."%");
+                                                                    }
+                                                                    elseif($key=="access_service_key")
+                                                                    {
+                                                                        if($value==2) { $value=0; }
+
+                                                                        $query->where($key,"=",$value);
                                                                     }
                                                                     else
                                                                     {

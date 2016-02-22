@@ -50,15 +50,44 @@ class testController extends Controller
 
         }
 
-    public function getIndex ()
+    public function getChangesql ()
     {
-        //return view
-        return view("".config("app.admin_dirname").".".$this->url_path.".main",$this->data);
+        $changesql=explode("//",Input::get("changesql"));
+
+        $sql=DB::table($this->app->dbTable([$changesql[0]]))->select([$changesql[2]])->where($changesql[1],"=",Input::get("val"))->get();
+
+        $list=array('<option value="none">'.$this->data['apiGroup'].'</option>');
+
+        if(count($sql))
+        {
+            foreach ($sql as $result)
+            {
+                $reschange=DB::table($this->app->dbTable([$changesql[3]]))->select(['id',$changesql[4]])->where($changesql[4],"=",$result->$changesql[2])->get();
+
+                $list[]='<option value="'.$reschange[0]->id.'">'.$reschange[0]->$changesql[4].'</option>';
+            }
+        }
+
+        return implode("",$list);
     }
 
 
-    public function postFoo()
+    public function getMakeswitch()
     {
-        dd(\Input::all());
+        $model=explode("/",Input::get("model"));
+
+        if(Input::get("state")=="true")
+        {
+            $state=1;
+        }
+        else
+        {
+            $state=0;
+        }
+
+        DB::table($this->app->dbTable([$model[0]]))->where("id","=",$model[2])->update([$model[1]=>$state]);
     }
+
+
+
 }
