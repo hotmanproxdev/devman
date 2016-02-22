@@ -43,7 +43,15 @@ class apiModel extends Controller
                             {
                                 foreach (app("\Filter")->getData() as $key=>$value)
                                 {
-                                    $query->where($key,"=",$value);
+                                    if($key=="apikey")
+                                    {
+                                        $query->where("apikey","like","%".$value."%");
+                                    }
+                                    else
+                                    {
+                                        $query->where($key,"=",$value);
+                                    }
+
                                 }
                             })
                             ->orderBy("id","desc")->paginate(config("app.paginator"));
