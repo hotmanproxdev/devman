@@ -168,4 +168,38 @@ class filterController extends Controller
 
         return implode("",$list);
     }
+
+
+
+    public function session()
+    {
+        $val=false;
+
+        if(\Session::has("filterdata"))
+        {
+            $val=true;
+        }
+
+       return $val;
+    }
+
+    public function getData()
+    {
+        $list=[];
+
+        if(is_array(\Session("filterdata")))
+        {
+            foreach (\Session("filterdata") as $key=>$value)
+            {
+                if($value!="none")
+                {
+                    $list[$key]=$value;
+                }
+            }
+        }
+
+
+        return $list;
+    }
+
 }

@@ -32,11 +32,21 @@ class apiModel extends Controller
 
     public function getApiAccesses()
     {
+
         //system developer query callback
         return app("\DevSource")->control(['api'],function()
         {
             //if callback false, call query according to admin's system_code
-            return DB::table($this->app->dbTable(['api']))->where("system_ccode","=",$this->admin->ccode)->orderBy("id","desc")->paginate(config("app.paginator"));
+            return DB::table($this->app->dbTable(['api']))
+                            ->where("system_ccode","=",$this->admin->ccode)
+                            ->where(function($query)
+                            {
+                                foreach (app("\Filter")->getData() as $key=>$value)
+                                {
+                                    $query->where($key,"=",$value);
+                                }
+                            })
+                            ->orderBy("id","desc")->paginate(config("app.paginator"));
         });
     }
 
@@ -112,7 +122,6 @@ class apiModel extends Controller
             return DB::table($this->app->dbTable(['api']))->where("id","=",\Input::get("id"))->update($postdata);
         });
     }
-
 
 
 

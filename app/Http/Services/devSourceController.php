@@ -28,10 +28,36 @@ class devSourceController extends Controller
         {
             if(array_key_exists("group",$data))
             {
-                return \DB::table($this->app->dbTable([$data[0]]))->select([$data['group']])->groupBy($data['group'])->orderBy("id","asc")->paginate(config("app.paginator"));
+                return \DB::table($this->app->dbTable([$data[0]]))
+                                    ->select([$data['group']])
+                                    ->groupBy($data['group'])
+                                    ->orderBy("id","desc")
+                                    ->paginate(config("app.paginator"));
             }
 
-            return \DB::table($this->app->dbTable([$data[0]]))->orderBy("id","asc")->paginate(config("app.paginator"));
+
+            return \DB::table($this->app->dbTable([$data[0]]))->orderBy("id","desc")
+                                                        ->where(function($query) use ($data)
+                                                        {
+                                                            //filter group for api
+                                                            if($data[0]=="api")
+                                                            {
+                                                                foreach (app("\Filter")->getData() as $key=>$value)
+                                                                {
+                                                                    if($key=="apikey")
+                                                                    {
+                                                                        $query->where("apikey","like","%".$value."%");
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        $query->where($key,"=",$value);
+                                                                    }
+
+                                                                }
+                                                            }
+
+                                                        })
+                                                        ->paginate(config("app.paginator"));
         }
         else
         {
