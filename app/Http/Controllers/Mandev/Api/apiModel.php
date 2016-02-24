@@ -133,4 +133,50 @@ class apiModel extends Controller
 
 
 
+    public function insertNewUserApi()
+    {
+        return app("\Transaction")->commit(function()
+        {
+            //reel key post data
+            $postdata=$this->app->getvalidPostKey(\Input::all(),['_token']);
+
+            //access services implode string key converter
+            if(array_key_exists("access_services",\Input::all()))
+            {
+                $postdata['access_services']=implode("-",$postdata['access_services']);
+            }
+            else
+            {
+                $postdata['access_services']=NULL;
+            }
+
+            //forbidden access services implode string key converter
+            if(array_key_exists("forbidden_access_services",\Input::all()))
+            {
+                $postdata['forbidden_access_services']=implode("-",$postdata['forbidden_access_services']);
+            }
+            else
+            {
+                $postdata['forbidden_access_services']=NULL;
+            }
+
+            //created at
+            $postdata['created_at']=time();
+
+            //request limit
+            $postdata['request']=1000;
+
+            //query insert get id
+            $id=DB::table($this->app->dbTable(['api']))->insertGetId($postdata);
+
+            //standart key update
+            return DB::table($this->app->dbTable(['api']))->where("id","=",$id)->update(['standart_key'=>$this->app->getApiStandartKey($id)]);
+        });
+    }
+
+
+
+
+
+
 }

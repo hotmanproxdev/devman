@@ -98,7 +98,7 @@ class BeforeMiddleware
 
 
 
-        $this->app->insertLang(["url_path"=>"default","word_data"=>['result_available'=>'Sonuç Bulunmaktadır'],"lang"=>1]);
+        $this->app->insertLang(["url_path"=>"default","word_data"=>['select_warning'=>'verisi yanlış bir veri olduğundan dolayı,manipulation yaptığınızı algıladık.'],"lang"=>1]);
 
 
         return $next($request);

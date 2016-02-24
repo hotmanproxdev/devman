@@ -34,7 +34,7 @@ class validationController extends Controller
         if(count($make))
         {
             //validation false
-            return app("\Notification")->warning(['msg'=>$make['msg'],'title'=>$this->data['error']]);
+            return app("\Notification")->warning(['msg'=>$make['msg'],'title'=>$this->data['error'],'manipulation'=>true]);
         }
 
         if(is_callable($callback))
@@ -77,6 +77,17 @@ class validationController extends Controller
     }
 
 
+    public function str_select($data,$field)
+    {
+        if(!in_array($field,$data))
+        {
+            return ['result'=>false,'msg'=>''.$field.' '.$this->data['select_warning'].''];
+        }
+
+        return ['result'=>true];
+    }
+
+
     public function minChar($data,$field)
     {
 
@@ -103,18 +114,32 @@ class validationController extends Controller
 
     public function validationRules($key)
     {
-        if($key=="key")
+        if($key=="postIndex")
         {
             $rules=array(
-                "str_empty"=>[$this->data['new_user_ccode']=>[Input::get("ccode")],
-                    $this->data['new_user_login_name']=>[Input::get("username")],
-                    $this->data['new_user_login_password']=>[Input::get("password")],
-                    $this->data['new_user_email']=>[Input::get("email")],
-                    $this->data['new_user_fullname']=>[Input::get("fullname")]
+                "str_empty"=>[$this->data['login_name']=>[Input::get("username")],
+                    $this->data['username']=>[Input::get("fullname")],
+                    $this->data['mail']=>[Input::get("email")]
                 ]
             );
         }
 
+
+        if($key=="postChangepassword")
+        {
+            $rules=array(
+
+                "str_empty"=>[$this->data['new_password']=>[Input::get("password")],
+                    $this->data['renew_password']=>[Input::get("repassword")]
+                ],
+
+                "minChar"=>  [$this->data['new_password']=>[Input::get("password"),8],
+                    $this->data['renew_password']=>[Input::get("repassword"),8]
+                ],
+
+                "str_select"=>[Input::get("ccode")=>['develop','guest']]
+            );
+        }
 
         return $rules;
     }

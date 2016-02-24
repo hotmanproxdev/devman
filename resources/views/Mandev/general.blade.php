@@ -246,7 +246,7 @@
 
         </div>
         <!-- END PAGE HEADER-->
-        <div style="min-height:1200px;">
+        <div style="min-height:1500px;">
           @yield('content')
         </div>
 

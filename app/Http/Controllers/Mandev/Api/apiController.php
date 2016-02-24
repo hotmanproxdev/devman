@@ -82,6 +82,40 @@ class apiController extends Controller
 
     }
 
+
+    public function getNewapiuser()
+    {
+        //it just accepts ajax request
+        return app("\Ajax")->control(function()
+        {
+            //return view
+            return view("".config("app.admin_dirname").".".$this->url_path.".newApiUser",$this->data);
+        });
+    }
+
+    public function postNewapiuser()
+    {
+        //it just accepts ajax request
+        return app("\Ajax")->control(function()
+        {
+            //validation control
+            return $this->validation->make($this->validationRules("newApiUser"),function()
+            {
+                //same token control
+                return app("\Token")->valid(function()
+                {
+                    //post data query is true
+                    return app("\Query")->isTrue($this->model->insertNewUserApi(),function()
+                    {
+                        return $this->notification->success(['msg'=>$this->data['api_insert_user'],'title'=>$this->data['successful']]);
+                    });
+                });
+            });
+
+        });
+    }
+
+
     public function getEdit()
     {
         //it just accepts ajax request
@@ -105,6 +139,7 @@ class apiController extends Controller
 
     }
 
+
     public function postEdit()
     {
         //accept post in with ajax method
@@ -122,6 +157,23 @@ class apiController extends Controller
 
         });
 
+    }
+
+
+    public function validationRules($key)
+    {
+
+        if($key=="newApiUser")
+        {
+            $rules=array(
+
+                "str_empty"=>["Apikey"=>[Input::get("apikey")]],
+                "str_select"=>[Input::get("ccode")=>['develop','guest']]
+
+            );
+        }
+
+        return $rules;
     }
 
 

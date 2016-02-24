@@ -18,6 +18,31 @@
     </div>
   </div>
 
+  <div style="margin:0 0 5px 0;">
+
+    <div class="divlay">
+      <a class="indent btn btn-lg blue xmodal" model="api/newapiuser" modal-title="{{$newapiuser}}" data-target="#full-width" href="#full-width" data-toggle="modal">
+        {{$newapiuser}} <i class="fa fa-plus"></i>
+      </a>
+    </div>
+
+    <div class="divlay">
+      <a href="javascript:;" class="indent btn btn-lg red">
+        Api Logları <i class="fa fa-file-o"></i>
+      </a>
+    </div>
+
+    <div class="divlay">
+      <a href="javascript:;" class="indent btn btn-lg yellow">
+        Api Modelleme ve Data Bilgileri <i class="fa fa-list"></i>
+      </a>
+    </div>
+
+    <div class="clear"></div>
+
+  </div>
+
+
   <!-- BEGIN SAMPLE TABLE PORTLET-->
   <div class="portlet box purple">
     <div class="portlet-title">
@@ -157,8 +182,8 @@
             </td>
 
             <td>
-              <a class="btn default xmodal" model="api/edit?id={{$result->id}}" modal-title="{{$api_edit_page_title}}" data-toggle="modal" href="#full-width">
-                <span style="color:#336699; font-weight:bold;">{{$edit}}</span> </a>
+              <a class="xmodal" model="api/edit?id={{$result->id}}" modal-title="{{$api_edit_page_title}}" data-toggle="modal" href="#full-width">
+                <span style="color:#336699; font-weight:bold;"><img src="{{$baseUrl}}/edit.png" width="20"></span> </a>
             </td>
             <td>
               <span class="label label-sm label-warning">
@@ -265,7 +290,11 @@
       </div>
 
       <div style="">
-        {{$total}} : <b> {{$apiAccesses->count()}} </b> {{$result_available}}
+        {{$total}} : <b> {{$apiAccesses->total()}} </b> {{$result_available}}.{{$thispage}} <b>{{$apiAccesses->count()}}</b> {{$dataseen}}.
+      </div>
+
+      <div style="margin:5px 0 0 0;">
+        {!! $apiAccesses->render() !!}
       </div>
 
 

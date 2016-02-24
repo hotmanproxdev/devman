@@ -36,7 +36,7 @@ class notificationController extends Controller
         $data['position']=$this->position['success'];
 
         //log info update
-        $this->app->updateLogInfo($this->admin->id,['msg'=>$data['msg'],'query_json'=>json_encode(DB::getQueryLog()),'process_count_sql'=>count(DB::getQueryLog())]);
+        $this->app->updateLogInfo($this->admin->id,['success_operations'=>1,'msg'=>$data['msg'],'query_json'=>json_encode(DB::getQueryLog()),'process_count_sql'=>count(DB::getQueryLog())]);
         DB::table($this->app->dbTable(['admin']))->where("id","=",$this->admin->id)->update(['operations'=>DB::raw("operations+1"),'success_operations'=>DB::raw("success_operations+1"),
         'last_token'=>Input::get("_token"),'last_post'=>base64_encode(json_encode(Input::all()))]);
 
@@ -51,8 +51,17 @@ class notificationController extends Controller
         $data['function']='warning';
         $data['position']=$this->position['warning'];
 
-        //log info update
-        $this->app->updateLogInfo($this->admin->id,['msg'=>$data['msg']]);
+        if(array_key_exists("manipulation",$data))
+        {
+            //log info update
+            $this->app->updateLogInfo($this->admin->id,['msg'=>$data['msg'],'manipulation'=>1]);
+        }
+        else
+        {
+            //log info update
+            $this->app->updateLogInfo($this->admin->id,['msg'=>$data['msg']]);
+        }
+
         DB::table($this->app->dbTable(['admin']))->where("id","=",$this->admin->id)->update(['operations'=>DB::raw("operations+1"),'fail_operations'=>DB::raw("fail_operations+1")]);
         DB::table($this->app->dbTable(['logs']))->where("userid","=",$this->admin->id)->where("userHash","=",$this->admin->hash)->orderBy("id","desc")->take(1)->update(['fail_operations'=>1]);
 
