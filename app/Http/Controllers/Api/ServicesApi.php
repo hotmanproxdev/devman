@@ -63,16 +63,20 @@ class ServicesApi extends Controller
                     {
                         $service_request_number=json_decode($developer['user'][0]->service_request_number,true);
 
-                        if(array_key_exists($serviceName,$service_request_number))
+                        if(is_array($service_request_number))
                         {
-                            if($developer['user'][0]->request<$service_request_number[$serviceName]+1)
+                            if(array_key_exists($serviceName,$service_request_number))
                             {
-                                //developer false
-                                return response()->json(['success'=>false,
-                                    'msg'=>'you have limit timeout for this service'
-                                ]);
+                                if($developer['user'][0]->request<$service_request_number[$serviceName]+1)
+                                {
+                                    //developer false
+                                    return response()->json(['success'=>false,
+                                        'msg'=>'you have limit timeout for this service'
+                                    ]);
+                                }
                             }
                         }
+
 
                     }
                     else

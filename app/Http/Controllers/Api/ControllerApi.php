@@ -238,6 +238,11 @@ class ControllerApi extends Controller
             {
                 $service_request_number=json_decode($service_request_number,true);
 
+                if(!is_array($service_request_number))
+                {
+                    $service_request_number=[];
+                }
+
                 if(!array_key_exists($data['service'],$service_request_number))
                 {
                     $service_request_number[$data['service']]=1;
@@ -260,6 +265,11 @@ class ControllerApi extends Controller
             if($all_service_request_number!==NULL)
             {
                 $all_service_request_number=json_decode($all_service_request_number,true);
+
+                if(!is_array($all_service_request_number))
+                {
+                    $all_service_request_number=[];
+                }
 
                 if(!array_key_exists($data['service'],$all_service_request_number))
                 {
