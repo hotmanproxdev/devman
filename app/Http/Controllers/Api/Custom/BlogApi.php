@@ -26,15 +26,80 @@ class BlogApi extends Controller
     public function get ()
     {
         //your query
-        $query=DB::table($this->table("admin"))->where("id","=",1)->get();
+        $query=DB::table($this->table("admin"))
+                         ->select($this->select())
+                         ->where(function ($query)
+                         {
+                            foreach ($this->where() as $key=>$value)
+                            {
+                                if(is_array($value))
+                                {
+                                    $query->whereIn($key,$value);
+                                }
+                                else
+                                {
+                                    $query->where($key,"=",$value);
+                                }
+
+                            }
+                         })
+                         ->get();
 
         //output send
         return $this->output($query);
     }
 
+
+    public function postUpdate()
+    {
+        $query=DB::table($this->table("admin"))
+                        ->select($this->select())
+                        ->where(function ($query)
+                        {
+                            foreach ($this->where() as $key=>$value)
+                            {
+                                $query->where($key,"=",$value);
+                            }
+                        })->update($this->update());
+
+        return $this->output($query);
+    }
+
+
     private function table ($table)
     {
        return $this->app->dbTable([$table]);
+    }
+
+    private function select()
+    {
+        if($this->request->header("select"))
+        {
+            return json_decode($this->request->header("select"),true);
+        }
+
+        return '*';
+    }
+
+    private function where()
+    {
+        if($this->request->header("where"))
+        {
+            return json_decode($this->request->header("where"),true);
+        }
+
+        return [];
+    }
+
+
+    private function update()
+    {
+        if($this->request->header("update"))
+        {
+            return json_decode($this->request->header("update"),true);
+        }
+
+        return [];
     }
 
     private function postdata()

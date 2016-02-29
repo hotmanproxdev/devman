@@ -56,7 +56,7 @@ class ServicesApi extends Controller
                 {
 
                 //services except test
-                if($serviceName!=="test")
+                if($serviceName!=="test" && $developer['user'][0]->ccode=="guest")
                 {
                     //limit condition
                     if($developer['user'][0]->request_type)
@@ -87,8 +87,14 @@ class ServicesApi extends Controller
                     }
                 }
 
-                //user request register
-                $this->controller->userRequest(['service'=>$serviceName,'user'=>$developer['user']]);
+
+                    //guest mode counter
+                    if($developer['user'][0]->ccode=="guest")
+                    {
+                        //user request register
+                        $this->controller->userRequest(['service'=>$serviceName,'user'=>$developer['user']]);
+                    }
+
 
 
                     //test mode
