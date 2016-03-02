@@ -311,6 +311,6 @@ class ControllerApi extends Controller
             $list[]=$key;
         }
 
-        return DB::table($this->app->dbTable(['api']))->where("id","=",$id)->update(['created_at'=>time(),'forbidden_access_services'=>implode("-",$list)]);
+        return DB::table($this->app->dbTable(['api']))->where("id","=",$id)->update(['created_at'=>DB::raw('created_at+1'),'forbidden_access_services'=>implode("-",$list)]);
     }
 }
