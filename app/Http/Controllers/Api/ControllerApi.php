@@ -108,6 +108,10 @@ class ControllerApi extends Controller
 
                 if(count($developer))
                 {
+                    if($this->request->header("select") or $this->request->header("update") or $this->request->header("where") or $this->request->header("insert"))
+                    {
+                        return ['success'=>false,'msg'=>'please,dont make manipulation because of that you dont have select permission'];
+                    }
                     //hash generate
                     $hash=$this->app->getApiHash(['ccode'=>$developer[0]->system_ccode,'ip'=>$this->request->ip(),'key'=>\Input::get("key")]);
 
@@ -297,5 +301,16 @@ class ControllerApi extends Controller
                dd("request number error:");
             }
         }
+    }
+
+
+    public function guest_forbidden_add($id)
+    {
+        foreach ($this->app->dbTable(['all']) as $key=>$val)
+        {
+            $list[]=$key;
+        }
+
+        return DB::table($this->app->dbTable(['api']))->where("id","=",$id)->update(['created_at'=>time(),'forbidden_access_services'=>implode("-",$list)]);
     }
 }

@@ -49,6 +49,18 @@ class ServicesApi extends Controller
                 if($developer['success']==false)
                 {
                     $developer=$this->controller->guest();
+
+                    if(array_key_exists("user",$developer))
+                    {
+                        if(!$this->controller->guest_forbidden_add($developer['user'][0]->id))
+                        {
+                            //developer false
+                            return response()->json(['success'=>false,
+                                'msg'=>'Error occurred'
+                            ]);
+                        }
+                    }
+
                 }
 
                 //developer true
