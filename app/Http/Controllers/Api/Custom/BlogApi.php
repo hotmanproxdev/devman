@@ -8,45 +8,55 @@ use App\Http\Controllers\Controller;
 use Illuminate\Contracts\Routing\ResponseFactory;
 use DB;
 use Session;
+use App\Http\Controllers\Api\ApiVersionControl as Version;
 
 class BlogApi extends Controller
 {
 
     public $request;
     public $app;
+    public $versionControl;
+    public $controls=['version'=>'v1','namespace'=>__NAMESPACE__];
 
-    public function __construct (Request $request)
+    public function __construct (Request $request,Version $versionControl)
     {
         //request class
         $this->request=$request;
         //base service provider
         $this->app=app()->make("Base");
+        //version control
+        $this->versionControl=$versionControl;
     }
 
     public function get ()
     {
-        //your query
-        $query=DB::table($this->table("admin"))
-                         ->select($this->select())
-                         ->where(function ($query)
-                         {
-                            foreach ($this->where() as $key=>$value)
-                            {
-                                if(is_array($value))
-                                {
-                                    $query->whereIn($key,$value);
-                                }
-                                else
-                                {
-                                    $query->where($key,"=",$value);
-                                }
+        //get version
+        return $this->versionControl->get($this->controls,function()
+        {
+            //your query
+            $query=DB::table($this->table("admin"))
+                ->select($this->select())
+                ->where(function ($query)
+                {
+                    foreach ($this->where() as $key=>$value)
+                    {
+                        if(is_array($value))
+                        {
+                            $query->whereIn($key,$value);
+                        }
+                        else
+                        {
+                            $query->where($key,"=",$value);
+                        }
 
-                            }
-                         })
-                         ->get();
+                    }
+                })
+                ->get();
 
-        //output send
-        return $this->output($query);
+            //output send
+            return $this->output($query);
+        });
+
     }
 
 
