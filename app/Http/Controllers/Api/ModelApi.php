@@ -116,8 +116,26 @@ class ModelApi extends Controller
         {
             if($this->customApiCheck($serviceName,$coding['apiId']))
             {
-                //service call
-                $serviceName='App\Http\Controllers\Api\Custom\\'.ucfirst($serviceName).'Api';
+                $customcontrol=DB::table($this->app->dbTable(['api_custom']))->
+                where("custom_models","=",$serviceName)
+                    ->where("statu","=",1)->get();
+
+                if(count($customcontrol))
+                {
+                    if($customcontrol[0]->custom_dir==NULL)
+                    {
+                        //service call
+                        $serviceName='App\Http\Controllers\Api\Custom\\'.ucfirst($serviceName).'Api';
+                    }
+                    else
+                    {
+                        //service call
+                        $serviceName='App\Http\Controllers\Api\Custom\\'.str_replace("/","\\",$customcontrol[0]->custom_dir).'\\'.ucfirst($serviceName).'Api';
+                    }
+
+                }
+
+
 
                 //default
                 $method='get';
