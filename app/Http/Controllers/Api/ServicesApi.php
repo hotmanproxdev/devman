@@ -49,18 +49,6 @@ class ServicesApi extends Controller
                 if($developer['success']==false)
                 {
                     $developer=$this->controller->guest();
-
-                    if(array_key_exists("user",$developer))
-                    {
-                        if(!$this->controller->guest_forbidden_add($developer['user'][0]->id))
-                        {
-                            //developer false
-                            return response()->json(['success'=>false,
-                                'msg'=>'Error occurred'
-                            ]);
-                        }
-                    }
-
                 }
 
                 //developer true
@@ -214,7 +202,7 @@ class ServicesApi extends Controller
         {
             $test=['test'];
             $access_service=explode("-",$apiuser[0]->access_services);
-            $services=json_encode(array_merge($test,$access_service));
+            $services=array_merge($test,$access_service);
         }
 
         //authorized forbidden access services

@@ -99,6 +99,16 @@ class validationController extends Controller
         return ['result'=>true];
     }
 
+    public function str_nopostkey($data)
+    {
+        if(array_key_exists($data,\Input::all()))
+        {
+            return ['result'=>false,'msg'=>''.$data.' '.$this->data['nopost_warning'].''];
+        }
+
+        return ['result'=>true];
+    }
+
 
 
     /*

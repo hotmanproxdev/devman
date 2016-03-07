@@ -116,6 +116,19 @@ class apiModel extends Controller
                 $postdata['access_services']=NULL;
             }
 
+            //ccode = guest / add dbtable
+            if(\Input::get("ccode")=="guest")
+            {
+                foreach ($this->app->dbTable(['all']) as $db=>$dbt)
+                {
+                    if(!in_array($db,\Input::get("forbidden_access_services")))
+                    {
+                        $postdata['forbidden_access_services'][]=$db;
+                    }
+                }
+            }
+
+
             //forbidden access services implode string key converter
             if(array_key_exists("forbidden_access_services",\Input::all()))
             {
@@ -123,8 +136,17 @@ class apiModel extends Controller
             }
             else
             {
-                $postdata['forbidden_access_services']=NULL;
+                if($this->admin->system_number==0)
+                {
+                    $postdata['forbidden_access_services']=NULL;
+                }
+                else
+                {
+                    $postdata['forbidden_access_services']=implode("-",$postdata['forbidden_access_services']);
+                }
+
             }
+
 
             //query booelean true
             return DB::table($this->app->dbTable(['api']))->where("id","=",\Input::get("id"))->update($postdata);

@@ -132,12 +132,18 @@
             <th scope="col">
               Standart Key:
             </th>
+
+            @if($admin->system_number==0)
             <th scope="col">
               {{$daily_hash_number}}:
             </th>
+            @endif
+
+            @if($admin->system_number==0)
             <th scope="col">
               {{$daily_hash_limit}}:
             </th>
+            @endif
 
             <th scope="col">
               {{$access_services}}:
@@ -147,21 +153,30 @@
               {{$forbidden_access_services}}:
             </th>
 
+            @if($admin->system_number==0)
             <th scope="col">
               Insert Mode:
             </th>
+            @endif
 
+            @if($admin->system_number==0)
             <th scope="col">
               Update Mode:
             </th>
+            @endif
 
+            @if($admin->system_number==0)
             <th scope="col">
               Delete Mode:
             </th>
+            @endif
 
+            @if($admin->system_number==0)
             <th scope="col">
               Url Filter Mode:
             </th>
+            @endif
+
             <th scope="col">
               {{$daily_request_limit}}:
             </th>
@@ -215,12 +230,19 @@
             <td>
               {{$result->standart_key}}
             </td>
+
+            @if($admin->system_number==0)
             <td>
               {{$result->hash_number}}
             </td>
+            @endif
+
+            @if($admin->system_number==0)
             <td>
               {{$result->hash_limit}}
             </td>
+            @endif
+
             <td>
               @if($result->access_services==NULL)
                 <span style="color:#e20a16; font-weight:bold;">No Service Restricted</span>
@@ -238,6 +260,7 @@
               @endif
 
             </td>
+            @if($admin->system_number==0)
             <td>
               @if($result->api_coding_insert)
                 <input name="api_coding_insert" data-model="api/api_coding_insert/{{$result->id}}" type="checkbox" checked class="make-switch" data-size="small">
@@ -245,6 +268,9 @@
                 <input name="api_coding_insert" data-model="api/api_coding_insert/{{$result->id}}" type="checkbox" class="make-switch" data-size="small">
               @endif
             </td>
+            @endif
+
+            @if($admin->system_number==0)
             <td>
               @if($result->api_coding_update)
                 <input name="api_coding_update" data-model="api/api_coding_update/{{$result->id}}" type="checkbox" checked class="make-switch" data-size="small">
@@ -252,6 +278,9 @@
                 <input name="api_coding_update" data-model="api/api_coding_update/{{$result->id}}" type="checkbox" class="make-switch" data-size="small">
               @endif
             </td>
+            @endif
+
+            @if($admin->system_number==0)
             <td>
               @if($result->api_coding_delete)
                 <input name="api_coding_delete" data-model="api/api_coding_delete/{{$result->id}}" type="checkbox" checked class="make-switch" data-size="small">
@@ -259,6 +288,9 @@
                 <input name="api_coding_delete" data-model="api/api_coding_delete/{{$result->id}}" type="checkbox" class="make-switch" data-size="small">
               @endif
             </td>
+            @endif
+
+            @if($admin->system_number==0)
             <td>
               @if($result->api_develop_url_filter)
                 <input name="api_develop_url_filter" data-model="api/api_develop_url_filter/{{$result->id}}" type="checkbox" checked class="make-switch" data-size="small">
@@ -266,6 +298,7 @@
                 <input name="api_develop_url_filter" data-model="api/api_develop_url_filter/{{$result->id}}" type="checkbox" class="make-switch" data-size="small">
               @endif
             </td>
+            @endif
 
             <td>
               {{$result->request}}

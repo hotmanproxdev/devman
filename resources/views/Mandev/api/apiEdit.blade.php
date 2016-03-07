@@ -58,12 +58,16 @@
 												<i class="fa fa-qrcode"></i>
 												</span>
                 <select name="ccode" class="form-control" style="background-color: #ffffdd;;">
-                  @if($getUserApi['0']->ccode=="develop")
-                    <option value="develop">Develop Mode</option>
-                    <option value="guest">Guest Mode</option>
+                  @if($admin->system_number==0)
+                    @if($getUserApi['0']->ccode=="develop")
+                      <option value="develop">Develop Mode</option>
+                      <option value="guest">Guest Mode</option>
+                    @else
+                      <option value="guest">Guest Mode</option>
+                      <option value="develop">Develop Mode</option>
+                    @endif
                   @else
                     <option value="guest">Guest Mode</option>
-                    <option value="develop">Develop Mode</option>
                   @endif
                 </select>
               </div>
@@ -99,13 +103,15 @@
 												<span class="input-group-addon">
 												<i class="fa fa-user"></i>
 												</span>
-                <input type="text" id="typeahead_example_2" name="apikey" class="form-control" value="{{$getUserApi['0']->apikey}}"/>
+                <input type="text" id="typeahead_example_2" name="apikey" class="form-control apikey"  require="input-apikey" value="{{$getUserApi['0']->apikey}}"/>
+                <span class="validation apikey">{{$validation_warning}}</span>
               </div>
               <p class="help-block">
                {{$api_api_key_info}}.
               </p>
             </div>
           </div>
+          @if($admin->system_number==0)
           <div class="form-group">
             <label class="col-sm-3 control-label">{{$daily_hash_number}}</label>
             <div class="col-sm-4">
@@ -113,15 +119,17 @@
 												<span class="input-group-addon">
 												<i class="fa fa-cogs"></i>
 												</span>
-                <input type="text" id="typeahead_example_3" name="hash_number" class="form-control" value="{{$getUserApi['0']->hash_number}}"/>
+                <input type="text" id="typeahead_example_3" name="hash_number" class="form-control hash_number" require="input-hash_number" value="{{$getUserApi['0']->hash_number}}"/>
+                <span class="validation hash_number">{{$validation_warning}}</span>
               </div>
               <p class="help-block">
                 {{$api_hash_number_info}}.
               </p>
             </div>
           </div>
+          @endif
 
-
+          @if($admin->system_number==0)
           <div class="form-group">
             <label class="col-sm-3 control-label">{{$daily_hash_limit}}</label>
             <div class="col-sm-4">
@@ -129,13 +137,15 @@
 												<span class="input-group-addon">
 												<i class="fa fa-cogs"></i>
 												</span>
-                <input type="text" id="typeahead_example_3" name="hash_limit" class="form-control" value="{{$getUserApi['0']->hash_limit}}"/>
+                <input type="text" id="typeahead_example_3" name="hash_limit" class="form-control hash_limit" require="input-hash_limit" value="{{$getUserApi['0']->hash_limit}}"/>
+                <span class="validation hash_limit">{{$validation_warning}}</span>
               </div>
               <p class="help-block">
                 {{$api_hash_limit_info}}.
               </p>
             </div>
           </div>
+          @endif
 
 
           <div class="form-group">
@@ -166,7 +176,8 @@
 												<span class="input-group-addon">
 												<i class="fa fa-cogs"></i>
 												</span>
-                <input type="text" id="typeahead_example_3" name="request" class="form-control" value="{{$getUserApi['0']->request}}" style="background-color: #ffffdd;"/>
+                <input type="text" id="typeahead_example_3" name="request" class="form-control request" require="input-request" value="{{$getUserApi['0']->request}}" style="background-color: #ffffdd;"/>
+                <span class="validation request">{{$validation_warning}}</span>
               </div>
               <p class="help-block">
                 {{$api_request_limit_info}}.
@@ -183,7 +194,6 @@
 												</span>
                 @if($access_services=($getUserApi[0]->access_services==NULL) ? [] : explode("-",$getUserApi[0]->access_services))
                 @endif
-
                 @if(count($access_services))
                   <select name="access_services[]" id="access_services" class="form-control select2" multiple="multiple">
                 @else
@@ -193,13 +203,20 @@
                   @foreach(app()->make("Base")->services(true) as $key=>$value)
                     @if($value!=="test")
                     @if(count($access_services))
-                      @if(in_array($key,$access_services))
+                      @if(in_array($value,$access_services))
                         <option value="{{$value}}" selected>{{$value}}</option>
                       @else
                         <option value="{{$value}}">{{$value}}</option>
                       @endif
                     @else
-                      <option value="{{$value}}">{{$value}}</option>
+                      @if(($admin->system_number>0) AND (!array_key_exists($value,app()->make("Base")->dbTable(['all']))))
+                        <option value="{{$value}}">{{$value}}</option>
+                        @endif
+
+                      @if($admin->system_number==0)
+                          <option value="{{$value}}">{{$value}}</option>
+                        @endif
+
                     @endif
                       @endif
                   @endforeach
@@ -252,7 +269,7 @@
             </div>
           </div>
 
-
+          @if($admin->system_number==0)
           <div class="form-group ">
             <label class="col-sm-3 control-label">Insert Mode:</label>
             <div class="col-sm-4">
@@ -273,7 +290,9 @@
               </p>
             </div>
           </div>
+          @endif
 
+          @if($admin->system_number==0)
           <div class="form-group ">
             <label class="col-sm-3 control-label">Update Mode:</label>
             <div class="col-sm-4">
@@ -294,8 +313,9 @@
               </p>
             </div>
           </div>
+          @endif
 
-
+          @if($admin->system_number==0)
           <div class="form-group ">
             <label class="col-sm-3 control-label">Delete Mode:</label>
             <div class="col-sm-4">
@@ -316,8 +336,10 @@
               </p>
             </div>
           </div>
+          @endif
 
 
+          @if($admin->system_number==0)
           <div class="form-group ">
             <label class="col-sm-3 control-label">Url Filter:</label>
             <div class="col-sm-4">
@@ -338,6 +360,7 @@
               </p>
             </div>
           </div>
+          @endif
 
           <div class="form-actions">
             <div class="row">

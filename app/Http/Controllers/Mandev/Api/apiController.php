@@ -99,7 +99,7 @@ class apiController extends Controller
         return app("\Ajax")->control(function()
         {
             //validation control
-            return $this->validation->make($this->validationRules("newApiUser"),function()
+            return $this->validation->make($this->validationRules("apiUser"),function()
             {
                 //same token control
                 return app("\Token")->valid(function()
@@ -148,11 +148,16 @@ class apiController extends Controller
             //same token control
             return app("\Token")->valid(function()
             {
-                //post data query is true
-                return app("\Query")->isTrue($this->model->updateUserApi(),function()
+                //validation control
+                return $this->validation->make($this->validationRules("apiUser"),function()
                 {
-                    return $this->notification->success(['msg'=>$this->data['api_update_user'],'title'=>$this->data['successful']]);
+                    //post data query is true
+                    return app("\Query")->isTrue($this->model->updateUserApi(),function()
+                    {
+                        return $this->notification->success(['msg'=>$this->data['api_update_user'],'title'=>$this->data['successful']]);
+                    });
                 });
+
             });
 
         });
@@ -163,12 +168,27 @@ class apiController extends Controller
     public function validationRules($key)
     {
 
-        if($key=="newApiUser")
+        if($key=="apiUser")
         {
             $rules=array(
 
-                "str_empty"=>["Apikey"=>[Input::get("apikey")]],
-                "str_select"=>[Input::get("ccode")=>['develop','guest']]
+                "str_empty"=>["Apikey"=>[Input::get("apikey")],
+                              $this->data['daily_request_limit']=>[Input::get("request")],
+                              ],
+                "str_select"=>[
+                                Input::get("ccode")=>($this->admin->system_number==0) ? ['develop','guest'] : ['guest'],
+                                Input::get("access_service_key")=>[1,0],
+                                Input::get("request_type")=>[1,0]
+                              ],
+                "str_nopostkey"=>($this->admin->system_number==0) ? [] :['system_ccode',
+                                                                         'api_develop_url_filter',
+                                                                         'api_coding_delete',
+                                                                         'api_coding_update',
+                                                                         'api_coding_insert',
+                                                                         'hash_limit',
+                                                                         'hash_number'
+
+                                                                        ]
 
             );
         }
