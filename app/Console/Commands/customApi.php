@@ -39,9 +39,9 @@ class customApi extends Command
     {
         $main=\DB::table(app()->make("Base")->dbTable(['api_custom']));
 
-        $customExist=$main->where("custom_models","=",$this->argument("custom"))->get();
+        //$customExist=$main->where("custom_models","=",$this->argument("custom"))->get();
 
-        if(count($customExist)==false)
+        if(true)
         {
             if($main->insert(['custom_models'=>$this->argument("custom"),'custom_dir'=>($this->argument("dir")) ? ucfirst($this->argument("dir")) : NULL,'users'=>0,'created_at'=>time()]))
             {
@@ -94,7 +94,7 @@ class customApi extends Command
             }
         }
 
-        dd("this api was registered before");
+
 
 
     }

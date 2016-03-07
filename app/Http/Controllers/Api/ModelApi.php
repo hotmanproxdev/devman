@@ -118,7 +118,7 @@ class ModelApi extends Controller
             {
                 $customcontrol=DB::table($this->app->dbTable(['api_custom']))->
                 where("custom_models","=",$serviceName)
-                    ->where("statu","=",1)->get();
+                    ->where("statu","=",1)->orderBy("id","asc")->take(1)->get();
 
                 if(count($customcontrol))
                 {
