@@ -88,8 +88,13 @@ class apiController extends Controller
         //it just accepts ajax request
         return app("\Ajax")->control(function()
         {
-            //return view
-            return view("".config("app.admin_dirname").".".$this->url_path.".newApiUser",$this->data);
+            //content auth
+            return app("\Role")->get(16,function()
+            {
+                //return view
+                return view("".config("app.admin_dirname").".".$this->url_path.".newApiUser",$this->data);
+            });
+
         });
     }
 
@@ -98,19 +103,24 @@ class apiController extends Controller
         //it just accepts ajax request
         return app("\Ajax")->control(function()
         {
-            //validation control
-            return $this->validation->make($this->validationRules("apiUser"),function()
+            //content auth
+            return app("\Role")->get(17,function()
             {
-                //same token control
-                return app("\Token")->valid(function()
+                //validation control
+                return $this->validation->make($this->validationRules("apiUser"),function()
                 {
-                    //post data query is true
-                    return app("\Query")->isTrue($this->model->insertNewUserApi(),function()
+                    //same token control
+                    return app("\Token")->valid(function()
                     {
-                        return $this->notification->success(['msg'=>$this->data['api_insert_user'],'title'=>$this->data['successful']]);
+                        //post data query is true
+                        return app("\Query")->isTrue($this->model->insertNewUserApi(),function()
+                        {
+                            return $this->notification->success(['msg'=>$this->data['api_insert_user'],'title'=>$this->data['successful']]);
+                        });
                     });
                 });
             });
+
 
         });
     }
@@ -121,19 +131,22 @@ class apiController extends Controller
         //it just accepts ajax request
         return app("\Ajax")->control(function()
         {
-            //get user's api info
-            $getUserApi=$this->model->getUserApi();
-
-            //post data query is true
-            return app("\Query")->isCountTrue($getUserApi,function() use ($getUserApi)
+            //content auth
+            return app("\Role")->get(14,function()
             {
-                //data passing user api
-                $this->data['getUserApi'] =$getUserApi;
+                //get user's api info
+                $getUserApi=$this->model->getUserApi();
 
-                //return view
-                return view("".config("app.admin_dirname").".".$this->url_path.".apiEdit",$this->data);
+                //post data query is true
+                return app("\Query")->isCountTrue($getUserApi,function() use ($getUserApi)
+                {
+                    //data passing user api
+                    $this->data['getUserApi'] =$getUserApi;
+
+                    //return view
+                    return view("".config("app.admin_dirname").".".$this->url_path.".apiEdit",$this->data);
+                });
             });
-
 
         });
 
@@ -145,17 +158,22 @@ class apiController extends Controller
         //accept post in with ajax method
         return app("\Ajax")->control(function()
         {
-            //same token control
-            return app("\Token")->valid(function()
+            //content auth
+            return app("\Role")->get(15,function()
             {
-                //validation control
-                return $this->validation->make($this->validationRules("apiUser"),function()
+                //same token control
+                return app("\Token")->valid(function()
                 {
-                    //post data query is true
-                    return app("\Query")->isTrue($this->model->updateUserApi(),function()
+                    //validation control
+                    return $this->validation->make($this->validationRules("apiUser"),function()
                     {
-                        return $this->notification->success(['msg'=>$this->data['api_update_user'],'title'=>$this->data['successful']]);
+                        //post data query is true
+                        return app("\Query")->isTrue($this->model->updateUserApi(),function()
+                        {
+                            return $this->notification->success(['msg'=>$this->data['api_update_user'],'title'=>$this->data['successful']]);
+                        });
                     });
+
                 });
 
             });

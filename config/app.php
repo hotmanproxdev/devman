@@ -238,6 +238,7 @@ return [
         'Query' =>App\Http\Services\queryController::class,
         'ApiServices' =>App\Http\Services\apiServicesController::class,
         'Filter' =>App\Http\Services\filterController::class,
+        'Role' =>App\Http\Services\pageRoleController::class,
 
     ],
 
