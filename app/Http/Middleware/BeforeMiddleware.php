@@ -98,7 +98,7 @@ class BeforeMiddleware
 
 
 
-        $this->app->insertLang(["url_path"=>"default","word_data"=>['page_role_warning'=>'Bu İşlemi Sürdürebilme Yetkiniz Yok.Lütfen Sistem Yöneticinizle Görüşünüz.'],"lang"=>1]);
+        $this->app->insertLang(["url_path"=>"default","word_data"=>['data_exists'=>'Data Bulunmaktadır'],"lang"=>1]);
 
 
         return $next($request);

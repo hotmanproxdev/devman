@@ -43,6 +43,13 @@ Route::group(['prefix' =>''.strtolower(config("app.admin_dirname")).'/','namespa
         Route::controllers(['api' => 'apiController']);
     });
 
+    //logs part
+    Route::group(['namespace'=>'Logs'], function ()
+    {
+        //test part
+        Route::controllers(['logs' => 'logsController']);
+    });
+
 
     //test part
     Route::group(['namespace'=>'Test'], function ()

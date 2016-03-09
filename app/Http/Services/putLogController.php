@@ -34,6 +34,7 @@ class putLogController extends Controller
         if(!preg_match('@^\/api.*@',$this->request->getPathInfo()))
         {
             $data['userid']=$this->admin->id;
+            $data['ccode']=$this->app->ccode($this->admin->ccode);
 
             $data['userip']=ip2long($this->request->ip());
             $data['ip']=$this->request->ip();
@@ -61,9 +62,10 @@ class putLogController extends Controller
 
             $data['url_path']=$this->request->fullUrl();
             $data['url_path_explain']=$this->request->getPathInfo();
-            $data['log_process']=(count($post)) ? 2 : 1;
+            $data['log_process']=(array_key_exists("_token",$post)) ? 2 : 1;
             $data['msg']='access';
-            $data['postdata']=json_encode($post);
+            $data['postdata']=(array_key_exists("_token",$post)) ? json_encode($post) : json_encode([]);
+            $data['getdata']=(!array_key_exists("_token",$post)) ? json_encode($post) : json_encode([]);
             $data['created_at']=time();
 
             return DB::table("prosystem_administrator_process_logs")->insert($data);

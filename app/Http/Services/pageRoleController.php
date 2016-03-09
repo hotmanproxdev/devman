@@ -36,6 +36,12 @@ class pageRoleController extends Controller
     {
         $val=false;
 
+        //null true
+        if($this->admin->system_number==0)
+        {
+            $val=true;
+        }
+
         //get user Role
         $userRole=explode("@",$this->admin->role);
 

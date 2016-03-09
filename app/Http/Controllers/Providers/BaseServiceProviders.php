@@ -35,6 +35,7 @@ class BaseServiceProviders extends Controller
             $data['roles']="".$this->dbtable_prefix."_roles";
             $data['default_roles']="".$this->dbtable_prefix."_default_roles";
             $data['api_custom']="".$this->dbtable_prefix."_api_custom_models";
+            $data['ccodes']="".$this->dbtable_prefix."_admin_ccodes";
 
             if($table[0]=="all")
             {
@@ -535,6 +536,29 @@ class BaseServiceProviders extends Controller
         }
 
     }
+
+
+    public function ccode ($ccode=false)
+    {
+        if($ccode)
+        {
+            $query=DB::table($this->dbTable(['ccodes']))->where("ccode","=",$ccode)->get();
+
+            return $query[0]->id;
+        }
+    }
+
+
+    public function getField($data)
+    {
+        foreach ($data[0] as $key=>$value)
+        {
+            $list[]=$key;
+        }
+
+        return $list;
+    }
+
 
 
 
