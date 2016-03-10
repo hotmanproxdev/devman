@@ -41,8 +41,9 @@ class homeController extends Controller
 
     public function index ()
     {
+        $img=\Image::make('http://localhost:8070/projects/devman/devman/public/upload/admin_profil_pictures/48832.jpg')->resize(100,100);
+        return $img->response('jpg');
         //return view
-
         return view("".config("app.admin_dirname").".".$this->url_path.".main",$this->data);
     }
 }
