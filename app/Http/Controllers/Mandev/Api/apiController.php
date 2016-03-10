@@ -53,7 +53,6 @@ class apiController extends Controller
 
     public function getIndex ()
     {
-
         //get api accesses from query
         $this->data['apiAccesses']=$this->model->getApiAccesses();
 

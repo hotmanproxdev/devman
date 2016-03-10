@@ -41,7 +41,6 @@ class homeController extends Controller
 
     public function index ()
     {
-
         //return view
         return view("".config("app.admin_dirname").".".$this->url_path.".main",$this->data);
     }

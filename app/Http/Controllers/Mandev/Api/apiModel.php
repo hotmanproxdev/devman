@@ -30,9 +30,9 @@ class apiModel extends Controller
 
     }
 
+
     public function getApiAccesses()
     {
-
         //system developer query callback
         return app("\DevSource")->control(['api'],function()
         {

@@ -560,11 +560,6 @@ class BaseServiceProviders extends Controller
     }
 
 
-    public function resize($path,$picture,$param=array())
-    {
-        return \Image::make(''.$path.'/'.$picture.'')->resize($param['resize'][0],$param['resize'][1]);
-
-    }
 
 
 
