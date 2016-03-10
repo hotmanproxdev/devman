@@ -146,8 +146,7 @@ class apiModel extends Controller
                 }
 
             }
-
-
+            
             //query booelean true
             return DB::table($this->app->dbTable(['api']))->where("id","=",\Input::get("id"))->update($postdata);
         });

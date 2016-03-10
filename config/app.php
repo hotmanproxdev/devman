@@ -170,6 +170,7 @@ return [
         ViKon\DbExporter\DbExporterServiceProvider::class,
         Orangehill\Iseed\IseedServiceProvider::class,
         JeroenG\Packager\PackagerServiceProvider::class,
+        Intervention\Image\ImageServiceProvider::class,
 
 
     ],
@@ -239,6 +240,7 @@ return [
         'ApiServices' =>App\Http\Services\apiServicesController::class,
         'Filter' =>App\Http\Services\filterController::class,
         'Role' =>App\Http\Services\pageRoleController::class,
+        'Image' => Intervention\Image\Facades\Image::class,
 
     ],
 

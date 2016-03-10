@@ -11,6 +11,7 @@ use DB;
 use Validation;
 use Notification;
 use Input;
+use Log;
 
 class apiController extends Controller
 {
@@ -52,6 +53,7 @@ class apiController extends Controller
 
     public function getIndex ()
     {
+
         //get api accesses from query
         $this->data['apiAccesses']=$this->model->getApiAccesses();
 

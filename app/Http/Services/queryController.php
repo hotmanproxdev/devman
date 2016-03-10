@@ -79,4 +79,27 @@ class queryController extends Controller
         return $this->notification->warning(['msg'=>$this->data['warning_info'],'title'=>$this->data['error']]);
 
     }
+
+
+    public function getLogUpdated($data,$callback)
+    {
+        $val=false;
+
+        if($data)
+        {
+            $val=true;
+        }
+
+        if($val)
+        {
+            if(is_callable($callback))
+            {
+                return call_user_func($callback);
+            }
+        }
+
+        //redirect to logout
+        return $this->notification->warning(['msg'=>$this->data['warning_info'],'title'=>$this->data['error']]);
+
+    }
 }
