@@ -7,6 +7,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Contracts\Routing\ResponseFactory;
 use App\Http\Controllers\Mandev\Logs\logsModel;
+use App\Http\Controllers\Mandev\Logs\Source\sourceController as Source;
 use DB;
 use Validation;
 use Notification;
@@ -23,7 +24,7 @@ class logsController extends Controller
         public $validation;
         public $notification;
 
-        public function __construct (Request $request,logsModel $model,Validation $validation,Notification $notification)
+        public function __construct (Request $request,logsModel $model,Validation $validation,Notification $notification,Source $source)
         {
              //page protector
              $this->middleware('auth');
@@ -47,6 +48,8 @@ class logsController extends Controller
              $this->validation=$validation;
              //get notifications
              $this->notification=$notification;
+            //get source
+            $this->source=$source;
 
         }
 
@@ -56,36 +59,10 @@ class logsController extends Controller
         $this->data['logs']=$this->model->getLogs();
 
         //logging statistics data
-        $this->data['columnChart']=$this->getLogColumnChart();
+        $this->data['columnChart']=$this->source->data("logStatistics")->get("getLogColumnChart");
 
         //return view
         return view("".config("app.admin_dirname").".".$this->url_path.".main",$this->data);
     }
 
-    public function getLogColumnChart()
-    {
-        //get log counter
-        $logCounter=$this->model->getLogCounter();
-
-        //array log counter
-        $logCounterArray=json_decode($logCounter,1);
-
-        //for system develop
-        if($this->admin->system_number==0)
-        {
-            //ccode counter
-            return app("\Chart")->columnChart(['chart_number'=>[1],'data'=>[$logCounterArray['ccode']],'text'=>$this->data['systemcodecolumntext']]);
-        }
-
-        //get ccode username query
-        foreach ($logCounterArray[$this->admin->ccode] as $username=>$count)
-        {
-            $logCounterUsername[$this->app->getUsers($username)[0]->username]=$count;
-        }
-
-        //ccode username counter
-        return app("\Chart")->columnChart(['chart_number'=>[1],'data'=>[$logCounterUsername],'text'=>$this->data['systemcodecolumntextusername']]);
-
-
-    }
 }

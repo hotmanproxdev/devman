@@ -61,9 +61,35 @@
       <file leaf-file-name="logsController.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Mandev/Logs/logsController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.65397924" vertical-offset="438" max-vertical-offset="1335">
-              <caret line="75" column="27" selection-start-line="75" selection-start-column="27" selection-end-line="75" selection-end-column="27" />
-              <folding />
+            <state vertical-scroll-proportion="0.75778544" vertical-offset="243" max-vertical-offset="1110">
+              <caret line="60" column="33" selection-start-line="60" selection-start-column="33" selection-end-line="60" selection-end-column="33" />
+              <folding>
+                <element signature="e#52#80#0#PHP" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="sourceController.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Mandev/Logs/source/sourceController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-18.0" vertical-offset="183" max-vertical-offset="1065">
+              <caret line="41" column="32" selection-start-line="41" selection-start-column="32" selection-end-line="41" selection-end-column="32" />
+              <folding>
+                <element signature="e#59#87#0#PHP" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="logStatisticsController.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Mandev/Logs/source/logStatisticsController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-17.375" vertical-offset="198" max-vertical-offset="1155">
+              <caret line="41" column="5" selection-start-line="41" selection-start-column="5" selection-end-line="41" selection-end-column="5" />
+              <folding>
+                <element signature="e#59#87#0#PHP" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -74,20 +100,6 @@
             <state vertical-scroll-proportion="-25.625" vertical-offset="0" max-vertical-offset="855">
               <caret line="46" column="26" selection-start-line="46" selection-start-column="26" selection-end-line="46" selection-end-column="26" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Using.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Console/Commands/Using.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-19.0" vertical-offset="2124" max-vertical-offset="3135">
-              <caret line="172" column="67" selection-start-line="172" selection-start-column="67" selection-end-line="172" selection-end-column="67" />
-              <folding>
-                <marker date="1457685840000" expanded="true" signature="2784:2918" placeholder="..." />
-                <marker date="1457685840000" expanded="true" signature="5292:5319" placeholder="..." />
-                <marker date="1457685840000" expanded="true" signature="5355:5382" placeholder="..." />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -170,8 +182,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/Http/Services/filterController.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/Mandev/Test/testController.php" />
         <option value="$PROJECT_DIR$/app/Http/Services/devSourceController.php" />
         <option value="$PROJECT_DIR$/resources/views/Mandev/api/main.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/Mandev/api/newApiUser.blade.php" />
@@ -219,8 +229,10 @@
         <option value="$PROJECT_DIR$/app/Http/Services/putLogController.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Mandev/Logs/logsModel.php" />
         <option value="$PROJECT_DIR$/app/Http/Middleware/BeforeMiddleware.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/Mandev/Logs/logsController.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Api/Custom/V1/general/StatisticsApi.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/Mandev/Logs/source/sourceController.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/Mandev/Logs/logsController.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/Mandev/Logs/source/logStatisticsController.php" />
       </list>
     </option>
   </component>
@@ -513,27 +525,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/resources/views/Mandev/api/api_content.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-23.125" vertical-offset="1785" max-vertical-offset="7710">
-          <caret line="156" column="28" selection-start-line="156" selection-start-column="28" selection-end-line="156" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Services/validationController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-14.333333" vertical-offset="406" max-vertical-offset="2460">
-          <caret line="50" column="9" selection-start-line="50" selection-start-column="9" selection-end-line="50" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Services/filterController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6574395" vertical-offset="390" max-vertical-offset="3120">
-          <caret line="67" column="9" selection-start-line="61" selection-start-column="8" selection-end-line="67" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Api/ControllerApi.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-20.875" vertical-offset="3864" max-vertical-offset="4755">
@@ -774,13 +765,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Mandev/Test/testController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1365">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Services/queryController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="964" max-vertical-offset="1605">
@@ -810,9 +794,9 @@
         <state vertical-scroll-proportion="-19.0" vertical-offset="2124" max-vertical-offset="3135">
           <caret line="172" column="67" selection-start-line="172" selection-start-column="67" selection-end-line="172" selection-end-column="67" />
           <folding>
-            <marker date="1457685840000" expanded="true" signature="2784:2918" placeholder="..." />
-            <marker date="1457685840000" expanded="true" signature="5292:5319" placeholder="..." />
-            <marker date="1457685840000" expanded="true" signature="5355:5382" placeholder="..." />
+            <marker date="1457685840000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1457685840000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1457685840000" expanded="true" signature="-1:-1" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -905,11 +889,49 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Mandev/Test/testController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.57439446" vertical-offset="498" max-vertical-offset="1365">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/testController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="891">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Mandev/Logs/source/logStatisticsController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-17.375" vertical-offset="198" max-vertical-offset="1155">
+          <caret line="41" column="5" selection-start-line="41" selection-start-column="5" selection-end-line="41" selection-end-column="5" />
+          <folding>
+            <element signature="e#59#87#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Mandev/Logs/source/sourceController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-18.0" vertical-offset="183" max-vertical-offset="1065">
+          <caret line="41" column="32" selection-start-line="41" selection-start-column="32" selection-end-line="41" selection-end-column="32" />
+          <folding>
+            <element signature="e#59#87#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Mandev/Logs/logsController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.65397924" vertical-offset="438" max-vertical-offset="1335">
-          <caret line="75" column="27" selection-start-line="75" selection-start-column="27" selection-end-line="75" selection-end-column="27" />
-          <folding />
+        <state vertical-scroll-proportion="0.75778544" vertical-offset="243" max-vertical-offset="1110">
+          <caret line="60" column="33" selection-start-line="60" selection-start-column="33" selection-end-line="60" selection-end-column="33" />
+          <folding>
+            <element signature="e#52#80#0#PHP" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
