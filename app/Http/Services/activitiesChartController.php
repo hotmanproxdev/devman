@@ -52,4 +52,108 @@ class activitiesChartController extends Controller
         return view("".config("app.admin_dirname").".activities_chart",$this->data);
 
     }
+
+
+    public function columnChart($data=array())
+    {
+        $this->data['chartData']=$data;
+
+
+        foreach ($data['chart_number'] as $cnokey=>$cnoval)
+        {
+            $list=array();
+
+            if(!array_key_exists("amount",$data))
+            {
+                $this->data['chartData']['amount'][$cnokey]='';
+            }
+
+            foreach ($data['data'][$cnokey] as $key=>$chart)
+            {
+                $list[]='{label : "'.$key.'", y : '.$chart.'}';
+            }
+
+            $this->data['chartData']['chart_number'][$cnokey]=$cnoval;
+            $this->data['chartData']['data'][$cnokey]=implode(",",$list);
+
+            if(array_key_exists("text",$data))
+            {
+                $this->data['chartData']['text']=$data['text'];
+            }
+            else
+            {
+                $this->data['chartData']['text']=' ';
+            }
+
+
+            if(array_key_exists("type",$data))
+            {
+                $this->data['chartData']['type']=$data['type'];
+            }
+            else
+            {
+                $this->data['chartData']['type']=' ';
+            }
+
+        }
+
+
+
+
+        //return view
+        return view("".config("app.admin_dirname").".column_chart",$this->data);
+
+    }
+
+
+
+    public function pieChart($data=array())
+    {
+        $this->data['chartData']=$data;
+
+
+        foreach ($data['chart_number'] as $cnokey=>$cnoval)
+        {
+            $list=array();
+
+            if(!array_key_exists("amount",$data))
+            {
+                $this->data['chartData']['amount'][$cnokey]='';
+            }
+
+            foreach ($data['data'][$cnokey] as $key=>$chart)
+            {
+                $list[]='{label : "'.$key.'", legendText : "'.$key.'", y : '.$chart.'}';
+            }
+
+            $this->data['chartData']['chart_number'][$cnokey]=$cnoval;
+            $this->data['chartData']['data'][$cnokey]=implode(",",$list);
+
+            if(array_key_exists("text",$data))
+            {
+                $this->data['chartData']['text']=$data['text'];
+            }
+            else
+            {
+                $this->data['chartData']['text']=' ';
+            }
+
+            if(array_key_exists("type",$data))
+            {
+                $this->data['chartData']['type']=$data['type'];
+            }
+            else
+            {
+                $this->data['chartData']['type']='%';
+            }
+
+        }
+
+
+
+
+        //return view
+        return view("".config("app.admin_dirname").".pie_chart",$this->data);
+
+    }
 }

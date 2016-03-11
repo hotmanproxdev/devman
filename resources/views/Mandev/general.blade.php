@@ -14,6 +14,27 @@
   <meta content="" name="author"/>
   <script src="{{$baseUrl}}/jquery.js" type="text/javascript"></script>
 
+  <script type="text/javascript">
+
+    var i=1;
+    $(document).on("mouseover","body",function () {
+
+      if(i==1)
+      {
+        {!! $columnChart !!}
+
+        {!! $pieChart !!}
+      }
+
+
+      i++;
+
+
+    });
+
+  </script>
+  <script type="text/javascript" src="{{$baseUrl}}/canvas/canvasjs.min.js"></script>
+
   <!-- BEGIN GLOBAL MANDATORY STYLES -->
   <!--<link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=all" rel="stylesheet" type="text/css"/>-->
   <link href="{{$baseUrl}}/metron/theme/assets/global/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
@@ -534,7 +555,6 @@
     var title=$(this).attr("modal-title");
     $("h4.modal-title").html(title);
     $(".modalLoad"+href2).load(model);
-    //$(".modalLoad"+href2).load(model, function () { dbchart.initCharts() });
 
   });
 </script>
@@ -618,7 +638,6 @@
     });
   });
 </script>
-
 
 <!--test-->
 {!! $linechart !!}

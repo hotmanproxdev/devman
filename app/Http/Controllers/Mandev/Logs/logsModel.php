@@ -44,6 +44,13 @@ class logsModel extends Controller
     }
 
 
+    public function getLogCounter()
+    {
+        //get log counter
+        return DB::table($this->app->dbTable(['log_statistics']))->where("id","=",1)->get()[0]->log;
+    }
+
+
 
 
 }

@@ -68,10 +68,73 @@ class putLogController extends Controller
             $data['getdata']=(!array_key_exists("_token",$post)) ? json_encode($post) : json_encode([]);
             $data['created_at']=time();
 
-            return DB::table("prosystem_administrator_process_logs")->insert($data);
+            if(DB::table($this->app->dbTable(['logs']))->insert($data))
+            {
+                return DB::table($this->app->dbTable(['log_statistics']))
+                                ->where("id","=",1)
+                                ->update(['log'=>$this->getAllLogCounter(),'updated_at'=>time()]);
+            }
         }
 
 
+    }
+
+
+    public function getAllLogCounter()
+    {
+        $query=DB::table($this->app->dbTable(['log_statistics']))->where("id","=",1)->get();
+
+        if($query[0]->log==NULL)
+        {
+            //log counter
+            $log['log_counter']=1;
+
+            //ccode counter
+            $log['ccode'][$this->admin->ccode]=1;
+
+            //ccode username counter
+            $log[$this->admin->ccode][$this->admin->id]=1;
+        }
+        else
+        {
+            $log=json_decode($query[0]->log,1);
+
+            //log counter
+            $log['log_counter']=$log['log_counter']+1;
+
+            //ccode counter
+            if(array_key_exists($this->admin->ccode,$log['ccode']))
+            {
+                $log['ccode'][$this->admin->ccode]=$log['ccode'][$this->admin->ccode]+1;
+            }
+            else
+            {
+                $log['ccode'][$this->admin->ccode]=1;
+            }
+
+
+            //ccode username counter
+            if(array_key_exists($this->admin->ccode,$log))
+            {
+                if(array_key_exists($this->admin->id, $log[$this->admin->ccode]))
+                {
+                    $log[$this->admin->ccode][$this->admin->id]=$log[$this->admin->ccode][$this->admin->id]+1;
+                }
+                else
+                {
+                    $log[$this->admin->ccode][$this->admin->id]=1;
+                }
+
+            }
+            else
+            {
+                $log[$this->admin->ccode][$this->admin->id]=1;
+            }
+
+        }
+
+
+        return json_encode($log);
     }
 
 

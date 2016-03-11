@@ -167,9 +167,12 @@ class Using extends Command
 
 
         //linechart
-        if($this->argument("name")=="linechart")
+        if($this->argument("name")=="chart")
         {
             $dd['linechart']="this->data['linechart']=app(\Chart)->lineChart(['chart_number'=>[2,3],'data'=>[linedata,linedata3]]);";
+            $dd['columnchart']="this->data['columnchart']=app(\Chart)->columnChart(['chart_number'=>[2,3],'data'=>[linedata,linedata3],'text'=>'text']);";
+            $dd['piechart']="this->data['piechart']=app(\Chart)->pieChart(['chart_number'=>[2,3],'data'=>[linedata,linedata3],'text'=>'text','type'=>'%']);";
+            $dd['chartdiv']='<div id="charts"><div id="chart_column1" style="height: 600px; width: 100%;"></div><div id="chart_pie1" style="height: 600px; width: 100%;"></div></div>';
             dd($dd);
         }
 

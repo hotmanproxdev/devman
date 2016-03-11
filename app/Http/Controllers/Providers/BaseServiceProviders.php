@@ -36,6 +36,7 @@ class BaseServiceProviders extends Controller
             $data['default_roles']="".$this->dbtable_prefix."_default_roles";
             $data['api_custom']="".$this->dbtable_prefix."_api_custom_models";
             $data['ccodes']="".$this->dbtable_prefix."_admin_ccodes";
+            $data['log_statistics']="".$this->dbtable_prefix."_log_statistics";
 
             if($table[0]=="all")
             {
@@ -210,7 +211,7 @@ class BaseServiceProviders extends Controller
             $adminFields=$this->getTableFields("admin",1);
             if(!$id)
             {
-                $adminFields['id']=0;
+                $adminFields['id']=1;
             }
 
             if(count($query))

@@ -52,8 +52,40 @@ class logsController extends Controller
 
     public function getIndex ()
     {
+        //get log data
         $this->data['logs']=$this->model->getLogs();
+
+        //logging statistics data
+        $this->data['columnChart']=$this->getLogColumnChart();
+
         //return view
         return view("".config("app.admin_dirname").".".$this->url_path.".main",$this->data);
+    }
+
+    public function getLogColumnChart()
+    {
+        //get log counter
+        $logCounter=$this->model->getLogCounter();
+
+        //array log counter
+        $logCounterArray=json_decode($logCounter,1);
+
+        //for system develop
+        if($this->admin->system_number==0)
+        {
+            //ccode counter
+            return app("\Chart")->columnChart(['chart_number'=>[1],'data'=>[$logCounterArray['ccode']],'text'=>$this->data['systemcodecolumntext']]);
+        }
+
+        //get ccode username query
+        foreach ($logCounterArray[$this->admin->ccode] as $username=>$count)
+        {
+            $logCounterUsername[$this->app->getUsers($username)[0]->username]=$count;
+        }
+
+        //ccode username counter
+        return app("\Chart")->columnChart(['chart_number'=>[1],'data'=>[$logCounterUsername],'text'=>$this->data['systemcodecolumntextusername']]);
+
+
     }
 }

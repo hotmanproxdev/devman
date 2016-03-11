@@ -98,7 +98,7 @@ class BeforeMiddleware
 
 
 
-        $this->app->insertLang(["url_path"=>"default","word_data"=>['data_exists'=>'Data Bulunmaktadır'],"lang"=>1]);
+        $this->app->insertLang(["url_path"=>"logs","word_data"=>['systemcodecolumntextusername'=>'Grubunuzdaki Kullanıcılara Göre Log Kullanımı'],"lang"=>1]);
 
 
         return $next($request);
