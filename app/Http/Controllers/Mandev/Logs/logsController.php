@@ -7,7 +7,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Contracts\Routing\ResponseFactory;
 use App\Http\Controllers\Mandev\Logs\logsModel;
-use App\Http\Controllers\Mandev\Logs\Source\sourceController as Source;
+use App\Http\Controllers\Mandev\Logs\source\sourceController as Source;
 use DB;
 use Validation;
 use Notification;

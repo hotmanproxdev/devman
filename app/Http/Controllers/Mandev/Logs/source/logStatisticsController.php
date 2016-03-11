@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Mandev\Logs\Source;
+namespace App\Http\Controllers\Mandev\Logs\source;
 
 use Illuminate\Http\Request;
 use App\Http\Requests;

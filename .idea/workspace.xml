@@ -8,11 +8,13 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Console/Commands/Using.php" afterPath="$PROJECT_DIR$/app/Console/Commands/Using.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Services/activitiesChartController.php" afterPath="$PROJECT_DIR$/app/Http/Services/activitiesChartController.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/Mandev/general.blade.php" afterPath="$PROJECT_DIR$/resources/views/Mandev/general.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/Mandev/Logs/source/logStatisticsController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/Mandev/Logs/source/logStatisticsController.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/Mandev/Logs/logsController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/Mandev/Logs/logsController.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/Mandev/Logs/logsModel.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/Mandev/Logs/logsModel.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/Mandev/logs/logs_content.blade.php" afterPath="$PROJECT_DIR$/resources/views/Mandev/logs/logs_content.blade.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/Mandev/test/modal.blade.php" afterPath="$PROJECT_DIR$/resources/views/Mandev/test/modal.blade.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Services/putLogController.php" afterPath="$PROJECT_DIR$/app/Http/Services/putLogController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/Mandev/Logs/source/sourceController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/Mandev/Logs/source/sourceController.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="devman.iws" />
@@ -58,11 +60,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="logsController.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="logsController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Mandev/Logs/logsController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.75778544" vertical-offset="243" max-vertical-offset="1110">
-              <caret line="60" column="33" selection-start-line="60" selection-start-column="33" selection-end-line="60" selection-end-column="33" />
+            <state vertical-scroll-proportion="-10.625" vertical-offset="0" max-vertical-offset="1110">
+              <caret line="17" column="24" selection-start-line="17" selection-start-column="24" selection-end-line="17" selection-end-column="24" />
               <folding>
                 <element signature="e#52#80#0#PHP" expanded="true" />
               </folding>
@@ -73,8 +75,8 @@
       <file leaf-file-name="sourceController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Mandev/Logs/source/sourceController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-18.0" vertical-offset="183" max-vertical-offset="1065">
-              <caret line="41" column="32" selection-start-line="41" selection-start-column="32" selection-end-line="41" selection-end-column="32" />
+            <state vertical-scroll-proportion="-1.25" vertical-offset="0" max-vertical-offset="1065">
+              <caret line="2" column="44" selection-start-line="2" selection-start-column="44" selection-end-line="2" selection-end-column="44" />
               <folding>
                 <element signature="e#59#87#0#PHP" expanded="true" />
               </folding>
@@ -82,11 +84,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="logStatisticsController.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="logStatisticsController.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Mandev/Logs/source/logStatisticsController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-17.375" vertical-offset="198" max-vertical-offset="1155">
-              <caret line="41" column="5" selection-start-line="41" selection-start-column="5" selection-end-line="41" selection-end-column="5" />
+            <state vertical-scroll-proportion="1.5444617" vertical-offset="0" max-vertical-offset="1155">
+              <caret line="66" column="0" selection-start-line="66" selection-start-column="0" selection-end-line="66" selection-end-column="0" />
               <folding>
                 <element signature="e#59#87#0#PHP" expanded="true" />
               </folding>
@@ -463,13 +465,13 @@
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32934782" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24565217" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24565217" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32026145" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32960597" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.22630458" sideWeight="0.91630435" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.22630458" sideWeight="0.08369565" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.22630458" sideWeight="0.889049" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.22630458" sideWeight="0.11095101" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3209352" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="LuaJ" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.19891304" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
@@ -905,32 +907,32 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Mandev/Logs/source/logStatisticsController.php">
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Mandev/Logs/logsController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-17.375" vertical-offset="198" max-vertical-offset="1155">
-          <caret line="41" column="5" selection-start-line="41" selection-start-column="5" selection-end-line="41" selection-end-column="5" />
+        <state vertical-scroll-proportion="-10.625" vertical-offset="0" max-vertical-offset="1110">
+          <caret line="17" column="24" selection-start-line="17" selection-start-column="24" selection-end-line="17" selection-end-column="24" />
           <folding>
-            <element signature="e#59#87#0#PHP" expanded="true" />
+            <element signature="e#52#80#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Mandev/Logs/source/sourceController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-18.0" vertical-offset="183" max-vertical-offset="1065">
-          <caret line="41" column="32" selection-start-line="41" selection-start-column="32" selection-end-line="41" selection-end-column="32" />
+        <state vertical-scroll-proportion="-1.25" vertical-offset="0" max-vertical-offset="1065">
+          <caret line="2" column="44" selection-start-line="2" selection-start-column="44" selection-end-line="2" selection-end-column="44" />
           <folding>
             <element signature="e#59#87#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Mandev/Logs/logsController.php">
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Mandev/Logs/source/logStatisticsController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.75778544" vertical-offset="243" max-vertical-offset="1110">
-          <caret line="60" column="33" selection-start-line="60" selection-start-column="33" selection-end-line="60" selection-end-column="33" />
+        <state vertical-scroll-proportion="1.5444617" vertical-offset="0" max-vertical-offset="1155">
+          <caret line="66" column="0" selection-start-line="66" selection-start-column="0" selection-end-line="66" selection-end-column="0" />
           <folding>
-            <element signature="e#52#80#0#PHP" expanded="true" />
+            <element signature="e#59#87#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
