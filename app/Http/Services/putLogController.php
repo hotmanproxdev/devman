@@ -140,10 +140,15 @@ class putLogController extends Controller
 
             //osFamily counter
             $browserDetect=BrowserDetect::toArray();
-            if(array_key_exists("osFamily",$browserDetect))
+            if(array_key_exists($browserDetect['osFamily'],$log['osFamily']))
             {
                 $log['osFamily'][$browserDetect['osFamily']]=$log['osFamily'][$browserDetect['osFamily']]+1;
             }
+            else
+            {
+                $log['osFamily'][$browserDetect['osFamily']]=1;
+            }
+
 
 
         }
