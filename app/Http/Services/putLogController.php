@@ -94,6 +94,13 @@ class putLogController extends Controller
 
             //ccode username counter
             $log[$this->admin->ccode][$this->admin->id]=1;
+
+            //osFamily counter
+            $log[$this->admin->ccode][$this->admin->id]=1;
+
+            //osFamily counter
+            $browserDetect=BrowserDetect::toArray();
+            $log['osFamily'][$browserDetect['osFamily']]=1;
         }
         else
         {
@@ -130,6 +137,10 @@ class putLogController extends Controller
             {
                 $log[$this->admin->ccode][$this->admin->id]=1;
             }
+
+            //osFamily counter
+            $browserDetect=BrowserDetect::toArray();
+            $log['osFamily'][$browserDetect['osFamily']]=$log['osFamily'][$browserDetect['osFamily']]+1;
 
         }
 

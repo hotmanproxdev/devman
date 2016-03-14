@@ -41,10 +41,32 @@ class pageSetCommand extends Command
         {
             mkdir("".$app_path."".config("app.admin_dirname")."".$slashes."".ucfirst($this->argument("dir"))."", 0777, true);
             chmod("".$app_path."".config("app.admin_dirname")."".$slashes."".ucfirst($this->argument("dir"))."", 0777);
+
+
         }
+
 
         mkdir("".$app_path."".config("app.admin_dirname")."".$slashes."".ucfirst($this->argument("dir"))."".$slashes."".ucfirst($this->argument("page"))."", 0777, true);
         chmod("".$app_path."".config("app.admin_dirname")."".$slashes."".ucfirst($this->argument("dir"))."".$slashes."".ucfirst($this->argument("page"))."", 0777);
+
+
+        mkdir("".$app_path."".config("app.admin_dirname")."".$slashes."".ucfirst($this->argument("page"))."".$slashes."source", 0777, true);
+        chmod("".$app_path."".config("app.admin_dirname")."".$slashes."".ucfirst($this->argument("page"))."".$slashes."source", 0777);
+
+
+        if(touch("".$app_path."".config("app.admin_dirname")."".$slashes."".ucfirst($this->argument("page"))."".$slashes."source".$slashes."sourceController.php"))
+        {
+
+            $dosya = "".storage_path("app")."".$slashes."source.txt";
+            $dt = fopen($dosya, "rb");
+            $icerik = fread($dt, filesize($dosya));
+            $dosya = "".$app_path."".config("app.admin_dirname")."".$slashes."".ucfirst($this->argument("page"))."".$slashes."source".$slashes."sourceController.php";
+            $dt = fopen($dosya, 'w');
+            $icerik=str_replace("__sourceName__",ucfirst($this->argument("page")),$icerik);
+            fwrite($dt,$icerik);
+            fclose($dt);
+        }
+
 
 
         if(touch("".$app_path."".config("app.admin_dirname")."".$slashes."".ucfirst($this->argument("dir"))."".$slashes."".$this->argument("page")."".$slashes."".$this->argument("page")."Controller.php"))
@@ -63,6 +85,8 @@ class pageSetCommand extends Command
             fwrite($dt,$icerik);
             fclose($dt);
 
+
+
             if(touch("".$app_path."".config("app.admin_dirname")."".$slashes."".ucfirst($this->argument("dir"))."".$slashes."".$this->argument("page")."".$slashes."".$this->argument("page")."Model.php"))
             {
 
@@ -79,6 +103,8 @@ class pageSetCommand extends Command
                 fwrite($dt,$icerik);
                 fclose($dt);
             }
+
+
 
 
 

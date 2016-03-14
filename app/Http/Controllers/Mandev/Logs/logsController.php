@@ -23,6 +23,7 @@ class logsController extends Controller
         public $model;
         public $validation;
         public $notification;
+        public $source;
 
         public function __construct (Request $request,logsModel $model,Validation $validation,Notification $notification,Source $source)
         {
@@ -60,6 +61,7 @@ class logsController extends Controller
 
         //logging statistics data
         $this->data['columnChart']=$this->source->data("logStatistics")->get("getLogColumnChart");
+        $this->data['pieChart']=$this->source->data("logStatistics")->get("getLogPieChart");
 
         //return view
         return view("".config("app.admin_dirname").".".$this->url_path.".main",$this->data);

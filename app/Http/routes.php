@@ -51,6 +51,7 @@ Route::group(['prefix' =>''.strtolower(config("app.admin_dirname")).'/','namespa
     });
 
 
+
     //test part
     Route::group(['namespace'=>'Test'], function ()
     {

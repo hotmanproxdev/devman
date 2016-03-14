@@ -97,36 +97,55 @@
       </div>
 
 
-      <!--statistic-->
-      <div style="margin:5px 0 0 0;">
-
-        <div class="row">
-          <div class="col-md-12">
-            <div class="note note-bordered note-success">
-              <p>
-                {{$logdatastatisticsinfo}}.
-
-              </p>
-
-            </div>
-          </div>
-        </div>
-
-
-        <div id="charts">
-          <div id="chart_column1" style="height: 600px; width: 100%;"></div>
-
-        </div>
-
-
-      </div>
-      <!--statistic end-->
 
     </div>
 
 
   </div>
   <!-- END SAMPLE TABLE PORTLET-->
+
+
+  <!--statistic-->
+  <div style="margin:5px 0 0 0;">
+
+    <div class="row">
+      <div class="col-md-12">
+        <div class="note note-bordered note-success">
+          <p>
+            {{$logdatastatisticsinfo}}.
+
+          </p>
+
+        </div>
+      </div>
+    </div>
+
+
+
+  </div>
+  <!--statistic end-->
+
+  <div id="charts">
+
+    <div class="row">
+      <div class="col-md-12 col-sm-12">
+        <div id="chart_column1" style="height: 600px;"></div>
+      </div>
+
+    </div>
+
+    <br><br>
+
+    <div class="row">
+      <div class="col-md-12 col-sm-12">
+        <div id="chart_pie1" style="height:600px; width:100%;"></div>
+      </div>
+
+      <div class="col-md-12 col-sm-12">
+        <div id="chart_pie2" style="height:600px; width:100%;"></div>
+      </div>
+    </div>
+  </div>
 
 
 @endif
