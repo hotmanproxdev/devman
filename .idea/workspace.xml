@@ -111,11 +111,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="logs_content.blade.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="logs_content.blade.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/Mandev/logs/logs_content.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.6021841" vertical-offset="1699" max-vertical-offset="2340">
-              <caret line="139" column="27" selection-start-line="139" selection-start-column="27" selection-end-line="139" selection-end-column="27" />
+            <state vertical-scroll-proportion="-19.833334" vertical-offset="1699" max-vertical-offset="2340">
+              <caret line="145" column="12" selection-start-line="145" selection-start-column="12" selection-end-line="145" selection-end-column="12" />
               <folding>
                 <element signature="e#2907#2934#0#HTML" expanded="true" />
                 <element signature="e#3069#3094#0#HTML" expanded="true" />
@@ -147,11 +147,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="putLogController.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="putLogController.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/Http/Services/putLogController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-21.083334" vertical-offset="1459" max-vertical-offset="2280">
-              <caret line="137" column="62" selection-start-line="137" selection-start-column="62" selection-end-line="137" selection-end-column="62" />
+            <state vertical-scroll-proportion="0.7893916" vertical-offset="1579" max-vertical-offset="2340">
+              <caret line="145" column="13" selection-start-line="145" selection-start-column="13" selection-end-line="145" selection-end-column="13" />
               <folding />
             </state>
           </provider>
@@ -222,12 +222,12 @@
         <option value="$PROJECT_DIR$/app/Console/Commands/pageSetCommand.php" />
         <option value="$PROJECT_DIR$/storage/app/test.txt" />
         <option value="$PROJECT_DIR$/app/Http/routes.php" />
-        <option value="$PROJECT_DIR$/app/Http/Services/putLogController.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Mandev/Logs/logsController.php" />
         <option value="$PROJECT_DIR$/app/Http/Middleware/BeforeMiddleware.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Mandev/Logs/source/logStatisticsController.php" />
         <option value="$PROJECT_DIR$/resources/views/Mandev/logs/main.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/Mandev/logs/logs_content.blade.php" />
+        <option value="$PROJECT_DIR$/app/Http/Services/putLogController.php" />
       </list>
     </option>
   </component>
@@ -926,14 +926,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Services/putLogController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-21.083334" vertical-offset="1459" max-vertical-offset="2280">
-          <caret line="137" column="62" selection-start-line="137" selection-start-column="62" selection-end-line="137" selection-end-column="62" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Mandev/Logs/source/sourceController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-11.708333" vertical-offset="64" max-vertical-offset="750">
@@ -980,8 +972,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/Mandev/logs/logs_content.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6021841" vertical-offset="1699" max-vertical-offset="2340">
-          <caret line="139" column="27" selection-start-line="139" selection-start-column="27" selection-end-line="139" selection-end-column="27" />
+        <state vertical-scroll-proportion="-19.833334" vertical-offset="1699" max-vertical-offset="2340">
+          <caret line="145" column="12" selection-start-line="145" selection-start-column="12" selection-end-line="145" selection-end-column="12" />
           <folding>
             <element signature="e#2907#2934#0#HTML" expanded="true" />
             <element signature="e#3069#3094#0#HTML" expanded="true" />
@@ -989,6 +981,14 @@
             <element signature="e#3625#3658#0#HTML" expanded="true" />
             <element signature="e#3749#3782#0#HTML" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Services/putLogController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.7893916" vertical-offset="1579" max-vertical-offset="2340">
+          <caret line="145" column="13" selection-start-line="145" selection-start-column="13" selection-end-line="145" selection-end-column="13" />
+          <folding />
         </state>
       </provider>
     </entry>
