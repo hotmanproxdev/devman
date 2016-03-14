@@ -5,7 +5,7 @@
   var chart_pie{{ $chartData['chart_number'][$key] }} = new CanvasJS.Chart("chart_pie{{ $chartData['chart_number'][$key] }}",
   {
   title:{
-  text: "{!! $chartData['text'] !!}"
+  text: "{!! $chartData['text'][$key] !!}"
   },
   animationEnabled: true,
   legend:{
@@ -20,10 +20,10 @@
   type: "pie",
   indexLabelFontFamily: "Garamond",
   indexLabelFontSize: 20,
-  indexLabel: "{label} {y}{!! $chartData['type'] !!}",
+  indexLabel: "{label} {y}{!! $chartData['type'][$key] !!}",
   startAngle:-20,
   showInLegend: true,
-  toolTipContent:"{legendText} {y}{!! $chartData['type'] !!}",
+  toolTipContent:"{legendText} {y}{!! $chartData['type'][$key] !!}",
   dataPoints: [
   {!! $value !!}
   ]

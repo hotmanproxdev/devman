@@ -50,17 +50,17 @@ class logStatisticsController extends Controller
         if($this->admin->system_number==0)
         {
             //ccode counter
-            return app("\Chart")->columnChart(['chart_number'=>[1],'data'=>[$this->logCounterArray['ccode']],'text'=>$this->data['systemcodecolumntext']]);
+            return app("\Chart")->columnChart(['chart_number'=>[1],'data'=>[$this->logCounterArray['ccode']],'text'=>[$this->data['systemcodecolumntext']]]);
         }
 
         //get ccode username query
-        foreach ($this->logCounterArray[$this->admin->ccode] as $username=>$count)
+        foreach ($this->logCounterArray['user']['ccode'][$this->admin->ccode] as $username=>$count)
         {
             $logCounterUsername[$this->app->getUsers($username)[0]->username]=$count;
         }
 
         //ccode username counter
-        return app("\Chart")->columnChart(['chart_number'=>[1],'data'=>[$logCounterUsername],'text'=>$this->data['systemcodecolumntextusername']]);
+        return app("\Chart")->columnChart(['chart_number'=>[1],'data'=>[$logCounterUsername],'text'=>[$this->data['systemcodecolumntextusername']]]);
 
 
     }
@@ -73,8 +73,20 @@ class logStatisticsController extends Controller
         if($this->admin->system_number==0)
         {
             //ccode counter
-            return app("\Chart")->pieChart(['chart_number'=>[1,2],'data'=>[$this->logCounterArray['osFamily'],$this->logCounterArray['osFamily']],'text'=>$this->data['systemcodepieosfamilytext'],'type'=>'']);
+            return app("\Chart")->pieChart(['chart_number'=>[1,2],
+                                            'data'=>[$this->logCounterArray['family']['osFamily'],$this->logCounterArray['family']['browserFamily']
+                                            ],
+                                            'text'=>[$this->data['systemcodepieosfamilytext'],$this->data['systemcodepiebrowserfamilytext']],
+                                            'type'=>['','']]);
         }
+
+
+        //ccode counter
+        return app("\Chart")->pieChart(['chart_number'=>[1,2],
+            'data'=>[$this->logCounterArray['family']['ccode'][$this->admin->ccode]['osFamily'],$this->logCounterArray['family']['ccode'][$this->admin->ccode]['browserFamily']
+            ],
+            'text'=>[$this->data['systemcodepieosfamilytextccode'],$this->data['systemcodepiebrowserfamilytextccode']],
+            'type'=>['','']]);
 
     }
 

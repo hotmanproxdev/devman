@@ -78,21 +78,21 @@ class activitiesChartController extends Controller
 
             if(array_key_exists("text",$data))
             {
-                $this->data['chartData']['text']=$data['text'];
+                $this->data['chartData']['text'][$cnokey]=$data['text'][$cnokey];
             }
             else
             {
-                $this->data['chartData']['text']=' ';
+                $this->data['chartData']['text'][$cnokey]=' ';
             }
 
 
             if(array_key_exists("type",$data))
             {
-                $this->data['chartData']['type']=$data['type'];
+                $this->data['chartData']['type'][$cnokey]=$data['type'][$cnokey];
             }
             else
             {
-                $this->data['chartData']['type']=' ';
+                $this->data['chartData']['type'][$cnokey]=' ';
             }
 
         }
@@ -131,20 +131,20 @@ class activitiesChartController extends Controller
 
             if(array_key_exists("text",$data))
             {
-                $this->data['chartData']['text']=$data['text'];
+                $this->data['chartData']['text'][$cnokey]=$data['text'][$cnokey];
             }
             else
             {
-                $this->data['chartData']['text']=' ';
+                $this->data['chartData']['text'][$cnokey]=' ';
             }
 
             if(array_key_exists("type",$data))
             {
-                $this->data['chartData']['type']=$data['type'];
+                $this->data['chartData']['type'][$cnokey]=$data['type'][$cnokey];
             }
             else
             {
-                $this->data['chartData']['type']='%';
+                $this->data['chartData']['type'][$cnokey]='%';
             }
 
         }

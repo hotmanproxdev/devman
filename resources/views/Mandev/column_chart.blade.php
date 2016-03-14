@@ -5,7 +5,7 @@
   {
   theme: "theme2",
   title: {
-  text: "{!! $chartData['text'] !!}"
+  text: "{!! $chartData['text'][$key] !!}"
   },
   data: [
   {

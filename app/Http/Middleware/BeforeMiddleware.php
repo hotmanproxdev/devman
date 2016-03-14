@@ -98,7 +98,7 @@ class BeforeMiddleware
 
 
 
-        $this->app->insertLang(["url_path"=>"logs","word_data"=>['systemcodepieosfamilytext'=>'Sistemdeki Tüm OsFamily Platform Sayıları'],"lang"=>1]);
+        $this->app->insertLang(["url_path"=>"logs","word_data"=>['systemcodepiebrowserfamilytextccode'=>'Grubunuzda ki Tüm browserFamily Platform Sayıları'],"lang"=>1]);
 
 
         return $next($request);
