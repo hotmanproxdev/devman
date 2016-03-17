@@ -60,8 +60,15 @@ class logsController extends Controller
         $this->data['logs']=$this->model->getLogs();
 
         //logging statistics data
+
+        //get column chart
         $this->data['columnChart']=$this->source->data("logStatistics")->get("getLogColumnChart");
+
+        //get pie chart
         $this->data['pieChart']=$this->source->data("logStatistics")->get("getLogPieChart");
+
+        //get success and fail operations line chart
+        $this->data['linechart']=$this->source->data("logStatistics")->get("getLogSuccessAndFailOperationsLineChart");
 
         //return view
         return view("".config("app.admin_dirname").".".$this->url_path.".main",$this->data);

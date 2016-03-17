@@ -81,11 +81,11 @@ class queryController extends Controller
     }
 
 
-    public function getLogUpdated($data,$callback)
+    public function getLogUpdated($data=array(),$callback)
     {
         $val=false;
 
-        if($data)
+        if(count($data))
         {
             $val=true;
         }

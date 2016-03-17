@@ -105,6 +105,11 @@ class putLogController extends Controller
             $log['family']['browserFamily'][$browserDetect['browserFamily']]=1;
             $log['family']['ccode'][$this->admin->ccode]['browserFamily'][$browserDetect['browserFamily']]=1;
 
+
+            //Family user counter
+            $log['family']['user'][$this->admin->ccode][$this->admin->id]['osFamily'][$browserDetect['osFamily']]=1;
+            $log['family']['user'][$this->admin->ccode][$this->admin->id]['browserFamily'][$browserDetect['browserFamily']]=1;
+
         }
         else
         {
@@ -218,6 +223,96 @@ class putLogController extends Controller
             {
                 $log['family']['ccode'][$this->admin->ccode]['browserFamily'][$browserDetect['browserFamily']]=1;
             }
+
+
+
+
+            //osFamily user counter
+            if(array_key_exists('user',$log['family']))
+            {
+                if(array_key_exists($this->admin->ccode,$log['family']['user']))
+                {
+                    if(array_key_exists($this->admin->id,$log['family']['user'][$this->admin->ccode]))
+                    {
+                        if(array_key_exists('osFamily',$log['family']['user'][$this->admin->ccode][$this->admin->id]))
+                        {
+                            if(array_key_exists($browserDetect['osFamily'],$log['family']['user'][$this->admin->ccode][$this->admin->id]['osFamily']))
+                            {
+                                $log['family']['user'][$this->admin->ccode][$this->admin->id]['osFamily'][$browserDetect['osFamily']]=
+                                    $log['family']['user'][$this->admin->ccode][$this->admin->id]['osFamily'][$browserDetect['osFamily']]+1;
+                            }
+                            else
+                            {
+                                $log['family']['user'][$this->admin->ccode][$this->admin->id]['osFamily'][$browserDetect['osFamily']]=1;
+                            }
+
+                        }
+                        else
+                        {
+                            $log['family']['user'][$this->admin->ccode][$this->admin->id]['osFamily'][$browserDetect['osFamily']]=1;
+                        }
+
+                    }
+                    else
+                    {
+                        $log['family']['user'][$this->admin->ccode][$this->admin->id]['osFamily'][$browserDetect['osFamily']]=1;
+                    }
+                }
+                else
+                {
+                    $log['family']['user'][$this->admin->ccode][$this->admin->id]['osFamily'][$browserDetect['osFamily']]=1;
+                }
+
+            }
+            else
+            {
+                $log['family']['user'][$this->admin->ccode][$this->admin->id]['osFamily'][$browserDetect['osFamily']]=1;
+            }
+
+
+
+            //browserFamily user counter
+            if(array_key_exists('user',$log['family']))
+            {
+                if(array_key_exists($this->admin->ccode,$log['family']['user']))
+                {
+                    if(array_key_exists($this->admin->id,$log['family']['user'][$this->admin->ccode]))
+                    {
+                        if(array_key_exists('browserFamily',$log['family']['user'][$this->admin->ccode][$this->admin->id]))
+                        {
+                            if(array_key_exists($browserDetect['browserFamily'],$log['family']['user'][$this->admin->ccode][$this->admin->id]['browserFamily']))
+                            {
+                                $log['family']['user'][$this->admin->ccode][$this->admin->id]['browserFamily'][$browserDetect['browserFamily']]=
+                                    $log['family']['user'][$this->admin->ccode][$this->admin->id]['browserFamily'][$browserDetect['browserFamily']]+1;
+                            }
+                            else
+                            {
+                                $log['family']['user'][$this->admin->ccode][$this->admin->id]['browserFamily'][$browserDetect['browserFamily']]=1;
+                            }
+
+                        }
+                        else
+                        {
+                            $log['family']['user'][$this->admin->ccode][$this->admin->id]['browserFamily'][$browserDetect['browserFamily']]=1;
+                        }
+
+                    }
+                    else
+                    {
+                        $log['family']['user'][$this->admin->ccode][$this->admin->id]['browserFamily'][$browserDetect['browserFamily']]=1;
+                    }
+                }
+                else
+                {
+                    $log['family']['user'][$this->admin->ccode][$this->admin->id]['browserFamily'][$browserDetect['browserFamily']]=1;
+                }
+
+            }
+            else
+            {
+                $log['family']['user'][$this->admin->ccode][$this->admin->id]['browserFamily'][$browserDetect['browserFamily']]=1;
+            }
+
 
 
 
