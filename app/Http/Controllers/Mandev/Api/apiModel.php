@@ -47,6 +47,12 @@ class apiModel extends Controller
                                     {
                                         $query->where("apikey","like","%".$value."%");
                                     }
+                                    elseif($key=="access_service_key")
+                                    {
+                                        if($value==2) { $value=0; }
+
+                                        $query->where($key,"=",$value);
+                                    }
                                     else
                                     {
                                         $query->where($key,"=",$value);
@@ -116,18 +122,23 @@ class apiModel extends Controller
                 $postdata['access_services']=NULL;
             }
 
+
+
             //ccode = guest / add dbtable
             if(\Input::get("ccode")=="guest")
             {
                 foreach ($this->app->dbTable(['all']) as $db=>$dbt)
                 {
-                    if(!in_array($db,\Input::get("forbidden_access_services")))
+                    if(array_key_exists("forbidden_access_services",\Input::all()))
                     {
-                        $postdata['forbidden_access_services'][]=$db;
+                        if(!in_array($db,\Input::get("forbidden_access_services")))
+                        {
+                            $postdata['forbidden_access_services'][]=$db;
+                        }
                     }
+
                 }
             }
-
 
             //forbidden access services implode string key converter
             if(array_key_exists("forbidden_access_services",\Input::all()))
@@ -146,9 +157,15 @@ class apiModel extends Controller
                 }
 
             }
-            
-            //query booelean true
-            return DB::table($this->app->dbTable(['api']))->where("id","=",\Input::get("id"))->update($postdata);
+
+
+            //set log for data changed
+            return app("\Query")->upLog(['api',\Input::get("id"),$postdata],function() use ($postdata)
+            {
+                //query booelean true
+                return DB::table($this->app->dbTable(['api']))->where("id","=",\Input::get("id"))->update($postdata);
+            });
+
         });
     }
 

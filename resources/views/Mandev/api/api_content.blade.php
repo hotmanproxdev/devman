@@ -62,7 +62,7 @@
         <div class="divlay" style="width:20%;">
           <select name="system_ccode" class="indent form-control">
 
-            {!! app("\Filter")->get(['none'=>$systemCode,'data'=>$system_codes,'name'=>'system_ccode','type'=>'select']) !!}
+            {!! app("\Filter")->get(['none'=>$systemCode,'data'=>$system_codes,'name'=>'system_ccode','field'=>'system_ccode','type'=>'select']) !!}
 
           </select>
         </div>

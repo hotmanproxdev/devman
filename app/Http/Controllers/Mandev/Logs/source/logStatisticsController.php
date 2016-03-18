@@ -100,11 +100,6 @@ class logStatisticsController extends Controller
     }
 
 
-    public function getLogSuccessAndFailOperationsLineChart()
-    {
-        return app("\Chart")->lineChart(['chart_number'=>[1,2],'data'=>[['a'=>1,'b'=>2],['a'=>45,'b'=>78]]]);
-    }
-
 
 
 

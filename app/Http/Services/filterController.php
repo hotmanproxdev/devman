@@ -94,9 +94,9 @@ class filterController extends Controller
 
             foreach ($data['data'] as $result)
             {
-                $option[]='<option>'.$result->system_ccode.'</option>';
-                $data[$result->system_ccode]=$result->system_ccode;
-                $object[]=$result->system_ccode;
+                $option[]='<option value="'.$result->$data['field'].'">'.$result->$data['field'].'</option>';
+                $data[$result->$data['field']]=$result->$data['field'];
+                $object[]=$result->$data['field'];
             }
         }
         else
@@ -105,7 +105,7 @@ class filterController extends Controller
             {
 
                 foreach ($data as $key => $result) {
-                    if ($key != "none" && $key != "name" && $key != "type") {
+                    if ($key != "none" && $key != "name" && $key != "type" && $key != "field") {
                         $option[] = '<option value="' . $key . '">' . $result . '</option>';
                         $object[] = $result;
                     }

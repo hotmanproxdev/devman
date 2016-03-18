@@ -37,6 +37,7 @@ class BaseServiceProviders extends Controller
             $data['api_custom']="".$this->dbtable_prefix."_api_custom_models";
             $data['ccodes']="".$this->dbtable_prefix."_admin_ccodes";
             $data['log_statistics']="".$this->dbtable_prefix."_log_statistics";
+            $data['log_updated']="".$this->dbtable_prefix."_log_updated";
 
             if($table[0]=="all")
             {

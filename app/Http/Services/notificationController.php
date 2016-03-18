@@ -40,8 +40,23 @@ class notificationController extends Controller
         DB::table($this->app->dbTable(['admin']))->where("id","=",$this->admin->id)->update(['operations'=>DB::raw("operations+1"),'success_operations'=>DB::raw("success_operations+1"),
         'last_token'=>Input::get("_token"),'last_post'=>base64_encode(json_encode(Input::all()))]);
 
+        if(\Session::has("updateLog"))
+        {
+            return app("\Query")->isTrue(DB::table($this->app->dbTable(['log_updated']))->insert(\Session("updateLog")),function() use ($data)
+            {
+                //session update log forget
+                \Session::forget("updateLog");
+
+                //return view
+                return view("".config("app.admin_dirname").".notification",$data);
+            });
+        }
+
+
         //return view
         return view("".config("app.admin_dirname").".notification",$data);
+
+
     }
 
 

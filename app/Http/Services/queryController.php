@@ -67,6 +67,7 @@ class queryController extends Controller
             $val=true;
         }
 
+
         if($val)
         {
             if(is_callable($callback))
@@ -81,14 +82,53 @@ class queryController extends Controller
     }
 
 
-    public function getLogUpdated($data=array(),$callback)
+    public function upLog($data=array(),$callback)
     {
         $val=false;
 
-        if(count($data))
+        $query=\DB::table($this->app->dbTable([$data[0]]))->where("id","=",$data[1])->get();
+
+        if(count($query))
         {
-            $val=true;
+            $changedList=[];
+            $queryData=[];
+            foreach ($query[0] as $key=>$value)
+            {
+                if(array_key_exists($key,$data[2]))
+                {
+                    $queryData[$key]=$value;
+
+                    if($data[2][$key]!=$queryData[$key])
+                    {
+                        $changedList[$key]=['old'=>$queryData[$key],'new'=>$data[2][$key]];
+                    }
+                }
+            }
+
+
+            if(count($changedList))
+            {
+                \Session::forget("updateLog");
+
+                foreach ($changedList as $ckey=>$cvalue)
+                {
+                    $listarr[]=['route'=>$this->request->getPathInfo(),'table'=>$data[0],'table_id'=>$data[1],
+                        'field'=>$ckey,'old_value'=>$changedList[$ckey]['old'],'new_value'=>$changedList[$ckey]['new'],
+                        'changed'=>json_encode($changedList),'admin'=>$this->admin->id,'ccode'=>$this->app->ccode($this->admin->ccode),'created_at'=>time()];
+
+                    \Session::put("updateLog",$listarr);
+                }
+
+
+
+            }
+
+            if(\Session::has("updateLog"))
+            {
+                $val=true;
+            }
         }
+
 
         if($val)
         {

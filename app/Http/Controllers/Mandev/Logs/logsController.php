@@ -67,9 +67,6 @@ class logsController extends Controller
         //get pie chart
         $this->data['pieChart']=$this->source->data("logStatistics")->get("getLogPieChart");
 
-        //get success and fail operations line chart
-        $this->data['linechart']=$this->source->data("logStatistics")->get("getLogSuccessAndFailOperationsLineChart");
-
         //return view
         return view("".config("app.admin_dirname").".".$this->url_path.".main",$this->data);
     }
