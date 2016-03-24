@@ -126,9 +126,11 @@
             <th scope="col">
               {{$date}}:
             </th>
+            @if($admin->system_number==0)
             <th scope="col">
               Hash:
             </th>
+            @endif
             <th scope="col">
               Standart Key:
             </th>
@@ -224,9 +226,11 @@
             <td>
               {{app()->make("Base")->dateFormat($result->created_at)}}
             </td>
+            @if($admin->system_number==0)
             <td>
               {{$result->hash}}
             </td>
+            @endif
             <td>
               {{$result->standart_key}}
             </td>

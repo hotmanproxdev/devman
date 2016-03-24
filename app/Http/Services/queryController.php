@@ -49,6 +49,7 @@ class queryController extends Controller
             }
         }
 
+
         //redirect to logout
         $this->notification->manipulation(['msg'=>$this->data['manipulation'],'title'=>$this->data['error']]);
 

@@ -11,7 +11,7 @@ class customApi extends Command
      *
      * @var string
      */
-    protected $signature = 'apicustom {custom} {dir?}';
+    protected $signature = 'apicustom {custom} {dir}';
 
     /**
      * The console command description.
@@ -37,13 +37,32 @@ class customApi extends Command
      */
     public function handle()
     {
+        if($this->argument("custom")=="test")
+        {
+            dd("you dont have permission creating a class called test");
+        }
+
+        if(array_key_exists($this->argument("custom"),app()->make("Base")->dbTable(['all'])))
+        {
+            dd("you dont have permission creating a class called ".$this->argument("custom")."");
+        }
+
+        if(!preg_match('@v(\d+)\/.+@is',$this->argument("dir")))
+        {
+            dd("Versioning is false.Please,start with V(n)/");
+        }
+
+        $versioning=explode("/",$this->argument("dir"));
+        $versioning=str_replace("v","",$versioning[0]);
+
+
         $main=\DB::table(app()->make("Base")->dbTable(['api_custom']));
 
         //$customExist=$main->where("custom_models","=",$this->argument("custom"))->get();
 
         if(true)
         {
-            if($main->insert(['custom_models'=>$this->argument("custom"),'custom_dir'=>($this->argument("dir")) ? ucfirst($this->argument("dir")) : NULL,'users'=>0,'created_at'=>time()]))
+            if($main->insert(['custom_models'=>$this->argument("custom"),'custom_dir'=>($this->argument("dir")) ? ucfirst($this->argument("dir")) : NULL,'version'=>$versioning,'users'=>0,'created_at'=>time()]))
             {
                 $slashes='/';
 

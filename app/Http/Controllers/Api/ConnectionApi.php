@@ -29,7 +29,7 @@ class ConnectionApi extends Controller
         if(($ccode!=config("app.api_ccode")))
         {
             //api query
-            $apiQuery=DB::table($this->app->dbTable(['api']))->where("ccode","=",$ccode)->where("ip","=",$this->request->ip())->where("apikey","=",$apikey)->get();
+            $apiQuery=DB::table($this->app->dbTable(['api']))->where("ccode","=",config("app.api_ccode"))->where("ip","=",$this->request->ip())->where("apikey","=",$apikey)->get();
 
             if(count($apiQuery))
             {
@@ -60,8 +60,9 @@ class ConnectionApi extends Controller
 
 
         //develop query
-        $develop=DB::table($this->app->dbTable(['api']))->where("apikey","=",$apikey);
+        $develop=DB::table($this->app->dbTable(['api']))->where("ccode","=",config("app.api_ccode"))->where("apikey","=",$apikey);
         $getDev=$develop->get();
+
 
         if(count($getDev))
         {
@@ -109,8 +110,8 @@ class ConnectionApi extends Controller
                         'apikey'=>$apikey,
                         'aim'=>'developer',
                         'created_at'=>time(),
-                        'hash'=>$hash,
-                        'standart_key'=>$this->app->getApiStandartKey($getDev[0]->id)
+                        'hash'=>$hash
+                        //'standart_key'=>$this->app->getApiStandartKey($getDev[0]->id)
                     ]);
                 }
             }

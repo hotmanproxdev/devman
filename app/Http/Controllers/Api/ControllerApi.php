@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Contracts\Routing\ResponseFactory;
 use DB;
 use Session;
+use App\Http\Controllers\Api\LogApi as LogApi;
 
 class ControllerApi extends Controller
 {
@@ -18,13 +19,16 @@ class ControllerApi extends Controller
     protected $device=['ios','android','web'];
     protected $mode=['select'];
     protected $company=['teknasyon'];
+    public $log;
 
-    public function __construct (Request $request)
+    public function __construct (Request $request,LogApi $logApi)
     {
         //request class
         $this->request=$request;
         //base service provider
         $this->app=app()->make("Base");
+        //log api system
+        $this->log=$logApi;
 
     }
 
@@ -47,13 +51,15 @@ class ControllerApi extends Controller
         if(($apiHash) AND (!$condHash))
         {
             $developer=DB::table($this->app->dbTable(['api']))->where("ccode","=",config("app.api_ccode"))->where("hash","=",$apiHash)->get();
+            $access_point=0;
         }
         else
         {
             $developer=DB::table($this->app->dbTable(['api']))->where("ccode","=",config("app.api_ccode"))->where("apikey","=",\Input::get("key"))->where("standart_key","=",\Input::get("hash"))->get();
+            $access_point=1;
         }
 
-            
+
         if(count($developer))
         {
             if($developer[0]->access_services!==NULL)
@@ -77,14 +83,16 @@ class ControllerApi extends Controller
 
             if($developer[0]->access_service_key)
             {
+                $this->log->set(['condHash'=>$condHash,'access_point'=>$access_point,'service_closed'=>0,'ccode'=>'develop','key'=>$developer[0]->id,'msg'=>'access']);
                 return ['success'=>true,'apiId'=>$developer[0]->id,'access_services'=>$access_services,'forbidden_access_services'=>$forbidden_access_services,'user'=>$developer];
             }
 
+            $this->log->set(['condHash'=>$condHash,'access_point'=>$access_point,'service_closed'=>1,'ccode'=>'develop','msg'=>'your service access has been closed by manager']);
             return ['success'=>false,'msg'=>'access service key closed'];
 
         }
 
-        return ['success'=>false,'msg'=>'please,you must have any develop session info or guest mode conditions for that your api access'];
+        return ['success'=>false,'condHash'=>$condHash,'access_point'=>$access_point];
 
 
     }
@@ -157,6 +165,7 @@ class ControllerApi extends Controller
 
                     if($developer[0]->access_service_key)
                     {
+                        $this->log->set(['service_closed'=>0,'ccode'=>'guest','key'=>$developer[0]->id,'msg'=>'access']);
                         return ['success'=>true,'apiId'=>$developer[0]->id,'access_services'=>$access_services,'forbidden_access_services'=>$forbidden_access_services,'user'=>$developer];
                     }
 

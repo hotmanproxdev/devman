@@ -113,7 +113,10 @@
           </div>
           @if($admin->system_number==0)
           <div class="form-group">
-            <label class="col-sm-3 control-label">{{$daily_hash_number}}</label>
+            <label class="col-sm-3 control-label">{{$daily_hash_number}}
+              <div style="">
+                <span style="color:#e20a16;">({{$except_for_quest_mode}})</span>
+              </div></label>
             <div class="col-sm-4">
               <div class="input-group">
 												<span class="input-group-addon">
@@ -131,7 +134,10 @@
 
           @if($admin->system_number==0)
           <div class="form-group">
-            <label class="col-sm-3 control-label">{{$daily_hash_limit}}</label>
+            <label class="col-sm-3 control-label">{{$daily_hash_limit}}
+              <div style="">
+                <span style="color:#e20a16;">({{$except_for_quest_mode}})</span>
+              </div></label>
             <div class="col-sm-4">
               <div class="input-group">
 												<span class="input-group-addon">
@@ -271,7 +277,11 @@
 
           @if($admin->system_number==0)
           <div class="form-group ">
-            <label class="col-sm-3 control-label">Insert Mode:</label>
+            <label class="col-sm-3 control-label">Insert Mode:
+              <div style="">
+                <span style="color:#e20a16;">({{$except_for_quest_mode}})</span>
+              </div>
+              </label>
             <div class="col-sm-4">
               <div class="input-group">
                 <select class="form-control" name="api_coding_insert">
@@ -294,7 +304,11 @@
 
           @if($admin->system_number==0)
           <div class="form-group ">
-            <label class="col-sm-3 control-label">Update Mode:</label>
+            <label class="col-sm-3 control-label">Update Mode:
+              <div style="">
+                <span style="color:#e20a16;">({{$except_for_quest_mode}})</span>
+              </div>
+            </label>
             <div class="col-sm-4">
               <div class="input-group">
                 <select class="form-control" name="api_coding_update">
@@ -317,7 +331,11 @@
 
           @if($admin->system_number==0)
           <div class="form-group ">
-            <label class="col-sm-3 control-label">Delete Mode:</label>
+            <label class="col-sm-3 control-label">Delete Mode:
+              <div style="">
+                <span style="color:#e20a16;">({{$except_for_quest_mode}})</span>
+              </div>
+            </label>
             <div class="col-sm-4">
               <div class="input-group">
                 <select class="form-control" name="api_coding_delete">
@@ -341,7 +359,11 @@
 
           @if($admin->system_number==0)
           <div class="form-group ">
-            <label class="col-sm-3 control-label">Url Filter:</label>
+            <label class="col-sm-3 control-label">Url Filter:
+              <div style="">
+                <span style="color:#e20a16;">({{$except_for_quest_mode}})</span>
+              </div>
+            </label>
             <div class="col-sm-4">
               <div class="input-group">
                 <select class="form-control" name="api_develop_url_filter">

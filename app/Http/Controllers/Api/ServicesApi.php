@@ -10,6 +10,7 @@ use DB;
 use Session;
 use App\Http\Controllers\Api\ControllerApi as apiController;
 use App\Http\Controllers\Api\ModelApi as apiModel;
+use App\Http\Controllers\Api\LogApi as LogApi;
 
 class ServicesApi extends Controller
 {
@@ -18,8 +19,9 @@ class ServicesApi extends Controller
     public $app;
     public $controller;
     public $model;
+    public $log;
 
-    public function __construct (Request $request,apiController $controller,apiModel $model)
+    public function __construct (Request $request,apiController $controller,apiModel $model,LogApi $logApi)
     {
         //request class
         $this->request=$request;
@@ -29,6 +31,8 @@ class ServicesApi extends Controller
         $this->controller=$controller;
         //get service name models
         $this->model=$model;
+        //log api system
+        $this->log=$logApi;
 
     }
 
@@ -137,6 +141,7 @@ class ServicesApi extends Controller
                     return $this->model->get($serviceName,['codingRequest'=>false,'apiId'=>$developer['apiId'],'user'=>$developer['user']]);
                 }
 
+                $this->log->set(['keyOrHashValid'=>0,'msg'=>'invalid key and hash']);
 
                 //developer false
                 return response()->json(['success'=>false,
@@ -184,6 +189,9 @@ class ServicesApi extends Controller
             }
 
         }
+
+        //log set
+        $this->log->set(['manipulation'=>1,'msg'=>'invalid sevice_name']);
 
         //developer api false
         return response()->json(['success'=>false,
@@ -241,7 +249,7 @@ class ServicesApi extends Controller
                            'all_service_request_json'=>json_decode($apiuser[0]->all_service_request_number,true)
                            ],
                        'api'=>
-                           [
+                            [
                            'access_services'=>$services,
                                'forbidden_access_services'=>json_encode(explode("-",$apiuser[0]->forbidden_access_services),true),
                            'select'=>$this->request->header("select"),

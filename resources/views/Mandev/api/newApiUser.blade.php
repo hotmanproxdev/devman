@@ -52,7 +52,11 @@
 												<span class="input-group-addon">
 												<i class="fa fa-qrcode"></i>
 												</span>
-                  <input type="text" id="typeahead_example_1" name="system_ccode" class="form-control" value="devSde"/>
+                  @if($admin->system_number==0)
+                    <input type="text" id="typeahead_example_1" name="system_ccode" class="form-control" value="{{$admin->ccode}}"/>
+                  @else
+                    <input type="text" id="typeahead_example_1" name="system_ccode" class="form-control" disabled="disabled" value="{{$admin->ccode}}"/>
+                  @endif
                 </div>
                 <p class="help-block">
                   {{$api_system_ccode_info}}.<br>
@@ -71,8 +75,12 @@
 												<i class="fa fa-qrcode"></i>
 												</span>
                   <select name="ccode" class="form-control" style="background-color: #ffffdd;;">
-                      <option value="develop">Develop Mode</option>
+                    @if($admin->system_number==0)
+                        <option value="develop">Develop Mode</option>
+                        <option value="guest">Guest Mode</option>
+                    @else
                       <option value="guest">Guest Mode</option>
+                    @endif
                   </select>
                 </div>
                 <p class="help-block">
@@ -117,6 +125,7 @@
             </div>
 
 
+            @if($admin->system_number==0)
             <div class="form-group">
               <label class="col-sm-3 control-label">{{$daily_hash_limit}}</label>
               <div class="col-sm-4">
@@ -131,6 +140,7 @@
                 </p>
               </div>
             </div>
+            @endif
 
 
             <div class="form-group">
@@ -172,10 +182,16 @@
 												<i class="fa fa-check"></i>
 												</span>
 
-                    <select name="access_services[]" id="access_services" class="form-control select2" multiple="multiple">
+                    <select name="access_services[]" id="access_services" class="form-control select2" data-placeholder="{{$access_all_services_info}}" multiple="multiple">
                       @foreach(app()->make("Base")->services(true) as $key=>$value)
                             @if($value!=="test")
-                                <option value="{{$value}}">{{$value}}</option>
+                          @if($admin->system_number==0)
+                            <option value="{{$value}}">{{$value}}</option>
+                          @else
+                            @if(!array_key_exists($value,app()->make("Base")->dbTable(['all'])))
+                              <option value="{{$value}}">{{$value}}</option>
+                            @endif
+                          @endif
                               @endif
                           @endforeach
                         </select>
@@ -200,7 +216,13 @@
                         <select name="forbidden_access_services[]" id="forbidden_access_services" class="form-control select2" data-placeholder="{{$access_all_services_info}}" multiple="multiple">
                           @foreach(app()->make("Base")->services(true) as $key=>$value)
                             @if($value!=="test")
+                                @if($admin->system_number==0)
                                 <option value="{{$value}}">{{$value}}</option>
+                                @else
+                                  @if(!array_key_exists($value,app()->make("Base")->dbTable(['all'])))
+                                  <option value="{{$value}}">{{$value}}</option>
+                                  @endif
+                                @endif
                               @endif
                           @endforeach
                         </select>
@@ -212,9 +234,12 @@
               </div>
             </div>
 
-
+            @if($admin->system_number==0)
             <div class="form-group ">
-              <label class="col-sm-3 control-label">Insert Mode:</label>
+              <label class="col-sm-3 control-label">Insert Mode:
+                <div style="">
+                  <span style="color:#e20a16;">({{$except_for_quest_mode}})</span>
+                </div></label>
               <div class="col-sm-4">
                 <div class="input-group">
                   <select class="form-control" name="api_coding_insert">
@@ -228,9 +253,14 @@
                 </p>
               </div>
             </div>
+            @endif
 
+            @if($admin->system_number==0)
             <div class="form-group ">
-              <label class="col-sm-3 control-label">Update Mode:</label>
+              <label class="col-sm-3 control-label">Update Mode:
+                <div style="">
+                  <span style="color:#e20a16;">({{$except_for_quest_mode}})</span>
+                </div></label>
               <div class="col-sm-4">
                 <div class="input-group">
                   <select class="form-control" name="api_coding_update">
@@ -244,10 +274,15 @@
                 </p>
               </div>
             </div>
+            @endif
 
 
+            @if($admin->system_number==0)
             <div class="form-group ">
-              <label class="col-sm-3 control-label">Delete Mode:</label>
+              <label class="col-sm-3 control-label">Delete Mode:
+                <div style="">
+                  <span style="color:#e20a16;">({{$except_for_quest_mode}})</span>
+                </div></label>
               <div class="col-sm-4">
                 <div class="input-group">
                   <select class="form-control" name="api_coding_delete">
@@ -261,10 +296,15 @@
                 </p>
               </div>
             </div>
+            @endif
 
 
+            @if($admin->system_number==0)
             <div class="form-group ">
-              <label class="col-sm-3 control-label">Url Filter:</label>
+              <label class="col-sm-3 control-label">Url Filter:
+                <div style="">
+                  <span style="color:#e20a16;">({{$except_for_quest_mode}})</span>
+                </div></label>
               <div class="col-sm-4">
                 <div class="input-group">
                   <select class="form-control" name="api_develop_url_filter">
@@ -278,6 +318,7 @@
                 </p>
               </div>
             </div>
+            @endif
 
             <div class="form-actions">
               <div class="row">

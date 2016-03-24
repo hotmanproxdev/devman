@@ -123,19 +123,23 @@ class apiModel extends Controller
             }
 
 
-
             //ccode = guest / add dbtable
             if(\Input::get("ccode")=="guest")
             {
                 foreach ($this->app->dbTable(['all']) as $db=>$dbt)
                 {
-                    if(array_key_exists("forbidden_access_services",\Input::all()))
+                    if(array_key_exists("forbidden_access_services",$postdata))
                     {
-                        if(!in_array($db,\Input::get("forbidden_access_services")))
+                        if(!in_array($db,$postdata['forbidden_access_services']))
                         {
                             $postdata['forbidden_access_services'][]=$db;
                         }
                     }
+                    else
+                    {
+                        $postdata['forbidden_access_services'][]=$db;
+                    }
+
 
                 }
             }
@@ -143,11 +147,18 @@ class apiModel extends Controller
             //forbidden access services implode string key converter
             if(array_key_exists("forbidden_access_services",\Input::all()))
             {
-                $postdata['forbidden_access_services']=implode("-",$postdata['forbidden_access_services']);
+                if(\Input::get("ccode")=="develop")
+                {
+                    $postdata['forbidden_access_services']=NULL;
+                }
+                else
+                {
+                    $postdata['forbidden_access_services'] = implode("-", $postdata['forbidden_access_services']);
+                }
             }
             else
             {
-                if($this->admin->system_number==0)
+                if($this->getUserApi(\Input::get("id"))[0]->ccode=="develop" && \Input::get("ccode")=="develop")
                 {
                     $postdata['forbidden_access_services']=NULL;
                 }
@@ -157,7 +168,6 @@ class apiModel extends Controller
                 }
 
             }
-
 
             //set log for data changed
             return app("\Query")->upLog(['api',\Input::get("id"),$postdata],function() use ($postdata)
@@ -188,27 +198,77 @@ class apiModel extends Controller
                 $postdata['access_services']=NULL;
             }
 
+
+            //ccode = guest / add dbtable
+            if(\Input::get("ccode")=="guest")
+            {
+                foreach ($this->app->dbTable(['all']) as $db=>$dbt)
+                {
+                    if(array_key_exists("forbidden_access_services",$postdata))
+                    {
+                        if(!in_array($db,$postdata['forbidden_access_services']))
+                        {
+                            $postdata['forbidden_access_services'][]=$db;
+                        }
+                    }
+                    else
+                    {
+                        $postdata['forbidden_access_services'][]=$db;
+                    }
+
+
+                }
+            }
+
+
             //forbidden access services implode string key converter
             if(array_key_exists("forbidden_access_services",\Input::all()))
             {
-                $postdata['forbidden_access_services']=implode("-",$postdata['forbidden_access_services']);
+                if(\Input::get("ccode")=="develop")
+                {
+                    $postdata['forbidden_access_services']=NULL;
+                }
+                else
+                {
+                    $postdata['forbidden_access_services'] = implode("-", $postdata['forbidden_access_services']);
+                }
             }
             else
             {
-                $postdata['forbidden_access_services']=NULL;
+                if(\Input::get("ccode")=="develop")
+                {
+                    $postdata['forbidden_access_services']=NULL;
+                }
+                else
+                {
+                    $postdata['forbidden_access_services']=implode("-",$postdata['forbidden_access_services']);
+                }
+
             }
+
 
             //created at
             $postdata['created_at']=time();
 
-            //request limit
-            $postdata['request']=1000;
+
+            if($this->admin->system_number==0)
+            {
+                $postdata['system_ccode']=\Input::get("system_ccode");
+            }
+            else
+            {
+                $postdata['system_ccode']=$this->admin->ccode;
+            }
 
             //query insert get id
             $id=DB::table($this->app->dbTable(['api']))->insertGetId($postdata);
 
-            //standart key update
-            return DB::table($this->app->dbTable(['api']))->where("id","=",$id)->update(['standart_key'=>$this->app->getApiStandartKey($id)]);
+            return app("\Query")->isTrue($id,function() use ($id)
+            {
+                //standart key update
+                return DB::table($this->app->dbTable(['api']))->where("id","=",$id)->update(['standart_key'=>$this->app->getApiStandartKey($id)]);
+            });
+
         });
     }
 

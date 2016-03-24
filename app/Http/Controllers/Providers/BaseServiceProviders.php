@@ -38,6 +38,7 @@ class BaseServiceProviders extends Controller
             $data['ccodes']="".$this->dbtable_prefix."_admin_ccodes";
             $data['log_statistics']="".$this->dbtable_prefix."_log_statistics";
             $data['log_updated']="".$this->dbtable_prefix."_log_updated";
+            $data['log_api']="".$this->dbtable_prefix."_api_process_logs";
 
             if($table[0]=="all")
             {
@@ -522,7 +523,7 @@ class BaseServiceProviders extends Controller
                 $services[]=$tabkey;
             }
 
-            $apicustom=DB::table($this->dbTable(['api_custom']))->get();
+            $apicustom=DB::table($this->dbTable(['api_custom']))->distinct()->where("statu","=",1)->get(array("custom_models"));
 
             if(count($apicustom))
             {
