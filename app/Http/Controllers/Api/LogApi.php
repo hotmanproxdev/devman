@@ -69,11 +69,15 @@ class LogApi extends Controller
             }
         }
 
-        if($param['ccode']=="guest")
+        if(array_key_exists("ccode",$param))
         {
-            $data['key']=$param['key'];
-            $data['hash']=\Input::get("hash");
+            if($param['ccode']=="guest")
+            {
+                $data['key']=$param['key'];
+                $data['hash']=\Input::get("hash");
+            }
         }
+
 
         if(array_key_exists("keyOrHashValid",$param))
         {
