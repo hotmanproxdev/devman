@@ -141,7 +141,7 @@ class ServicesApi extends Controller
                     return $this->model->get($serviceName,['codingRequest'=>false,'apiId'=>$developer['apiId'],'user'=>$developer['user']]);
                 }
 
-                $this->log->set(['keyOrHashValid'=>0,'msg'=>'invalid key and hash']);
+                $this->log->set(['keyOrHashValid'=>0,'condHash'=>false,'msg'=>'invalid key and hash']);
 
                 //developer false
                 return response()->json(['success'=>false,
