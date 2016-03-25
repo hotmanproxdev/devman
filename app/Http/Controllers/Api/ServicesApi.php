@@ -55,6 +55,19 @@ class ServicesApi extends Controller
                     $developer=$this->controller->guest();
                 }
 
+                if(array_key_exists("staticIp",$developer))
+                {
+                    if(!$developer['staticIp'])
+                    {
+                        $this->log->set(['staticIp'=>$developer['staticIp'],'key'=>$developer['skey'],'msg'=>'static ip is false']);
+                        //developer false
+                        return response()->json(['success'=>false,
+                            'msg'=>'static ip is false'
+                        ]);
+                    }
+
+                }
+
                 //developer true
                 if($developer['success'])
                 {

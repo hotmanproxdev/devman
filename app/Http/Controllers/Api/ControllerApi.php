@@ -52,11 +52,23 @@ class ControllerApi extends Controller
         {
             $developer=DB::table($this->app->dbTable(['api']))->where("ccode","=",config("app.api_ccode"))->where("hash","=",$apiHash)->get();
             $access_point=0;
+            if(count($developer))
+            {
+                $sess_apikey=$developer[0]->id;
+                $sess_apihash=$developer[0]->hash;
+            }
         }
         else
         {
             $developer=DB::table($this->app->dbTable(['api']))->where("ccode","=",config("app.api_ccode"))->where("apikey","=",\Input::get("key"))->where("standart_key","=",\Input::get("hash"))->get();
             $access_point=1;
+
+            if(count($developer))
+            {
+                $sess_apikey=$developer[0]->id;
+                $sess_apihash=$developer[0]->standart_key;
+            }
+
         }
 
 
@@ -83,7 +95,11 @@ class ControllerApi extends Controller
 
             if($developer[0]->access_service_key)
             {
-                $this->log->set(['condHash'=>$condHash,'access_point'=>$access_point,'service_closed'=>0,'ccode'=>'develop','key'=>$developer[0]->id,'msg'=>'access']);
+                $this->log->set(['condHash'=>$condHash,'access_point'=>$access_point,
+                                 'sess_apikey'=>$sess_apikey,
+                                 'sess_apihash'=>$sess_apihash,
+                                 'service_closed'=>0,'ccode'=>'develop','system_ccode'=>$developer[0]->system_ccode,
+                                 'key'=>$developer[0]->id,'access'=>1,'msg'=>'access']);
                 return ['success'=>true,'apiId'=>$developer[0]->id,'access_services'=>$access_services,'forbidden_access_services'=>$forbidden_access_services,'user'=>$developer];
             }
 
@@ -109,10 +125,29 @@ class ControllerApi extends Controller
                 }
 
 
+
+
+
                 $develop=DB::table($this->app->dbTable(['api']))->
                 where("ccode","=","guest")->where("ip","=",$ip)->where("apikey","=",\Input::get("key"))->where("standart_key","=",\Input::get("hash"));
 
                 $developer=$develop->get();
+
+                $static_ip=DB::table($this->app->dbTable(['api']))->where("apikey","=",\Input::get("key"))->where("standart_key","=",\Input::get("hash"))
+                            ->get();
+
+
+                if(count($static_ip))
+                {
+                    $staticIp=0;
+                    $skey=$static_ip[0]->id;
+                }
+                else
+                {
+                    $staticIp=1;
+                    $skey=0;
+                }
+
 
                 if(count($developer))
                 {
@@ -165,7 +200,9 @@ class ControllerApi extends Controller
 
                     if($developer[0]->access_service_key)
                     {
-                        $this->log->set(['service_closed'=>0,'ccode'=>'guest','key'=>$developer[0]->id,'msg'=>'access']);
+                        $this->log->set(['service_closed'=>0,'ccode'=>'guest','system_ccode'=>$developer[0]->system_ccode,
+                                         'access'=>1,'key'=>$developer[0]->id,
+                                         'forbidden_access_services'=>$forbidden_access_services,'msg'=>'access']);
                         return ['success'=>true,'apiId'=>$developer[0]->id,'access_services'=>$access_services,'forbidden_access_services'=>$forbidden_access_services,'user'=>$developer];
                     }
 
@@ -173,7 +210,7 @@ class ControllerApi extends Controller
 
                 }
 
-                return ['success'=>false,'msg'=>'please,you must have any develop session info or guest mode conditions for that your api access'];
+                return ['success'=>false,'staticIp'=>$staticIp,'skey'=>$skey,'msg'=>'please,you must have any develop session info or guest mode conditions for that your api access'];
 
             }
 

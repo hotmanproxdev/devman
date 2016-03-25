@@ -50,10 +50,34 @@ class LogApi extends Controller
 
         $data['url_path']=$this->request->fullUrl();
         $data['url_path_explain']=$this->request->getPathInfo();
+        $data['serviceName']=explode("/",$this->request->getPathInfo())[3];
+
+        if(array_key_exists($data['serviceName'],$this->app->dbTable(['all'])))
+        {
+           $data['custom']=0;
+        }
+        else
+        {
+            $data['custom']=1;
+        }
         $data['msg']=$param['msg'];
         $data['postdata']='';
         $data['getdata']=json_encode(\Input::all());
         $data['headerData']=$this->request->headers;
+
+        if(array_key_exists("forbidden_access_services",$param))
+        {
+            //forbidden access services
+            if(count($param['forbidden_access_services']))
+            {
+                if(in_array($data['serviceName'],$param['forbidden_access_services']))
+                {
+                    $data['forbidden_access']=1;
+                    $data['manipulation']=1;
+                }
+            }
+        }
+
 
         if(array_key_exists("manipulation",$param))
         {
@@ -64,7 +88,7 @@ class LogApi extends Controller
         {
             if($param['condHash'])
             {
-                $data['key']=$param['key'];
+                $data['apikey']=$param['key'];
                 $data['hash']=\Input::get("hash");
             }
         }
@@ -73,9 +97,23 @@ class LogApi extends Controller
         {
             if($param['ccode']=="guest")
             {
-                $data['key']=$param['key'];
+                $data['apikey']=$param['key'];
                 $data['hash']=\Input::get("hash");
+
             }
+        }
+
+        if(array_key_exists("staticIp",$param))
+        {
+            $data['staticIp']=$param['staticIp'];
+            $data['apikey']=$param['key'];
+            $data['hash']=\Input::get("hash");
+        }
+
+
+        if(array_key_exists("access",$param))
+        {
+            $data['access']=$param['access'];
         }
 
 
@@ -102,6 +140,12 @@ class LogApi extends Controller
             $data['access_point']=$param['access_point'];
         }
 
+        if(array_key_exists("sess_apikey",$param))
+        {
+            $data['apikey']=$param['sess_apikey'];
+            $data['hash']=$param['sess_apihash'];
+        }
+
         if(array_key_exists("service_closed",$param))
         {
             $data['service_closed']=$param['service_closed'];
@@ -109,7 +153,20 @@ class LogApi extends Controller
 
         if(array_key_exists("ccode",$param))
         {
-            $data['ccode']=$param['ccode'];
+            if($param['ccode']=="develop")
+            {
+                $data['ccode']=1;
+            }
+            else
+            {
+                $data['ccode']=2;
+            }
+
+        }
+
+        if(array_key_exists("system_ccode",$param))
+        {
+            $data['system_ccode']=$this->app->ccode($param['system_ccode']);
         }
 
         $data['created_at']=time();
