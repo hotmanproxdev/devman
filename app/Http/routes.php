@@ -20,6 +20,12 @@ Route::group(['prefix' =>''.strtolower(config("app.admin_dirname")).'/','namespa
         Route::controllers(['login' => 'loginController']);
     });
 
+    //tsql test part
+    Route::group(['namespace'=>'Tsql'], function ()
+    {
+        //test part
+        Route::controllers(['tsql' => 'tsqlController']);
+    });
 
     //profile part
     Route::group(['namespace'=>'Profile'], function ()

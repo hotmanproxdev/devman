@@ -241,6 +241,7 @@ return [
         'Filter' =>App\Http\Services\filterController::class,
         'Role' =>App\Http\Services\pageRoleController::class,
         'Image' => Intervention\Image\Facades\Image::class,
+        'Tsql'=>App\Packages\tsql\appIndex::class,
 
     ],
 
