@@ -13,6 +13,8 @@
 
 Route::group(['prefix' =>''.strtolower(config("app.admin_dirname")).'/','namespace'=>''.config("app.admin_dirname").''], function () {
 
+    //dont delete this comment line
+
     //login part
     Route::group(['namespace'=>'Login'], function ()
     {
@@ -26,6 +28,7 @@ Route::group(['prefix' =>''.strtolower(config("app.admin_dirname")).'/','namespa
         //test part
         Route::controllers(['tsql' => 'tsqlController']);
     });
+
 
     //profile part
     Route::group(['namespace'=>'Profile'], function ()

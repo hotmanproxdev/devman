@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Mandev\Tsql;
 
+use App\Http\Services\queryController;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -54,12 +55,15 @@ class tsqlController extends Controller
 
         }
 
-    public function getIndex ()
-    {
-        //get tsql list
-        $this->data['query']=$this->source->data("tsql")->get("getPackList");
+        public function getIndex ()
+        {
+            //get tsql list
+            $this->data['query'] = $this->source->data("tsql")->get("getPackList");
 
-        //return view
-        return view("".config("app.admin_dirname").".".$this->url_path.".main",$this->data);
-    }
+            //return view
+            return view("".config("app.admin_dirname").".".$this->url_path.".main",$this->data);
+        }
+
+
+
 }

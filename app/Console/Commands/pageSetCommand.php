@@ -9,7 +9,7 @@ class pageSetCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'page {page} {dir?}';
+    protected $signature = 'page {page} {dir?} {sourcefile?}';
     /**
      * The console command description.
      *
@@ -33,9 +33,50 @@ class pageSetCommand extends Command
     public function handle()
     {
         $slashes='/';
-        
+
+        $routes="".str_replace("".$slashes."storage","",storage_path("app"))."".$slashes."Http".$slashes."routes.php";
         $app_path="".str_replace("".$slashes."storage","",storage_path("app"))."".$slashes."Http".$slashes."Controllers".$slashes."";
         $view_path="".str_replace("".$slashes."storage".$slashes."app","",storage_path("app"))."".$slashes."resources".$slashes."views".$slashes."";
+
+        if($this->argument("page")=="source")
+        {
+            if(file_exists("".$app_path."".config("app.admin_dirname")."".$slashes."".ucfirst($this->argument("dir"))."".$slashes."source"))
+            {
+                if(touch("".$app_path."".config("app.admin_dirname")."".$slashes."".ucfirst($this->argument("dir"))."".$slashes."source".$slashes."".$this->argument("sourcefile")."Controller.php"))
+                {
+
+                    if($this->argument("sourcefile")=="tsql")
+                    {
+                        $dosya = "".storage_path("app")."".$slashes."sourceFileTsql.txt";
+                    }
+                    else
+                    {
+                        $dosya = "".storage_path("app")."".$slashes."sourceFile.txt";
+                    }
+
+                    $dt = fopen($dosya, "rb");
+                    $icerik = fread($dt, filesize($dosya));
+                    $dosya = "".$app_path."".config("app.admin_dirname")."".$slashes."".ucfirst($this->argument("dir"))."".$slashes."source".$slashes."".$this->argument("sourcefile")."Controller.php";
+                    $dt = fopen($dosya, 'w');
+                    $icerik=str_replace("__sourceName__",ucfirst($this->argument("dir")),$icerik);
+                    $icerik=str_replace("__sourceNameModel__",$this->argument("dir"),$icerik);
+                    $icerik=str_replace("__sourceNamePath__",$this->argument("dir"),$icerik);
+                    $icerik=str_replace("__sourceFile__",$this->argument("sourcefile"),$icerik);
+                    fwrite($dt,$icerik);
+                    fclose($dt);
+
+                    dd("source file has been created");
+
+                }
+                else
+                {
+                    dd("source file error");
+                }
+
+
+
+            }
+        }
 
         if(!file_exists("".$app_path."".config("app.admin_dirname")."".$slashes."".ucfirst($this->argument("dir")).""))
         {
@@ -65,6 +106,8 @@ class pageSetCommand extends Command
             $icerik=str_replace("__sourceName__",ucfirst($this->argument("page")),$icerik);
             fwrite($dt,$icerik);
             fclose($dt);
+
+
         }
 
 
@@ -82,6 +125,26 @@ class pageSetCommand extends Command
             $icerik=str_replace("{dir}",ucfirst($this->argument("dir")),$icerik);
             $icerik=str_replace("__namespace",ucfirst($this->argument("page")),$icerik);
             $icerik=str_replace("{pr}",ucfirst(config("app.admin_dirname")),$icerik);
+            fwrite($dt,$icerik);
+            fclose($dt);
+
+
+            $routechange="
+      //dont delete this comment line
+
+      //".$this->argument("page")." part
+      Route::group(['namespace'=>'".ucfirst($this->argument("page"))."'], function ()
+      {
+            //".$this->argument("page")." route (".$this->argument("page")."Controller)
+            Route::controllers(['".$this->argument("page")."' => '".$this->argument("page")."Controller']);
+      });
+
+            ";
+
+            $dt = fopen($routes, "rb");
+            $icerik = fread($dt, filesize($routes));
+            $dt = fopen($routes, 'w');
+            $icerik=str_replace("//dont delete this comment line",$routechange,$icerik);
             fwrite($dt,$icerik);
             fclose($dt);
 

@@ -545,8 +545,19 @@ class BaseServiceProviders extends Controller
     {
         if($ccode)
         {
-            $query=DB::table($this->dbTable(['ccodes']))->where("ccode","=",$ccode)->get();
+            if($ccode=="toList")
+            {
+                $query=DB::table($this->dbTable(['ccodes']))->orderBy("id","asc")->get();
 
+                foreach ($query as $result)
+                {
+                    $listarr[$result->id]=$result->ccode;
+                }
+
+                return $listarr;
+            }
+
+            $query=DB::table($this->dbTable(['ccodes']))->where("ccode","=",$ccode)->get();
             return $query[0]->id;
         }
     }

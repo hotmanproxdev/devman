@@ -126,7 +126,6 @@ class apiController extends Controller
         });
     }
 
-
     public function getEdit()
     {
         //it just accepts ajax request
