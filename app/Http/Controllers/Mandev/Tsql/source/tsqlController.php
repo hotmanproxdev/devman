@@ -19,6 +19,8 @@ class tsqlController extends Controller
     public $model;
     public $logCounter;
     public $logCounterArray;
+    public $tsql;
+    public $tdata;
 
     public function __construct (Request $request,tsqlModel $model)
     {
@@ -36,13 +38,23 @@ class tsqlController extends Controller
         $this->data['admin']=$this->admin;
         //get model
         $this->model=$model;
+        //app tsql
+        $this->tsql=app("\Tsql");
+
 
 
     }
 
     public function getPackList()
     {
-        return app("\Tsql")
+        return $this->tsql
+
+                           /*tsql name */
+                           ->name("logt")
+
+                           /*table header name */
+                           ->header("Log Table")
+
                            /* query is here..orm condition */
                            ->query(\DB::table("prosystem_administrator_process_logs")->orderBy("id","desc")->take(10)->get())
 
@@ -57,7 +69,7 @@ class tsqlController extends Controller
                                         'manipulation'=>'Manipulation',
                                         'isTablet'=>'Tablet',
                                         'isDesktop'=>'Masaustu'
-                                    ]
+                                    ],1
                                     )
 
                            /* (optional) field css */
@@ -72,9 +84,9 @@ class tsqlController extends Controller
                                     [
                                        'matching'=>
                                        [
-                                           'ccode'=>$this->app->ccode("toList")
+                                           'ccode'=>$this->app->ccode("toList"),
+                                           'userid'=>'query:admin:username'
                                        ]
-
                                     ]
                                     )
 
@@ -86,6 +98,9 @@ class tsqlController extends Controller
                            )
 
                            /* command run */
-                           ->run();
+                           ->run(function($data)
+                           {
+                               return $this->tsql->run(false,['data'=>$data]);
+                           });
     }
 }

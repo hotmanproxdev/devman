@@ -2,7 +2,7 @@
 <div class="portlet box purple">
   <div class="portlet-title">
     <div class="caption">
-      <i class="fa fa-cogs"></i>Horizontal Scrollable Responsive Table
+      <i class="fa fa-cogs"></i>{{$header}}
     </div>
     <div class="tools">
       <a href="javascript:;" class="collapse">
@@ -15,7 +15,7 @@
       </a>
     </div>
   </div>
-  <div class="portlet-body">
+  <div class="portlet-body {{$name}}">
     <div class="table-scrollable">
       <table class="table table-striped table-bordered table-hover">
 
@@ -56,6 +56,7 @@
           @foreach($fields as $val)
 
             {{--*/ $ccss[$val]='' /*--}}
+            {{--*/ $efield[$result->id]='' /*--}}
 
             @if(count($contentCss))
               @if(array_key_exists("all",$contentCss))
@@ -75,10 +76,29 @@
               @endif
             @endif
 
+
+            @if(count($fillIn))
+              @if(array_key_exists("img",$fillIn))
+                @if(array_key_exists($val,$fillIn['img']))
+                  @if(array_key_exists("link",$fillIn['img']))
+                  {{--*/ $efield[$result->id]='<a href="'.$baseUrl.'/'.strtolower(config("app.admin_dirname")).'/'.$fillIn['img']['link'][$result->id].'"><img src="'.$baseUrl.'/'.$fillIn['img']['path'].'/'.$fillIn['img'][$val][$result->id].'"
+                   style="'.$fillIn['img']['style'].'"></a>' /*--}}
+                    @else
+                    {{--*/ $efield[$result->id]='<a><img src="'.$baseUrl.'/'.$fillIn['img']['path'].'/'.$fillIn['img'][$val][$result->id].'"
+                   style="'.$fillIn['img']['style'].'"></a>' /*--}}
+                    @endif
+                @endif
+              @endif
+            @endif
+
             @if(count($wanted_fields))
               @if(array_key_exists($val,$wanted_fields))
                 <td class="{{$ccss[$val]}}">
+                  @if(in_array($val,$original))
                   {{$result->$val}}
+                  @else
+                    {!! $efield[$result->id] !!}
+                  @endif
                 </td>
               @endif
             @else
