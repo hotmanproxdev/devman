@@ -105,8 +105,6 @@ class tsqlController extends Controller
                                //callback list
                                $this->tsql->update([],function($list) use ($data)
                                {
-                                   $list['all']=['query'=>['id:2383'=>'tet']];
-
                                    //update list
                                    $this->tdata=$this->tsql->update(['list'=>$list,'data'=>$data]);
 
