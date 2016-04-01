@@ -70,8 +70,11 @@
 
             @if(count($fillIn))
               @if(array_key_exists("matching",$fillIn))
+
                 @if(array_key_exists($val,$fillIn['matching']))
+                  @if(array_key_exists($result->$val,$fillIn['matching'][$val]))
                   {{--*/ $result->$val= $fillIn['matching'][$val][$result->$val] /*--}}
+                  @endif
                 @endif
               @endif
             @endif

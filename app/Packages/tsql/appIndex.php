@@ -66,9 +66,25 @@ class appIndex
 
     public function fields($fields=array(),$row=false)
     {
+        foreach ($this->data['query'][0] as $key=>$value)
+        {
+            $list[]=$key;
+        }
+
         if(count($fields))
         {
             $this->data['wanted_fields']=$fields;
+
+            foreach ($fields as $key=>$value)
+            {
+                if(!in_array($key,$list))
+                {
+                    foreach ($this->data['query'] as $result)
+                    {
+                        $result->$key='';
+                    }
+                }
+            }
 
             if($row)
             {
@@ -134,13 +150,17 @@ class appIndex
         if(is_callable($callback))
         {
             $list=[];
-            foreach ($this->data['fillIn']['matching'] as $key=>$val)
+            if(array_key_exists("fillIn",$this->data))
             {
-                if($field==$key)
+                foreach ($this->data['fillIn']['matching'] as $key=>$val)
                 {
-                    $list[$key]=$val;
+                    if(in_array($key,$field))
+                    {
+                        $list[$key]=$val;
+                    }
                 }
             }
+
 
             return call_user_func_array($callback,array($list));
         }
@@ -148,25 +168,120 @@ class appIndex
 
         foreach ($field['list'] as $key=>$val)
         {
-            if(array_key_exists($key,$field['data']['fillIn']['matching']))
+            if(array_key_exists("query",$field['list'][$key]))
             {
-                foreach ($field['data']['fillIn']['matching'][$key] as $a=>$b)
+                foreach ($field['list'][$key]['query'] as $qkey=>$qvalue)
                 {
-                    if(array_key_exists($a,$field['list'][$key]))
+                    $keyex=explode(":",$qkey);
+
+                    if($keyex[0]==$keyex[1])
                     {
-                        $field['data']['fillIn']['matching'][$key][$a]=$field['list'][$key][$a];
+                        foreach ($field['data']['query'] as $result)
+                        {
+                            if(array_key_exists($qvalue,$field['data']['fillIn']['matching']))
+                            {
+                                $result->$key=$field['data']['fillIn']['matching'][$qvalue][$result->$qvalue];
+                            }
+                            else
+                            {
+                                $result->$key=$result->$qvalue;
+                            }
+
+                        }
                     }
                     else
                     {
-                        $field['data']['fillIn']['matching'][$key][$a]=$b;
+                        foreach (explode("|",$keyex[1]) as $mval)
+                        {
+                            foreach ($field['data']['query'] as $result)
+                            {
+                                if($result->$keyex[0]==$mval)
+                                {
+                                    $result->$key=$qvalue;
+                                }
+                                else
+                                {
+                                    if(array_key_exists("default",$field['list'][$key]))
+                                    {
+                                        $result->$key=$field['list'][$key]['default'];
+                                    }
+                                }
+                            }
+                        }
                     }
+
 
                 }
             }
             else
             {
-                $field['data']['fillIn']['matching']=$field['list'];
+                if(!array_key_exists($key, $field['data']['fillIn']['matching']))
+                {
+                    $field['data']['fillIn']['matching'][$key]=$field['list'][$key];
+                }
+
+
+                if(array_key_exists($key,$field['data']['fillIn']['matching']))
+                {
+                    foreach ($field['data']['fillIn']['matching'][$key] as $a=>$b)
+                    {
+                        if(array_key_exists("all",$field['list'][$key]))
+                        {
+                            if(is_array($field['list'][$key]['all']))
+                            {
+                                if(array_key_exists("date",$field['list'][$key]['all']))
+                                {
+                                    foreach ($field['data']['query'] as $result)
+                                    {
+                                        $result->$key=date($field['list'][$key]['all']['date'],$result->$key);
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                foreach ($field['data']['query'] as $result)
+                                {
+                                    $result->$key=$field['list'][$key]['all'];
+                                }
+                                //$field['data']['fillIn']['matching'][$key][$a]=$field['list'][$key]['all'];
+                            }
+
+                        }
+                        else
+                        {
+                            if(array_key_exists($a,$field['list'][$key]))
+                            {
+                                if(is_array($field['list'][$key][$a]))
+                                {
+                                    if(array_key_exists("date",$field['list'][$key][$a]))
+                                    {
+                                        $field['data']['fillIn']['matching'][$key][$a]=date($field['list'][$key][$a]['date'],$a);
+                                    }
+
+                                }
+                                else
+                                {
+                                    $field['data']['fillIn']['matching'][$key][$a]=$field['list'][$key][$a];
+                                }
+
+                            }
+                            else
+                            {
+                                $field['data']['fillIn']['matching'][$key][$a]=$b;
+                            }
+                        }
+
+
+                    }
+
+                }
+                else
+                {
+                    $field['data']['fillIn']['matching'][$key]=$field['list'][$key];
+                }
             }
+
+
 
         }
 

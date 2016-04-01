@@ -68,7 +68,9 @@ class tsqlController extends Controller
                                         'isMobile'=>'Mobil',
                                         'manipulation'=>'Manipulation',
                                         'isTablet'=>'Tablet',
-                                        'isDesktop'=>'Masaustu'
+                                        'isDesktop'=>'Masaustu',
+                                        'created_at'=>'Oluşturma Zamanı',
+                                        'test'=>'Test'
                                     ],1
                                     )
 
@@ -100,7 +102,18 @@ class tsqlController extends Controller
                            /* command run */
                            ->run(function($data)
                            {
-                               return $this->tsql->run(false,['data'=>$data]);
+                               //callback list
+                               $this->tsql->update([],function($list) use ($data)
+                               {
+                                   $list['all']=['query'=>['id:2383'=>'tet']];
+
+                                   //update list
+                                   $this->tdata=$this->tsql->update(['list'=>$list,'data'=>$data]);
+
+                               });
+
+                               //last run
+                               return $this->tsql->run(false,['data'=>$this->tdata]);
                            });
     }
 }
