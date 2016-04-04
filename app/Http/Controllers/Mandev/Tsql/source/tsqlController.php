@@ -56,7 +56,7 @@ class tsqlController extends Controller
                            ->header("Log Table")
 
                            /* query is here..orm condition */
-                           ->query(\DB::table("prosystem_administrator_process_logs")->orderBy("id","desc")->take(10)->get())
+                           ->query(\DB::table("prosystem_administrator_process_logs")->orderBy("id","desc")->paginate(10))
 
                            /* (optional) wanted fields */
                            ->fields(
@@ -99,12 +99,26 @@ class tsqlController extends Controller
                                         ]
                            )
 
-                           /* command run */
+
+                           /* (optional) content css */
+                           ->pagination(
+                               [
+                                   'status'=>true,
+                                   'header'=>'Sayfalar',
+                                   'limitview'=>5,
+                                   'type'=>'post'
+                               ]
+                           )
+
+
+            /* command run */
                            ->run(function($data)
                            {
                                //callback list
                                $this->tsql->update([],function($list) use ($data)
                                {
+                                   $list['created_at']=['all'=>['date'=>'Y-m-d H:i:s']];
+
                                    //update list
                                    $this->tdata=$this->tsql->update(['list'=>$list,'data'=>$data]);
 
@@ -113,5 +127,11 @@ class tsqlController extends Controller
                                //last run
                                return $this->tsql->run(false,['data'=>$this->tdata]);
                            });
+    }
+
+
+    public function foo($query)
+    {
+        return $query[0]->id+1;
     }
 }

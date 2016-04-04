@@ -128,6 +128,16 @@ class appIndex
         return $this;
     }
 
+
+    public function pagination($pagination=array())
+    {
+        if(count($pagination))
+        {
+            $this->data['pagination']=$pagination;
+        }
+        return $this;
+    }
+
     public function run($callback=false,$arg=array())
     {
         if(is_callable($callback))
@@ -174,6 +184,7 @@ class appIndex
                 {
                     $keyex=explode(":",$qkey);
 
+
                     if($keyex[0]==$keyex[1])
                     {
                         foreach ($field['data']['query'] as $result)
@@ -193,18 +204,49 @@ class appIndex
                     {
                         foreach (explode("|",$keyex[1]) as $mval)
                         {
+
                             foreach ($field['data']['query'] as $result)
                             {
                                 if($result->$keyex[0]==$mval)
                                 {
-                                    $result->$key=$qvalue;
-                                }
-                                else
-                                {
-                                    if(array_key_exists("default",$field['list'][$key]))
+                                    if($key=="all")
                                     {
-                                        $result->$key=$field['list'][$key]['default'];
+                                        $exclist=[];
+                                        if(array_key_exists("except",$field['list'][$key]))
+                                        {
+                                            foreach ($field['list'][$key]['except'] as $exc)
+                                            {
+                                                $exclist[]=$exc;
+                                            }
+                                        }
+
+                                        foreach ($field['data']['fields'] as $f)
+                                        {
+                                            if($f!=="id" && !in_array($f,$exclist))
+                                            {
+                                                $result->$f=$qvalue;
+                                            }
+
+                                        }
+
                                     }
+                                    else
+                                    {
+                                        $result->$key=$qvalue;
+                                    }
+
+                                }
+
+                            }
+                        }
+
+                        foreach ($field['data']['query'] as $result)
+                        {
+                            if(!in_array($result->$keyex[0],explode("|",$keyex[1])))
+                            {
+                                if(array_key_exists("default",$field['list'][$key]))
+                                {
+                                    $result->$key=$field['list'][$key]['default'];
                                 }
                             }
                         }

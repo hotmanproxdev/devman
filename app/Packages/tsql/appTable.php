@@ -11,7 +11,7 @@ use App\Packages\tsql\appQuery as appQuery;
 
 class appTable
 {
-    public $data=array("wanted_fields"=>[],'wanted_fields_row'=>false,'fillIn'=>[],'fieldCss'=>[],'contentCss'=>[]);
+    public $data=array("wanted_fields"=>[],'wanted_fields_row'=>false,'fillIn'=>[],'fieldCss'=>[],'contentCss'=>[],'pagination'=>['status'=>false]);
     public $appQuery;
     public $app;
 
@@ -60,6 +60,12 @@ class appTable
         if(array_key_exists("contentCss",$data))
         {
             $this->data['contentCss']=$data['contentCss'];
+        }
+
+        //field css
+        if(array_key_exists("pagination",$data))
+        {
+            $this->data['pagination']=$data['pagination'];
         }
 
         //fill in
