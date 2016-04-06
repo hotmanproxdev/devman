@@ -557,6 +557,12 @@ class BaseServiceProviders extends Controller
                 return $listarr;
             }
 
+            if(is_numeric($ccode))
+            {
+                $query=DB::table($this->dbTable(['ccodes']))->where("id","=",$ccode)->get();
+                return $query[0]->ccode;
+            }
+
             $query=DB::table($this->dbTable(['ccodes']))->where("ccode","=",$ccode)->get();
             return $query[0]->id;
         }

@@ -515,7 +515,7 @@
   jQuery(document).ready(function() {
     Metronic.init(); // init metronic core componets
     Layout.init(); // init layout
-    Demo.init(); // init demo features 
+    Demo.init(); // init demo features
     QuickSidebar.init(); // init quick sidebar
     Index.init();
     Index.initDashboardDaterange();

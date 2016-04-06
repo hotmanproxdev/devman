@@ -15,114 +15,19 @@
       </a>
     </div>
   </div>
-  <div class="portlet-body {{$name}}">
-    <div class="table-scrollable">
-      <table class="table table-striped table-bordered table-hover">
+  <div class="portlet-body">
+    <div class="table-scrollable {{$name}}_table">
 
-        <thead>
-        <tr>
-          @foreach ($fields as $val)
-
-            {{--*/ $fcss[$val]='' /*--}}
-
-            @if(count($fieldCss))
-              @if(array_key_exists("all",$fieldCss))
-                {{--*/ $fcss[$val]=$fieldCss['all'] /*--}}
-              @endif
-
-              @if(array_key_exists($val,$fieldCss))
-                  {{--*/ $fcss[$val]=$fieldCss[$val] /*--}}
-                @endif
-            @endif
-
-
-            @if(count($wanted_fields))
-              @if(array_key_exists($val,$wanted_fields))
-                <th scope="col" class="{{$fcss[$val]}}">
-                  {{$wanted_fields[$val]}}
-                </th>
-              @endif
-            @else
-              <th scope="col" style="">
-                {{$val}}
-              </th>
-            @endif
-         @endforeach
-        </tr>
-        </thead>
-        <tbody>
-        @foreach($query as $result)
-        <tr>
-          @foreach($fields as $val)
-
-            {{--*/ $ccss[$val]='' /*--}}
-            {{--*/ $efield[$result->id]='' /*--}}
-
-            @if(count($contentCss))
-              @if(array_key_exists("all",$contentCss))
-                {{--*/ $ccss[$val]=$contentCss['all'] /*--}}
-              @endif
-
-              @if(array_key_exists($val,$contentCss))
-                {{--*/ $ccss[$val]=$contentCss[$val] /*--}}
-              @endif
-            @endif
-
-            @if(count($fillIn))
-              @if(array_key_exists("matching",$fillIn))
-
-                @if(array_key_exists($val,$fillIn['matching']))
-                  @if(array_key_exists($result->$val,$fillIn['matching'][$val]))
-                  {{--*/ $result->$val= $fillIn['matching'][$val][$result->$val] /*--}}
-                  @endif
-                @endif
-              @endif
-            @endif
-
-
-            @if(count($fillIn))
-              @if(array_key_exists("img",$fillIn))
-                @if(array_key_exists($val,$fillIn['img']))
-                  @if(array_key_exists("link",$fillIn['img']))
-                  {{--*/ $efield[$result->id]='<a href="'.$baseUrl.'/'.strtolower(config("app.admin_dirname")).'/'.$fillIn['img']['link'][$result->id].'"><img src="'.$baseUrl.'/'.$fillIn['img']['path'].'/'.$fillIn['img'][$val][$result->id].'"
-                   style="'.$fillIn['img']['style'].'"></a>' /*--}}
-                    @else
-                    {{--*/ $efield[$result->id]='<a><img src="'.$baseUrl.'/'.$fillIn['img']['path'].'/'.$fillIn['img'][$val][$result->id].'"
-                   style="'.$fillIn['img']['style'].'"></a>' /*--}}
-                    @endif
-                @endif
-              @endif
-            @endif
-
-            @if(count($wanted_fields))
-              @if(array_key_exists($val,$wanted_fields))
-                <td class="{{$ccss[$val]}}">
-                  @if(in_array($val,$original))
-                  {{$result->$val}}
-                  @else
-                    {!! $efield[$result->id] !!}
-                  @endif
-                </td>
-              @endif
-            @else
-              <td>
-                {{$result->$val}}
-              </td>
-            @endif
-              @endforeach
-
-        </tr>
-          @endforeach
-
-        </tbody>
-      </table>
-
+      @include(''.config("app.admin_dirname").'/tsql_table_main')
 
     </div>
 
     <!--pagination start-->
     <div class="{{$name}}_pagination">
       @if($pagination['status'])
+
+
+        @if($pagination['type']=="normal")
 
         {{--*/ $pageNum=ceil($query->total()/$query->perPage()) /*--}}
 
@@ -169,7 +74,6 @@
                   @endif
 
                 @endif
-
 
                 @if($currentPage>1)
 
@@ -229,11 +133,257 @@
         </div>
 
 
-      @endif
+          @endif
+
+
+
+
+
+
+
+
+          @if($pagination['type']=="ajax")
+
+            {{--*/ $pageNum=ceil($query->total()/$query->perPage()) /*--}}
+
+
+            @if(!array_key_exists("page",\Input::all()))
+              {{--*/ $currentPage=1 /*--}}
+              {{--*/ $nextPage=2 /*--}}
+            @else
+              {{--*/ $currentPage=\Input::get("page") /*--}}
+              {{--*/ $nextPage=\Input::get("page")+1 /*--}}
+            @endif
+
+
+
+              <div style="border:0px;" id="{{$name}}_fullajax" class="ajaxPageFull">
+
+
+                    <div class="table-scrollable" style="border:0px;">
+                      <table class="table table-striped table-bordered table-hover {{$name}}" style="border:0px;">
+
+                        <tr>
+                          <td style="padding: 10px; border:1px solid #ccc; font-weight:bold;">
+                            @if(array_key_exists("header",$pagination))
+                              {{$pagination['header']}}
+                            @else
+                              Pages
+                            @endif
+                          </td>
+
+                          @if(array_key_exists("limitview",$pagination))
+                            {{--*/ $limitview=$pagination['limitview'] /*--}}
+
+                            @if($pageNum<$limitview)
+                              {{--*/ $limitview=$pageNum /*--}}
+                            @endif
+
+                          @else
+                            {{--*/ $limitview=5 /*--}}
+
+                            @if($pageNum<$limitview)
+                              {{--*/ $limitview=$pageNum /*--}}
+                            @endif
+
+                          @endif
+
+
+
+                            {{--*/ $prevPage=\Input::get("page")-1 /*--}}
+
+                            <td class="page-ajax prev-page-ajax {{$name}}_prevajax" name="{{$name}}" prevno="0" limitview="{{$pagination['limitview']}}"  style="padding: 10px; border:1px solid #ccc; background-color:#f4f4f4; font-weight:bold; display:none">
+                              <a style="text-decoration:none; color:#e20a16;  font-weight:bold;">
+                                << Geri
+                              </a>
+                            </td>
+
+
+
+                          @for($i=1; $i<=$limitview; $i++)
+
+                            @if($i==1)
+                              {{--*/ $class='page-ajax-active' /*--}}
+                            @else
+                              {{--*/ $class='page-ajax-passive' /*--}}
+                            @endif
+
+                            <td id="page-ajax-active_{{$i}}" class="{{$class}}" name="{{$name}}" no="{{$i}}" limitview="{{$pagination['limitview']}}" style="border:1px solid #ccc;">
+                              <a style="text-decoration:none; font-weight:bold;">
+                                {{$i}}
+                              </a>
+                            </td>
+
+                          @endfor
+
+
+
+                            <td class="oajax" style="padding:10px; border-top:0px; background-color:#fff; display:none;">
+                              ...
+                            </td>
+                            <td class="oajax oajaxi" style="padding: 10px; border:1px solid #ccc; background-color:#ffdd88; font-weight:bold; cursor:pointer; display:none;">
+                              <span id="{{$name}}_oajax"></span>.Sayfadasınız
+                            </td>
+
+                            <td class="oajax" style="padding: 10px; border-top:0px; background-color:#fff; display:none;">
+                              ...
+                            </td>
+
+
+                          <td style="padding: 10px; border:1px solid #ccc; background-color :#fff; cursor:pointer;">
+                            Toplam : <span style="color: #e20a16; font-weight: bold;">{{$query->lastPage()}} Sayfa </span> ... <b>{{$query->total()}}</b> Kayıt
+                          </td>
+
+
+                          <td class="page-ajax next-page-ajax {{$name}}_nextajax" name="{{$name}}" nextno="2" limitview="{{$pagination['limitview']}}"  style="padding: 10px; border:1px solid #ccc; background-color :#ddd; font-weight:bold; cursor:pointer;">
+                            <a style="text-decoration:none; font-weight:bold;">
+                              >> İleri
+                            </a>
+                          </td>
+                        </tr>
+                      </table>
+
+                    </div>
+                  </div>
+
+
+                @endif
+
+
+
+                @endif
     </div>
-    <!--pagination finish-->
+
 
 
   </div>
+    <!--pagination finish-->
 </div>
 <!-- END SAMPLE TABLE PORTLET-->
+
+
+  <script>
+    $(document).on("click","td.page-ajax-passive",function(){
+
+      var name=$(this).attr("name");
+      var no=$(this).attr("no");
+      var limitview=$(this).attr("limitview");
+
+
+      if(no>1)
+      {
+        $("table."+name+" td.prev-page-ajax").show();
+      }
+
+      if(no==1)
+      {
+        $("table."+name+" td.prev-page-ajax").hide();
+
+      }
+
+      if(no<=limitview)
+      {
+        $("table."+name+" td.oajax").hide();
+
+        $(".ajaxPageFull2").addClass("ajaxPageFull");
+        $(".ajaxPageFull2").removeClass("ajaxPageFull2");
+      }
+
+
+      var next=parseInt(no)+parseInt(1);
+      var prev=parseInt(no)-parseInt(1);
+
+      $("table."+name+" td.page-ajax-active").addClass("page-ajax-passive");
+      $("table."+name+" td.page-ajax-active").removeClass("page-ajax-active");
+
+      $(this).addClass("page-ajax-active");
+      $(this).removeClass("page-ajax-passive");
+
+      $("table."+name+" td."+name+"_nextajax").attr("nextno",next);
+      $("table."+name+" td."+name+"_prevajax").attr("prevno",prev);
+
+      $("."+name+"_table").load("{{$file[2]}}?page="+no);
+
+    });
+
+
+    $(document).on("click","td.next-page-ajax",function(){
+
+      var name=$(this).attr("name");
+      var no=$(this).attr("nextno");
+      var limitview=$(this).attr("limitview");
+
+      if(no>1)
+      {
+        $("table."+name+" td.prev-page-ajax").show();
+      }
+
+      if(parseInt(no)>parseInt(limitview))
+      {
+
+        $(".ajaxPageFull").addClass("ajaxPageFull2");
+        $(".ajaxPageFull").removeClass("ajaxPageFull");
+
+        $("table."+name+" td.oajax").show();
+        $("span#"+name+"_oajax").html(no);
+      }
+
+      var next=parseInt(no)+parseInt(1);
+      var prev=parseInt(no)-parseInt(1);
+
+      $("table."+name+" td.page-ajax-active").addClass("page-ajax-passive");
+      $("table."+name+" td.page-ajax-active").removeClass("page-ajax-active");
+
+      $("table."+name+" td#page-ajax-active_"+no).addClass("page-ajax-active");
+      $("table."+name+" td#page-ajax-active_"+no).removeClass("page-ajax-passive");
+
+      $("table."+name+" td."+name+"_nextajax").attr("nextno",parseInt(next));
+      $("table."+name+" td."+name+"_prevajax").attr("prevno",parseInt(prev));
+
+      $("."+name+"_table").load("{{$file[2]}}?page="+no);
+
+    });
+
+
+    $(document).on("click","td.prev-page-ajax",function(){
+
+      var name=$(this).attr("name");
+      var no=$(this).attr("prevno");
+      var limitview=$(this).attr("limitview");
+
+      if(no==1)
+      {
+        $("table."+name+" td.prev-page-ajax").hide();
+      }
+
+
+      if(parseInt(no)<=parseInt(limitview))
+      {
+        $(".ajaxPageFull2").addClass("ajaxPageFull");
+        $(".ajaxPageFull2").removeClass("ajaxPageFull2");
+        $("table."+name+" td.oajax").hide();
+      }
+
+
+      if(parseInt(no)>parseInt(limitview))
+      {
+        $("table."+name+" td.oajax").show();
+        $("span#"+name+"_oajax").html(no);
+      }
+
+      var next=parseInt(no)+parseInt(1);
+      var prev=parseInt(no)-parseInt(1);
+
+      $("table."+name+" td.page-ajax-active").addClass("page-ajax-passive");
+      $("table."+name+" td.page-ajax-active").removeClass("page-ajax-active");
+
+      $("table."+name+" td#page-ajax-active_"+no).addClass("page-ajax-active");
+      $("table."+name+" td#page-ajax-active_"+no).removeClass("page-ajax-passive");
+
+      $("table."+name+" td."+name+"_nextajax").attr("nextno",next);
+      $("table."+name+" td."+name+"_prevajax").attr("prevno",prev);
+
+      $("."+name+"_table").load("{{$file[2]}}?page="+no);
+
+    });
+  </script>

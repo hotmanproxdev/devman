@@ -28,7 +28,7 @@ class sourceController extends Controller
         return $this;
     }
 
-    public function get($data=false)
+    public function get($data=false,$param=false)
     {
         if($data)
         {
@@ -37,6 +37,11 @@ class sourceController extends Controller
 
         $callNameSpace='\\'.$this->sourcedata['class'].'\\'.$this->sourcedata['data'].'Controller';
         $method=$this->sourcedata['method'];
+
+        if($param)
+        {
+            return app($callNameSpace)->$method($param);
+        }
         return app($callNameSpace)->$method();
     }
 

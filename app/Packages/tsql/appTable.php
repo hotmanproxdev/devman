@@ -8,17 +8,20 @@
 
 namespace App\Packages\tsql;
 use App\Packages\tsql\appQuery as appQuery;
+use Illuminate\Http\Request;
 
 class appTable
 {
     public $data=array("wanted_fields"=>[],'wanted_fields_row'=>false,'fillIn'=>[],'fieldCss'=>[],'contentCss'=>[],'pagination'=>['status'=>false]);
     public $appQuery;
     public $app;
+    public $request;
 
-    public function __construct(appQuery $appQuery)
+    public function __construct(Request $request,appQuery $appQuery)
     {
         $this->appQuery=$appQuery;
         $this->app=app()->make("Base");
+        $this->request=$request;
     }
 
     public function drawTable($data=false,$callback=false)
@@ -28,7 +31,7 @@ class appTable
         $this->data['original']=$this->appQuery->getField($data['query']);
         $this->data['fields']=$this->appQuery->getField($data['query']);
         $this->data['query']=$data['query'];
-
+        $this->data['file']=explode("/",$this->request->getPathInfo());
 
         //wanted fields
         if(array_key_exists("wanted_fields",$data))

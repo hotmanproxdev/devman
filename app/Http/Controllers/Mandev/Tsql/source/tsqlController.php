@@ -42,13 +42,11 @@ class tsqlController extends Controller
         $this->tsql=app("\Tsql");
 
 
-
     }
 
     public function getPackList()
     {
         return $this->tsql
-
                            /*tsql name */
                            ->name("logt")
 
@@ -70,7 +68,8 @@ class tsqlController extends Controller
                                         'isTablet'=>'Tablet',
                                         'isDesktop'=>'Masaustu',
                                         'created_at'=>'Oluşturma Zamanı',
-                                        'test'=>'Test'
+                                        'test'=>'Bar',
+                                        'test2'=>'Foo'
                                     ],1
                                     )
 
@@ -106,19 +105,17 @@ class tsqlController extends Controller
                                    'status'=>true,
                                    'header'=>'Sayfalar',
                                    'limitview'=>5,
-                                   'type'=>'post'
+                                   'type'=>'ajax'
                                ]
                            )
 
 
-            /* command run */
+                           /* command run */
                            ->run(function($data)
                            {
                                //callback list
                                $this->tsql->update([],function($list) use ($data)
                                {
-                                   $list['created_at']=['all'=>['date'=>'Y-m-d H:i:s']];
-
                                    //update list
                                    $this->tdata=$this->tsql->update(['list'=>$list,'data'=>$data]);
 
@@ -130,8 +127,4 @@ class tsqlController extends Controller
     }
 
 
-    public function foo($query)
-    {
-        return $query[0]->id+1;
-    }
 }
