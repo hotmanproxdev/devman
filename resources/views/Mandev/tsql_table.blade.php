@@ -130,6 +130,7 @@
       var name=$(this).attr("name");
       var no=$(this).attr("no");
       var limitview=$(this).attr("limitview");
+      var count=$(this).attr("count");
 
 
       if(no>1)
@@ -149,6 +150,12 @@
 
         $(".ajaxPageFull2").addClass("ajaxPageFull");
         $(".ajaxPageFull2").removeClass("ajaxPageFull2");
+      }
+
+
+      if(parseInt(no)<parseInt(count))
+      {
+        $("table."+name+" td.next-page-ajax").show();
       }
 
 
@@ -174,6 +181,13 @@
       var name=$(this).attr("name");
       var no=$(this).attr("nextno");
       var limitview=$(this).attr("limitview");
+      var count=$(this).attr("count");
+
+
+      if(parseInt(no)>=parseInt(count))
+      {
+        $("table."+name+" td.next-page-ajax").hide();
+      }
 
       if(no>1)
       {
@@ -212,10 +226,17 @@
       var name=$(this).attr("name");
       var no=$(this).attr("prevno");
       var limitview=$(this).attr("limitview");
+      var count=$(this).attr("count");
+
 
       if(no==1)
       {
         $("table."+name+" td.prev-page-ajax").hide();
+      }
+
+      if(parseInt(no)<parseInt(count))
+      {
+        $("table."+name+" td.next-page-ajax").show();
       }
 
 
@@ -271,7 +292,10 @@
           $("div.{{$name}}_table").html(data);
           $("div#{{$name}}_tsqlpagination").load("{{$file[2]}}?tsqlpage=1");
         },
-        error: function () { $("div.{{$name}}_table").html("error"); }
+        error: function () {
+          $("div.{{$name}}_table").html("<div style='padding:10px; color:#e20a16; font-weight:bold;'>Herhangi bir data bulunamadi</div>");
+          $("div#{{$name}}_tsqlpagination").html("");
+        }
       });
     });
   </script>

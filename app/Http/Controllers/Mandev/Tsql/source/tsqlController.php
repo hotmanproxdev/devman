@@ -63,13 +63,14 @@ class tsqlController extends Controller
                                         'ccode'=>'Sistem Kodu',
                                         'userid'=>'Kullanıcı',
                                         'userip'=>'İp',
-                                        'isMobile'=>'Mobil',
+                                        'fail_operations'=>'Başarısız İşlem',
                                         'manipulation'=>'Manipulation',
                                         'isTablet'=>'Tablet',
                                         'isDesktop'=>'Masaustu',
+                                        'isMobile'=>'Mobil',
                                         'created_at'=>'Oluşturma Zamanı',
-                                        'test'=>'Bar',
-                                        'test2'=>'Foo'
+                                        'log_process'=>'İşlem Tipi',
+                                        'url_path_explain'=>'Url'
                                     ],1
                                     )
 
@@ -86,7 +87,9 @@ class tsqlController extends Controller
                                        'matching'=>
                                        [
                                            'ccode'=>$this->app->ccode("toList"),
-                                           'userid'=>'query:admin:username'
+                                           'userid'=>'query:admin:username',
+                                           'fail_operations'=>['0'=>'Yok','1'=>'Tespit Edildi'],
+                                           'log_process'=>[1=>'Get',2=>'Post']
                                        ]
                                     ]
                                     )
@@ -121,21 +124,44 @@ class tsqlController extends Controller
                                         'name'=>'ccode'
                                     ],
 
+                                    [
+                                        'type'=>'text',
+                                        'data'=>[],
+                                        'class'=>'',
+                                        'default'=>'Kullanici adi',
+                                        'name'=>'username'
+                                    ],
                                    [
-                                       'type'=>'text',
-                                       'data'=>[],
+                                       'type'=>'select',
+                                       'data'=>[1=>'Tespit Edildi',0=>'Yok'],
                                        'class'=>'',
-                                       'default'=>'Kullanici adi',
-                                       'name'=>'username'
+                                       'default'=>['none'=>'--Başarı İşlem Tipi--'],
+                                       'name'=>'fail_operations'
                                    ],
 
-                                   [
-                                       'type'=>'button',
-                                       'data'=>[],
-                                       'class'=>'',
-                                       'default'=>'Filtrele',
-                                       'name'=>'test'
-                                   ]
+                                    [
+                                        'type'=>'select',
+                                        'data'=>[1=>'Manipulasyonlu',0=>'Manipulasyonsuz'],
+                                        'class'=>'',
+                                        'default'=>['none'=>'--Manipulation Tipi--'],
+                                        'name'=>'manipulation'
+                                    ],
+
+                                    [
+                                        'type'=>'select',
+                                        'data'=>[1=>'Get İşlemi',2=>'Post İşlemi'],
+                                        'class'=>'',
+                                        'default'=>['none'=>'--İşlem Tipi--'],
+                                        'name'=>'log_process'
+                                    ],
+
+                                    [
+                                        'type'=>'button',
+                                        'data'=>[],
+                                        'class'=>'',
+                                        'default'=>'Filtrele',
+                                        'name'=>'test'
+                                    ]
                                ]
                            )
 
@@ -146,6 +172,17 @@ class tsqlController extends Controller
                                //callback list
                                $this->tsql->update([],function($list) use ($data)
                                {
+                                   $list['created_at']=['query'=>function($query)
+                                   {
+                                       if(count($query))
+                                       {
+                                           foreach ($query as $result)
+                                           {
+                                               $list[]=date("Y-m-d H:i:s",$result->created_at);
+                                           }
+                                           return $list;
+                                       }
+                                   }];
                                    //update list
                                    $this->tdata=$this->tsql->update(['list'=>$list,'data'=>$data]);
 

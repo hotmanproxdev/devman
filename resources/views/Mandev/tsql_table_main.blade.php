@@ -67,7 +67,7 @@
           @if(array_key_exists("img",$fillIn))
             @if(array_key_exists($val,$fillIn['img']))
               @if(array_key_exists("link",$fillIn['img']))
-                {{--*/ $efield[$result->id]='<a href="'.$baseUrl.'/'.strtolower(config("app.admin_dirname")).'/'.$fillIn['img']['link'][$result->id].'"><img src="'.$baseUrl.'/'.$fillIn['img']['path'].'/'.$fillIn['img'][$val][$result->id].'"
+                {{--*/ $efield[$result->id]='<a target="_blank" href="'.$baseUrl.'/'.strtolower(config("app.admin_dirname")).'/'.$fillIn['img']['link'][$result->id].'"><img src="'.$baseUrl.'/'.$fillIn['img']['path'].'/'.$fillIn['img'][$val][$result->id].'"
                  style="'.$fillIn['img']['style'].'"></a>' /*--}}
               @else
                 {{--*/ $efield[$result->id]='<a><img src="'.$baseUrl.'/'.$fillIn['img']['path'].'/'.$fillIn['img'][$val][$result->id].'"

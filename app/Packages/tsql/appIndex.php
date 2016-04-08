@@ -79,7 +79,7 @@ class appIndex
 
             foreach ($fields as $key=>$value)
             {
-                if(!in_array($key,$list))
+                if(!in_array($key,$list) && $key!=='photo')
                 {
                     foreach ($this->data['query'] as $result)
                     {
