@@ -202,4 +202,9 @@ class filterController extends Controller
         return $list;
     }
 
+    public function forget()
+    {
+        \Session::forget("filterdata");
+    }
+
 }

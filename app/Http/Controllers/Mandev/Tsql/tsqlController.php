@@ -70,6 +70,17 @@ class tsqlController extends Controller
             }
 
             return $view;
+
+        }
+
+
+        public function postLogtfilter()
+        {
+            return app("\Filter")->data(function()
+            {
+                return $this->getIndex();
+            });
+
         }
 
 

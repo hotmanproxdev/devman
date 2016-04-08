@@ -16,249 +16,111 @@
     </div>
   </div>
   <div class="portlet-body">
-    <div class="table-scrollable {{$name}}_table">
-
-      @include(''.config("app.admin_dirname").'/tsql_table_main')
-
-    </div>
-
-    <!--pagination start-->
-    <div class="{{$name}}_pagination">
-      @if($pagination['status'])
-
-
-        @if($pagination['type']=="normal")
-
-        {{--*/ $pageNum=ceil($query->total()/$query->perPage()) /*--}}
-
-
-        @if(!array_key_exists("page",\Input::all()))
-          {{--*/ $currentPage=1 /*--}}
-          {{--*/ $nextPage=2 /*--}}
-        @else
-          {{--*/ $currentPage=\Input::get("page") /*--}}
-          {{--*/ $nextPage=\Input::get("page")+1 /*--}}
-        @endif
-
-
-      @if($currentPage>$pagination['limitview'])
-          <div style="width:100%; border:0px;">
-        @else
-          <div class="xtable">
-        @endif
-
-          <div class="table-scrollable" style="border:0px;">
-            <table class="table table-striped table-bordered table-hover" style="border:0px;">
-
-              <tr>
-                <td style="padding: 10px; border:1px solid #ccc; font-weight:bold;">
-                  @if(array_key_exists("header",$pagination))
-                    {{$pagination['header']}}
-                  @else
-                    Pages
-                  @endif
-                </td>
-
-                @if(array_key_exists("limitview",$pagination))
-                  {{--*/ $limitview=$pagination['limitview'] /*--}}
-
-                  @if($pageNum<$limitview)
-                    {{--*/ $limitview=$pageNum /*--}}
-                  @endif
-
-                @else
-                  {{--*/ $limitview=5 /*--}}
-
-                  @if($pageNum<$limitview)
-                    {{--*/ $limitview=$pageNum /*--}}
-                  @endif
-
-                @endif
-
-                @if($currentPage>1)
-
-                  {{--*/ $prevPage=\Input::get("page")-1 /*--}}
-
-                  <td style="padding: 10px; border:1px solid #ccc; background-color:#f4f4f4; font-weight:bold;">
-                    <a href="?page={{$prevPage}}" style="text-decoration:none; color:#e20a16;  font-weight:bold;">
-                      << Geri
-                    </a>
-                  </td>
-
-                @endif
-
-                @for($i=1; $i<=$limitview; $i++)
-
-                  @if($i==$currentPage)
-                    {{--*/ $backgroundColor='#e2e2e2;' /*--}}
-                  @else
-                    {{--*/ $backgroundColor='#fff;' /*--}}
-                  @endif
-
-                  <td style="padding: 10px; border:1px solid #ccc; background-color : {{$backgroundColor}}  cursor:pointer;">
-                    <a href="?page={{$i}}" style="text-decoration:none; font-weight:bold;">
-                      {{$i}}
-                    </a>
-                  </td>
-
-                @endfor
-
-                @if($currentPage>$pagination['limitview'])
-                  <td style="padding:10px; border-top:0px; background-color:#fff;">
-                    ...
-                  </td>
-                  <td style="padding: 10px; border:1px solid #ccc; background-color:#ffdd88; font-weight:bold; cursor:pointer;">
-                    {{$currentPage}}.Sayfadasınız
-                  </td>
-
-                  <td style="padding: 10px; border-top:0px; background-color:#fff;">
-                    ...
-                  </td>
-                @endif
-
-                <td style="padding: 10px; border:1px solid #ccc; background-color :#fff; cursor:pointer;">
-                  Toplam : <span style="color: #e20a16; font-weight: bold;">{{$query->lastPage()}} Sayfa </span> ... <b>{{$query->total()}}</b> Kayıt
-                </td>
-
-
-                <td style="padding: 10px; border:1px solid #ccc; background-color :#ddd; font-weight:bold; cursor:pointer;">
-                  <a href="?page={{$nextPage}}" style="text-decoration:none; font-weight:bold;">
-                    >> İleri
-                  </a>
-                </td>
-              </tr>
-            </table>
-
-          </div>
-        </div>
-
-
-          @endif
 
 
 
+      <div style="">
 
+        <form id="{{$name}}ajax" method="post">
+          <input type="hidden" name="_token" value="{{csrf_token()}}">
+          <input type="hidden" name="filter">
+        @if(count($filter))
 
+          {{--*/ $w=100/count($filter) /*--}}
+          {{--*/ $f=0 /*--}}
 
+          @foreach ($filter as $fval)
 
+            {{--*/ $ff=$f++ /*--}}
 
-          @if($pagination['type']=="ajax")
-
-            {{--*/ $pageNum=ceil($query->total()/$query->perPage()) /*--}}
-
-
-            @if(!array_key_exists("page",\Input::all()))
-              {{--*/ $currentPage=1 /*--}}
-              {{--*/ $nextPage=2 /*--}}
+            @if($ff==count($filter)-1 OR count($filter)==1)
+              {{--*/ $indent='' /*--}}
             @else
-              {{--*/ $currentPage=\Input::get("page") /*--}}
-              {{--*/ $nextPage=\Input::get("page")+1 /*--}}
+              {{--*/ $indent='indent' /*--}}
+            @endif
+
+            @if(array_key_exists("class",$fval))
+
+              {{--*/ $class=$fval['class'] /*--}}
+            @else
+              {{--*/ $class='' /*--}}
+            @endif
+
+            @if($fval['type']=="select")
+
+              <div class="divlay" style="width:{{$w}}%;">
+                <select class="{{$indent}} form-control {{$class}}" name="{{$fval['name']}}">
+                  @foreach ($fval['default'] as $dkey=>$dval)
+                    <option value="{{$dkey}}">{{$dval}}</option>
+                  @endforeach
+
+                  @if(is_callable($fval['data']))
+
+                    {{--*/ $call=call_user_func($fval['data']) /*--}}
+
+                    @foreach ($call as $ckey=>$cval)
+                      <option value="{{$ckey}}">{{$cval}}</option>
+                    @endforeach
+
+                  @else
+
+
+                    @if(count($fval['data']))
+
+                      @foreach ($fval['data'] as $dkey=>$dval)
+                        <option value="{{$dkey}}">{{$dval}}</option>
+                      @endforeach
+                    @endif
+
+                  @endif
+                </select>
+
+              </div>
+
             @endif
 
 
 
-              <div style="border:0px;" id="{{$name}}_fullajax" class="ajaxPageFull">
+            @if($fval['type']=="text")
+
+              <div class="divlay" style="width:{{$w}}%;">
+                <input type="text" class="{{$indent}} form-control {{$class}}" name="{{$fval['name']}}" placeholder="{{$fval['default']}}">
+
+              </div>
+
+            @endif
 
 
-                    <div class="table-scrollable" style="border:0px;">
-                      <table class="table table-striped table-bordered table-hover {{$name}}" style="border:0px;">
+            @if($fval['type']=="button")
 
-                        <tr>
-                          <td style="padding: 10px; border:1px solid #ccc; font-weight:bold;">
-                            @if(array_key_exists("header",$pagination))
-                              {{$pagination['header']}}
-                            @else
-                              Pages
-                            @endif
-                          </td>
+              <div class="divlay" style="width:{{$w}}%;">
+                <a class="submitf btn green-meadow {{$class}}" ajax-form="{{$name}}ajax" action="{{$file[2]}}/{{$name}}filter">{{$fval['default']}}</a>
 
-                          @if(array_key_exists("limitview",$pagination))
-                            {{--*/ $limitview=$pagination['limitview'] /*--}}
+              </div>
 
-                            @if($pageNum<$limitview)
-                              {{--*/ $limitview=$pageNum /*--}}
-                            @endif
+            @endif
+          @endforeach
+        @endif
 
-                          @else
-                            {{--*/ $limitview=5 /*--}}
+        <div class="clear"></div>
 
-                            @if($pageNum<$limitview)
-                              {{--*/ $limitview=$pageNum /*--}}
-                            @endif
 
-                          @endif
+          </form>
 
 
 
-                            {{--*/ $prevPage=\Input::get("page")-1 /*--}}
-
-                            <td class="page-ajax prev-page-ajax {{$name}}_prevajax" name="{{$name}}" prevno="0" limitview="{{$pagination['limitview']}}"  style="padding: 10px; border:1px solid #ccc; background-color:#f4f4f4; font-weight:bold; display:none">
-                              <a style="text-decoration:none; color:#e20a16;  font-weight:bold;">
-                                << Geri
-                              </a>
-                            </td>
+          @include(''.config("app.admin_dirname").'/tsql_table_main')
 
 
 
-                          @for($i=1; $i<=$limitview; $i++)
-
-                            @if($i==1)
-                              {{--*/ $class='page-ajax-active' /*--}}
-                            @else
-                              {{--*/ $class='page-ajax-passive' /*--}}
-                            @endif
-
-                            <td id="page-ajax-active_{{$i}}" class="{{$class}}" name="{{$name}}" no="{{$i}}" limitview="{{$pagination['limitview']}}" style="border:1px solid #ccc;">
-                              <a style="text-decoration:none; font-weight:bold;">
-                                {{$i}}
-                              </a>
-                            </td>
-
-                          @endfor
 
 
 
-                            <td class="oajax" style="padding:10px; border-top:0px; background-color:#fff; display:none;">
-                              ...
-                            </td>
-                            <td class="oajax oajaxi" style="padding: 10px; border:1px solid #ccc; background-color:#ffdd88; font-weight:bold; cursor:pointer; display:none;">
-                              <span id="{{$name}}_oajax"></span>.Sayfadasınız
-                            </td>
-
-                            <td class="oajax" style="padding: 10px; border-top:0px; background-color:#fff; display:none;">
-                              ...
-                            </td>
-
-
-                          <td style="padding: 10px; border:1px solid #ccc; background-color :#fff; cursor:pointer;">
-                            Toplam : <span style="color: #e20a16; font-weight: bold;">{{$query->lastPage()}} Sayfa </span> ... <b>{{$query->total()}}</b> Kayıt
-                          </td>
-
-
-                          <td class="page-ajax next-page-ajax {{$name}}_nextajax" name="{{$name}}" nextno="2" limitview="{{$pagination['limitview']}}"  style="padding: 10px; border:1px solid #ccc; background-color :#ddd; font-weight:bold; cursor:pointer;">
-                            <a style="text-decoration:none; font-weight:bold;">
-                              >> İleri
-                            </a>
-                          </td>
-                        </tr>
-                      </table>
-
-                    </div>
-                  </div>
-
-
-                @endif
 
 
 
-                @endif
-    </div>
 
 
-
-  </div>
-    <!--pagination finish-->
-</div>
 <!-- END SAMPLE TABLE PORTLET-->
 
 
@@ -385,5 +247,31 @@
 
       $("."+name+"_table").load("{{$file[2]}}?page="+no);
 
+    });
+
+
+
+    $(document).on("click","a.submitf",function(){
+
+      var form=$(this).attr("ajax-form");
+
+      var action=$(this).attr("action");
+
+      var loading='<img src="{{$baseUrl}}/reload.gif" width="32">';
+      document.getElementById("{{$name}}_table").innerHTML=loading;
+      var data = new window.FormData($('form#'+form)[0]);
+      $.ajax({
+        url:action,
+        type:"POST",
+        data:data,
+        cache: false,
+        contentType : false,
+        processData: false,
+        success:function(data){
+          $("div.{{$name}}_table").html(data);
+          $("div#{{$name}}_tsqlpagination").load("{{$file[2]}}?tsqlpage=1");
+        },
+        error: function () { $("div.{{$name}}_table").html("error"); }
+      });
     });
   </script>

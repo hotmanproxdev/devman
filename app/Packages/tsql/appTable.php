@@ -12,7 +12,7 @@ use Illuminate\Http\Request;
 
 class appTable
 {
-    public $data=array("wanted_fields"=>[],'wanted_fields_row'=>false,'fillIn'=>[],'fieldCss'=>[],'contentCss'=>[],'pagination'=>['status'=>false]);
+    public $data=array("wanted_fields"=>[],'wanted_fields_row'=>false,'fillIn'=>[],'fieldCss'=>[],'contentCss'=>[],'pagination'=>['status'=>false],'filter'=>[]);
     public $appQuery;
     public $app;
     public $request;
@@ -69,6 +69,13 @@ class appTable
         if(array_key_exists("pagination",$data))
         {
             $this->data['pagination']=$data['pagination'];
+        }
+
+
+        //field css
+        if(array_key_exists("filter",$data))
+        {
+            $this->data['filter']=$data['filter'];
         }
 
         //fill in

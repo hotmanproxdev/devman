@@ -1,3 +1,5 @@
+<div id="{{$name}}_table" class="table-scrollable {{$name}}_table" style="">
+  @section("tsqltable")
 <table class="table table-striped table-bordered table-hover">
 
   <thead>
@@ -97,3 +99,14 @@
 
   </tbody>
 </table>
+  @show
+
+</div>
+
+
+<div id="{{$name}}_tsqlpagination">
+  @section("tsqlpagination")
+    @include(''.config("app.admin_dirname").'/tsql_table_main_pagination')
+  @show
+</div>
+

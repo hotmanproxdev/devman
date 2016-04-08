@@ -54,7 +54,7 @@ class tsqlController extends Controller
                            ->header("Log Table")
 
                            /* query is here..orm condition */
-                           ->query(\DB::table("prosystem_administrator_process_logs")->orderBy("id","desc")->paginate(10))
+                           ->query($this->model->getLogs())
 
                            /* (optional) wanted fields */
                            ->fields(
@@ -99,13 +99,43 @@ class tsqlController extends Controller
                            )
 
 
-                           /* (optional) content css */
+                           /* (optional) pagination */
                            ->pagination(
                                [
                                    'status'=>true,
                                    'header'=>'Sayfalar',
                                    'limitview'=>5,
                                    'type'=>'ajax'
+                               ]
+                           )
+
+
+                           /* (optional) filter */
+                           ->filter(
+                               [
+                                    [
+                                        'type'=>'select',
+                                        'data'=>$this->app->ccode("toList"),
+                                        'class'=>'',
+                                        'default'=>['none'=>'--Sistem Kodu--'],
+                                        'name'=>'ccode'
+                                    ],
+
+                                   [
+                                       'type'=>'text',
+                                       'data'=>[],
+                                       'class'=>'',
+                                       'default'=>'Kullanici adi',
+                                       'name'=>'username'
+                                   ],
+
+                                   [
+                                       'type'=>'button',
+                                       'data'=>[],
+                                       'class'=>'',
+                                       'default'=>'Filtrele',
+                                       'name'=>'test'
+                                   ]
                                ]
                            )
 

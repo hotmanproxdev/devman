@@ -140,6 +140,16 @@ class appIndex
         return $this;
     }
 
+
+    public function filter($filter=array())
+    {
+        if(count($filter))
+        {
+            $this->data['filter']=$filter;
+        }
+        return $this;
+    }
+
     public function run($callback=false,$arg=array())
     {
         if(is_callable($callback))
@@ -151,9 +161,17 @@ class appIndex
         {
             if($this->request->ajax())
             {
+                if(array_key_exists("tsqlpage",\Input::all()))
+                {
+                    //return view
+                    $view=view("".config("app.admin_dirname").".tsql_table_main",$arg['data'])->renderSections();
+                    return $view['tsqlpagination'];
+                }
                 //return view
-                return view("".config("app.admin_dirname").".tsql_table_main",$arg['data'])->render();
+                $view=view("".config("app.admin_dirname").".tsql_table_main",$arg['data'])->renderSections();
+                return $view['tsqltable'];
             }
+
 
             //return view
             return view("".config("app.admin_dirname").".tsql_table",$arg['data']);
@@ -181,6 +199,12 @@ class appIndex
 
 
             return call_user_func_array($callback,array($list));
+        }
+
+
+        if(array_key_exists("sql",$field['list']))
+        {
+            //$field['data']['query']=$field['list']['sql'];
         }
 
 
