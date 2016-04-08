@@ -62,6 +62,11 @@ class tsqlModel extends Controller
 
                                         }
                                     }
+                                    else
+                                    {
+                                        app("\Filter")->forget();
+                                    }
+
 
                             }
                 )
