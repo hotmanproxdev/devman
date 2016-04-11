@@ -1,6 +1,6 @@
 <div id="{{$name}}_table" class="table-scrollable {{$name}}_table" style="">
-  @section("tsqltable")
-<table class="table table-striped table-bordered table-hover">
+  @section("tsqltable_".$name."")
+<table class="table table-striped table-bordered table-hover {{$name}}">
 
   <thead>
   <tr>
@@ -22,7 +22,24 @@
       @if(count($wanted_fields))
         @if(array_key_exists($val,$wanted_fields))
           <th scope="col" class="{{$fcss[$val]}}">
-            {{$wanted_fields[$val]}}
+            @if(count($fillIn))
+              @if(array_key_exists("input",$fillIn))
+                @if(array_key_exists($val,$fillIn['input']))
+                  @if($fillIn['input'][$val]=="checkbox")
+                    <input type="checkbox" class="signall" name="{{$name}}">
+                    @else
+                    {{$wanted_fields[$val]}}
+                    @endif
+                @else
+                  {{$wanted_fields[$val]}}
+                @endif
+              @else
+                {{$wanted_fields[$val]}}
+              @endif
+
+              @else
+              {{$wanted_fields[$val]}}
+              @endif
           </th>
         @endif
       @else
@@ -77,7 +94,21 @@
           @endif
         @endif
 
-        @if(count($wanted_fields))
+
+        @if(count($fillIn))
+          @if(array_key_exists("input",$fillIn))
+            @if(array_key_exists($val,$fillIn['input']))
+              @if($fillIn['input'][$val]=="checkbox")
+                {{--*/ $efield[$result->id]='<input type="'.$fillIn['input'][$val].'" name="'.$val.'[]" value="'.$result->id.'" class="'.$name.'_sign" style="width:100%; height:100%;">' /*--}}
+                @else
+                {{--*/ $efield[$result->id]='<input type="'.$fillIn['input'][$val].'" name="'.$val.'[]" value="'.$result->id.'" class="form-control">' /*--}}
+                @endif
+
+            @endif
+          @endif
+        @endif
+
+      @if(count($wanted_fields))
           @if(array_key_exists($val,$wanted_fields))
             <td class="{{$ccss[$val]}}">
               @if(in_array($val,$original))
@@ -105,7 +136,7 @@
 
 
 <div id="{{$name}}_tsqlpagination">
-  @section("tsqlpagination")
+  @section("tsqlpagination_".$name."")
     @include(''.config("app.admin_dirname").'/tsql_table_main_pagination')
   @show
 </div>

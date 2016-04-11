@@ -19,8 +19,6 @@
 
 
 
-      <div style="">
-
         <form id="{{$name}}ajax" method="post">
           <input type="hidden" name="_token" value="{{csrf_token()}}">
           <input type="hidden" name="filter">
@@ -125,6 +123,23 @@
 
 
   <script>
+
+    $(document).on("click","input.signall",function(){
+
+      var x=$(this).prop("checked");
+      var name=$(this).attr("name");
+      $("input."+name+"_sign").prop("checked",x);
+      if(x)
+      {
+        $("div.checker span").attr("class","checked");
+      }
+      else
+      {
+        $("div.checker span").attr("class","");
+      }
+
+
+    });
     $(document).on("click","td.page-ajax-passive",function(){
 
       var name=$(this).attr("name");

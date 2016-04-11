@@ -9,17 +9,20 @@
 namespace App\Packages\tsql;
 use App\Packages\tsql\appTable as appTable;
 use Illuminate\Http\Request;
+use App\Packages\tsql\appQuery as appQuery;
 
 class appIndex
 {
     public $data=array();
     public $appTable;
     public $request;
+    public $appQuery;
 
-    public function __construct(Request $request,appTable $appTable)
+    public function __construct(Request $request,appTable $appTable,appQuery $appQuery)
     {
         $this->appTable=$appTable;
         $this->request=$request;
+        $this->appQuery=$appQuery;
     }
 
 
@@ -79,7 +82,7 @@ class appIndex
 
             foreach ($fields as $key=>$value)
             {
-                if(!in_array($key,$list) && $key!=='photo')
+                if(!in_array($key,$list) and array_key_exists($key,$this->appQuery->getField($this->data['query'])))
                 {
                     foreach ($this->data['query'] as $result)
                     {
@@ -87,6 +90,7 @@ class appIndex
                     }
                 }
             }
+
 
             if($row)
             {
@@ -157,6 +161,7 @@ class appIndex
             return call_user_func_array($callback,array($this->run(1)));
         }
 
+
         if(count($arg))
         {
             if($this->request->ajax())
@@ -165,11 +170,12 @@ class appIndex
                 {
                     //return view
                     $view=view("".config("app.admin_dirname").".tsql_table_main",$arg['data'])->renderSections();
-                    return $view['tsqlpagination'];
+                    return $view['tsqlpagination_'.$arg['data']['name'].''];
                 }
+
                 //return view
                 $view=view("".config("app.admin_dirname").".tsql_table_main",$arg['data'])->renderSections();
-                return $view['tsqltable'];
+                return $view['tsqltable_'.$arg['data']['name'].''];
             }
 
 
@@ -200,13 +206,6 @@ class appIndex
 
             return call_user_func_array($callback,array($list));
         }
-
-
-        if(array_key_exists("sql",$field['list']))
-        {
-            //$field['data']['query']=$field['list']['sql'];
-        }
-
 
         foreach ($field['list'] as $key=>$val)
         {

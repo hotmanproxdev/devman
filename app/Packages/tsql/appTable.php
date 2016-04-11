@@ -126,7 +126,14 @@ class appTable
                 }
 
 
-
+                //img manager
+                if(array_key_exists("input",$data['fillIn']))
+                {
+                    foreach ($data['fillIn']['input'] as $ikey=>$ival)
+                    {
+                        $this->data['fillIn']['input'][$ikey]=$ival;
+                    }
+                }
 
                 //img manager
                 if(array_key_exists("img",$data['fillIn']))

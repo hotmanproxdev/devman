@@ -71,7 +71,7 @@ class tsqlModel extends Controller
                             }
                 )
             ->orderBy("id","desc")
-            ->paginate(10);
+            ->paginate(2);
     }
 
 

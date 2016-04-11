@@ -2,7 +2,10 @@
     @include("".config("app.admin_dirname").".noauth")
 @else
 
-
 {!! $query !!}
+
+
+{!! $query2 !!}
+
 
 @endif
