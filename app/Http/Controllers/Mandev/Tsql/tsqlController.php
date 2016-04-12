@@ -77,7 +77,7 @@ class tsqlController extends Controller
         }
 
 
-        public function postLogtfilter()
+        public function postTsqlfilter()
         {
             return app("\Filter")->data(function()
             {

@@ -601,6 +601,174 @@
 
 
 
+  $(document).on("click","input.signall",function(){
+
+    var x=$(this).prop("checked");
+    var name=$(this).attr("name");
+    $("input."+name+"_sign").prop("checked",x);
+    if(x)
+    {
+      $("div.checker span").attr("class","checked");
+    }
+    else
+    {
+      $("div.checker span").attr("class","");
+    }
+
+
+  });
+  $(document).on("click","td.page-ajax-passive",function(){
+
+    var name=$(this).attr("name");
+    var no=$(this).attr("no");
+    var limitview=$(this).attr("limitview");
+    var count=$(this).attr("count");
+    var file=$(this).attr("file");
+
+
+    if(no>1)
+    {
+      $("table."+name+" td.prev-page-ajax").show();
+    }
+
+    if(no==1)
+    {
+      $("table."+name+" td.prev-page-ajax").hide();
+
+    }
+
+    if(no<=limitview)
+    {
+      $("table."+name+" td.oajax").hide();
+
+      $(".ajaxPageFull2").addClass("ajaxPageFull");
+      $(".ajaxPageFull2").removeClass("ajaxPageFull2");
+    }
+
+
+    if(parseInt(no)<parseInt(count))
+    {
+      $("table."+name+" td.next-page-ajax").show();
+    }
+
+
+    var next=parseInt(no)+parseInt(1);
+    var prev=parseInt(no)-parseInt(1);
+
+    $("table."+name+" td.page-ajax-active").addClass("page-ajax-passive");
+    $("table."+name+" td.page-ajax-active").removeClass("page-ajax-active");
+
+    $(this).addClass("page-ajax-active");
+    $(this).removeClass("page-ajax-passive");
+
+    $("table."+name+" td."+name+"_nextajax").attr("nextno",next);
+    $("table."+name+" td."+name+"_prevajax").attr("prevno",prev);
+
+    $("."+name+"_table").load(""+file+"?page="+no+"&pxname="+name);
+
+  });
+
+
+  $(document).on("click","td.next-page-ajax",function(e){
+
+    var name=$(this).attr("name");
+    var no=$(this).attr("nextno");
+    var limitview=$(this).attr("limitview");
+    var count=$(this).attr("count");
+    var file=$(this).attr("file");
+
+
+    if(parseInt(no)>=parseInt(count))
+    {
+      $("table."+name+" td.next-page-ajax").hide();
+    }
+
+    if(no>1)
+    {
+      $("table."+name+" td.prev-page-ajax").show();
+    }
+
+    if(parseInt(no)>parseInt(limitview))
+    {
+
+      $(".ajaxPageFull").addClass("ajaxPageFull2");
+      $(".ajaxPageFull").removeClass("ajaxPageFull");
+
+      $("table."+name+" td.oajax").show();
+      $("span#"+name+"_oajax").html(no);
+    }
+
+    var next=parseInt(no)+parseInt(1);
+    var prev=parseInt(no)-parseInt(1);
+
+    $("table."+name+" td.page-ajax-active").addClass("page-ajax-passive");
+    $("table."+name+" td.page-ajax-active").removeClass("page-ajax-active");
+
+    $("table."+name+" td#page-ajax-active_"+no).addClass("page-ajax-active");
+    $("table."+name+" td#page-ajax-active_"+no).removeClass("page-ajax-passive");
+
+    $("table."+name+" td."+name+"_nextajax").attr("nextno",parseInt(next));
+    $("table."+name+" td."+name+"_prevajax").attr("prevno",parseInt(prev));
+
+    $("."+name+"_table").load(""+file+"?page="+no+"&pxname="+name);
+
+  });
+
+
+  $(document).on("click","td.prev-page-ajax",function(){
+
+    var name=$(this).attr("name");
+    var no=$(this).attr("prevno");
+    var limitview=$(this).attr("limitview");
+    var count=$(this).attr("count");
+    var file=$(this).attr("file");
+
+
+    if(no==1)
+    {
+      $("table."+name+" td.prev-page-ajax").hide();
+    }
+
+    if(parseInt(no)<parseInt(count))
+    {
+      $("table."+name+" td.next-page-ajax").show();
+    }
+
+
+    if(parseInt(no)<=parseInt(limitview))
+    {
+      $(".ajaxPageFull2").addClass("ajaxPageFull");
+      $(".ajaxPageFull2").removeClass("ajaxPageFull2");
+      $("table."+name+" td.oajax").hide();
+    }
+
+
+    if(parseInt(no)>parseInt(limitview))
+    {
+      $("table."+name+" td.oajax").show();
+      $("span#"+name+"_oajax").html(no);
+    }
+
+    var next=parseInt(no)+parseInt(1);
+    var prev=parseInt(no)-parseInt(1);
+
+    $("table."+name+" td.page-ajax-active").addClass("page-ajax-passive");
+    $("table."+name+" td.page-ajax-active").removeClass("page-ajax-active");
+
+    $("table."+name+" td#page-ajax-active_"+no).addClass("page-ajax-active");
+    $("table."+name+" td#page-ajax-active_"+no).removeClass("page-ajax-passive");
+
+    $("table."+name+" td."+name+"_nextajax").attr("nextno",next);
+    $("table."+name+" td."+name+"_prevajax").attr("prevno",prev);
+
+    $("."+name+"_table").load(""+file+"?page="+no+"&pxname="+name);
+
+  });
+
+
+
+
+
 
 
   $(document).on("click","a.submit",function(){

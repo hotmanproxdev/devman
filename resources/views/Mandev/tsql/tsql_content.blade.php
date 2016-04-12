@@ -4,8 +4,6 @@
 
 {!! $query !!}
 
-
 {!! $query2 !!}
-
 
 @endif

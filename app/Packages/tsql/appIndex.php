@@ -164,18 +164,54 @@ class appIndex
 
         if(count($arg))
         {
+
             if($this->request->ajax())
             {
                 if(array_key_exists("tsqlpage",\Input::all()))
                 {
                     //return view
-                    $view=view("".config("app.admin_dirname").".tsql_table_main",$arg['data'])->renderSections();
-                    return $view['tsqlpagination_'.$arg['data']['name'].''];
+                    $viewPag=view("".config("app.admin_dirname").".tsql_table_main",$arg['data'])->renderSections();
+
+                    $viewListPag='tsqlpagination_'.\Input::get("pxname");
+
+                    if(array_key_exists($viewListPag,$viewPag))
+                    {
+                        return $viewPag[$viewListPag];
+                    }
+                    else
+                    {
+                        return '';
+                    }
+
                 }
+
 
                 //return view
                 $view=view("".config("app.admin_dirname").".tsql_table_main",$arg['data'])->renderSections();
-                return $view['tsqltable_'.$arg['data']['name'].''];
+
+
+                if(array_key_exists("filter",\Input::all()))
+                {
+                    //Input::merge(array('pxname' =>\Input::get("filter")));
+                    $viewList='tsqltable_'.\Input::get("filter");
+                }
+                else
+                {
+                    $viewList='tsqltable_'.\Input::get("pxname");
+                }
+
+
+
+                if(array_key_exists($viewList,$view))
+                {
+                    return $view[$viewList];
+                }
+                else
+                {
+                    return '';
+                }
+
+
             }
 
 

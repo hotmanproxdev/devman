@@ -215,6 +215,7 @@ class tsqlController extends Controller
             ->fields(
                 [
                     'sign'=>'İşaretle',
+                    'id'=>'Id',
                     'ccode'=>'Sistem Kodu',
                     'userid'=>'Kullanıcı',
                     'userip'=>'İp',
