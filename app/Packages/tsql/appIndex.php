@@ -192,7 +192,6 @@ class appIndex
 
                 if(array_key_exists("filter",\Input::all()))
                 {
-                    //Input::merge(array('pxname' =>\Input::get("filter")));
                     $viewList='tsqltable_'.\Input::get("filter");
                 }
                 else

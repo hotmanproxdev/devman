@@ -37,10 +37,8 @@ class tsqlModel extends Controller
         $this->logst=$this->app->dbTable(['logs']);
         $this->admint=$this->app->dbTable(['admin']);
 
-
-        //default query
+        //default filter query
         return DB::table($this->app->dbTable(['logs']))->
-
         select(''.$this->logst.'.*',''.$this->admint.'.username')
             ->join($this->admint,''.$this->logst.'.userid','=',''.$this->admint.'.id')
                 ->where(
@@ -48,7 +46,7 @@ class tsqlModel extends Controller
                             {
                                     if($this->request->ajax())
                                     {
-                                        foreach (app("\Filter")->getData() as $key=>$value)
+                                        foreach (app("\Filter")->getData($this->filterHas()) as $key=>$value)
                                         {
                                             if($key=="username")
                                             {
@@ -72,6 +70,19 @@ class tsqlModel extends Controller
                 )
             ->orderBy("id","desc")
             ->paginate(2);
+    }
+
+
+    private function filterHas()
+    {
+        if(array_key_exists("filter",\Input::all()))
+        {
+            return \Input::get("filter");
+        }
+        else
+        {
+            return \Input::get("pxname");
+        }
     }
 
 

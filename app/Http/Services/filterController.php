@@ -35,9 +35,7 @@ class filterController extends Controller
         //post filter data adress info
         \Input::merge(array('request' => $this->request->getPathInfo()));
 
-        $log=\DB::table($this->app->dbTable(['admin']))->where("id","=",$this->admin->id)->update(['last_token'=>\Input::get("_token"),
-                                                                                           'last_post'=>base64_encode(json_encode(\Input::all())),
-                                                                                           'last_filter_data'=>time()]);
+        $log=true;
 
         if($log)
         {
@@ -52,7 +50,7 @@ class filterController extends Controller
 
             if(count($postfilterdata))
             {
-                \Session::put("filterdata",$postfilterdata);
+                \Session::put("filterdata_".\Input::get("filter")."",$postfilterdata);
             }
 
             $val=true;
@@ -183,13 +181,13 @@ class filterController extends Controller
        return $val;
     }
 
-    public function getData()
+    public function getData($filterHas=false)
     {
         $list=[];
 
-        if(is_array(\Session("filterdata")))
+        if(is_array(\Session("filterdata_".$filterHas."")))
         {
-            foreach (\Session("filterdata") as $key=>$value)
+            foreach (\Session("filterdata_".$filterHas."") as $key=>$value)
             {
                 if($value!="none")
                 {
@@ -204,7 +202,14 @@ class filterController extends Controller
 
     public function forget()
     {
-        \Session::forget("filterdata");
+
+        foreach (\Session::all() as $key=>$value)
+        {
+            if(preg_match('@filterdata_.*@is',$key))
+            {
+                \Session::forget($key);
+            }
+        }
     }
 
 }

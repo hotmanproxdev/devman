@@ -211,7 +211,8 @@
                     </td>
 
                     @if($pageNum>1)
-                      <td class="page-ajax next-page-ajax {{$name}}_nextajax" name="{{$name}}" nextno="2" limitview="{{$pagination['limitview']}}" count="{{$query->lastPage()}}" file="{{$file[2]}}"  style="padding: 10px; border:1px solid #ccc; background-color :#ddd; font-weight:bold; cursor:pointer;">
+                      <td class="page-ajax next-page-ajax {{$name}}_nextajax" name="{{$name}}" nextno="2" limitview="{{$pagination['limitview']}}"
+                          count="{{$query->lastPage()}}" file="{{$file[2]}}"  style="padding: 10px; border:1px solid #ccc; background-color :#ddd; font-weight:bold; cursor:pointer;">
                         <a style="text-decoration:none; font-weight:bold;">
                           >> İleri
                         </a>
