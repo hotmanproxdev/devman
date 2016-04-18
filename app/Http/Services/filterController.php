@@ -212,4 +212,25 @@ class filterController extends Controller
         }
     }
 
+
+    public function filterHas()
+    {
+        if(array_key_exists("filter",\Input::all()))
+        {
+            return \Input::get("filter");
+        }
+        else
+        {
+            if(array_key_exists("pxname",\Input::all()))
+            {
+                return \Input::get("pxname");
+            }
+            else
+            {
+                return false;
+            }
+
+        }
+    }
+
 }

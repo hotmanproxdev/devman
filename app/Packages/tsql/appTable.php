@@ -126,12 +126,42 @@ class appTable
                 }
 
 
-                //img manager
+                //input manager
                 if(array_key_exists("input",$data['fillIn']))
                 {
                     foreach ($data['fillIn']['input'] as $ikey=>$ival)
                     {
                         $this->data['fillIn']['input'][$ikey]=$ival;
+                    }
+                }
+
+
+                //input manager
+                if(array_key_exists("icon",$data['fillIn']))
+                {
+                    foreach ($data['fillIn']['icon'] as $ikey=>$ival)
+                    {
+                        $this->data['fillIn']['icon'][$ikey]=$ival;
+                    }
+                }
+
+
+                //modal manager
+                if(array_key_exists("modal",$data['fillIn']))
+                {
+                    foreach ($data['fillIn']['modal'] as $ikey=>$ival)
+                    {
+                        $this->data['fillIn']['modal'][$ikey]=$ival;
+                    }
+                }
+
+
+                //link manager
+                if(array_key_exists("link",$data['fillIn']))
+                {
+                    foreach ($data['fillIn']['link'] as $ikey=>$ival)
+                    {
+                        $this->data['fillIn']['link'][$ikey]=$ival;
                     }
                 }
 

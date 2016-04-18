@@ -76,4 +76,37 @@ class pageRoleController extends Controller
 
 
     }
+
+
+    public function table($role,$callback)
+    {
+        $val=false;
+
+        //null true
+        if($this->admin->system_number==0)
+        {
+            $val=true;
+        }
+
+        //get user Role
+        $userRole=explode("@",$this->admin->role);
+
+        if(in_array($role,$userRole))
+        {
+            $val=true;
+        }
+
+        if($val)
+        {
+            if(is_callable($callback))
+            {
+                return call_user_func($callback);
+            }
+        }
+
+
+       return false;
+
+
+    }
 }

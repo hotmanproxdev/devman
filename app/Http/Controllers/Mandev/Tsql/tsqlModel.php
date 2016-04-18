@@ -69,20 +69,13 @@ class tsqlModel extends Controller
                             }
                 )
             ->orderBy("id","desc")
-            ->paginate(2);
+            ->paginate(10);
     }
 
 
     private function filterHas()
     {
-        if(array_key_exists("filter",\Input::all()))
-        {
-            return \Input::get("filter");
-        }
-        else
-        {
-            return \Input::get("pxname");
-        }
+       return app("\Filter")->filterHas();
     }
 
 

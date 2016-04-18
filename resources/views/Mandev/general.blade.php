@@ -608,11 +608,11 @@
     $("input."+name+"_sign").prop("checked",x);
     if(x)
     {
-      $("div.checker span").attr("class","checked");
+      $("."+name+"_table .checker span").attr("class","checked");
     }
     else
     {
-      $("div.checker span").attr("class","");
+      $("."+name+"_table .checker span").attr("class","");
     }
 
 

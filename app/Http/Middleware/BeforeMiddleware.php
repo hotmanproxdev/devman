@@ -98,7 +98,7 @@ class BeforeMiddleware
 
 
 
-        $this->app->insertLang(["url_path"=>"api","word_data"=>['api_system_ccode_warning'=>'System kodu,admin kullanıcısının grubudur'],"lang"=>1]);
+        $this->app->insertLang(["url_path"=>"default","word_data"=>['successdata'=>'İşlem Başarılı'],"lang"=>1]);
 
 
         return $next($request);

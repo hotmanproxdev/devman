@@ -80,7 +80,7 @@ Rounded Portlets
 
 .xtext { background-color: #ffb23f; }
 .xtext2 { font-weight:bold; }
-.xtext3 { background-color:#e04a49; }
+.xtext3 { color:#336699; font-weight:bold; }
 td.page-ajax-active { padding: 10px; border:1px solid #ccc; background-color :#e2e2e2;  cursor:pointer; }
 td.page-ajax-passive { padding: 10px; border:1px solid #ccc; background-color :#fff;  cursor:pointer; }
 .ajaxPageFull2 {width:100%; }

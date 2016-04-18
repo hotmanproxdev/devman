@@ -15,7 +15,7 @@ class tsqlController extends Controller
     public $app;
     public $data;
     public $admin;
-    public $url_path='logs';
+    public $url_path='tsql';
     public $model;
     public $logCounter;
     public $logCounterArray;
@@ -70,8 +70,10 @@ class tsqlController extends Controller
                                         'isDesktop'=>'Masaustu',
                                         'isMobile'=>'Mobil',
                                         'created_at'=>'Oluşturma Zamanı',
-                                        'log_process'=>'İşlem Tipi'
-                                    ],1
+                                        'log_process'=>'İşlem Tipi',
+                                        'process'=>'İşlem'
+                                    ],1,
+                                    ['auth'=>[]]
                                     )
 
                            /* (optional) field css */
@@ -95,6 +97,21 @@ class tsqlController extends Controller
                                         'input'=>
                                         [
                                             'sign'=>'checkbox'
+                                        ],
+
+                                        'icon'=>
+                                        [
+                                            'process'=>'edit.png'
+                                        ],
+
+                                        'modal'=>
+                                        [
+                                            'process'=>['action'=>'tsql/modaltest','title'=>'test modal']
+                                        ],
+
+                                        'link'=>
+                                        [
+                                            //'ccode'=>'blabla'
                                         ]
                                     ]
                                     )
@@ -102,7 +119,8 @@ class tsqlController extends Controller
                            /* (optional) content css */
                            ->contentCss(
                                         [
-                                            'id'=>'xtext2'
+                                            'id'=>'xtext2',
+                                            'ccode'=>'xtext3'
                                         ]
                            )
 
@@ -124,7 +142,8 @@ class tsqlController extends Controller
                                     [
                                         'type'=>'select',
                                         'data'=>$this->app->ccode("toList"),
-                                        'class'=>'',
+                                        'class'=>'ccode',
+                                        'append'=>'',
                                         'default'=>['none'=>'--Sistem Kodu--'],
                                         'name'=>'ccode'
                                     ],
@@ -133,6 +152,7 @@ class tsqlController extends Controller
                                         'type'=>'text',
                                         'data'=>[],
                                         'class'=>'',
+                                        'append'=>'',
                                         'default'=>'Kullanici adi',
                                         'name'=>'username'
                                     ],
@@ -140,6 +160,7 @@ class tsqlController extends Controller
                                        'type'=>'select',
                                        'data'=>[1=>'Tespit Edildi',0=>'Yok'],
                                        'class'=>'',
+                                       'append'=>'',
                                        'default'=>['none'=>'--Başarı İşlem Tipi--'],
                                        'name'=>'fail_operations'
                                    ],
@@ -148,6 +169,7 @@ class tsqlController extends Controller
                                         'type'=>'select',
                                         'data'=>[1=>'Manipulasyonlu',0=>'Manipulasyonsuz'],
                                         'class'=>'',
+                                        'append'=>'',
                                         'default'=>['none'=>'--Manipulation Tipi--'],
                                         'name'=>'manipulation'
                                     ],
@@ -156,6 +178,7 @@ class tsqlController extends Controller
                                         'type'=>'select',
                                         'data'=>[1=>'Get İşlemi',2=>'Post İşlemi'],
                                         'class'=>'',
+                                        'append'=>'',
                                         'default'=>['none'=>'--İşlem Tipi--'],
                                         'name'=>'log_process'
                                     ],
@@ -164,8 +187,19 @@ class tsqlController extends Controller
                                         'type'=>'button',
                                         'data'=>[],
                                         'class'=>'',
+                                        'append'=>'',
                                         'default'=>'Filtrele',
                                         'name'=>'test'
+                                    ],
+
+                                    [
+                                        'type'=>'action',
+                                        'status'=>true,
+                                        'data'=>['1'=>'Seçilileri Sil'],
+                                        'class'=>'',
+                                        'append'=>'',
+                                        'default'=>'--Seçililere İşlem Uygula--',
+                                        'action'=>'tsqlprocess'
                                     ]
                                ]
                            )
@@ -177,6 +211,8 @@ class tsqlController extends Controller
                                //callback list
                                $this->tsql->update([],function($list) use ($data)
                                {
+
+                                   //created at field
                                    $list['created_at']=['query'=>function($query)
                                    {
                                        if(count($query))
@@ -188,6 +224,7 @@ class tsqlController extends Controller
                                            return $list;
                                        }
                                    }];
+
                                    //update list
                                    $this->tdata=$this->tsql->update(['list'=>$list,'data'=>$data]);
 
@@ -279,11 +316,10 @@ class tsqlController extends Controller
                     [
                         'type'=>'select',
                         'data'=>$this->app->ccode("toList"),
-                        'class'=>'',
+                        'class'=>'ccode',
                         'default'=>['none'=>'--Sistem Kodu--'],
                         'name'=>'ccode'
                     ],
-
                     [
                         'type'=>'text',
                         'data'=>[],
@@ -321,6 +357,16 @@ class tsqlController extends Controller
                         'class'=>'',
                         'default'=>'Filtrele',
                         'name'=>'test'
+                    ],
+
+                    [
+                        'type'=>'action',
+                        'status'=>true,
+                        'data'=>['1'=>'Seçilileri Sil'],
+                        'class'=>'',
+                        'default'=>'--Seçililere İşlem Uygula--',
+                        'name'=>'action',
+                        'action'=>'tsqlprocess'
                     ]
                 ]
             )

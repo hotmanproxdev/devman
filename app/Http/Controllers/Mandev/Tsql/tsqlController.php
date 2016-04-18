@@ -69,7 +69,7 @@ class tsqlController extends Controller
             if($this->request->ajax())
             {
                 $sections = $view->renderSections();
-                return $sections['content'];
+                return $sections['tsql'];
             }
 
             return $view;
@@ -83,9 +83,51 @@ class tsqlController extends Controller
             {
                 return $this->getIndex();
             });
+        }
+
+
+        public function postTsqlprocess()
+        {
+            //accept post in with ajax method
+            return app("\Ajax")->control(function()
+            {
+                //content auth
+                return app("\Role")->get(1,function()
+                {
+                    //same token control
+                    return app("\Token")->valid(function()
+                    {
+                        //validation control
+                        return $this->validation->make([],function()
+                        {
+                            //post data query is true
+                            return app("\Query")->isTrue(true,function()
+                            {
+                                return $this->notification->success(['msg'=>$this->data['successdata'],'title'=>$this->data['successful']]);
+                            });
+                        });
+
+                    });
+
+                });
+
+            });
 
         }
 
+
+        public function getModaltest()
+        {
+            //it just accepts ajax request
+            return app("\Ajax")->control(function()
+            {
+                //content auth
+                return app("\Role")->get(1,function()
+                {
+                    dd("modaltest");
+                });
+            });
+        }
 
 
 }

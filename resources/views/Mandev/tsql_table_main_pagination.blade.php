@@ -1,3 +1,4 @@
+
 <!--pagination start-->
 <div class="{{$name}}_pagination">
   @if($pagination['status'])

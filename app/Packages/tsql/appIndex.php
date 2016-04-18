@@ -17,12 +17,18 @@ class appIndex
     public $appTable;
     public $request;
     public $appQuery;
+    public $app;
+    public $admin;
 
     public function __construct(Request $request,appTable $appTable,appQuery $appQuery)
     {
         $this->appTable=$appTable;
         $this->request=$request;
         $this->appQuery=$appQuery;
+        //base service provider
+        $this->app=app()->make("Base");
+        //admin data
+        $this->admin=$this->app->admin();
     }
 
 
@@ -69,8 +75,26 @@ class appIndex
         return $this;
     }
 
-    public function fields($fields=array(),$row=false)
+    public function fields($fields=array(),$row=false,$auth=array())
     {
+        $authfield=[];
+        if(array_key_exists("auth",$auth))
+        {
+            if(count($auth['auth']))
+            {
+                foreach ($auth['auth'] as $key=>$function)
+                {
+                    if(is_callable($function))
+                    {
+                        $liste=call_user_func($function);
+                        $authfield[$key]=$liste;
+                    }
+                }
+            }
+        }
+
+
+
         foreach ($this->data['query'][0] as $key=>$value)
         {
             $list[]=$key;
@@ -78,6 +102,26 @@ class appIndex
 
         if(count($fields))
         {
+            foreach ($fields as $ff=>$f)
+            {
+                if(array_key_exists($ff,$authfield))
+                {
+                    if($authfield[$ff]==true)
+                    {
+                        $flist[$ff]=$f;
+                    }
+                }
+                else
+                {
+                    $flist[$ff]=$f;
+                }
+            }
+
+            $fields=[];
+            $fields=$flist;
+
+
+
             $this->data['wanted_fields']=$fields;
 
             foreach ($fields as $key=>$value)
@@ -156,17 +200,63 @@ class appIndex
 
     public function run($callback=false,$arg=array())
     {
+
         if(is_callable($callback))
         {
             return call_user_func_array($callback,array($this->run(1)));
         }
 
 
+
         if(count($arg))
         {
 
+            $arg['data']['lang']=$this->app->getLang(['url_path'=>'default','lang'=>$this->admin->lang]);
+
+
             if($this->request->ajax())
             {
+                if(array_key_exists("changesql",\Input::all()))
+                {
+                    if($arg['data']['name']==\Input::get("pxname"))
+                    {
+                        foreach ($arg['data']['filter'] as $ckey=>$cval)
+                        {
+                            if($cval['name']==\Input::get("changesql"))
+                            {
+                                if(array_key_exists("changesql",$cval))
+                                {
+                                    if(is_callable($cval['changesql']['query']))
+                                    {
+                                        $changesqlcall=call_user_func_array($cval['changesql']['query'],array(\Input::get("changesqlval")));
+
+                                        if(array_key_exists("none",$cval['default']))
+                                        {
+                                            $lchange[]='<option value="none">'.$cval['default']['none'].'</option>';
+                                        }
+
+                                        foreach ($changesqlcall as $lkey=>$lval)
+                                        {
+                                            $lchange[]='<option value="'.$lkey.'">'.$lval.'</option>';
+                                        }
+
+                                        return implode("",$lchange);
+                                    }
+
+                                }
+
+
+
+                            }
+                        }
+                    }
+                    else
+                    {
+                        return '';
+                    }
+
+
+                }
                 if(array_key_exists("tsqlpage",\Input::all()))
                 {
                     //return view
@@ -213,7 +303,6 @@ class appIndex
 
             }
 
-
             //return view
             return view("".config("app.admin_dirname").".tsql_table",$arg['data']);
         }
@@ -241,6 +330,7 @@ class appIndex
 
             return call_user_func_array($callback,array($list));
         }
+
 
         foreach ($field['list'] as $key=>$val)
         {
@@ -271,6 +361,7 @@ class appIndex
             }
 
         }
+
 
         return $field['data'];
     }
