@@ -61,7 +61,7 @@ class tsqlController extends Controller
             $this->data['query'] = $this->source->data("tsql")->get("getPackList");
 
             //get tsql list
-            //$this->data['query2'] = $this->source->data("tsql")->get("getPackList2");
+            $this->data['query2'] = $this->source->data("tsql")->get("getPackList2");
 
             //ajax return view
             $view=view("".config("app.admin_dirname").".".$this->url_path.".main",$this->data);

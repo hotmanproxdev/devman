@@ -17,6 +17,8 @@
 
 {!! $query !!}
 
+{!! $query2 !!}
+
 @show
 
 @endif

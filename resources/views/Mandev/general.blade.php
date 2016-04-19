@@ -664,6 +664,8 @@
     $("table."+name+" td."+name+"_nextajax").attr("nextno",next);
     $("table."+name+" td."+name+"_prevajax").attr("prevno",prev);
 
+    var loading='<img src="{{$baseUrl}}/square.gif" width="80">';
+    document.getElementById(""+name+"_table_loading").innerHTML=loading;
     $("."+name+"_table").load(""+file+"?page="+no+"&pxname="+name);
 
   });
@@ -763,6 +765,8 @@
     $("table."+name+" td."+name+"_nextajax").attr("nextno",next);
     $("table."+name+" td."+name+"_prevajax").attr("prevno",prev);
 
+    var loading='<img src="{{$baseUrl}}/square.gif" width="80">';
+    document.getElementById(""+name+"_table_loading").innerHTML=loading;
     $("."+name+"_table").load(""+file+"?page="+no+"&pxname="+name);
 
   });
