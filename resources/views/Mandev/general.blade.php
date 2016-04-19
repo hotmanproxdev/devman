@@ -710,6 +710,8 @@
     $("table."+name+" td."+name+"_nextajax").attr("nextno",parseInt(next));
     $("table."+name+" td."+name+"_prevajax").attr("prevno",parseInt(prev));
 
+    var loading='<img src="{{$baseUrl}}/square.gif" width="80">';
+    document.getElementById(""+name+"_table_loading").innerHTML=loading;
     $("."+name+"_table").load(""+file+"?page="+no+"&pxname="+name);
 
   });

@@ -98,7 +98,7 @@
                     </td>
 
 
-                    <td style="padding: 10px; border:1px solid #ccc; background-color :#ddd; font-weight:bold; cursor:pointer;">
+                    <td class="nextclass" style="padding: 10px; border:1px solid #ccc; background-color :#ddd; font-weight:bold; cursor:pointer;">
                       <a href="?page={{$nextPage}}" style="text-decoration:none; font-weight:bold;">
                         >> İleri
                       </a>

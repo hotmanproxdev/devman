@@ -1,7 +1,11 @@
 
-<div id="{{$name}}_table" class="table-scrollable {{$name}}_table" style="">
+<div id="{{$name}}_table" class="table-scrollable {{$name}}_table" style="position:relative;">
+
+
 
   @section("tsqltable_".$name."")
+
+    <div id="{{$name}}_table_loading" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); "></div>
 <table class="table table-striped table-bordered table-hover {{$name}}">
 
   <thead>
