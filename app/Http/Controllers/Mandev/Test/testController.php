@@ -88,6 +88,11 @@ class testController extends Controller
         DB::table($this->app->dbTable([$model[0]]))->where("id","=",$model[2])->update([$model[1]=>$state]);
     }
 
+    public function getDesktopnotification()
+    {
+        return app("\Notification")->desktopNotification();
+    }
+
 
 
 }

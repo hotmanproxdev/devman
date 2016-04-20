@@ -94,6 +94,7 @@
 <!-- DOC: Apply "page-full-width" class to the body element to have full width page without the sidebar menu -->
 <body class="{{$menu['body']}}">
 
+
 <div class="preon"></div>
 
 @include("".config("app.admin_dirname").".prepared.modal.modal")
@@ -362,7 +363,7 @@
 <script type="text/javascript" src="{{$baseUrl}}/metron/theme/assets/global/plugins/jquery-inputmask/jquery.inputmask.bundle.min.js"></script>
 <script type="text/javascript" src="{{$baseUrl}}/metron/theme/assets/global/plugins/jquery.input-ip-address-control-1.0.min.js"></script>
 
-
+<div id="notification"></div>
 
 
 <!-- END PAGE LEVEL PLUGINS -->
@@ -811,6 +812,12 @@
       error: function () { $("span#"+form+"result").html("error"); }
     });
   });
+
+
+
+  //notifications
+  setInterval(function(){ $("#notification").load("{{$baseUrl}}/{{strtolower(config("app.admin_dirname"))}}/test/desktopnotification"); }, 10000);
+
 </script>
 
 <!--test-->

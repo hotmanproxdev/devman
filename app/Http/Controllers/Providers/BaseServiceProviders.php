@@ -39,6 +39,7 @@ class BaseServiceProviders extends Controller
             $data['log_statistics']="".$this->dbtable_prefix."_log_statistics";
             $data['log_updated']="".$this->dbtable_prefix."_log_updated";
             $data['log_api']="".$this->dbtable_prefix."_api_process_logs";
+            $data['notifications']="".$this->dbtable_prefix."_notifications";
 
             if($table[0]=="all")
             {

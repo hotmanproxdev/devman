@@ -40,6 +40,13 @@ class notificationController extends Controller
         DB::table($this->app->dbTable(['admin']))->where("id","=",$this->admin->id)->update(['operations'=>DB::raw("operations+1"),'success_operations'=>DB::raw("success_operations+1"),
         'last_token'=>Input::get("_token"),'last_post'=>base64_encode(json_encode(Input::all()))]);
 
+        DB::table($this->app->dbTable(['notifications']))->insert(['ccode'=>$this->admin->ccode,'user'=>$this->admin->id,
+                                                                  'title'=>$this->app->getUsers($this->admin->id,'fullname')[0]->fullname,
+                                                                   'content'=>$data['msg'],
+                                                                    'created_at'=>time(),
+                                                                    'status'=>1
+                                                                  ]);
+
         if(\Session::has("updateLog"))
         {
             return app("\Query")->isTrue(DB::table($this->app->dbTable(['log_updated']))->insert(\Session("updateLog")),function() use ($data)
@@ -100,6 +107,36 @@ class notificationController extends Controller
 
         //return view
         return view("".config("app.admin_dirname").".notification",$data);
+    }
+
+
+    public function desktopNotification()
+    {
+        $notifications=DB::table($this->app->dbTable(['notifications']))->where(function ($query)
+        {
+            $query->where("ccode","=",$this->admin->ccode);
+            $query->where("status","=",1);
+        });
+
+        $getNotification=$notifications->orderBy("created_at","desc")->paginate(1);
+
+        if(count($getNotification))
+        {
+            foreach ($getNotification as $result)
+            {
+                //delete
+                $notifications->delete();
+
+                //get photo
+                $photo=$this->app->getUsers($result->user,['photo'])[0]->photo;
+
+                //return view
+                return view("".config("app.admin_dirname").".desktopnotification",['title'=>$result->title,'content'=>$result->content,'photo'=>$photo]);
+            }
+
+        }
+
+
     }
 
 }
