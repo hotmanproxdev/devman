@@ -170,7 +170,7 @@ return [
         ViKon\DbExporter\DbExporterServiceProvider::class,
         Orangehill\Iseed\IseedServiceProvider::class,
         JeroenG\Packager\PackagerServiceProvider::class,
-        Barryvdh\DomPDF\ServiceProvider::class,
+        //Barryvdh\DomPDF\ServiceProvider::class,
 
 
     ],
@@ -241,7 +241,7 @@ return [
         'Filter' =>App\Http\Services\filterController::class,
         'Role' =>App\Http\Services\pageRoleController::class,
         'Tsql'=>App\Packages\tsql\appIndex::class,
-        'Pdf' => Barryvdh\DomPDF\Facade::class,
+        //'Pdf' => Barryvdh\DomPDF\Facade::class,
         'Output' =>App\Http\Services\outPutController::class,
 
     ],

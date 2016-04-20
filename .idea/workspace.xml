@@ -56,10 +56,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="tsqlController.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="tsqlController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Mandev/Tsql/tsqlController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.6020761" vertical-offset="453" max-vertical-offset="2085">
+            <state vertical-scroll-proportion="-21.75" vertical-offset="453" max-vertical-offset="2085">
               <caret line="65" column="30" selection-start-line="65" selection-start-column="30" selection-end-line="65" selection-end-column="30" />
               <folding>
                 <element signature="e#52#90#0#PHP" expanded="true" />
@@ -110,11 +110,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="app.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="app.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/config/app.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-31.75" vertical-offset="2928" max-vertical-offset="3825">
-              <caret line="246" column="6" selection-start-line="246" selection-start-column="6" selection-end-line="246" selection-end-column="6" />
+            <state vertical-scroll-proportion="0.79238755" vertical-offset="2958" max-vertical-offset="3825">
+              <caret line="243" column="10" selection-start-line="243" selection-start-column="10" selection-end-line="243" selection-end-column="10" />
               <folding />
             </state>
           </provider>
@@ -208,9 +208,9 @@
         <option value="$PROJECT_DIR$/resources/views/Mandev/desktopnotification.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Services/notificationController.php" />
         <option value="$PROJECT_DIR$/composer.json" />
-        <option value="$PROJECT_DIR$/config/app.php" />
         <option value="$PROJECT_DIR$/app/Http/Services/outPutController.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Mandev/Tsql/tsqlController.php" />
+        <option value="$PROJECT_DIR$/config/app.php" />
       </list>
     </option>
   </component>
@@ -1842,14 +1842,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/config/app.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-31.75" vertical-offset="2928" max-vertical-offset="3825">
-          <caret line="246" column="6" selection-start-line="246" selection-start-column="6" selection-end-line="246" selection-end-column="6" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Services/outPutController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-30.0" vertical-offset="0" max-vertical-offset="915">
@@ -1862,11 +1854,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Mandev/Tsql/tsqlController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6020761" vertical-offset="453" max-vertical-offset="2085">
+        <state vertical-scroll-proportion="-21.75" vertical-offset="453" max-vertical-offset="2085">
           <caret line="65" column="30" selection-start-line="65" selection-start-column="30" selection-end-line="65" selection-end-column="30" />
           <folding>
             <element signature="e#52#90#0#PHP" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/app.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.79238755" vertical-offset="2958" max-vertical-offset="3825">
+          <caret line="243" column="10" selection-start-line="243" selection-start-column="10" selection-end-line="243" selection-end-column="10" />
+          <folding />
         </state>
       </provider>
     </entry>
