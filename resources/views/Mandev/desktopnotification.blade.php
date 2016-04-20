@@ -18,7 +18,7 @@
     // If the user has granted permission for this domain to send notifications...
     else if (Notification.permission === 'granted') {
       var n = new Notification(
-          '"{{$title}}"',
+          '"({{$ccode}}) {{$title}}"',
           {
             'body': '"{{$content}}"',
             // ...prevent duplicate notifications

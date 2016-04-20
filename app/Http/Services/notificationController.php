@@ -40,7 +40,7 @@ class notificationController extends Controller
         DB::table($this->app->dbTable(['admin']))->where("id","=",$this->admin->id)->update(['operations'=>DB::raw("operations+1"),'success_operations'=>DB::raw("success_operations+1"),
         'last_token'=>Input::get("_token"),'last_post'=>base64_encode(json_encode(Input::all()))]);
 
-        DB::table($this->app->dbTable(['notifications']))->insert(['ccode'=>$this->admin->ccode,'user'=>$this->admin->id,
+        DB::table($this->app->dbTable(['notifications']))->insert(['ccode'=>$this->app->ccode($this->admin->ccode),'user'=>$this->admin->id,
                                                                   'title'=>$this->app->getUsers($this->admin->id,'fullname')[0]->fullname,
                                                                    'content'=>$data['msg'],
                                                                     'created_at'=>time(),
@@ -114,7 +114,12 @@ class notificationController extends Controller
     {
         $notifications=DB::table($this->app->dbTable(['notifications']))->where(function ($query)
         {
-            $query->where("ccode","=",$this->admin->ccode);
+            if($this->admin->system_number>0)
+            {
+                $query->where("ccode","=",$this->admin->ccode);
+            }
+
+            $query->where("user","!=",$this->admin->id);
             $query->where("status","=",1);
         });
 
@@ -131,7 +136,8 @@ class notificationController extends Controller
                 $photo=$this->app->getUsers($result->user,['photo'])[0]->photo;
 
                 //return view
-                return view("".config("app.admin_dirname").".desktopnotification",['title'=>$result->title,'content'=>$result->content,'photo'=>$photo]);
+                return view("".config("app.admin_dirname").".desktopnotification",['title'=>$result->title,'content'=>$result->content,'photo'=>$photo,
+                    'ccode'=>$this->app->ccode($result->ccode)]);
             }
 
         }
