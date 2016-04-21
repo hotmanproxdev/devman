@@ -54,7 +54,7 @@
         </ul>-->
       </li>
       <li>
-        <a href="{{$baseUrl}}/{{strtolower(config("app.admin_dirname"))}}/api">
+        <a href="{{$baseUrl}}/{{strtolower(config("app.admin_dirname"))}}/apicenter">
           <i class="icon-rocket"></i>
           <span class="title">Api Merkezi</span>
           <span class="arrow "></span>

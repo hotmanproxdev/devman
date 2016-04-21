@@ -183,6 +183,13 @@ class apiController extends Controller
     }
 
 
+    public function getLogs()
+    {
+        //return view
+        return 'hello';
+    }
+
+
     public function validationRules($key)
     {
 

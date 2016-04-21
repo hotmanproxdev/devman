@@ -169,7 +169,7 @@
 
                     {{--*/ $prevPage=\Input::get("page")-1 /*--}}
 
-                    <td class="page-ajax prev-page-ajax {{$name}}_prevajax" name="{{$name}}" prevno="0" limitview="{{$pagination['limitview']}}" count="{{$query->lastPage()}}" file="{{$file[2]}}"  style="padding: 10px; border:1px solid #ccc; background-color:#f4f4f4; font-weight:bold; display:none">
+                    <td class="page-ajax prev-page-ajax {{$name}}_prevajax" name="{{$name}}" prevno="0" limitview="{{$pagination['limitview']}}" count="{{$query->lastPage()}}" file="{{$file}}"  style="padding: 10px; border:1px solid #ccc; background-color:#f4f4f4; font-weight:bold; display:none">
                       <a style="text-decoration:none; color:#e20a16;  font-weight:bold;">
                         << Geri
                       </a>
@@ -185,7 +185,7 @@
                         {{--*/ $class='page-ajax-passive' /*--}}
                       @endif
 
-                      <td id="page-ajax-active_{{$i}}" class="{{$class}}" name="{{$name}}" no="{{$i}}" limitview="{{$pagination['limitview']}}" file="{{$file[2]}}"  count="{{$query->lastPage()}}" style="border:1px solid #ccc;">
+                      <td id="page-ajax-active_{{$i}}" class="{{$class}}" name="{{$name}}" no="{{$i}}" limitview="{{$pagination['limitview']}}" file="{{$file}}"  count="{{$query->lastPage()}}" style="border:1px solid #ccc;">
                         <a style="text-decoration:none; font-weight:bold;">
                           {{$i}}
                         </a>
@@ -213,7 +213,7 @@
 
                     @if($pageNum>1)
                       <td class="page-ajax next-page-ajax {{$name}}_nextajax" name="{{$name}}" nextno="2" limitview="{{$pagination['limitview']}}"
-                          count="{{$query->lastPage()}}" file="{{$file[2]}}"  style="padding: 10px; border:1px solid #ccc; background-color :#ddd; font-weight:bold; cursor:pointer;">
+                          count="{{$query->lastPage()}}" file="{{$file}}"  style="padding: 10px; border:1px solid #ccc; background-color :#ddd; font-weight:bold; cursor:pointer;">
                         <a style="text-decoration:none; font-weight:bold;">
                           >> İleri
                         </a>

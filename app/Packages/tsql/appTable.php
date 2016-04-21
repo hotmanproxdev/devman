@@ -31,7 +31,7 @@ class appTable
         $this->data['original']=$this->appQuery->getField($data['query']);
         $this->data['fields']=$this->appQuery->getField($data['query']);
         $this->data['query']=$data['query'];
-        $this->data['file']=explode("/",$this->request->getPathInfo());
+        $this->data['file']=preg_replace('@\?.*@is','',$this->request->fullUrl());
 
         //wanted fields
         if(array_key_exists("wanted_fields",$data))
@@ -162,6 +162,16 @@ class appTable
                     foreach ($data['fillIn']['link'] as $ikey=>$ival)
                     {
                         $this->data['fillIn']['link'][$ikey]=$ival;
+                    }
+                }
+
+
+                //hidden manager
+                if(array_key_exists("hidden",$data['fillIn']))
+                {
+                    foreach ($data['fillIn']['hidden'] as $ikey=>$ival)
+                    {
+                        $this->data['fillIn']['hidden'][$ikey]=$ival;
                     }
                 }
 

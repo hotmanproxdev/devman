@@ -558,6 +558,18 @@ class BaseServiceProviders extends Controller
                 return $listarr;
             }
 
+            if($ccode=="smooth")
+            {
+                $query=DB::table($this->dbTable(['ccodes']))->orderBy("id","asc")->get();
+
+                foreach ($query as $result)
+                {
+                    $listarr[$result->ccode]=$result->ccode;
+                }
+
+                return $listarr;
+            }
+
             if(is_numeric($ccode))
             {
                 $query=DB::table($this->dbTable(['ccodes']))->where("id","=",$ccode)->get();
@@ -570,11 +582,20 @@ class BaseServiceProviders extends Controller
     }
 
 
-    public function getField($data)
+    public function getField($data,$list=false)
     {
         foreach ($data[0] as $key=>$value)
         {
-            $list[]=$key;
+            if($list==false)
+            {
+                $list[]=$key;
+            }
+
+            if($list=="list")
+            {
+                $list[$key]=$key;
+            }
+
         }
 
         return $list;

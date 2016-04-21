@@ -13,7 +13,17 @@
 
 Route::group(['prefix' =>''.strtolower(config("app.admin_dirname")).'/','namespace'=>''.config("app.admin_dirname").''], function () {
 
-    //dont delete this comment line
+    
+      //dont delete this comment line
+
+      //apicenter part
+      Route::group(['namespace'=>'Apicenter'], function ()
+      {
+            //apicenter route (apicenterController)
+            Route::controllers(['apicenter' => 'apicenterController']);
+      });
+
+            
 
     //login part
     Route::group(['namespace'=>'Login'], function ()

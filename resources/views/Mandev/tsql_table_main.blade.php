@@ -5,6 +5,16 @@
 
   @section("tsqltable_".$name."")
 
+    @if(array_key_exists("hidden",$fillIn))
+
+      @foreach ($fillIn['hidden'] as $hidkey=>$hidval)
+
+        <input type="hidden" name="{{$hidkey}}" value="{{$hidval}}">
+
+        @endforeach
+
+    @endif
+
     <div id="{{$name}}_table_loading" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); "></div>
 <table class="table table-striped table-bordered table-hover {{$name}}">
 
@@ -124,7 +134,7 @@
 
               @if(array_key_exists("modal",$fillIn))
                 @if(array_key_exists($val,$fillIn['modal']))
-                {{--*/ $efield[$result->id]='<a class="xmodal" model="'.$baseUrl.'/'.strtolower(config("app.admin_dirname")).'/'.$fillIn['modal'][$val]['action'].'?modalId='.$result->id.'"
+                {{--*/ $efield[$result->id]='<a class="xmodal" model="'.$baseUrl.'/'.strtolower(config("app.admin_dirname")).'/'.$fillIn['modal'][$val]['action'].'?id='.$result->id.'"
                 modal-title="'.$fillIn['modal'][$val]['title'].'" data-target="#full-width" href="#full-width" data-toggle="modal">
                 <img src="'.$baseUrl.'/'.$fillIn['icon'][$val].'" width="20" height="20" style="cursor:pointer;"></a>' /*--}}
                   @else
@@ -147,7 +157,7 @@
                 @if(array_key_exists("modal",$fillIn))
 
                   @if(array_key_exists($val,$fillIn['modal']))
-                    <a class="xmodal" model="{{$baseUrl}}/{{strtolower(config("app.admin_dirname"))}}/{{$fillIn['modal'][$val]['action']}}?modalId={{$result->id}}"
+                    <a class="xmodal" model="{{$file}}/{{$fillIn['modal'][$val]['action']}}?id={{$result->id}}"
                     modal-title="{{$fillIn['modal'][$val]['title']}}" data-target="#full-width" href="#full-width" data-toggle="modal"> {{$result->$val}}</a>
 
                     @else
@@ -213,7 +223,7 @@
           </div>
 
           <div class="divlay" style="width:10%;">
-            <a class="submit form-control btn blue" ajax-form="{{$name}}_table_process" action="{{$file[2]}}/{{$fval['action']}}">{{$lang['execute']}}</a>
+            <a class="submit form-control btn blue" ajax-form="{{$name}}_table_process" action="{{$file}}/{{$fval['action']}}">{{$lang['execute']}}</a>
           </div>
 
           <div class="divlay" style="width:20%;">

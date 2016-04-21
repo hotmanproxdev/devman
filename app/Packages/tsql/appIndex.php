@@ -77,6 +77,65 @@ class appIndex
 
     public function fields($fields=array(),$row=false,$auth=array())
     {
+        if(count($fields)==0)
+        {
+            foreach ($this->data['query'][0] as $key=>$value)
+            {
+                if(is_array($row) && array_key_exists("except",$row))
+                {
+                    if(!in_array($key,$row['except']))
+                    {
+                        $fields[$key]=ucfirst($key);
+                    }
+                }
+                else
+                {
+                    $fields[$key]=ucfirst($key);
+                }
+
+            }
+
+            if(is_array($row))
+            {
+                foreach ($fields as $rkey=>$rval)
+                {
+                    if(array_key_exists($rkey,$row))
+                    {
+                        foreach ($row[$rkey] as $ra=>$raw)
+                        {
+                            if($ra=="before")
+                            {
+                                foreach ($raw as $a=>$b)
+                                {
+                                    $efields[$a]=$b;
+
+                                }
+                                $efields[$rkey]=$rval;
+                            }
+                            else
+                            {
+                                $efields[$rkey]=$rval;
+                                foreach ($raw as $a=>$b)
+                                {
+                                    $efields[$a]=$b;
+
+                                }
+                            }
+
+                        }
+                    }
+                    else
+                    {
+                        $efields[$rkey]=$rval;
+                    }
+                }
+
+                $fields=array();
+                $fields=$efields;
+            }
+        }
+
+
         $authfield=[];
         if(array_key_exists("auth",$auth))
         {

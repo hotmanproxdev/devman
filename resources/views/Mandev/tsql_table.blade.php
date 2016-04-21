@@ -23,7 +23,6 @@
           <input type="hidden" name="_token" value="{{csrf_token()}}">
           <input type="hidden" name="filter" value="{{$name}}">
 
-
         @if(count($filter))
 
           {{--*/ $w=100/count($filter) /*--}}
@@ -61,7 +60,7 @@
                 {{--*/ $changesql_class='' /*--}}
               @endif
 
-            @if($fval['type']=="select")
+            @if($fval['type']=="select" && $fval['status'])
 
               <div class="divlay" style="width:{{$w}}%;">
                 <select class="{{$indent}} form-control {{$class}} {{$changesql_class}}" {{$changesql}} {{$append}} groupname="{{$name}}" name="{{$fval['name']}}">
@@ -96,7 +95,7 @@
 
 
 
-            @if($fval['type']=="text")
+            @if($fval['type']=="text" && $fval['status'])
 
               <div class="divlay" style="width:{{$w}}%;">
                 <input type="text" class="{{$indent}} form-control {{$class}}" {{$changesql}} {{$append}} name="{{$fval['name']}}" placeholder="{{$fval['default']}}">
@@ -106,10 +105,10 @@
             @endif
 
 
-            @if($fval['type']=="button")
+            @if($fval['type']=="button" && $fval['status'])
 
               <div class="divlay" style="width:{{$w}}%;">
-                <a class="submitf btn green-meadow {{$class}}" pname="{{$name}}" file="{{$file[2]}}" ajax-form="{{$name}}ajax" action="{{$file[2]}}/tsqlfilter">{{$fval['default']}}</a>
+                <a class="submitf btn green-meadow {{$class}}" pname="{{$name}}" file="{{$file}}" ajax-form="{{$name}}ajax" action="{{$file}}/tsqlfilter">{{$fval['default']}}</a>
 
               </div>
 
@@ -152,7 +151,7 @@
     var groupname=$(this).attr("groupname");
     var name=$(this).attr("name");
 
-    $("select."+changesql).load("{{$file[2]}}?changesql="+name+"&changesqlval="+val+"&pxname="+groupname);
+    $("select."+changesql).load("{{$file}}?changesql="+name+"&changesqlval="+val+"&pxname="+groupname);
 
   });
 

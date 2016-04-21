@@ -18,6 +18,7 @@
     </div>
   </div>
 
+
   <div style="margin:0 0 5px 0;">
 
     <div class="divlay">
@@ -26,17 +27,7 @@
       </a>
     </div>
 
-    <div class="divlay">
-      <a href="javascript:;" class="indent btn btn-lg red">
-        Api Logları <i class="fa fa-file-o"></i>
-      </a>
-    </div>
 
-    <div class="divlay">
-      <a href="javascript:;" class="indent btn btn-lg yellow">
-        Api Modelleme ve Data Bilgileri <i class="fa fa-list"></i>
-      </a>
-    </div>
 
     <div class="clear"></div>
 
@@ -57,6 +48,7 @@
       <!--filter-->
       <form action="api/filter" method="post">
         <input type="hidden" name="_token" value="{{csrf_token()}}">
+        <input type="hidden" name="filter" value="api">
       <div style="">
 
         <div class="divlay" style="width:20%;">

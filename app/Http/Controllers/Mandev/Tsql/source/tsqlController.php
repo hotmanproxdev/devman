@@ -112,6 +112,11 @@ class tsqlController extends Controller
                                         'link'=>
                                         [
                                             //'ccode'=>'blabla'
+                                        ],
+
+                                        'hidden'=>
+                                        [
+                                            //'test'=>'1'
                                         ]
                                     ]
                                     )
