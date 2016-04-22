@@ -814,6 +814,17 @@
   });
 
 
+  $(document).on("click","a.atabs",function()
+  {
+    var href=$(this).attr("href");
+    var href=href.replace("#","");
+    var model=$(this).attr("model");
+    var loading='<img src="{{$baseUrl}}/square.gif" width="80">';
+    document.getElementById(href).innerHTML=loading;
+    $("#"+href).load("{{$baseUrl}}/{{strtolower(config("app.admin_dirname"))}}/"+model);
+  });
+
+
 
   //notifications
   setInterval(function(){ $("#notification").load("{{$baseUrl}}/{{strtolower(config("app.admin_dirname"))}}/test/desktopnotification"); }, 10000);

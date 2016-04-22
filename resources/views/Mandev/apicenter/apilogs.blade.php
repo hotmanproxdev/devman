@@ -1,0 +1,5 @@
+@section("tsqlapi")
+
+{!! $query !!}
+
+@show

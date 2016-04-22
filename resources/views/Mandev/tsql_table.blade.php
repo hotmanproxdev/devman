@@ -108,7 +108,8 @@
             @if($fval['type']=="button" && $fval['status'])
 
               <div class="divlay" style="width:{{$w}}%;">
-                <a class="submitf btn green-meadow {{$class}}" pname="{{$name}}" file="{{$file}}" ajax-form="{{$name}}ajax" action="{{$file}}/tsqlfilter">{{$fval['default']}}</a>
+                <a class="submitf btn green-meadow {{$class}}" pname="{{$name}}" file="{{$file}}" ajax-form="{{$name}}ajax"
+                   action="{{$baseUrl}}/{{strtolower(config("app.admin_dirname"))}}/{{$fval['action']}}">{{$fval['default']}}</a>
 
               </div>
 

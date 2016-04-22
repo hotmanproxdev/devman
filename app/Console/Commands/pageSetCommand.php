@@ -62,7 +62,7 @@ class pageSetCommand extends Command
                     $icerik=str_replace("__sourceNameModel__",$this->argument("dir"),$icerik);
                     $icerik=str_replace("__sourceNamePath__",$this->argument("dir"),$icerik);
                     $icerik=str_replace("__sourceFile__",$this->argument("sourcefile"),$icerik);
-                    fwrite($dt,$icerik);ap
+                    fwrite($dt,$icerik);
                     fclose($dt);
 
                     dd("source file has been created");

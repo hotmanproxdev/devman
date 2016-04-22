@@ -273,7 +273,7 @@ class appIndex
             $arg['data']['lang']=$this->app->getLang(['url_path'=>'default','lang'=>$this->admin->lang]);
 
 
-            if($this->request->ajax())
+            if($this->request->ajax() && !array_key_exists("ajax",\Input::all()))
             {
                 if(array_key_exists("changesql",\Input::all()))
                 {
@@ -362,6 +362,7 @@ class appIndex
 
             }
 
+            //dd($arg);
             //return view
             return view("".config("app.admin_dirname").".tsql_table",$arg['data']);
         }

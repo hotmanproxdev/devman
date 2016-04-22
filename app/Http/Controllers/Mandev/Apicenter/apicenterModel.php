@@ -65,6 +65,46 @@ class apicenterModel extends Controller
                        }
                        )
                        ->orderBy("id","desc")
+                       ->paginate(5);
+    }
+
+
+    public function getApiLogs()
+    {
+        //default filter query
+        return DB::table($this->app->dbTable(['log_api']))->
+        select(''.$this->app->dbTable(['log_api']).'.*',''.$this->app->dbTable(['api']).'.apikey')
+            ->join($this->app->dbTable(['api']),''.$this->app->dbTable(['log_api']).'.apikey','=',''.$this->app->dbTable(['api']).'.id')
+               ->where(
+                       function ($query)
+                       {
+                           if($this->admin->system_number>0)
+                           {
+                               $query->where("".$this->app->dbTable(['log_api']).".system_ccode","=",$this->app->ccode($this->admin->ccode));
+                           }
+
+                            if($this->request->ajax() && !array_key_exists("ajax",\Input::all()))
+                            {
+                                foreach (app("\Filter")->getData($this->filterHas()) as $key=>$value)
+                                {
+                                    if($key=="apikey")
+                                    {
+                                        $query->where(''.$this->app->dbTable(['api']).'.'.$key.'',"=",$value);
+                                    }
+                                    else
+                                    {
+                                        $query->where(''.$this->app->dbTable(['log_api']).'.'.$key.'',"=",$value);
+                                    }
+
+                                }
+                            }
+                            else
+                            {
+                                app("\Filter")->forget();
+                            }
+                       }
+                       )
+                       ->orderBy("id","desc")
                        ->paginate(10);
     }
 

@@ -271,7 +271,7 @@ class apiUsersController extends Controller
                                                'class'=>'',
                                                'append'=>'',
                                                'default'=>'Filtrele',
-                                               'name'=>'apiusers'
+                                               'action'=>'apicenter/apiuserfilter'
                                            ],
 
                                            [

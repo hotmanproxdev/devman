@@ -85,6 +85,6 @@ td.page-ajax-active { padding: 10px; border:1px solid #ccc; background-color :#e
 td.page-ajax-passive { padding: 10px; border:1px solid #ccc; background-color :#fff;  cursor:pointer; }
 .ajaxPageFull2 {width:100%; }
 .statu { color:#336699; font-weight:bold; }
-.namecolor { font-weight:bold; background-color:#ffffdd; }
-.key {  background-color:#ffffdd; color:#336699; font-weight:bold; }
+.namecolor { font-weight:bold; }
+.key {  color:#336699; font-weight:bold; }
 .ccode { font-weight:bold; color:#e20a16; }

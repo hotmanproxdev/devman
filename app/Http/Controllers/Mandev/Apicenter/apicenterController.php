@@ -72,6 +72,15 @@ class apicenterController extends Controller
     }
 
 
+    public function postApiuserfilter()
+    {
+        return app("\Filter")->data(function()
+        {
+            return $this->getIndex();
+        });
+    }
+
+
     public function getEdit()
     {
         //it just accepts ajax request
@@ -174,41 +183,48 @@ class apicenterController extends Controller
     }
 
 
-    public function postTsqlfilter()
+    public function getApilogs()
+    {
+        //get log list
+        $this->data['query'] = $this->source->data("apiLogs")->get("getList");
+
+        //ajax return view
+        $view=view("".config("app.admin_dirname").".".$this->url_path.".apilogs",$this->data);
+
+        if($this->request->ajax() && !array_key_exists("ajax",\Input::all()))
+        {
+            $sections = $view->renderSections();
+            return $sections['tsqlapi'];
+        }
+
+        return $view;
+
+    }
+
+
+    public function postApilogsfilter()
     {
         return app("\Filter")->data(function()
         {
-            return $this->getIndex();
+            return $this->getApilogs();
         });
     }
 
-    public function postTsqlprocess()
+    public function getServiceinfo()
     {
-        //accept post in with ajax method
-        return app("\Ajax")->control(function()
+        //get serviceinfo list
+        $this->data['serviceInfo'] = $this->source->data("serviceInfo")->get("getList");
+
+        //ajax return view
+        $view=view("".config("app.admin_dirname").".".$this->url_path.".serviceinfo",$this->data);
+
+        if($this->request->ajax() && !array_key_exists("ajax",\Input::all()))
         {
-            //content auth
-            return app("\Role")->get(1,function()
-            {
-                //same token control
-                return app("\Token")->valid(function()
-                {
-                    //validation control
-                    return $this->validation->make([],function()
-                    {
-                        //post data query is true
-                        return app("\Query")->isTrue(true,function()
-                        {
-                            return $this->notification->success(['msg'=>$this->data['successdata'],'title'=>$this->data['successful']]);
-                        });
-                    });
+            $sections = $view->renderSections();
+            return $sections['tsqlserviceinfo'];
+        }
 
-                });
-
-            });
-
-        });
-
+        return $view;
     }
 
 
