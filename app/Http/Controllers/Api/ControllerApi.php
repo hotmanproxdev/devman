@@ -95,6 +95,7 @@ class ControllerApi extends Controller
 
             if($developer[0]->access_service_key)
             {
+
                 $this->log->set(['condHash'=>$condHash,'access_point'=>$access_point,
                                  'sess_apikey'=>$sess_apikey,
                                  'sess_apihash'=>$sess_apihash,

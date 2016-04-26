@@ -27,65 +27,7 @@ class ModelApi extends Controller
 
     public function get ($serviceName,$coding=array())
     {
-        if(count($coding)>0)
-        {
-            if($coding['codingRequest'])
-            {
-                //update mode
-                if($this->request->header("update")!==NULL)
-                {
-                    $update=json_decode($this->request->header("update"),true);
-                    if(DB::table($this->app->dbTable([$serviceName]))->whereRaw($update['where'][0],$update['where'][1])->update($update['select']))
-                    {
-                        return DB::table($this->app->dbTable([$serviceName]))->orderBy("id","desc")->paginate(config("app.api_paginator"));
-                    }
-                }
 
-                //default mode
-                if($this->request->header("select")==NULL)
-                {
-                    if(array_key_exists($serviceName,$this->app->dbTable(['all'])))
-                    {
-                        return DB::table($this->app->dbTable([$serviceName]))->orderBy("id", "desc")->paginate(config("app.api_paginator"));
-                    }
-                    else
-                    {
-                        if($this->customApiCheck($serviceName,$coding['apiId']))
-                        {
-                            $method=$this->request->header("method");
-                            $serviceName='App\Http\Controllers\Api\Custom\\'.ucfirst($serviceName).'Api';
-                            return App($serviceName)->$method();
-                        }
-
-                        return ['success'=>false,'msg'=>'you dont have service access'];
-                    }
-                }
-
-                if(array_key_exists($serviceName,$this->app->dbTable(['all'])))
-                {
-                    //select mode
-                    return DB::table($this->app->dbTable([$serviceName]))->select(json_decode($this->request->header("select"), true))->orderBy("id", "desc")->paginate(config("app.api_paginator"));
-                }
-                else
-                {
-                    if($this->customApiCheck($serviceName,$coding['apiId']))
-                    {
-                        $serviceName='App\Http\Controllers\Api\Custom\\'.ucfirst($serviceName).'Api';
-
-                        $method=$this->request->header('method');
-
-                        return App($serviceName)->$method();
-
-                    }
-
-                    return ['success'=>false,'msg'=>'you dont have service access'];
-
-                }
-
-
-            }
-
-        }
 
         if(array_key_exists($serviceName,$this->app->dbTable(['all'])))
         {
@@ -105,11 +47,33 @@ class ModelApi extends Controller
                 $where=explode("/",\Input::get("where"));
 
                 //select mode
-                return DB::table($this->app->dbTable([$serviceName]))->where($where[0],'=',$where[1])->orderBy("id","desc")->paginate(config("app.api_paginator"));
+                $call=DB::table($this->app->dbTable([$serviceName]))->where($where[0],'=',$where[1])->orderBy("id","desc")->paginate(config("app.api_paginator"));
+
+                $apikey=\DB::table($this->app->dbTable(['api']))
+                    ->where("apikey","=",\Input::get("key"))->where("standart_key","=",\Input::get("hash"))
+                    ->get();
+
+                if(count($apikey))
+                {
+                    $lastlog=\DB::table($this->app->dbTable(['log_api']))->where("apikey","=",$apikey[0]->id)->orderBy("id","desc")->take(1)->update(['query'=>'table_access']);
+                }
+
+                return $call;
             }
 
             //select mode
-            return DB::table($this->app->dbTable([$serviceName]))->orderBy("id","desc")->paginate(config("app.api_paginator"));
+            $call=DB::table($this->app->dbTable([$serviceName]))->orderBy("id","desc")->paginate(config("app.api_paginator"));
+
+            $apikey=\DB::table($this->app->dbTable(['api']))
+                ->where("apikey","=",\Input::get("key"))->where("standart_key","=",\Input::get("hash"))
+                ->get();
+
+            if(count($apikey))
+            {
+                $lastlog=\DB::table($this->app->dbTable(['log_api']))->where("apikey","=",$apikey[0]->id)->orderBy("id","desc")->take(1)->update(['query'=>'table_access']);
+            }
+
+            return $call;
 
         }
         else
@@ -151,6 +115,7 @@ class ModelApi extends Controller
                 }
 
                 return App($serviceName)->$method();
+
             }
 
             return ['success'=>false,'msg'=>'you dont have service access'];

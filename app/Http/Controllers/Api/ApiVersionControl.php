@@ -27,8 +27,13 @@ class ApiVersionControl extends Controller
     }
 
 
-    public function get($namespace=array(),$callback)
+    public function get($namespace=array(),$callback,$data=array())
     {
+
+        $apikey=\DB::table($this->app->dbTable(['api']))
+            ->where("apikey","=",\Input::get("key"))->where("standart_key","=",\Input::get("hash"))
+            ->get();
+
         $getMethod=explode("::",$namespace[1]);
 
         $val=false;
@@ -38,6 +43,17 @@ class ApiVersionControl extends Controller
             if($array[1]>1)
             {
                 $val=true;
+
+                if(count($data))
+                {
+                    if(count($apikey) && array_key_exists("auth",$data))
+                    {
+                        if($data['auth']!==$apikey[0]->ccode)
+                        {
+                            $val=false;
+                        }
+                    }
+                }
             }
             else
             {
@@ -57,10 +73,24 @@ class ApiVersionControl extends Controller
                             {
                                 $iclass=preg_replace('@V(\d+)@is',''.ucfirst(\Input::get("version")).'',$namespace[0]);
 
+
                                 if(class_exists($iclass))
                                 {
-                                    return app($iclass)->$getMethod[1]();
+                                    $call=app($iclass)->$getMethod[1]();
+
+                                    $callex=explode("{",$call);
+
+                                    $call=str_replace($callex[0],"",$call);
+
+                                    if(count($apikey))
+                                    {
+                                        $lastlog=\DB::table($this->app->dbTable(['log_api']))->where("apikey","=",$apikey[0]->id)->orderBy("id","desc")->take(1)->update(['query'=>$call]);
+                                    }
+                                    return $call;
                                 }
+
+                                $lastlog=\DB::table($this->app->dbTable(['log_api']))->where("apikey","=",$apikey[0]->id)->orderBy("id","desc")->take(1)->
+                                update(['msg'=>'the requested version number is not prepared yet']);
 
                                 return response()->json(['success'=>false,'msg'=>'the requested version number is not prepared yet']);
 
@@ -72,40 +102,45 @@ class ApiVersionControl extends Controller
                             if($this->version=="V1")
                             {
                                 $val=true;
+
+                                if(count($data))
+                                {
+                                    if(count($apikey) && array_key_exists("auth",$data))
+                                    {
+                                        if($data['auth']!==$apikey[0]->ccode)
+                                        {
+                                            $val=false;
+                                        }
+                                    }
+                                }
                             }
                             else
                             {
-                                return app($class)->$getMethod[1]();
+                                $call=app($class)->$getMethod[1]();
+
+                                $callex=explode("{",$call);
+
+                                $call=str_replace($callex[0],"",$call);
+
+                                if(count($apikey))
+                                {
+                                    $lastlog=\DB::table($this->app->dbTable(['log_api']))->where("apikey","=",$apikey[0]->id)->orderBy("id","desc")->take(1)->update(['query'=>$call]);
+                                }
+
+                                return $call;
                             }
                         }
 
                     }
                     else
                     {
+                        $lastlog=\DB::table($this->app->dbTable(['log_api']))->where("apikey","=",$apikey[0]->id)->orderBy("id","desc")->take(1)->
+                        update(['msg'=>'the requested version number is not prepared yet']);
+
                         return response()->json(['success'=>false,'msg'=>'the requested version number is not prepared yet']);
                     }
                 }
-                else
-                {
-                    $class=preg_replace('@V(\d+)@is',''.$this->request->header("version").'',$namespace[0]);
 
-                    if(class_exists($class))
-                    {
-                        if($this->version==$this->request->header("version"))
-                        {
-                            $val=true;
-                        }
-                        else
-                        {
-                            return app($class)->$getMethod[1]();
-                        }
-                    }
-                    else
-                    {
-                        return response()->json(['success'=>false,'msg'=>'the requested version number is not prepared yet']);
-                    }
-
-                }
             }
         }
 
@@ -116,9 +151,30 @@ class ApiVersionControl extends Controller
         {
             if(is_callable($callback))
             {
-                return call_user_func($callback);
+                $call=call_user_func($callback);
+
+                $callex=explode("{",$call);
+
+                $call=str_replace($callex[0],"",$call);
+
+                if(count($apikey))
+                {
+                    $lastlog=\DB::table($this->app->dbTable(['log_api']))->where("apikey","=",$apikey[0]->id)->orderBy("id","desc")->take(1)->update(['query'=>$call]);
+                }
+
+                return $call;
+
+
             }
         }
+
+
+        if(count($apikey))
+        {
+            $lastlog=\DB::table($this->app->dbTable(['log_api']))->where("apikey","=",$apikey[0]->id)->orderBy("id","desc")->take(1)->update(['msg'=>'This service demands special access right']);
+        }
+
+        return response()->json(['success'=>false,'msg'=>'This service demands special access right']);
     }
 
 }

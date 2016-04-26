@@ -45,6 +45,7 @@ class apiLogsController extends Controller
     public function getList()
     {
 
+
         return $this->tsql
             /*tsql name */
             ->name("apilogs")
@@ -60,7 +61,7 @@ class apiLogsController extends Controller
                 [
                     //'id'=>    'id',
 
-                ],['system_ccode'=>['before'=>['serviceName'=>'ServiceName','msg'=>'Msg','postdata'=>'Postdata']]],
+                ],['system_ccode'=>['before'=>['serviceName'=>'ServiceName','msg'=>'Msg','postdata'=>'Postdata','getdata'=>'Getdata','created_at'=>'Created_At']]],
                 ['auth'=>[]]
             )
 
@@ -171,6 +172,16 @@ class apiLogsController extends Controller
                     ],
 
                     [
+                        'type'=>'text',
+                        'status'=>true,
+                        'data'=>'',
+                        'class'=>'datetimepicker',
+                        'append'=>'',
+                        'default'=>'Oluşturma Zamanı...',
+                        'name'=>'created_at'
+                    ],
+
+                    [
                         'type'=>'button',
                         'status'=>true,
                         'data'=>'',
@@ -198,6 +209,16 @@ class apiLogsController extends Controller
                 //callback list
                 $this->tsql->update([],function($list) use ($data)
                 {
+                    $list['created_at']=['query'=>function($query)
+                    {
+                        foreach ($query as $result)
+                        {
+                            $list[]=date("Y-m-d H:i:s",$result->created_at);
+                        }
+
+                        return $list;
+                    }];
+
                     //update list
                     $this->tdata=$this->tsql->update(['list'=>$list,'data'=>$data]);
 

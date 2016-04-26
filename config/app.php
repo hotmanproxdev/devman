@@ -28,7 +28,7 @@ return [
     'api_paginator'=>10,
     'api_ccode'=>'develop',
     'token'=>md5(uniqid(rand(), true)),
-    'dateFormat'=>'Y-m-d h:i:s',
+    'dateFormat'=>'Y-m-d H:i',
 
     //////////////MANDEV CONFİG SETTİNGS//////////////////////////////////////////////////
 

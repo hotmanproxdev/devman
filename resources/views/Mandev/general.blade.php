@@ -378,20 +378,16 @@
   });
 
     $('.datetimepicker').datetimepicker({
-      dayOfWeekStart : 1,
-      lang:'tr',
       format:'{{config("app.dateFormat")}}',
-      step:10,
+      defaultTime:'00:00'
     });
 
 
   $("body").on("click",".datetimepicker",function()
   {
     $(this).datetimepicker({
-      dayOfWeekStart : 1,
-      lang:'tr',
       format:'{{config("app.dateFormat")}}',
-      step:10,
+      defaultTime:'00:00'
     });
     $(this).datetimepicker("show");
     var style=$(".xdsoft_").attr("style");

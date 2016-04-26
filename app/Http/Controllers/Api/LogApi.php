@@ -28,6 +28,24 @@ class LogApi extends Controller
 
     public function set($param=array())
     {
+        if(array_key_exists("version",\Input::all()))
+        {
+            if(preg_match('@v(\d+)@is',\Input::get("version")))
+            {
+                $version=str_replace("v","",\Input::get("version"));
+                $data['version']=$version;
+            }
+
+        }
+
+        $sentdata=[
+                    'select'=>json_decode($this->request->header("select")),
+                    'where'=>json_decode($this->request->header("where"))
+
+                  ];
+
+        $data['sentdata']=json_encode($sentdata);
+
         $data['userip']=ip2long($this->request->ip());
         $data['ip']=$this->request->ip();
 
@@ -61,7 +79,16 @@ class LogApi extends Controller
             $data['custom']=1;
         }
         $data['msg']=$param['msg'];
-        $data['postdata']='';
+
+        if($this->request->header("postdata"))
+        {
+            $data['postdata']=$this->request->header("postdata");
+        }
+        else
+        {
+            $data['postdata']='';
+        }
+
         $data['getdata']=json_encode(\Input::all());
         $data['headerData']=$this->request->headers;
 
@@ -170,6 +197,7 @@ class LogApi extends Controller
         }
 
         $data['created_at']=time();
+
 
         DB::table($this->app->dbTable(['log_api']))->insert($data);
     }

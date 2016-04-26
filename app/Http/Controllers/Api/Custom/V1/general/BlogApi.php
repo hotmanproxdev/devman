@@ -9,6 +9,7 @@ use Illuminate\Contracts\Routing\ResponseFactory;
 use DB;
 use Session;
 use App\Http\Controllers\Api\ApiVersionControl as Version;
+use App\Http\Controllers\Api\ConfigApi as Config;
 
 class BlogApi extends Controller
 {
@@ -16,8 +17,9 @@ class BlogApi extends Controller
     public $request;
     public $app;
     public $versionControl;
+    public $config;
 
-    public function __construct (Request $request,Version $versionControl)
+    public function __construct (Request $request,Version $versionControl,Config $config)
     {
         //request class
         $this->request=$request;
@@ -25,6 +27,8 @@ class BlogApi extends Controller
         $this->app=app()->make("Base");
         //version control
         $this->versionControl=$versionControl;
+        //get config
+        $this->config=$config;
     }
 
     /*
@@ -45,10 +49,10 @@ class BlogApi extends Controller
         {
            //your query
            $query=DB::table("prosystem_api_custom_test")
-                            ->select($this->select())
+                            ->select($this->config->select())
                             ->where(function ($query)
                             {
-                               foreach ($this->where() as $key=>$value)
+                               foreach ($this->config->where() as $key=>$value)
                                {
                                    if(is_array($value))
                                    {
@@ -64,65 +68,10 @@ class BlogApi extends Controller
                             ->get();
 
            //output send
-           return $this->output($query);
+           return $this->config->output($query);
 
         });
     }
 
-    private function table ($table)
-    {
-       return $this->app->dbTable([$table]);
-    }
-
-    private function select()
-    {
-       if($this->request->header("select"))
-       {
-           return json_decode($this->request->header("select"),true);
-       }
-
-       return '*';
-    }
-
-    private function where()
-    {
-       if($this->request->header("where"))
-       {
-          return json_decode($this->request->header("where"),true);
-       }
-
-       return [];
-    }
-
-
-     private function update()
-     {
-        if($this->request->header("update"))
-        {
-            return json_decode($this->request->header("update"),true);
-        }
-
-        return [];
-     }
-
-    private function postdata()
-    {
-       return $this->app->getvalidPostKey(json_decode($this->request->header("postdata"),1),['_token']);
-    }
-
-
-    private function output($query)
-        {
-            if(count($query))
-            {
-                $result=['success'=>true,'query'=>$query];
-            }
-            else
-            {
-                $result=['success'=>false,'query'=>$query];
-            }
-
-            return response()->json($result);
-        }
 
 }

@@ -74,7 +74,7 @@ class apicenterModel extends Controller
         //default filter query
         return DB::table($this->app->dbTable(['log_api']))->
         select(''.$this->app->dbTable(['log_api']).'.*',''.$this->app->dbTable(['api']).'.apikey')
-            ->join($this->app->dbTable(['api']),''.$this->app->dbTable(['log_api']).'.apikey','=',''.$this->app->dbTable(['api']).'.id')
+            ->leftJoin($this->app->dbTable(['api']),''.$this->app->dbTable(['log_api']).'.apikey','=',''.$this->app->dbTable(['api']).'.id')
                ->where(
                        function ($query)
                        {
@@ -90,6 +90,11 @@ class apicenterModel extends Controller
                                     if($key=="apikey")
                                     {
                                         $query->where(''.$this->app->dbTable(['api']).'.'.$key.'',"=",$value);
+                                    }
+                                    elseif($key=="created_at")
+                                    {
+                                        $tablekey=''.$this->app->dbTable(['log_api']).'.'.$key.'';
+                                        $query->whereRaw("FROM_UNIXTIME(".$tablekey.",'%Y-%m-%d') ='".date("Y-m-d",strtotime($value))."'");
                                     }
                                     else
                                     {
