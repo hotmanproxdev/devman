@@ -43,27 +43,27 @@ class BlogApiModel extends Controller
 
     public function get ()
     {
-        return DB::table("prosystem_api_custom_test")
-            ->select($this->config->select())
-            ->where(function ($query)
-            {
-                foreach ($this->config->where() as $key=>$value)
-                {
-                    if(is_array($value))
-                    {
-                        $query->whereIn($key,$value);
-                    }
-                    else
-                    {
-                        $query->where($key,"=",$value);
-                    }
+       return DB::table("prosystem_api_custom_test")
+           ->select($this->config->select())
+           ->where(function ($query)
+           {
+               foreach ($this->config->where() as $key=>$value)
+               {
+                   if(is_array($value))
+                   {
+                       $query->whereIn($key,$value);
+                   }
+                   else
+                   {
+                       $query->where($key,"=",$value);
+                   }
 
-                }
-            })
-            ->orderBy("id","desc")
-            ->skip($this->config->pageNumber())
-            ->take(1)
-            ->get();
+               }
+           })
+           ->orderBy("id","desc")
+           ->skip($this->config->pageNumber())
+           ->take(1)
+           ->get();
     }
 
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Api\Custom\V1\general;
+namespace App\Http\Controllers\Api\Custom\V1\chat\Source;
 
 use Illuminate\Http\Request;
 use App\Http\Requests;
@@ -8,40 +8,31 @@ use App\Http\Controllers\Controller;
 use Illuminate\Contracts\Routing\ResponseFactory;
 use DB;
 use Session;
-use App\Http\Controllers\Api\ApiVersionControl as Version;
 use App\Http\Controllers\Api\ConfigApi as Config;
-use App\Http\Controllers\Api\Custom\V1\general\Model\BlogApiModel as Model;
 
 
-class BlogApi extends Controller
+class ChatApiSource extends Controller
 {
 
     public $request;
     public $app;
     public $versionControl;
     public $config;
-    public $model;
-    public $env;
 
-    public function __construct (Request $request,Version $versionControl,Config $config,Model $model)
+    public function __construct (Request $request,Config $config)
     {
         //request class
         $this->request=$request;
         //base service provider
         $this->app=app()->make("Base");
-        //version control
-        $this->versionControl=$versionControl;
         //get config
         $this->config=$config;
-        //get model
-        $this->model=$model;
-        //get environment
-        $this->env=app("\Env")->system([__CLASS__,'Api']);
+
     }
 
     /*
     |--------------------------------------------------------------------------
-    | Application Api Custom Get Method
+    | Application Api Custom Get Method Source
     |--------------------------------------------------------------------------
     |
     | Here is where you can register all of the api for an application.
@@ -52,18 +43,7 @@ class BlogApi extends Controller
 
     public function get ()
     {
-        //get version
-        return $this->versionControl->get([__CLASS__,__METHOD__],function()
-        {
-           //your query
-           $query=$this->env->run();
-
-           //output send
-           return $this->config->output($query);
-
-        });
+       return ['chatfoo'];
     }
-
-
 
 }

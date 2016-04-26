@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Api\Custom\V1\general;
+namespace App\Http\Controllers\Api\Custom\V1\chat;
 
 use Illuminate\Http\Request;
 use App\Http\Requests;
@@ -10,10 +10,10 @@ use DB;
 use Session;
 use App\Http\Controllers\Api\ApiVersionControl as Version;
 use App\Http\Controllers\Api\ConfigApi as Config;
-use App\Http\Controllers\Api\Custom\V1\general\Model\BlogApiModel as Model;
+use App\Http\Controllers\Api\Custom\V1\chat\Model\ChatApiModel as Model;
 
 
-class BlogApi extends Controller
+class ChatApi extends Controller
 {
 
     public $request;
@@ -56,7 +56,27 @@ class BlogApi extends Controller
         return $this->versionControl->get([__CLASS__,__METHOD__],function()
         {
            //your query
-           $query=$this->env->run();
+           $query=DB::table("prosystem_api_custom_test")
+                            ->select($this->config->select())
+                            ->where(function ($query)
+                            {
+                               foreach ($this->config->where() as $key=>$value)
+                               {
+                                   if(is_array($value))
+                                   {
+                                      $query->whereIn($key,$value);
+                                   }
+                                   else
+                                   {
+                                      $query->where($key,"=",$value);
+                                   }
+
+                               }
+                            })
+                            ->orderBy("id","desc")
+                            ->skip($this->config->pageNumber())
+                            ->take(1)
+                            ->get();
 
            //output send
            return $this->config->output($query);

@@ -243,6 +243,7 @@ return [
         'Tsql'=>App\Packages\tsql\appIndex::class,
         //'Pdf' => Barryvdh\DomPDF\Facade::class,
         'Output' =>App\Http\Services\outPutController::class,
+        'Env' =>App\Http\Services\EnvironmentController::class,
 
     ],
 
