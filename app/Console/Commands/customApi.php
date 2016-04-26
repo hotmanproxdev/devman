@@ -80,6 +80,13 @@ class customApi extends Command
 
                     }
 
+                    if(!file_exists("".$app_path."".ucfirst($this->argument("dir"))."".$slashes."Model"))
+                    {
+                        mkdir("".$app_path."".ucfirst($this->argument("dir"))."".$slashes."Model", 0777, true);
+                        chmod("".$app_path."".ucfirst($this->argument("dir"))."".$slashes."Model", 0777);
+
+                    }
+
                     $app_path="".str_replace("".$slashes."storage","",storage_path("app"))."".$slashes."Http".$slashes."Controllers".$slashes."Api".$slashes."Custom".$slashes."".$this->argument("dir")."".$slashes."";
 
                 }
@@ -104,11 +111,37 @@ class customApi extends Command
                             $icerik=str_replace("{namespace}","",$icerik);
                         }
 
+
+
+
                         fwrite($dt, $icerik);
                         fclose($dt);
 
-                        dd("api custom model has been created");
                     }
+
+                    if(touch("".$app_path."Model".$slashes."".ucfirst($this->argument("custom"))."ApiModel.php"))
+                    {
+
+                        $dosya = "" . storage_path("app") . "" . $slashes . "apiCustomModel.txt";
+                        $dt = fopen($dosya, "rb");
+                        $icerik = fread($dt, filesize($dosya));
+                        $dosya = "".$app_path."Model".$slashes."".ucfirst($this->argument("custom"))."ApiModel.php";
+                        $dt = fopen($dosya, 'w');
+                        $icerik=str_replace("{custom}",ucfirst($this->argument("custom")),$icerik);
+                        if($this->argument("dir"))
+                        {
+                            $icerik=str_replace("{namespace}","\\".str_replace("/","\\",ucfirst($this->argument("dir")))."",$icerik);
+                        }
+                        else
+                        {
+                            $icerik=str_replace("{namespace}","",$icerik);
+                        }
+
+                        fwrite($dt, $icerik);
+                        fclose($dt);
+                    }
+
+                    dd("api custom model has been created");
                 }
             }
         }

@@ -2,17 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d16930e0-0a2c-4c3d-ba04-752e0816a6a5" name="Default" comment="">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/Custom/V1/general/BlogApi.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/Custom/V1/general/GetSameIpUsersApi.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/Custom/V1/general/StatisticsApi.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/Custom/V2/general/BlogApi.php" afterPath="" />
       <change type="MOVED" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/readme.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Middleware/AfterMiddleware.php" afterPath="$PROJECT_DIR$/app/Http/Middleware/AfterMiddleware.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/ApiVersionControl.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/ApiVersionControl.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/Custom/V1/general/BlogApi.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/Custom/V1/general/BlogApi.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/ControllerApi.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/ControllerApi.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/LogApi.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/LogApi.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/ModelApi.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/ModelApi.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/Mandev/Apicenter/source/apiLogsController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/Mandev/Apicenter/source/apiLogsController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/Mandev/Apicenter/apicenterModel.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/Mandev/Apicenter/apicenterModel.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/app.php" afterPath="$PROJECT_DIR$/config/app.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/Mandev/general.blade.php" afterPath="$PROJECT_DIR$/resources/views/Mandev/general.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Console/Commands/customApi.php" afterPath="$PROJECT_DIR$/app/Console/Commands/customApi.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="devman.iws" />
@@ -58,23 +55,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="BlogApi.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Api/Custom/V1/general/BlogApi.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="378" max-vertical-offset="1245">
-              <caret line="72" column="9" selection-start-line="72" selection-start-column="9" selection-end-line="72" selection-end-column="9" />
-              <folding>
-                <element signature="e#62#90#0#PHP" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="ApiVersionControl.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Api/ApiVersionControl.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="975" max-vertical-offset="2700">
-              <caret line="108" column="37" selection-start-line="108" selection-start-column="37" selection-end-line="108" selection-end-column="37" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="300" max-vertical-offset="3165">
+              <caret line="58" column="40" selection-start-line="58" selection-start-column="40" selection-end-line="58" selection-end-column="40" />
               <folding />
             </state>
           </provider>
@@ -83,8 +68,8 @@
       <file leaf-file-name="ModelApi.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Api/ModelApi.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="1080" max-vertical-offset="2415">
-              <caret line="115" column="0" selection-start-line="115" selection-start-column="0" selection-end-line="115" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="1215" max-vertical-offset="2610">
+              <caret line="115" column="25" selection-start-line="115" selection-start-column="25" selection-end-line="115" selection-end-column="25" />
               <folding>
                 <element signature="e#44#72#0#PHP" expanded="true" />
               </folding>
@@ -96,30 +81,8 @@
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Api/LogApi.php">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0" vertical-offset="525" max-vertical-offset="3045">
-              <caret line="42" column="73" selection-start-line="42" selection-start-column="73" selection-end-line="42" selection-end-column="73" />
+              <caret line="91" column="45" selection-start-line="91" selection-start-column="45" selection-end-line="91" selection-end-column="45" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="BlogApi.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Api/Custom/V2/general/BlogApi.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.5916955" vertical-offset="312" max-vertical-offset="1200">
-              <caret line="62" column="57" selection-start-line="62" selection-start-column="57" selection-end-line="62" selection-end-column="57" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ControllerApi.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Api/ControllerApi.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="960" max-vertical-offset="5535">
-              <caret line="97" column="0" selection-start-line="97" selection-start-column="0" selection-end-line="97" selection-end-column="0" />
-              <folding>
-                <element signature="e#44#72#0#PHP" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -137,8 +100,50 @@
       <file leaf-file-name="apicenterModel.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Mandev/Apicenter/apicenterModel.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="669" max-vertical-offset="4845">
-              <caret line="79" column="22" selection-start-line="79" selection-start-column="22" selection-end-line="79" selection-end-column="22" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="765" max-vertical-offset="4845">
+              <caret line="97" column="37" selection-start-line="97" selection-start-column="37" selection-end-line="97" selection-end-column="37" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="customApi.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Console/Commands/customApi.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="1308" max-vertical-offset="2385">
+              <caret line="143" column="60" selection-start-line="143" selection-start-column="60" selection-end-line="143" selection-end-column="60" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="BlogApi.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Api/Custom/V1/general/BlogApi.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.56747407" vertical-offset="213" max-vertical-offset="1080">
+              <caret line="47" column="6" selection-start-line="47" selection-start-column="6" selection-end-line="47" selection-end-column="6" />
+              <folding>
+                <element signature="e#62#90#0#PHP" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="apiCustom.txt" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/storage/app/apiCustom.txt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="630" max-vertical-offset="1380">
+              <caret line="42" column="5" selection-start-line="42" selection-start-column="5" selection-end-line="42" selection-end-column="5" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="apiCustomModel.txt" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/storage/app/apiCustomModel.txt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="735" max-vertical-offset="825">
+              <caret line="49" column="0" selection-start-line="49" selection-start-column="0" selection-end-line="49" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -154,9 +159,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/resources/views/Mandev/tsql/sections.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/Mandev/tsql/tsql_content.blade.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/Mandev/Test/testController.php" />
         <option value="$PROJECT_DIR$/resources/views/Mandev/notification.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/Mandev/desktopnotification.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Services/notificationController.php" />
@@ -197,14 +199,17 @@
         <option value="$PROJECT_DIR$/app/Http/Controllers/Mandev/Apicenter/apicenterModel.php" />
         <option value="$PROJECT_DIR$/app/Http/Middleware/BeforeMiddleware.php" />
         <option value="$PROJECT_DIR$/app/Http/Middleware/AfterMiddleware.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/Api/ModelApi.php" />
-        <option value="$PROJECT_DIR$/storage/app/apiCustom.txt" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Api/ConfigApi.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Api/ControllerApi.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Api/LogApi.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Api/ApiVersionControl.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/Api/Custom/V1/general/BlogApi.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/Api/ModelApi.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Api/Custom/V2/general/BlogApi.php" />
+        <option value="$PROJECT_DIR$/storage/app/apiCustomModel.txt" />
+        <option value="$PROJECT_DIR$/storage/app/apiCustom.txt" />
+        <option value="$PROJECT_DIR$/app/Console/Commands/customApi.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/Api/Custom/V1/general/Model/BlogApiModel.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/Api/Custom/V1/general/BlogApi.php" />
       </list>
     </option>
   </component>
@@ -240,6 +245,7 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -274,7 +280,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -310,6 +315,644 @@
   <component name="RestClientSettings">
     <option name="REQUEST_HISTORY">
       <list>
+        <RestClientRequest>
+          <option name="biscuits">
+            <list>
+              <Biscuit>
+                <option name="date" value="1461677740000" />
+                <option name="domain" value="localhost" />
+                <option name="name" value="XSRF-TOKEN" />
+                <option name="path" value="/" />
+                <option name="value" value="eyJpdiI6ImVla3lTTVNBd3RFV0xNdXZOcFQ2N1E9PSIsInZhbHVlIjoiSHJtZlkwZ0wxMUYyVXJ6dXRFQlNSN1RmZGxlZDNqTjlDVVZJYmplNjROVDZ1aCt3OEMzWWlFeHlWK1FLZFNsRUtRV2JsUjVMS2hNNWVHQzNadmtWb0E9PSIsIm1hYyI6Ijk0ZjlkN2FlNzE3YTM1ZDk0OGU2MzMyNDE0NzE1MzYzYWM2OTI0Y2IxYTdjNDdjOTY2NmMxMWM4ZDljYzEyMmUifQ%3D%3D" />
+              </Biscuit>
+              <Biscuit>
+                <option name="date" value="1461677740000" />
+                <option name="domain" value="localhost" />
+                <option name="name" value="laravel_session" />
+                <option name="path" value="/" />
+                <option name="value" value="eyJpdiI6InM0a2p4dGVreHVXR2YwZnUzREF0eEE9PSIsInZhbHVlIjoiUjNBTlh6UGJZVlwvSVlPelNHVnk5ZFlDWEMydW1NZGtTXC9JdGdyMjM0aGtRWE9RXC8rbzlUbmZadUQ0QUtua24yQTMram5rZ2orU01LU2VvMklGcGNtdFE9PSIsIm1hYyI6ImFmNWNmYzhlZTVhOGY5ZjI1NmY5YTA4Zjk2ZWZkOGJmZWEzMDEwN2VkYjRiYWU1OGY5NDc0NzU2Yjk2ODI5MGUifQ%3D%3D" />
+              </Biscuit>
+            </list>
+          </option>
+          <option name="httpMethod" value="GET" />
+          <option name="urlBase" value="http://localhost:8070" />
+          <option name="urlPath" value="/projects/devman/devman/public/api/services/blog" />
+          <option name="headers">
+            <list>
+              <KeyValuePair>
+                <option name="key" value="Accept" />
+                <option name="value" value="*/*" />
+              </KeyValuePair>
+              <KeyValuePair>
+                <option name="key" value="Cache-Control" />
+                <option name="value" value="no-cache" />
+              </KeyValuePair>
+            </list>
+          </option>
+          <option name="parameters">
+            <list>
+              <KeyValuePair>
+                <option name="key" value="key" />
+                <option name="value" value="user" />
+              </KeyValuePair>
+              <KeyValuePair>
+                <option name="key" value="hash" />
+                <option name="value" value="775309d9884ebe94445f586b6a72b402" />
+              </KeyValuePair>
+            </list>
+          </option>
+          <option name="parametersEnabled" value="true" />
+          <option name="textToSend" value="" />
+          <option name="filesToSend" value="" />
+        </RestClientRequest>
+        <RestClientRequest>
+          <option name="biscuits">
+            <list>
+              <Biscuit>
+                <option name="date" value="1461677698000" />
+                <option name="domain" value="localhost" />
+                <option name="name" value="XSRF-TOKEN" />
+                <option name="path" value="/" />
+                <option name="value" value="eyJpdiI6IlBiaTBvN2oyc2h2Uk5tVmo3SkdXZWc9PSIsInZhbHVlIjoiaHh6ajBPNU0xOHhWYXEwNkZwaHBoSXdycmFITjhQSmpmMUlHOFZiZjFTZ21VWTQrSVRub0ZNeHVFUmR0K2YxRmhKN0U4NjJEM1JYZUpuUUhFSm5XK2c9PSIsIm1hYyI6ImY2NTgzMmRkN2I0MjhmNzFlOTg4YmQyNzE3NzYzNjVjMGE4MjcyMDdlY2NlMzU0Nzk5MzJiNzVkNGQzOWFmMDAifQ%3D%3D" />
+              </Biscuit>
+              <Biscuit>
+                <option name="date" value="1461677698000" />
+                <option name="domain" value="localhost" />
+                <option name="name" value="laravel_session" />
+                <option name="path" value="/" />
+                <option name="value" value="eyJpdiI6IngzbEVscjNwdFlTS3pFVkVuM1hmdEE9PSIsInZhbHVlIjoiTW1Cc0VjRWFreTdXRkZRc3lFSlZTQ0xJZXJ2eTJNU1ArWjh1RndtaXl0eXhaUFRxWGdDSHJuR0ZiUFpOU0lwcXExd1A3cElYeDIrMndFWU5rTnl3XC93PT0iLCJtYWMiOiI3MWMyYTczMDE4NzFhYTNlOThkN2JlMjIzOTVhYWI0ZmEwZWU3Y2NlNmJhY2YxMjE3MDBkZDY1ZGUyNTI2OTYyIn0%3D" />
+              </Biscuit>
+            </list>
+          </option>
+          <option name="httpMethod" value="GET" />
+          <option name="urlBase" value="http://localhost:8070" />
+          <option name="urlPath" value="/projects/devman/devman/public/api/services/blog" />
+          <option name="headers">
+            <list>
+              <KeyValuePair>
+                <option name="key" value="Accept" />
+                <option name="value" value="*/*" />
+              </KeyValuePair>
+              <KeyValuePair>
+                <option name="key" value="Cache-Control" />
+                <option name="value" value="no-cache" />
+              </KeyValuePair>
+              <KeyValuePair>
+                <option name="key" value="select" />
+                <option name="value" value="[&quot;id&quot;]" />
+              </KeyValuePair>
+            </list>
+          </option>
+          <option name="parameters">
+            <list>
+              <KeyValuePair>
+                <option name="key" value="key" />
+                <option name="value" value="user" />
+              </KeyValuePair>
+              <KeyValuePair>
+                <option name="key" value="hash" />
+                <option name="value" value="775309d9884ebe94445f586b6a72b402" />
+              </KeyValuePair>
+            </list>
+          </option>
+          <option name="parametersEnabled" value="true" />
+          <option name="textToSend" value="" />
+          <option name="filesToSend" value="" />
+        </RestClientRequest>
+        <RestClientRequest>
+          <option name="biscuits">
+            <list>
+              <Biscuit>
+                <option name="date" value="1461673179000" />
+                <option name="domain" value="localhost" />
+                <option name="name" value="XSRF-TOKEN" />
+                <option name="path" value="/" />
+                <option name="value" value="eyJpdiI6InoxOWNIM3hcL1c3aUZ5cEJhSGZlbmR3PT0iLCJ2YWx1ZSI6IjF4M3gremJLeWRFWEZjcW9xNmdVSVdQZW00NGNEMG5mVlB6VlwvY1FrdXkxdVBrRHFpKzhVUHNzUnFVRWNienNlMTl0T2FYTUlyeVdKanpyV2lPbnJuQT09IiwibWFjIjoiZTZiYzlmY2E5OGRmNDRhOTZkNDUyNTY2ZGI2Y2JiYWYyMzM4NGE1MWNjNmI0Y2E1ZDJkZmM3OTg1ODJjYTNhYyJ9" />
+              </Biscuit>
+              <Biscuit>
+                <option name="date" value="1461673179000" />
+                <option name="domain" value="localhost" />
+                <option name="name" value="laravel_session" />
+                <option name="path" value="/" />
+                <option name="value" value="eyJpdiI6Im1WemxxSHRNS25GRkZGQk16dDZLVEE9PSIsInZhbHVlIjoiVkt1dmhPNTMwUEJMMHREV3pXaFRwemRCUlp3TXlzT1NmS3cydFRpQk9Qcmk4d1E5WVJyTnFOcnJhSGFVZkx0a1FhRWNEMGwyY3A0bk9IUHZjaGZ1RVE9PSIsIm1hYyI6IjlhYjQ3YmVlZjNiZjRkMTJmMjAxNjEzZWMzMjYxMGM3ZDY2MjZlMTFlNmQyZGNiZmZjNjZiM2ZjOWQ3YjhhZmEifQ%3D%3D" />
+              </Biscuit>
+            </list>
+          </option>
+          <option name="httpMethod" value="GET" />
+          <option name="urlBase" value="http://localhost:8070" />
+          <option name="urlPath" value="/projects/devman/devman/public/api/services/blog" />
+          <option name="headers">
+            <list>
+              <KeyValuePair>
+                <option name="key" value="Accept" />
+                <option name="value" value="*/*" />
+              </KeyValuePair>
+              <KeyValuePair>
+                <option name="key" value="Cache-Control" />
+                <option name="value" value="no-cache" />
+              </KeyValuePair>
+              <KeyValuePair>
+                <option name="key" value="select" />
+                <option name="value" value="[&quot;id&quot;]" />
+              </KeyValuePair>
+            </list>
+          </option>
+          <option name="parameters">
+            <list>
+              <KeyValuePair>
+                <option name="key" value="key" />
+                <option name="value" value="user" />
+              </KeyValuePair>
+              <KeyValuePair>
+                <option name="key" value="hash" />
+                <option name="value" value="775309d9884ebe94445f586b6a72b402" />
+              </KeyValuePair>
+            </list>
+          </option>
+          <option name="parametersEnabled" value="true" />
+          <option name="textToSend" value="" />
+          <option name="filesToSend" value="" />
+        </RestClientRequest>
+        <RestClientRequest>
+          <option name="biscuits">
+            <list>
+              <Biscuit>
+                <option name="date" value="1461672018000" />
+                <option name="domain" value="localhost" />
+                <option name="name" value="XSRF-TOKEN" />
+                <option name="path" value="/" />
+                <option name="value" value="eyJpdiI6InJ4OFNPQlJlKzI4cDUwcHQ2Q0EzdEE9PSIsInZhbHVlIjoiUWhWcW0xc0Zld3NUdEQxRFpkdisrOWFOUm9jR1ZBRys0b2VGVWNlV3VwTWMyMUdmdXh0R0owNjYrb3FcL0VLUWl2ZGVOUE1Fa1wvZFlKMkVOeVRXNXllQT09IiwibWFjIjoiMWNmN2NjNzJhMjIxMjA2Y2M3ZTQzMjNkYzgwMDRhOTJmNmU3ZjZhNmIwN2U2MmZhNmFiMjhiYmNiNmY5ODIwMCJ9" />
+              </Biscuit>
+              <Biscuit>
+                <option name="date" value="1461672018000" />
+                <option name="domain" value="localhost" />
+                <option name="name" value="laravel_session" />
+                <option name="path" value="/" />
+                <option name="value" value="eyJpdiI6ImlMQUdXaXlvTXZHd0kwR3hyQllZWUE9PSIsInZhbHVlIjoiNDE2dUdlT0hBajRzUkpMckNoWVZhQmNQR3RSWU43R3prSWErM1k3Mm4wXC91OUhYb2dxa2liK05NNTU2WlI0dUV1ZTdWMHBQRVBzWm4xTGQyWjNFamlRPT0iLCJtYWMiOiIyODdjZjgxNjAzNWY3OTE0MTEyYWFjNmZjZjJjNTVhMDZiYTI2ZmM0MmM0Yzk3Zjg5MjJkY2M1YmNjMzNiMjA0In0%3D" />
+              </Biscuit>
+            </list>
+          </option>
+          <option name="httpMethod" value="GET" />
+          <option name="urlBase" value="http://localhost:8070" />
+          <option name="urlPath" value="/projects/devman/devman/public/api/services/blog" />
+          <option name="headers">
+            <list>
+              <KeyValuePair>
+                <option name="key" value="Accept" />
+                <option name="value" value="*/*" />
+              </KeyValuePair>
+              <KeyValuePair>
+                <option name="key" value="Cache-Control" />
+                <option name="value" value="no-cache" />
+              </KeyValuePair>
+            </list>
+          </option>
+          <option name="parameters">
+            <list>
+              <KeyValuePair>
+                <option name="key" value="key" />
+                <option name="value" value="user" />
+              </KeyValuePair>
+              <KeyValuePair>
+                <option name="key" value="hash" />
+                <option name="value" value="775309d9884ebe94445f586b6a72b402" />
+              </KeyValuePair>
+            </list>
+          </option>
+          <option name="parametersEnabled" value="true" />
+          <option name="textToSend" value="" />
+          <option name="filesToSend" value="" />
+        </RestClientRequest>
+        <RestClientRequest>
+          <option name="biscuits">
+            <list>
+              <Biscuit>
+                <option name="date" value="1461671995000" />
+                <option name="domain" value="localhost" />
+                <option name="name" value="XSRF-TOKEN" />
+                <option name="path" value="/" />
+                <option name="value" value="eyJpdiI6InVwVUJjdWU5aDZoQVNmTkxmME9kaHc9PSIsInZhbHVlIjoiMWJmU2NXekV4T0hDVWJZTWZVU2V0V1wvM3IwemZpeVVOR0I5ZUcwOVNUQjF0YUFLZjl3NVhhRGZ1Nk55VHBHSEE0RlBZS0RYTjY3Z0ZsckQzXC9PeVZLdz09IiwibWFjIjoiNzZkNmIwOTE1M2MyM2ZhMjU1ZjE0YzBkMTVjMWEzMzg1MDc3N2U0OTFmYzZkMzdlZTA4MDM1NmU4NjAwMTcwNSJ9" />
+              </Biscuit>
+              <Biscuit>
+                <option name="date" value="1461671995000" />
+                <option name="domain" value="localhost" />
+                <option name="name" value="laravel_session" />
+                <option name="path" value="/" />
+                <option name="value" value="eyJpdiI6IlZ5Y1wvRkpcL2VNMWJaeXNtd3dJRUx5UT09IiwidmFsdWUiOiJEc3RqT2d2eG9LV1BQXC9zTXVhc0l5N25IYkZmOVk0cDUrWnZIVzJEWURUREZ2ZVdQb1NoZFpjYVJYRXdLVnlFNmFiMjdVMXBtNFIzNERVQWk0UVlpWUE9PSIsIm1hYyI6ImI5MmUxOGMzZjg5MTM2OTNhZTNhMDNhMmY2YzBjNjczZmUxYzBkZWUzNTY0YTQ5YTlhZjFiNWNhOTYxYWRkNDkifQ%3D%3D" />
+              </Biscuit>
+            </list>
+          </option>
+          <option name="httpMethod" value="GET" />
+          <option name="urlBase" value="http://localhost:8070" />
+          <option name="urlPath" value="/projects/devman/devman/public/api/services/blog" />
+          <option name="headers">
+            <list>
+              <KeyValuePair>
+                <option name="key" value="Accept" />
+                <option name="value" value="*/*" />
+              </KeyValuePair>
+              <KeyValuePair>
+                <option name="key" value="Cache-Control" />
+                <option name="value" value="no-cache" />
+              </KeyValuePair>
+            </list>
+          </option>
+          <option name="parameters">
+            <list>
+              <KeyValuePair>
+                <option name="key" value="key" />
+                <option name="value" value="user" />
+              </KeyValuePair>
+              <KeyValuePair>
+                <option name="key" value="hash" />
+                <option name="value" value="775309d9884ebe94445f586b6a72b402" />
+              </KeyValuePair>
+            </list>
+          </option>
+          <option name="parametersEnabled" value="true" />
+          <option name="textToSend" value="" />
+          <option name="filesToSend" value="" />
+        </RestClientRequest>
+        <RestClientRequest>
+          <option name="biscuits">
+            <list>
+              <Biscuit>
+                <option name="date" value="1461671995000" />
+                <option name="domain" value="localhost" />
+                <option name="name" value="XSRF-TOKEN" />
+                <option name="path" value="/" />
+                <option name="value" value="eyJpdiI6InVwVUJjdWU5aDZoQVNmTkxmME9kaHc9PSIsInZhbHVlIjoiMWJmU2NXekV4T0hDVWJZTWZVU2V0V1wvM3IwemZpeVVOR0I5ZUcwOVNUQjF0YUFLZjl3NVhhRGZ1Nk55VHBHSEE0RlBZS0RYTjY3Z0ZsckQzXC9PeVZLdz09IiwibWFjIjoiNzZkNmIwOTE1M2MyM2ZhMjU1ZjE0YzBkMTVjMWEzMzg1MDc3N2U0OTFmYzZkMzdlZTA4MDM1NmU4NjAwMTcwNSJ9" />
+              </Biscuit>
+              <Biscuit>
+                <option name="date" value="1461671995000" />
+                <option name="domain" value="localhost" />
+                <option name="name" value="laravel_session" />
+                <option name="path" value="/" />
+                <option name="value" value="eyJpdiI6IlZ5Y1wvRkpcL2VNMWJaeXNtd3dJRUx5UT09IiwidmFsdWUiOiJEc3RqT2d2eG9LV1BQXC9zTXVhc0l5N25IYkZmOVk0cDUrWnZIVzJEWURUREZ2ZVdQb1NoZFpjYVJYRXdLVnlFNmFiMjdVMXBtNFIzNERVQWk0UVlpWUE9PSIsIm1hYyI6ImI5MmUxOGMzZjg5MTM2OTNhZTNhMDNhMmY2YzBjNjczZmUxYzBkZWUzNTY0YTQ5YTlhZjFiNWNhOTYxYWRkNDkifQ%3D%3D" />
+              </Biscuit>
+            </list>
+          </option>
+          <option name="httpMethod" value="GET" />
+          <option name="urlBase" value="http://localhost:8070" />
+          <option name="urlPath" value="/projects/devman/devman/public/api/services/blog" />
+          <option name="headers">
+            <list>
+              <KeyValuePair>
+                <option name="key" value="Accept" />
+                <option name="value" value="*/*" />
+              </KeyValuePair>
+              <KeyValuePair>
+                <option name="key" value="Cache-Control" />
+                <option name="value" value="no-cache" />
+              </KeyValuePair>
+              <KeyValuePair>
+                <option name="key" value="select" />
+                <option name="value" value="[&quot;id&quot;,&quot;username&quot;,&quot;fullname&quot;]" />
+              </KeyValuePair>
+              <KeyValuePair>
+                <option name="key" value="platform" />
+                <option name="value" value="ios" />
+              </KeyValuePair>
+            </list>
+          </option>
+          <option name="parameters">
+            <list>
+              <KeyValuePair>
+                <option name="key" value="key" />
+                <option name="value" value="user" />
+              </KeyValuePair>
+              <KeyValuePair>
+                <option name="key" value="hash" />
+                <option name="value" value="775309d9884ebe94445f586b6a72b402" />
+              </KeyValuePair>
+            </list>
+          </option>
+          <option name="parametersEnabled" value="true" />
+          <option name="textToSend" value="" />
+          <option name="filesToSend" value="" />
+        </RestClientRequest>
+        <RestClientRequest>
+          <option name="biscuits">
+            <list>
+              <Biscuit>
+                <option name="date" value="1461669543000" />
+                <option name="domain" value="localhost" />
+                <option name="name" value="XSRF-TOKEN" />
+                <option name="path" value="/" />
+                <option name="value" value="eyJpdiI6IlIzNm5QdXBCNmZJXC94NG9GUmZtT1hnPT0iLCJ2YWx1ZSI6InBIWFJBZENydDJ6ejhRd1JDRGo5N2Rob2xrQ2lWNTJkXC8wVFwvSHY0UDVWdXVPRlpuZjc1UHVldmhlbnVDOVQ5KzNVcWZ6NVg0Y1BhUkZrdldKWDBKRFE9PSIsIm1hYyI6IjhlZTIzMTRmODY5ZjI2ZmQwYTk4NjVjZDhlZmIwYTc5NWE0ZDhkMzkyNGUyZmRmOGU5ZGU3YmU3YzIxYWFhNWMifQ%3D%3D" />
+              </Biscuit>
+              <Biscuit>
+                <option name="date" value="1461669543000" />
+                <option name="domain" value="localhost" />
+                <option name="name" value="laravel_session" />
+                <option name="path" value="/" />
+                <option name="value" value="eyJpdiI6IkI2SUR5SDhTaXg0alp5QTd3MXErN1E9PSIsInZhbHVlIjoiOU82cnNtRkFtdTVTdTlvRUlYcWpZSHN6bXIxc0xPTUdRYUJIeU1zSHNkSnhcL2tPanh1Q09oWjRXWVFQU2ZIOWNtS0RBK0ZoQlJhZ0RMYWdIT2phWm5BPT0iLCJtYWMiOiI4YWU2NDRmNGZlMTBhZjYwNjNiMTFjYWQ0NmQxOWUwMmZhZjBlYmI2ZGRmMzk2Y2JhODhlZWZiNzBmNTIyMjYzIn0%3D" />
+              </Biscuit>
+            </list>
+          </option>
+          <option name="httpMethod" value="GET" />
+          <option name="urlBase" value="http://localhost:8070" />
+          <option name="urlPath" value="/projects/devman/devman/public/api/services/blog" />
+          <option name="headers">
+            <list>
+              <KeyValuePair>
+                <option name="key" value="Accept" />
+                <option name="value" value="*/*" />
+              </KeyValuePair>
+              <KeyValuePair>
+                <option name="key" value="Cache-Control" />
+                <option name="value" value="no-cache" />
+              </KeyValuePair>
+              <KeyValuePair>
+                <option name="key" value="select" />
+                <option name="value" value="[&quot;id&quot;,&quot;username&quot;,&quot;fullname&quot;]" />
+              </KeyValuePair>
+              <KeyValuePair>
+                <option name="key" value="platform" />
+                <option name="value" value="ios" />
+              </KeyValuePair>
+            </list>
+          </option>
+          <option name="parameters">
+            <list>
+              <KeyValuePair>
+                <option name="key" value="key" />
+                <option name="value" value="user" />
+              </KeyValuePair>
+              <KeyValuePair>
+                <option name="key" value="hash" />
+                <option name="value" value="775309d9884ebe94445f586b6a72b402" />
+              </KeyValuePair>
+              <KeyValuePair>
+                <option name="key" value="method" />
+                <option name="value" value="listeleme" />
+              </KeyValuePair>
+            </list>
+          </option>
+          <option name="parametersEnabled" value="true" />
+          <option name="textToSend" value="" />
+          <option name="filesToSend" value="" />
+        </RestClientRequest>
+        <RestClientRequest>
+          <option name="biscuits">
+            <list>
+              <Biscuit>
+                <option name="date" value="1461669524000" />
+                <option name="domain" value="localhost" />
+                <option name="name" value="XSRF-TOKEN" />
+                <option name="path" value="/" />
+                <option name="value" value="eyJpdiI6InpZdGJVMEpMVk5QQjZ4d1ByN0VKRXc9PSIsInZhbHVlIjoibzIybnhzMkQ5dWs3UFRuWjdFQUxRc1VzdUIwTmIybkpaTWJnellvN0FZdVBsNzVYRG02a0dadDV1MkxodXBvd21IaFwvakFZV2NKbFJCc1BVMyt5aGxBPT0iLCJtYWMiOiI0OGIwZjM0MDExNDEwYzM5MmFjYjJjNmZmM2U3MGYxNTU1NzRkZWFjZDVjMjhiMGJjMmQ2MGYxNDJjYjA1YjdkIn0%3D" />
+              </Biscuit>
+              <Biscuit>
+                <option name="date" value="1461669524000" />
+                <option name="domain" value="localhost" />
+                <option name="name" value="laravel_session" />
+                <option name="path" value="/" />
+                <option name="value" value="eyJpdiI6Inc2YTI2cExvZ1NOTXN0YjMyVzlvcVE9PSIsInZhbHVlIjoibk1Jc0dMZURlK1Y3U0dJMVwvcTVjbnpJWmZRbDE4cXZcL3JveVRXbjN1S0NDQlorN0FFTnBzQ1hHMzZoWmkyQU9teTFnRXRTbnlYUU9NZVwvMUM1RVVGQXc9PSIsIm1hYyI6ImMwYTcxOWZmMTE0OTdmMTA5MWY0NWMzOTQ2YjNlZGYyZDZhYzE1ZmQ4MzUwODUwZjZmZDBkOTI4OWJjNjBlZTkifQ%3D%3D" />
+              </Biscuit>
+            </list>
+          </option>
+          <option name="httpMethod" value="GET" />
+          <option name="urlBase" value="http://localhost:8070" />
+          <option name="urlPath" value="/projects/devman/devman/public/api/services/blog" />
+          <option name="headers">
+            <list>
+              <KeyValuePair>
+                <option name="key" value="Accept" />
+                <option name="value" value="*/*" />
+              </KeyValuePair>
+              <KeyValuePair>
+                <option name="key" value="Cache-Control" />
+                <option name="value" value="no-cache" />
+              </KeyValuePair>
+              <KeyValuePair>
+                <option name="key" value="select" />
+                <option name="value" value="[&quot;id&quot;,&quot;username&quot;,&quot;fullname&quot;]" />
+              </KeyValuePair>
+              <KeyValuePair>
+                <option name="key" value="platform" />
+                <option name="value" value="ios" />
+              </KeyValuePair>
+            </list>
+          </option>
+          <option name="parameters">
+            <list>
+              <KeyValuePair>
+                <option name="key" value="key" />
+                <option name="value" value="user" />
+              </KeyValuePair>
+              <KeyValuePair>
+                <option name="key" value="hash" />
+                <option name="value" value="775309d9884ebe94445f586b6a72b402" />
+              </KeyValuePair>
+              <KeyValuePair>
+                <option name="key" value="version" />
+                <option name="value" value="v2" />
+              </KeyValuePair>
+            </list>
+          </option>
+          <option name="parametersEnabled" value="true" />
+          <option name="textToSend" value="" />
+          <option name="filesToSend" value="" />
+        </RestClientRequest>
+        <RestClientRequest>
+          <option name="biscuits">
+            <list>
+              <Biscuit>
+                <option name="date" value="1461668784000" />
+                <option name="domain" value="localhost" />
+                <option name="name" value="XSRF-TOKEN" />
+                <option name="path" value="/" />
+                <option name="value" value="eyJpdiI6IkZkYkhPSXdIaVZpU1BQZWI5bTFYTmc9PSIsInZhbHVlIjoiWDBzVHdxSVBuXC9pYWc0MHhybDRtYXcrTU1Ja3I3TXl4XC84VUxUM2lWZlBBdG90T3NkM1laa3h1UUVWVDBkU0VIb0dtZERjblVLS2JiT2hvVVZJU2VzUT09IiwibWFjIjoiODQ5MDA2ZTI2M2U3ZDEzNGQxNWM4M2UxYjY0OWZlYjZjMzAyNjhkZTA2ODJiNzgwN2U4MDQwNjRhMmEwZGFiOSJ9" />
+              </Biscuit>
+              <Biscuit>
+                <option name="date" value="1461668784000" />
+                <option name="domain" value="localhost" />
+                <option name="name" value="laravel_session" />
+                <option name="path" value="/" />
+                <option name="value" value="eyJpdiI6IjZxaUx5MGFPbVdVSXExQmlvbWtDVVE9PSIsInZhbHVlIjoiRlwvdWFWbEU2UUFmY1ZKSkJ5WUVPMkJYeGN1dklPY3VDQnlSbWNTQUQ3bVNCcnowY3ZpdCtGdkNwMHRSMWhIdUtkc3pNZlVNR3ZrNTQyanJVM2FwOXVRPT0iLCJtYWMiOiI3ZTFlMWVkMDk0YmUwMzIzMTg3YzlkZjA3MjVhZDdjNThmZjhkNTYwMWZkNGExYjVkOTI5ODc1ODliODlkNjBmIn0%3D" />
+              </Biscuit>
+            </list>
+          </option>
+          <option name="httpMethod" value="GET" />
+          <option name="urlBase" value="http://localhost:8070" />
+          <option name="urlPath" value="/projects/devman/devman/public/api/services/blog" />
+          <option name="headers">
+            <list>
+              <KeyValuePair>
+                <option name="key" value="Accept" />
+                <option name="value" value="*/*" />
+              </KeyValuePair>
+              <KeyValuePair>
+                <option name="key" value="Cache-Control" />
+                <option name="value" value="no-cache" />
+              </KeyValuePair>
+              <KeyValuePair>
+                <option name="key" value="select" />
+                <option name="value" value="[&quot;id&quot;,&quot;username&quot;,&quot;fullname&quot;]" />
+              </KeyValuePair>
+              <KeyValuePair>
+                <option name="key" value="platform" />
+                <option name="value" value="ios" />
+              </KeyValuePair>
+            </list>
+          </option>
+          <option name="parameters">
+            <list>
+              <KeyValuePair>
+                <option name="key" value="key" />
+                <option name="value" value="user" />
+              </KeyValuePair>
+              <KeyValuePair>
+                <option name="key" value="hash" />
+                <option name="value" value="775309d9884ebe94445f586b6a72b402" />
+              </KeyValuePair>
+              <KeyValuePair>
+                <option name="key" value="version" />
+                <option name="value" value="v2" />
+              </KeyValuePair>
+              <KeyValuePair>
+                <option name="key" value="method" />
+                <option name="value" value="listeleme" />
+              </KeyValuePair>
+            </list>
+          </option>
+          <option name="parametersEnabled" value="true" />
+          <option name="textToSend" value="" />
+          <option name="filesToSend" value="" />
+        </RestClientRequest>
+        <RestClientRequest>
+          <option name="biscuits">
+            <list>
+              <Biscuit>
+                <option name="date" value="1461667767000" />
+                <option name="domain" value="localhost" />
+                <option name="name" value="XSRF-TOKEN" />
+                <option name="path" value="/" />
+                <option name="value" value="eyJpdiI6Im1NREdTTW02WjF4VmVWUDlOUVwvSnF3PT0iLCJ2YWx1ZSI6InJudmtieGdwMU02OEpDcGVKUENSWk0yRlRRc3JsdnBkS0djRkZuUFI1RWJXVWVySms5TjM2SDBvNW1LYjFKUFIyUXhsOHZ0M1ozaVV2S2JNR2ZIcFdRPT0iLCJtYWMiOiI0YmYwYjZlM2UyMWY5NDVkZTNjNDEyZDE3MzdlOTZjMzEwMmNiNjgxOGQ1MDJhNzU3MzhhNjQ5OGU5OGZiNDBiIn0%3D" />
+              </Biscuit>
+              <Biscuit>
+                <option name="date" value="1461667767000" />
+                <option name="domain" value="localhost" />
+                <option name="name" value="laravel_session" />
+                <option name="path" value="/" />
+                <option name="value" value="eyJpdiI6InFPTEFzZ0lHeHdCaUpWT0I0K1BKRUE9PSIsInZhbHVlIjoicm5EMStOQWM4N0syTlJJR1daT3NSbFkrUWszVkJmY3hyUG05OGNXS083R2ZoZndyYjVEOVp0dkl3WStNWlJPNm9qeVBuY0phV0Y4RWwxSjlDTGpQMUE9PSIsIm1hYyI6IjI5NzFhYTUyN2Y3NTIwNTE2ZThiNTE0MzliYzU0MWUzYTAyMjZhNmY2MmMwYzY4MmVjNzFhZDgyY2ZjYTc2ZmYifQ%3D%3D" />
+              </Biscuit>
+            </list>
+          </option>
+          <option name="httpMethod" value="GET" />
+          <option name="urlBase" value="http://localhost:8070" />
+          <option name="urlPath" value="/projects/devman/devman/public/api/services/blog" />
+          <option name="headers">
+            <list>
+              <KeyValuePair>
+                <option name="key" value="Accept" />
+                <option name="value" value="*/*" />
+              </KeyValuePair>
+              <KeyValuePair>
+                <option name="key" value="Cache-Control" />
+                <option name="value" value="no-cache" />
+              </KeyValuePair>
+              <KeyValuePair>
+                <option name="key" value="select" />
+                <option name="value" value="[&quot;id&quot;,&quot;username&quot;,&quot;fullname&quot;]" />
+              </KeyValuePair>
+              <KeyValuePair>
+                <option name="key" value="platform" />
+                <option name="value" value="ios" />
+              </KeyValuePair>
+            </list>
+          </option>
+          <option name="parameters">
+            <list>
+              <KeyValuePair>
+                <option name="key" value="key" />
+                <option name="value" value="user" />
+              </KeyValuePair>
+              <KeyValuePair>
+                <option name="key" value="hash" />
+                <option name="value" value="775309d9884ebe94445f586b6a72b402" />
+              </KeyValuePair>
+              <KeyValuePair>
+                <option name="key" value="version" />
+                <option name="value" value="v2" />
+              </KeyValuePair>
+              <KeyValuePair>
+                <option name="key" value="method" />
+                <option name="value" value="listeleme" />
+              </KeyValuePair>
+            </list>
+          </option>
+          <option name="parametersEnabled" value="true" />
+          <option name="textToSend" value="" />
+          <option name="filesToSend" value="" />
+        </RestClientRequest>
+        <RestClientRequest>
+          <option name="biscuits">
+            <list>
+              <Biscuit>
+                <option name="date" value="1461664750000" />
+                <option name="domain" value="localhost" />
+                <option name="name" value="XSRF-TOKEN" />
+                <option name="path" value="/" />
+                <option name="value" value="eyJpdiI6IkxSb2lCdDk2bGc0WEpxZ1FjdnFqNUE9PSIsInZhbHVlIjoiMFNRelBYalphS1k3eHVtZWNqSjZ3U2pCcnoyYVY0WGxYeE9zTU9LTTlVU0R6b3l5UW1JRnVia0loMWVVZGo0dWduaEFrN3NtQmlON1UxMWpYdWthVWc9PSIsIm1hYyI6IjI1NjBjOWEwNmVhNWQ3OTc0NzdlNDVlNjNkODEwMjdhMjI5ZjEwN2JlOTA1ZDJiNDU5NGQ1NmViY2FjYzk4MGYifQ%3D%3D" />
+              </Biscuit>
+              <Biscuit>
+                <option name="date" value="1461664750000" />
+                <option name="domain" value="localhost" />
+                <option name="name" value="laravel_session" />
+                <option name="path" value="/" />
+                <option name="value" value="eyJpdiI6IlwvZHZUSktPZERSdnBEaWZ3WG5cL1VoUT09IiwidmFsdWUiOiJxNWpIdGx4TWNqdVp3dVZZcW9iY3g2WnJQK0g3Z2FUZThCYWR4TFVcL0VMTElKYmthdGVoUFdNSloxRDdZZ0Z0anhNMmtRenVTc1BwUFRaUnBvZXltZHc9PSIsIm1hYyI6IjBiODFmMzY1ZjU1NmMzNzM5ODRhMGM1MmFhYzllNmRjZDQ2NjYxZWY2MGY0YzBlMjJkMTA5NGZhZGU1NjBhODgifQ%3D%3D" />
+              </Biscuit>
+            </list>
+          </option>
+          <option name="httpMethod" value="GET" />
+          <option name="urlBase" value="http://localhost:8070" />
+          <option name="urlPath" value="/projects/devman/devman/public/api/services/blog" />
+          <option name="headers">
+            <list>
+              <KeyValuePair>
+                <option name="key" value="Accept" />
+                <option name="value" value="*/*" />
+              </KeyValuePair>
+              <KeyValuePair>
+                <option name="key" value="Cache-Control" />
+                <option name="value" value="no-cache" />
+              </KeyValuePair>
+              <KeyValuePair>
+                <option name="key" value="select" />
+                <option name="value" value="[&quot;id&quot;,&quot;username&quot;,&quot;fullname&quot;]" />
+              </KeyValuePair>
+              <KeyValuePair>
+                <option name="key" value="platform" />
+                <option name="value" value="ios" />
+              </KeyValuePair>
+            </list>
+          </option>
+          <option name="parameters">
+            <list>
+              <KeyValuePair>
+                <option name="key" value="key" />
+                <option name="value" value="user" />
+              </KeyValuePair>
+              <KeyValuePair>
+                <option name="key" value="hash" />
+                <option name="value" value="775309d9884ebe94445f586b6a72b402" />
+              </KeyValuePair>
+              <KeyValuePair>
+                <option name="key" value="version" />
+                <option name="value" value="v2" />
+              </KeyValuePair>
+              <KeyValuePair>
+                <option name="key" value="method" />
+                <option name="value" value="listeleme" />
+              </KeyValuePair>
+            </list>
+          </option>
+          <option name="parametersEnabled" value="true" />
+          <option name="textToSend" value="" />
+          <option name="filesToSend" value="" />
+        </RestClientRequest>
         <RestClientRequest>
           <option name="biscuits">
             <list>
@@ -2978,776 +3621,6 @@
           <option name="textToSend" value="" />
           <option name="filesToSend" value="" />
         </RestClientRequest>
-        <RestClientRequest>
-          <option name="biscuits">
-            <list>
-              <Biscuit>
-                <option name="date" value="1461661566000" />
-                <option name="domain" value="localhost" />
-                <option name="name" value="XSRF-TOKEN" />
-                <option name="path" value="/" />
-                <option name="value" value="eyJpdiI6IkdlMVZMRThGRWxqOHdqK1NuRkVrcXc9PSIsInZhbHVlIjoiNkEzRVpBTVlpUmY5OHRKb1Z0a0J2YzNXR0RzNWtRR3dDRVBWNzhcL3p4V2dsOHpvOXlSSEN6ZitOaWdnR0VGT0NqRE05THU0cnROZ0hCQW9lTk5pUHRnPT0iLCJtYWMiOiIxYWZlODY1MGIzNGM5YjA5MWI4ODUzOTRiNjgyMmFkYjQzMDJlY2QzNTYyMTFlY2RiY2U2NzIxOGUxYzEyYjljIn0%3D" />
-              </Biscuit>
-              <Biscuit>
-                <option name="date" value="1461661566000" />
-                <option name="domain" value="localhost" />
-                <option name="name" value="laravel_session" />
-                <option name="path" value="/" />
-                <option name="value" value="eyJpdiI6InNNQ2lsU0U0UGp2TitsMzJNQ0NueHc9PSIsInZhbHVlIjoiV1JIM1V5MWtjQ0ZHTWNzbnB1QkZKMlBwSmFFc3lzS1MyOUpZeTgxbHJQVE01REJMS0FGbWVESFRraTBacjhqb0ZERW5XQ2EyWTRBUUMweXI3aUNBZEE9PSIsIm1hYyI6ImY2ZDRiZjJjMmVhOTdiM2RkZmVhNjM3ZmRjYTIzMWQzZjAxYTQwNTg2YzAwZDVlNWIwYWQxNjEwYTZkNWQ5NGEifQ%3D%3D" />
-              </Biscuit>
-            </list>
-          </option>
-          <option name="httpMethod" value="GET" />
-          <option name="urlBase" value="http://localhost:8070" />
-          <option name="urlPath" value="/projects/devman/devman/public/api/services/blog" />
-          <option name="headers">
-            <list>
-              <KeyValuePair>
-                <option name="key" value="Accept" />
-                <option name="value" value="*/*" />
-              </KeyValuePair>
-              <KeyValuePair>
-                <option name="key" value="Cache-Control" />
-                <option name="value" value="no-cache" />
-              </KeyValuePair>
-              <KeyValuePair>
-                <option name="key" value="select" />
-                <option name="value" value="[&quot;id&quot;,&quot;username&quot;,&quot;fullname&quot;]" />
-              </KeyValuePair>
-              <KeyValuePair>
-                <option name="key" value="where" />
-                <option name="value" value="{&quot;id&quot;:55}" />
-              </KeyValuePair>
-            </list>
-          </option>
-          <option name="parameters">
-            <list>
-              <KeyValuePair>
-                <option name="key" value="key" />
-                <option name="value" value="aligurbuz" />
-              </KeyValuePair>
-              <KeyValuePair>
-                <option name="key" value="hash" />
-                <option name="value" value="7d40c8cdfa699c26138080090c09a678" />
-              </KeyValuePair>
-              <KeyValuePair>
-                <option name="key" value="key" />
-                <option name="value" value="aligurbuz" />
-              </KeyValuePair>
-              <KeyValuePair>
-                <option name="key" value="hash" />
-                <option name="value" value="7d40c8cdfa699c26138080090c09a678" />
-              </KeyValuePair>
-              <KeyValuePair>
-                <option name="key" value="version" />
-                <option name="value" value="v2" />
-              </KeyValuePair>
-            </list>
-          </option>
-          <option name="parametersEnabled" value="true" />
-          <option name="textToSend" value="" />
-          <option name="filesToSend" value="" />
-        </RestClientRequest>
-        <RestClientRequest>
-          <option name="biscuits">
-            <list>
-              <Biscuit>
-                <option name="date" value="1461661541000" />
-                <option name="domain" value="localhost" />
-                <option name="name" value="XSRF-TOKEN" />
-                <option name="path" value="/" />
-                <option name="value" value="eyJpdiI6IlwvUThHM0lWNEtQek5XVUltMlFxWHB3PT0iLCJ2YWx1ZSI6InJ1RXZiODQwVUZjSGZhTFJscGNWcGJXcTJjU3ljNzlhY1Z5aHc0UXdqZEJZUFk4UmVZK3Z6dk56Mm1GWmNIV1wvdG12anhFbmh3WVlYdEZzK01RdUVOUT09IiwibWFjIjoiYTlkZjFjMzJiMTZjZjA2ZTE2NDA4OGZhMjk3OWNkNjMzOGE0MDYxOTYyZWVjNjU1ODRkNDUyZDk1MTc4NWQ5NyJ9" />
-              </Biscuit>
-              <Biscuit>
-                <option name="date" value="1461661541000" />
-                <option name="domain" value="localhost" />
-                <option name="name" value="laravel_session" />
-                <option name="path" value="/" />
-                <option name="value" value="eyJpdiI6IlwvaUp6dDNxRitLTlZiaXBTUXo4Nk13PT0iLCJ2YWx1ZSI6Ik1LVVpNanJHejdDTGNHUGcxQ29lWUdHUWRDbXprZ0NTeTc0UnlGdHBpXC9QbEJNSmkzdkpxMHE3K0JEYlQyQWoxYzVtbmlKUDFZbHBtUkdhY3B0eGJ5UT09IiwibWFjIjoiZGNiODYzNDUyZmJkY2YxZGE1OGQ1N2IxNzljZDVlMTI2OTAxMjE1NTkzYzc0NWRmZDEwNThjMTY5OTBiZTc0OSJ9" />
-              </Biscuit>
-            </list>
-          </option>
-          <option name="httpMethod" value="GET" />
-          <option name="urlBase" value="http://localhost:8070" />
-          <option name="urlPath" value="/projects/devman/devman/public/api/services/blog" />
-          <option name="headers">
-            <list>
-              <KeyValuePair>
-                <option name="key" value="Accept" />
-                <option name="value" value="*/*" />
-              </KeyValuePair>
-              <KeyValuePair>
-                <option name="key" value="Cache-Control" />
-                <option name="value" value="no-cache" />
-              </KeyValuePair>
-              <KeyValuePair>
-                <option name="key" value="select" />
-                <option name="value" value="[&quot;id&quot;,&quot;username&quot;,&quot;fullname&quot;]" />
-              </KeyValuePair>
-              <KeyValuePair>
-                <option name="key" value="where" />
-                <option name="value" value="{&quot;id&quot;:55}" />
-              </KeyValuePair>
-            </list>
-          </option>
-          <option name="parameters">
-            <list>
-              <KeyValuePair>
-                <option name="key" value="key" />
-                <option name="value" value="aligurbuz" />
-              </KeyValuePair>
-              <KeyValuePair>
-                <option name="key" value="hash" />
-                <option name="value" value="7d40c8cdfa699c26138080090c09a678" />
-              </KeyValuePair>
-              <KeyValuePair>
-                <option name="key" value="key" />
-                <option name="value" value="aligurbuz" />
-              </KeyValuePair>
-              <KeyValuePair>
-                <option name="key" value="hash" />
-                <option name="value" value="7d40c8cdfa699c26138080090c09a678" />
-              </KeyValuePair>
-              <KeyValuePair>
-                <option name="key" value="version" />
-                <option name="value" value="v2" />
-              </KeyValuePair>
-            </list>
-          </option>
-          <option name="parametersEnabled" value="true" />
-          <option name="textToSend" value="" />
-          <option name="filesToSend" value="" />
-        </RestClientRequest>
-        <RestClientRequest>
-          <option name="biscuits">
-            <list>
-              <Biscuit>
-                <option name="date" value="1461661473000" />
-                <option name="domain" value="localhost" />
-                <option name="name" value="XSRF-TOKEN" />
-                <option name="path" value="/" />
-                <option name="value" value="eyJpdiI6Ijd1V2xReTMyWGFORFp3RHNCK3hpRnc9PSIsInZhbHVlIjoiQVdubCtpcU9WM3Z0S3RhXC91T3dUNFMzdTNONXhMUFVYQTFtc3NscEJcL0pkVFkyeElKSzFqa3Yyb291SmNPZ0RLZGJNdUJWOW9acTFsUGhWRkcxWHJ5Zz09IiwibWFjIjoiODNlMTY0YjQ5NzNlNzEwMmI1YzRhNmE3YjY3YmQzY2QyOGRkZTgyNTMyZThiMGZlNGI4N2FjMThkZDk5NDBlZSJ9" />
-              </Biscuit>
-              <Biscuit>
-                <option name="date" value="1461661473000" />
-                <option name="domain" value="localhost" />
-                <option name="name" value="laravel_session" />
-                <option name="path" value="/" />
-                <option name="value" value="eyJpdiI6Im1SZlBpY29pb3ZlTVIwUkN5TzhCSHc9PSIsInZhbHVlIjoiM0FNZExzVlNTODhESXh6Y2RiSFZFc3htYlZ6MTMwZmh6R3phM2xLUUdKTjR2VHpPbGh6dld3Q1Q5UVVzbWZxWnI3QmloQUxJVWJwMTRWZVpqQVdRV3c9PSIsIm1hYyI6IjA5ZGY0N2UzNGEwNGU2NmRjODMzMjRiOWI1OTMxZTQzNDBhM2M5NDVmZDdhNjYxZDA1M2U2OWI3YmQ2NDhiZTEifQ%3D%3D" />
-              </Biscuit>
-            </list>
-          </option>
-          <option name="httpMethod" value="GET" />
-          <option name="urlBase" value="http://localhost:8070" />
-          <option name="urlPath" value="/projects/devman/devman/public/api/services/blog" />
-          <option name="headers">
-            <list>
-              <KeyValuePair>
-                <option name="key" value="Accept" />
-                <option name="value" value="*/*" />
-              </KeyValuePair>
-              <KeyValuePair>
-                <option name="key" value="Cache-Control" />
-                <option name="value" value="no-cache" />
-              </KeyValuePair>
-              <KeyValuePair>
-                <option name="key" value="select" />
-                <option name="value" value="[&quot;id&quot;,&quot;username&quot;,&quot;fullname&quot;]" />
-              </KeyValuePair>
-              <KeyValuePair>
-                <option name="key" value="where" />
-                <option name="value" value="{&quot;id&quot;:55}" />
-              </KeyValuePair>
-            </list>
-          </option>
-          <option name="parameters">
-            <list>
-              <KeyValuePair>
-                <option name="key" value="key" />
-                <option name="value" value="aligurbuz" />
-              </KeyValuePair>
-              <KeyValuePair>
-                <option name="key" value="hash" />
-                <option name="value" value="7d40c8cdfa699c26138080090c09a678" />
-              </KeyValuePair>
-              <KeyValuePair>
-                <option name="key" value="key" />
-                <option name="value" value="aligurbuz" />
-              </KeyValuePair>
-              <KeyValuePair>
-                <option name="key" value="hash" />
-                <option name="value" value="7d40c8cdfa699c26138080090c09a678" />
-              </KeyValuePair>
-              <KeyValuePair>
-                <option name="key" value="version" />
-                <option name="value" value="v2" />
-              </KeyValuePair>
-            </list>
-          </option>
-          <option name="parametersEnabled" value="true" />
-          <option name="textToSend" value="" />
-          <option name="filesToSend" value="" />
-        </RestClientRequest>
-        <RestClientRequest>
-          <option name="biscuits">
-            <list>
-              <Biscuit>
-                <option name="date" value="1461661452000" />
-                <option name="domain" value="localhost" />
-                <option name="name" value="XSRF-TOKEN" />
-                <option name="path" value="/" />
-                <option name="value" value="eyJpdiI6Ik9kYTNmdW40NzdlUkhxMHZ4T1RpU1E9PSIsInZhbHVlIjoiU3VuODdiOWxlakdWV1hmUVBETTc2aFYzOGY3MVlwQnJUaVZLVjRXUHlcL20rSFZ2bFBnbWZCcEVDOE1hSnB5WGVIMGtLUEVsK29ReGtBbkN2b1ZxdVRRPT0iLCJtYWMiOiI3YzJjMWExMmFkMmEyZDc0ZTAwZDEyMWFlMjY5ZDc2MzJkYjY5NjkzMTgyNDY4YjJmNTI5NjgzZjM0OGQyNTA3In0%3D" />
-              </Biscuit>
-              <Biscuit>
-                <option name="date" value="1461661452000" />
-                <option name="domain" value="localhost" />
-                <option name="name" value="laravel_session" />
-                <option name="path" value="/" />
-                <option name="value" value="eyJpdiI6IjNWOG9RTEI4dE92Q3lnUnVKU3d0MkE9PSIsInZhbHVlIjoiajlhcFVPNWhaQUtOc1AwYzZNV1lRMVFwWE9yQlZYMFFDWHFCS2hTWW9nXC9HK0hEbHNleDlJckFNRG5VXC9CTjN0dm94cm9qVk9VTFo3cXVWWGFkclBXQT09IiwibWFjIjoiMDg4MmE3MWUzYjcxYzVmNzI0NzZlMWNjMDM0ODE0NDMwMTUyZWMwODAwMGJjNjA4MDM4OGE3YzZmNDc2NWFhZSJ9" />
-              </Biscuit>
-            </list>
-          </option>
-          <option name="httpMethod" value="GET" />
-          <option name="urlBase" value="http://localhost:8070" />
-          <option name="urlPath" value="/projects/devman/devman/public/api/services/blog" />
-          <option name="headers">
-            <list>
-              <KeyValuePair>
-                <option name="key" value="Accept" />
-                <option name="value" value="*/*" />
-              </KeyValuePair>
-              <KeyValuePair>
-                <option name="key" value="Cache-Control" />
-                <option name="value" value="no-cache" />
-              </KeyValuePair>
-              <KeyValuePair>
-                <option name="key" value="select" />
-                <option name="value" value="[&quot;id&quot;,&quot;username&quot;,&quot;fullname&quot;]" />
-              </KeyValuePair>
-              <KeyValuePair>
-                <option name="key" value="where" />
-                <option name="value" value="{&quot;id&quot;:55}" />
-              </KeyValuePair>
-            </list>
-          </option>
-          <option name="parameters">
-            <list>
-              <KeyValuePair>
-                <option name="key" value="key" />
-                <option name="value" value="aligurbuz" />
-              </KeyValuePair>
-              <KeyValuePair>
-                <option name="key" value="hash" />
-                <option name="value" value="7d40c8cdfa699c26138080090c09a678" />
-              </KeyValuePair>
-              <KeyValuePair>
-                <option name="key" value="key" />
-                <option name="value" value="aligurbuz" />
-              </KeyValuePair>
-              <KeyValuePair>
-                <option name="key" value="hash" />
-                <option name="value" value="7d40c8cdfa699c26138080090c09a678" />
-              </KeyValuePair>
-              <KeyValuePair>
-                <option name="key" value="version" />
-                <option name="value" value="v2" />
-              </KeyValuePair>
-            </list>
-          </option>
-          <option name="parametersEnabled" value="true" />
-          <option name="textToSend" value="" />
-          <option name="filesToSend" value="" />
-        </RestClientRequest>
-        <RestClientRequest>
-          <option name="biscuits">
-            <list>
-              <Biscuit>
-                <option name="date" value="1461661125000" />
-                <option name="domain" value="localhost" />
-                <option name="name" value="XSRF-TOKEN" />
-                <option name="path" value="/" />
-                <option name="value" value="eyJpdiI6InFEWDlqYVQ1Y2JTTVZONThiZ2FxeGc9PSIsInZhbHVlIjoidnpubitIYnJ1aUdCYm5adEp3YW00cEp4VG9jWVwvNlgrb0REN2lOQUg5VVhoc203eE16bkFZWDN3STh4bFRNS296SXRROHFlaGdDMlNHWWlHRkZyeFJRPT0iLCJtYWMiOiIwOWY4Y2MwNzQ5YTFiZTliZjQ5ZmUwOWMyOTQ2OGNjMjhiNzQ0ZDhjZDljNTg0ZTlmY2I3NWYyODQzMDI5YTg1In0%3D" />
-              </Biscuit>
-              <Biscuit>
-                <option name="date" value="1461661125000" />
-                <option name="domain" value="localhost" />
-                <option name="name" value="laravel_session" />
-                <option name="path" value="/" />
-                <option name="value" value="eyJpdiI6IlJtVFdyWVp0ZXBGMVV6T2E1QzdWTFE9PSIsInZhbHVlIjoiVGRQTW12V2RCRTdEd1JJd0NRMWpmTEJxK1FUa3M3TmgxbWJiOFpscGljSnM5VVo3cDc2dWwxRUk2MDNCcE43dFwvdkxUNWlqZHJuRkloT0lHSTE2SnVnPT0iLCJtYWMiOiI2MWE4ZGNjYmQwNTRiMTJjZmUwMWI3MjQ4ZjA1ZmViMWYxMDUxN2I3MDkyNGM1ZDcxODAzNTYzZTBjNGEwYjU5In0%3D" />
-              </Biscuit>
-            </list>
-          </option>
-          <option name="httpMethod" value="GET" />
-          <option name="urlBase" value="http://localhost:8070" />
-          <option name="urlPath" value="/projects/devman/devman/public/api/services/blog" />
-          <option name="headers">
-            <list>
-              <KeyValuePair>
-                <option name="key" value="Accept" />
-                <option name="value" value="*/*" />
-              </KeyValuePair>
-              <KeyValuePair>
-                <option name="key" value="Cache-Control" />
-                <option name="value" value="no-cache" />
-              </KeyValuePair>
-              <KeyValuePair>
-                <option name="key" value="select" />
-                <option name="value" value="[&quot;id&quot;,&quot;username&quot;,&quot;fullname&quot;]" />
-              </KeyValuePair>
-              <KeyValuePair>
-                <option name="key" value="where" />
-                <option name="value" value="{&quot;id&quot;:55}" />
-              </KeyValuePair>
-            </list>
-          </option>
-          <option name="parameters">
-            <list>
-              <KeyValuePair>
-                <option name="key" value="key" />
-                <option name="value" value="aligurbuz" />
-              </KeyValuePair>
-              <KeyValuePair>
-                <option name="key" value="hash" />
-                <option name="value" value="7d40c8cdfa699c26138080090c09a678" />
-              </KeyValuePair>
-              <KeyValuePair>
-                <option name="key" value="key" />
-                <option name="value" value="aligurbuz" />
-              </KeyValuePair>
-              <KeyValuePair>
-                <option name="key" value="hash" />
-                <option name="value" value="7d40c8cdfa699c26138080090c09a678" />
-              </KeyValuePair>
-              <KeyValuePair>
-                <option name="key" value="version" />
-                <option name="value" value="v2" />
-              </KeyValuePair>
-            </list>
-          </option>
-          <option name="parametersEnabled" value="true" />
-          <option name="textToSend" value="" />
-          <option name="filesToSend" value="" />
-        </RestClientRequest>
-        <RestClientRequest>
-          <option name="biscuits">
-            <list>
-              <Biscuit>
-                <option name="date" value="1461661088000" />
-                <option name="domain" value="localhost" />
-                <option name="name" value="XSRF-TOKEN" />
-                <option name="path" value="/" />
-                <option name="value" value="eyJpdiI6InZoRVhnV2xLZkxKcGJNTkx3Q3RpdlE9PSIsInZhbHVlIjoidEhUVDFmbHVGKzBaNUI4ZHpCc0VEOTVEQ1N1OGRRYk9SSFhqNFdIbXl2SzBDTUNrSldGcEEzZTB2R0MxN0pzeUtvT1I1MGVEZis0YXZKNkxLakpkRFE9PSIsIm1hYyI6Ijc5Mjg5OGRkNzMzZDU5MjA1MWM4NTVjODliMzI5MzZkOGJlMGRhMTYwM2NlZTM3M2NlN2Y0NjQzZjRmMTVkZTgifQ%3D%3D" />
-              </Biscuit>
-              <Biscuit>
-                <option name="date" value="1461661088000" />
-                <option name="domain" value="localhost" />
-                <option name="name" value="laravel_session" />
-                <option name="path" value="/" />
-                <option name="value" value="eyJpdiI6Ik15SGE2MldWVkxPY3VSS1dqaGxQOFE9PSIsInZhbHVlIjoiXC84TVpmQzZqRGc3VWRUS2xyOXJWUFwvejgwRVVcL3cwM1RqQ0pEMlNYb3dTRWloVWVJWGtiTzljXC9Fb1JvOTNiTWxveHM2RVlYM3pjQlVhVkVnRjlSSnJBPT0iLCJtYWMiOiIwYzljZDc1YjU2ZTg0OWFlOGQ5MmU4MGEwYTA2NGQ1ZDQ4NjQ4Y2I1MmI5YjFjMGE3YTdlNDgyNDJjYzM5MDY2In0%3D" />
-              </Biscuit>
-            </list>
-          </option>
-          <option name="httpMethod" value="GET" />
-          <option name="urlBase" value="http://localhost:8070" />
-          <option name="urlPath" value="/projects/devman/devman/public/api/services/blog" />
-          <option name="headers">
-            <list>
-              <KeyValuePair>
-                <option name="key" value="Accept" />
-                <option name="value" value="*/*" />
-              </KeyValuePair>
-              <KeyValuePair>
-                <option name="key" value="Cache-Control" />
-                <option name="value" value="no-cache" />
-              </KeyValuePair>
-              <KeyValuePair>
-                <option name="key" value="select" />
-                <option name="value" value="[&quot;id&quot;,&quot;username&quot;,&quot;fullname&quot;]" />
-              </KeyValuePair>
-              <KeyValuePair>
-                <option name="key" value="where" />
-                <option name="value" value="{&quot;id&quot;:55}" />
-              </KeyValuePair>
-            </list>
-          </option>
-          <option name="parameters">
-            <list>
-              <KeyValuePair>
-                <option name="key" value="key" />
-                <option name="value" value="aligurbuz" />
-              </KeyValuePair>
-              <KeyValuePair>
-                <option name="key" value="hash" />
-                <option name="value" value="7d40c8cdfa699c26138080090c09a678" />
-              </KeyValuePair>
-              <KeyValuePair>
-                <option name="key" value="key" />
-                <option name="value" value="aligurbuz" />
-              </KeyValuePair>
-              <KeyValuePair>
-                <option name="key" value="hash" />
-                <option name="value" value="7d40c8cdfa699c26138080090c09a678" />
-              </KeyValuePair>
-              <KeyValuePair>
-                <option name="key" value="version" />
-                <option name="value" value="v2" />
-              </KeyValuePair>
-            </list>
-          </option>
-          <option name="parametersEnabled" value="true" />
-          <option name="textToSend" value="" />
-          <option name="filesToSend" value="" />
-        </RestClientRequest>
-        <RestClientRequest>
-          <option name="biscuits">
-            <list>
-              <Biscuit>
-                <option name="date" value="1461661034000" />
-                <option name="domain" value="localhost" />
-                <option name="name" value="XSRF-TOKEN" />
-                <option name="path" value="/" />
-                <option name="value" value="eyJpdiI6IkQ4WnZJXC9tSmJcL1RsSWVJWEFOMFZjUT09IiwidmFsdWUiOiJnODZrb0h2bDJicUVCNTJwajViOFRSNUVkbFp0WXVRaFliTEtZQVN1TFZVYUw4am84RFFmVzNOTWVERXF0MkpEQ3kyRUVRQlEybGt2SHVjZmF3YlV0dz09IiwibWFjIjoiMjkxMzdhZmNjZDY2M2Q3MGFmYjY2NmVlMWFjODUxY2UxOTUxNDc1ZjYxZGJmNmM4YWIxZTU2NDhiZDBkMzMwNCJ9" />
-              </Biscuit>
-              <Biscuit>
-                <option name="date" value="1461661034000" />
-                <option name="domain" value="localhost" />
-                <option name="name" value="laravel_session" />
-                <option name="path" value="/" />
-                <option name="value" value="eyJpdiI6ImorSWZZOXMrd0RtTStKbENNdWRkOVE9PSIsInZhbHVlIjoiMThGb0lFT3J3WTkra2VPczgyMWlTNUdQSjR0bndSVlRcL1VBXC9QMGx0YXJpT2F6ZjErMmsrK2RwT05UbzBsM1pIMFwvVTlTZk1IbzFzcWVoeFhBNkFuNmc9PSIsIm1hYyI6ImU0YThkNDU4MGQxYTI3ZWYyOTRhOGFlMzFhMjUzMWY1MzM5MzZhNjU2MTVkYTZkODYzYzMwM2M5ODQ4MjZjMmIifQ%3D%3D" />
-              </Biscuit>
-            </list>
-          </option>
-          <option name="httpMethod" value="GET" />
-          <option name="urlBase" value="http://localhost:8070" />
-          <option name="urlPath" value="/projects/devman/devman/public/api/services/blog" />
-          <option name="headers">
-            <list>
-              <KeyValuePair>
-                <option name="key" value="Accept" />
-                <option name="value" value="*/*" />
-              </KeyValuePair>
-              <KeyValuePair>
-                <option name="key" value="Cache-Control" />
-                <option name="value" value="no-cache" />
-              </KeyValuePair>
-              <KeyValuePair>
-                <option name="key" value="select" />
-                <option name="value" value="[&quot;id&quot;,&quot;username&quot;,&quot;fullname&quot;]" />
-              </KeyValuePair>
-              <KeyValuePair>
-                <option name="key" value="where" />
-                <option name="value" value="{&quot;id&quot;:55}" />
-              </KeyValuePair>
-            </list>
-          </option>
-          <option name="parameters">
-            <list>
-              <KeyValuePair>
-                <option name="key" value="key" />
-                <option name="value" value="aligurbuz" />
-              </KeyValuePair>
-              <KeyValuePair>
-                <option name="key" value="hash" />
-                <option name="value" value="7d40c8cdfa699c26138080090c09a678" />
-              </KeyValuePair>
-              <KeyValuePair>
-                <option name="key" value="key" />
-                <option name="value" value="aligurbuz" />
-              </KeyValuePair>
-              <KeyValuePair>
-                <option name="key" value="hash" />
-                <option name="value" value="7d40c8cdfa699c26138080090c09a678" />
-              </KeyValuePair>
-              <KeyValuePair>
-                <option name="key" value="version" />
-                <option name="value" value="v2" />
-              </KeyValuePair>
-            </list>
-          </option>
-          <option name="parametersEnabled" value="true" />
-          <option name="textToSend" value="" />
-          <option name="filesToSend" value="" />
-        </RestClientRequest>
-        <RestClientRequest>
-          <option name="biscuits">
-            <list>
-              <Biscuit>
-                <option name="date" value="1461661033000" />
-                <option name="domain" value="localhost" />
-                <option name="name" value="XSRF-TOKEN" />
-                <option name="path" value="/" />
-                <option name="value" value="eyJpdiI6IlwvU21nK3Nub1Zmekt4SWJpZFlBSkdRPT0iLCJ2YWx1ZSI6Im5nU283WVg0MkdaRERSMDRkcEYxWVZrQ3ZkMmlzRXJ1dlwvRDdkZ3BDYjdLVFNFXC91TWZmd1ZvbWlwSUZvbktLblZ0OGNsRnVDcHJRTTRPcHlxRGNFYXc9PSIsIm1hYyI6IjYzNDJjNmMxNjQ0ZGJiNTYxNTZkYWNmMGQ4Y2U3ZjAzZjlkM2I5YmIyYTczMzc5N2I4ZTI0MDRhOTdjNDc0MjYifQ%3D%3D" />
-              </Biscuit>
-              <Biscuit>
-                <option name="date" value="1461661033000" />
-                <option name="domain" value="localhost" />
-                <option name="name" value="laravel_session" />
-                <option name="path" value="/" />
-                <option name="value" value="eyJpdiI6InNxMEh6VWRYd3lxK0ZuYXc5MVp1Tmc9PSIsInZhbHVlIjoiQkpKMDQ3R0tVbFdKK3RQeEZmU3FCVmlUZ29HcXV3Q0VGN3BKOUYyYU9ncFRFbGlFVzFMT1UrWklBWFJIbkx3TVwvYTJPWXVGVm1mRzVoYjk2OTVucDBnPT0iLCJtYWMiOiIwYWMyNzBjOWRjOWM1YWQzNjBiNmU3NjcxOTcwOGM1MjE4MWVkMzFmMDA1MmQ3NGNkYjBkOTI5NzdhNWQ0OGM0In0%3D" />
-              </Biscuit>
-            </list>
-          </option>
-          <option name="httpMethod" value="GET" />
-          <option name="urlBase" value="http://localhost:8070" />
-          <option name="urlPath" value="/projects/devman/devman/public/api/services/blog" />
-          <option name="headers">
-            <list>
-              <KeyValuePair>
-                <option name="key" value="Accept" />
-                <option name="value" value="*/*" />
-              </KeyValuePair>
-              <KeyValuePair>
-                <option name="key" value="Cache-Control" />
-                <option name="value" value="no-cache" />
-              </KeyValuePair>
-              <KeyValuePair>
-                <option name="key" value="select" />
-                <option name="value" value="[&quot;id&quot;,&quot;username&quot;,&quot;fullname&quot;]" />
-              </KeyValuePair>
-              <KeyValuePair>
-                <option name="key" value="where" />
-                <option name="value" value="{&quot;id&quot;:55}" />
-              </KeyValuePair>
-            </list>
-          </option>
-          <option name="parameters">
-            <list>
-              <KeyValuePair>
-                <option name="key" value="key" />
-                <option name="value" value="aligurbuz" />
-              </KeyValuePair>
-              <KeyValuePair>
-                <option name="key" value="hash" />
-                <option name="value" value="7d40c8cdfa699c26138080090c09a678" />
-              </KeyValuePair>
-              <KeyValuePair>
-                <option name="key" value="key" />
-                <option name="value" value="aligurbuz" />
-              </KeyValuePair>
-              <KeyValuePair>
-                <option name="key" value="hash" />
-                <option name="value" value="7d40c8cdfa699c26138080090c09a678" />
-              </KeyValuePair>
-              <KeyValuePair>
-                <option name="key" value="version" />
-                <option name="value" value="v2" />
-              </KeyValuePair>
-            </list>
-          </option>
-          <option name="parametersEnabled" value="true" />
-          <option name="textToSend" value="" />
-          <option name="filesToSend" value="" />
-        </RestClientRequest>
-        <RestClientRequest>
-          <option name="biscuits">
-            <list>
-              <Biscuit>
-                <option name="date" value="1461661020000" />
-                <option name="domain" value="localhost" />
-                <option name="name" value="XSRF-TOKEN" />
-                <option name="path" value="/" />
-                <option name="value" value="eyJpdiI6IjUrcnYyN3BLYXhnM1h5OFRkWUlBUFE9PSIsInZhbHVlIjoiNGtJSHZXckV3bWhPNVhnVGNWamh4M3lpT1o2cmVRbUloTnlxR2RZNVUzUGpLR0ptcnNDZSt1b0dYek1VeVBwejF4YTc0cmwwQ0VSRDBDemhiYVUyOXc9PSIsIm1hYyI6IjkzZmUxODI5NDZiNGZlNTA5YjI3MDk5OWRlYTI2MjBlNjM3MzY2NTYxNmU3NjBjNDIxOTdlM2FjOGRkMWRjMjAifQ%3D%3D" />
-              </Biscuit>
-              <Biscuit>
-                <option name="date" value="1461661020000" />
-                <option name="domain" value="localhost" />
-                <option name="name" value="laravel_session" />
-                <option name="path" value="/" />
-                <option name="value" value="eyJpdiI6IkE5Z1hhdWFPZ0pCZ0ZXQUwxRW5lQ0E9PSIsInZhbHVlIjoiTmxzV285bHFvRGh1OXR2bzM4S2ZOTnlNUFUrTHoyRGdkd1Nud3RGMEhhXC9jUTgwdytVclBkMFl0Wmp1dlc3dG5zVFltQmRTbisrMEdOYVNtUjZMZ0JRPT0iLCJtYWMiOiIxMjYxNjU3MjRmOWExNjIyZjk0NGNiNWE2M2NlYTZiOGY1ZjAzOGYxMjY5OGZiZjQ0ZjFlM2U1MTNkZDc3ZWJiIn0%3D" />
-              </Biscuit>
-            </list>
-          </option>
-          <option name="httpMethod" value="GET" />
-          <option name="urlBase" value="http://localhost:8070" />
-          <option name="urlPath" value="/projects/devman/devman/public/api/services/blog" />
-          <option name="headers">
-            <list>
-              <KeyValuePair>
-                <option name="key" value="Accept" />
-                <option name="value" value="*/*" />
-              </KeyValuePair>
-              <KeyValuePair>
-                <option name="key" value="Cache-Control" />
-                <option name="value" value="no-cache" />
-              </KeyValuePair>
-              <KeyValuePair>
-                <option name="key" value="select" />
-                <option name="value" value="[&quot;id&quot;,&quot;username&quot;,&quot;fullname&quot;]" />
-              </KeyValuePair>
-              <KeyValuePair>
-                <option name="key" value="where" />
-                <option name="value" value="{&quot;id&quot;:55}" />
-              </KeyValuePair>
-            </list>
-          </option>
-          <option name="parameters">
-            <list>
-              <KeyValuePair>
-                <option name="key" value="key" />
-                <option name="value" value="aligurbuz" />
-              </KeyValuePair>
-              <KeyValuePair>
-                <option name="key" value="hash" />
-                <option name="value" value="7d40c8cdfa699c26138080090c09a678" />
-              </KeyValuePair>
-              <KeyValuePair>
-                <option name="key" value="key" />
-                <option name="value" value="aligurbuz" />
-              </KeyValuePair>
-              <KeyValuePair>
-                <option name="key" value="hash" />
-                <option name="value" value="7d40c8cdfa699c26138080090c09a678" />
-              </KeyValuePair>
-              <KeyValuePair>
-                <option name="key" value="version" />
-                <option name="value" value="v2" />
-              </KeyValuePair>
-            </list>
-          </option>
-          <option name="parametersEnabled" value="true" />
-          <option name="textToSend" value="" />
-          <option name="filesToSend" value="" />
-        </RestClientRequest>
-        <RestClientRequest>
-          <option name="biscuits">
-            <list>
-              <Biscuit>
-                <option name="date" value="1461660852000" />
-                <option name="domain" value="localhost" />
-                <option name="name" value="XSRF-TOKEN" />
-                <option name="path" value="/" />
-                <option name="value" value="eyJpdiI6Im9SVmUrQ2pGN21IKzBRdExTOGdWY2c9PSIsInZhbHVlIjoiSkRZSlV2SVYxbGpcL0NLNlwvN0dpcFc1b0FNT1wvMjhKUUpnRmJEeE9Eb2hIUHprR3lFNVFtZEFlcnJqZExlVk5zNUxhY3JROUNCQ3Nlc2pnOHpoNzhOd1E9PSIsIm1hYyI6IjRhNjQxY2YwYTYwNjBjOTRhZTIwZDNlZjZmYzgwNDRlZDc1MzY5NWY0Zjg2ZGE5YWYzNjkwMDczYTg5OTZiMDAifQ%3D%3D" />
-              </Biscuit>
-              <Biscuit>
-                <option name="date" value="1461660852000" />
-                <option name="domain" value="localhost" />
-                <option name="name" value="laravel_session" />
-                <option name="path" value="/" />
-                <option name="value" value="eyJpdiI6Ikl3YVhNVkdoYm9oSGtEOWxrMmhwdlE9PSIsInZhbHVlIjoiNmhhTmYxTEZ0WTFXU3RxOXc4dk1wazRlMmtLZUo2a1Zwd2xvTEFkS2RRRzhBVjRYRzYyRXZnUDV0TnNHS2k3WnZ3Zks3S3Jwb0ZyUXhlVXpsTTUxeGc9PSIsIm1hYyI6IjA3ZjdmMWVhYTEyNjQ3Y2MxOTYwOTEyNGI1NTEyMzI2Yzc4MWQ5MjEyMmVkZTQwOTVmNTQ0NzQ0ZDQyYWRjZDgifQ%3D%3D" />
-              </Biscuit>
-            </list>
-          </option>
-          <option name="httpMethod" value="GET" />
-          <option name="urlBase" value="http://localhost:8070" />
-          <option name="urlPath" value="/projects/devman/devman/public/api/services/blog" />
-          <option name="headers">
-            <list>
-              <KeyValuePair>
-                <option name="key" value="Accept" />
-                <option name="value" value="*/*" />
-              </KeyValuePair>
-              <KeyValuePair>
-                <option name="key" value="Cache-Control" />
-                <option name="value" value="no-cache" />
-              </KeyValuePair>
-              <KeyValuePair>
-                <option name="key" value="select" />
-                <option name="value" value="[&quot;id&quot;,&quot;username&quot;,&quot;fullname&quot;]" />
-              </KeyValuePair>
-              <KeyValuePair>
-                <option name="key" value="where" />
-                <option name="value" value="{&quot;id&quot;:55}" />
-              </KeyValuePair>
-            </list>
-          </option>
-          <option name="parameters">
-            <list>
-              <KeyValuePair>
-                <option name="key" value="key" />
-                <option name="value" value="aligurbuz" />
-              </KeyValuePair>
-              <KeyValuePair>
-                <option name="key" value="hash" />
-                <option name="value" value="7d40c8cdfa699c26138080090c09a678" />
-              </KeyValuePair>
-              <KeyValuePair>
-                <option name="key" value="key" />
-                <option name="value" value="aligurbuz" />
-              </KeyValuePair>
-              <KeyValuePair>
-                <option name="key" value="hash" />
-                <option name="value" value="7d40c8cdfa699c26138080090c09a678" />
-              </KeyValuePair>
-              <KeyValuePair>
-                <option name="key" value="version" />
-                <option name="value" value="v2" />
-              </KeyValuePair>
-            </list>
-          </option>
-          <option name="parametersEnabled" value="true" />
-          <option name="textToSend" value="" />
-          <option name="filesToSend" value="" />
-        </RestClientRequest>
-        <RestClientRequest>
-          <option name="biscuits">
-            <list>
-              <Biscuit>
-                <option name="date" value="1461660828000" />
-                <option name="domain" value="localhost" />
-                <option name="name" value="XSRF-TOKEN" />
-                <option name="path" value="/" />
-                <option name="value" value="eyJpdiI6ImIzVmg5UTlyV1NTUUl0bFlsQUNkeXc9PSIsInZhbHVlIjoicWU5dlQ2MWZqYmZxSXlpRVpuYkZ4c0Rhc3pJdTlrSElcL0FMSUFiNVlKakluUXNVU2MwdEhKUlpJT2p1ckw5bDhSYllIOWw4d2NOaEdGNFZ4N0xUd2lBPT0iLCJtYWMiOiIyZWNiM2MzNTdjNWU3MDA5YzFhZTkyMWY0ZmJmYjk1MzA5ZmY0NzkyMDllMGVkZDViMTYyNDIxZTVjOWZhOWY3In0%3D" />
-              </Biscuit>
-              <Biscuit>
-                <option name="date" value="1461660828000" />
-                <option name="domain" value="localhost" />
-                <option name="name" value="laravel_session" />
-                <option name="path" value="/" />
-                <option name="value" value="eyJpdiI6IjJjZlFoNHltODRpNllueEQ1NXd4YlE9PSIsInZhbHVlIjoidk5QRU1cL3RJckpEQmI4NThWRjR3cEFmd1ZuM2tyeXM1K1Z6eDBcL2hyYzhoS3k3aFo4c214VmxpM05IYmJMVFwveGQ4OUw2ZGt5TDNGeHBpclVwWGd5UWc9PSIsIm1hYyI6IjVjMDcyYjdlNjFiMmNmMTYzMTdmMTdjZmUzZThkYTUzZjhlZGEyZGYzY2IyNTEwYjBmODEzNDU0ZDMwNGUzZWIifQ%3D%3D" />
-              </Biscuit>
-            </list>
-          </option>
-          <option name="httpMethod" value="GET" />
-          <option name="urlBase" value="http://localhost:8070" />
-          <option name="urlPath" value="/projects/devman/devman/public/api/services/blog" />
-          <option name="headers">
-            <list>
-              <KeyValuePair>
-                <option name="key" value="Accept" />
-                <option name="value" value="*/*" />
-              </KeyValuePair>
-              <KeyValuePair>
-                <option name="key" value="Cache-Control" />
-                <option name="value" value="no-cache" />
-              </KeyValuePair>
-              <KeyValuePair>
-                <option name="key" value="select" />
-                <option name="value" value="[&quot;id&quot;,&quot;username&quot;,&quot;fullname&quot;]" />
-              </KeyValuePair>
-              <KeyValuePair>
-                <option name="key" value="where" />
-                <option name="value" value="{&quot;id&quot;:55}" />
-              </KeyValuePair>
-            </list>
-          </option>
-          <option name="parameters">
-            <list>
-              <KeyValuePair>
-                <option name="key" value="key" />
-                <option name="value" value="aligurbuz" />
-              </KeyValuePair>
-              <KeyValuePair>
-                <option name="key" value="hash" />
-                <option name="value" value="7d40c8cdfa699c26138080090c09a678" />
-              </KeyValuePair>
-              <KeyValuePair>
-                <option name="key" value="key" />
-                <option name="value" value="aligurbuz" />
-              </KeyValuePair>
-              <KeyValuePair>
-                <option name="key" value="hash" />
-                <option name="value" value="7d40c8cdfa699c26138080090c09a678" />
-              </KeyValuePair>
-              <KeyValuePair>
-                <option name="key" value="version" />
-                <option name="value" value="v2" />
-              </KeyValuePair>
-            </list>
-          </option>
-          <option name="parametersEnabled" value="true" />
-          <option name="textToSend" value="" />
-          <option name="filesToSend" value="" />
-        </RestClientRequest>
       </list>
     </option>
   </component>
@@ -3889,7 +3762,7 @@
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32960597" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.31256655" sideWeight="0.8826087" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.31895635" sideWeight="0.8826087" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.9669862" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3209352" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="LuaJ" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -3901,7 +3774,7 @@
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32897604" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="REST Client" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.72097975" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="REST Client" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.72097975" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -3947,20 +3820,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/resources/views/Mandev/desktopnotification.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.70934254" vertical-offset="0" max-vertical-offset="867">
-          <caret line="41" column="26" selection-start-line="41" selection-start-column="26" selection-end-line="41" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Services/outPutController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7750865" vertical-offset="48" max-vertical-offset="915">
-          <caret line="48" column="5" selection-start-line="48" selection-start-column="5" selection-end-line="48" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/tests/TestCase.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="891">
@@ -4220,14 +4079,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Mandev/Apicenter/apicenterModel.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="669" max-vertical-offset="4845">
-          <caret line="79" column="22" selection-start-line="79" selection-start-column="22" selection-end-line="79" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Middleware/BeforeMiddleware.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="495" max-vertical-offset="1620">
@@ -4242,20 +4093,38 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Api/ModelApi.php">
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Api/ControllerApi.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1080" max-vertical-offset="2415">
-          <caret line="115" column="0" selection-start-line="115" selection-start-column="0" selection-end-line="115" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="960" max-vertical-offset="5535">
+          <caret line="97" column="0" selection-start-line="97" selection-start-column="0" selection-end-line="97" selection-end-column="0" />
           <folding>
             <element signature="e#44#72#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/storage/app/apiCustom.txt">
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Api/ServicesApi.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7979798" vertical-offset="369" max-vertical-offset="1305">
-          <caret line="72" column="24" selection-start-line="72" selection-start-column="24" selection-end-line="72" selection-end-column="24" />
+        <state vertical-scroll-proportion="-2.7854671" vertical-offset="2955" max-vertical-offset="4335">
+          <caret line="44" column="9" selection-start-line="44" selection-start-column="9" selection-end-line="44" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Api/ModelApi.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="1215" max-vertical-offset="2610">
+          <caret line="115" column="25" selection-start-line="115" selection-start-column="25" selection-end-line="115" selection-end-column="25" />
+          <folding>
+            <element signature="e#44#72#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Api/ApiVersionControl.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="300" max-vertical-offset="3165">
+          <caret line="58" column="40" selection-start-line="58" selection-start-column="40" selection-end-line="58" selection-end-column="40" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -4267,54 +4136,63 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Api/ControllerApi.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="960" max-vertical-offset="5535">
-          <caret line="97" column="0" selection-start-line="97" selection-start-column="0" selection-end-line="97" selection-end-column="0" />
-          <folding>
-            <element signature="e#44#72#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Api/LogApi.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="525" max-vertical-offset="3045">
-          <caret line="42" column="73" selection-start-line="42" selection-start-column="73" selection-end-line="42" selection-end-column="73" />
+          <caret line="91" column="45" selection-start-line="91" selection-start-column="45" selection-end-line="91" selection-end-column="45" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Api/ServicesApi.php">
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Mandev/Apicenter/apicenterModel.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-2.7854671" vertical-offset="2955" max-vertical-offset="4335">
-          <caret line="44" column="9" selection-start-line="44" selection-start-column="9" selection-end-line="44" selection-end-column="9" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="765" max-vertical-offset="4845">
+          <caret line="97" column="37" selection-start-line="97" selection-start-column="37" selection-end-line="97" selection-end-column="37" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Api/ApiVersionControl.php">
+    <entry file="file://$PROJECT_DIR$/storage/app/apiCustom.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="975" max-vertical-offset="2700">
-          <caret line="108" column="37" selection-start-line="108" selection-start-column="37" selection-end-line="108" selection-end-column="37" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1380">
+          <caret line="42" column="5" selection-start-line="42" selection-start-column="5" selection-end-line="42" selection-end-column="5" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/storage/app/apiCustomModel.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="825">
+          <caret line="49" column="0" selection-start-line="49" selection-start-column="0" selection-end-line="49" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Console/Commands/customApi.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="1308" max-vertical-offset="2385">
+          <caret line="143" column="60" selection-start-line="143" selection-start-column="60" selection-end-line="143" selection-end-column="60" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Api/Custom/V1/general/Model/BlogApiModel.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.51557094" vertical-offset="258" max-vertical-offset="1125">
+          <caret line="47" column="37" selection-start-line="47" selection-start-column="37" selection-end-line="47" selection-end-column="37" />
+          <folding>
+            <element signature="e#68#96#0#PHP" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Api/Custom/V1/general/BlogApi.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="378" max-vertical-offset="1245">
-          <caret line="72" column="9" selection-start-line="72" selection-start-column="9" selection-end-line="72" selection-end-column="9" />
+        <state vertical-scroll-proportion="0.56747407" vertical-offset="213" max-vertical-offset="1080">
+          <caret line="47" column="6" selection-start-line="47" selection-start-column="6" selection-end-line="47" selection-end-column="6" />
           <folding>
             <element signature="e#62#90#0#PHP" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Api/Custom/V2/general/BlogApi.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5916955" vertical-offset="312" max-vertical-offset="1200">
-          <caret line="62" column="57" selection-start-line="62" selection-start-column="57" selection-end-line="62" selection-end-column="57" />
-          <folding />
         </state>
       </provider>
     </entry>

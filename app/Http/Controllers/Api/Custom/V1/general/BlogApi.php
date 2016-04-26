@@ -10,6 +10,8 @@ use DB;
 use Session;
 use App\Http\Controllers\Api\ApiVersionControl as Version;
 use App\Http\Controllers\Api\ConfigApi as Config;
+use App\Http\Controllers\Api\Custom\V1\general\Model\BlogApiModel as Model;
+
 
 class BlogApi extends Controller
 {
@@ -18,8 +20,9 @@ class BlogApi extends Controller
     public $app;
     public $versionControl;
     public $config;
+    public $model;
 
-    public function __construct (Request $request,Version $versionControl,Config $config)
+    public function __construct (Request $request,Version $versionControl,Config $config,Model $model)
     {
         //request class
         $this->request=$request;
@@ -29,6 +32,8 @@ class BlogApi extends Controller
         $this->versionControl=$versionControl;
         //get config
         $this->config=$config;
+        //get model
+        $this->model=$model;
     }
 
     /*
@@ -48,30 +53,14 @@ class BlogApi extends Controller
         return $this->versionControl->get([__CLASS__,__METHOD__],function()
         {
            //your query
-           $query=DB::table("prosystem_api_custom_test")
-                            ->select($this->config->select())
-                            ->where(function ($query)
-                            {
-                               foreach ($this->config->where() as $key=>$value)
-                               {
-                                   if(is_array($value))
-                                   {
-                                      $query->whereIn($key,$value);
-                                   }
-                                   else
-                                   {
-                                      $query->where($key,"=",$value);
-                                   }
-
-                               }
-                            })
-                            ->get();
+           $query=$this->model->get();
 
            //output send
            return $this->config->output($query);
 
         });
     }
+
 
 
 }

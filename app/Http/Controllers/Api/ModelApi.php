@@ -28,6 +28,9 @@ class ModelApi extends Controller
     public function get ($serviceName,$coding=array())
     {
 
+        $apikey=\DB::table($this->app->dbTable(['api']))
+            ->where("apikey","=",\Input::get("key"))->where("standart_key","=",\Input::get("hash"))
+            ->get();
 
         if(array_key_exists($serviceName,$this->app->dbTable(['all'])))
         {
@@ -49,9 +52,6 @@ class ModelApi extends Controller
                 //select mode
                 $call=DB::table($this->app->dbTable([$serviceName]))->where($where[0],'=',$where[1])->orderBy("id","desc")->paginate(config("app.api_paginator"));
 
-                $apikey=\DB::table($this->app->dbTable(['api']))
-                    ->where("apikey","=",\Input::get("key"))->where("standart_key","=",\Input::get("hash"))
-                    ->get();
 
                 if(count($apikey))
                 {
@@ -64,9 +64,6 @@ class ModelApi extends Controller
             //select mode
             $call=DB::table($this->app->dbTable([$serviceName]))->orderBy("id","desc")->paginate(config("app.api_paginator"));
 
-            $apikey=\DB::table($this->app->dbTable(['api']))
-                ->where("apikey","=",\Input::get("key"))->where("standart_key","=",\Input::get("hash"))
-                ->get();
 
             if(count($apikey))
             {
@@ -80,6 +77,7 @@ class ModelApi extends Controller
         {
             if($this->customApiCheck($serviceName,$coding['apiId']))
             {
+
                 $customcontrol=DB::table($this->app->dbTable(['api_custom']))->
                 where("custom_models","=",$serviceName)
                     ->where("statu","=",1)->orderBy("id","asc")->take(1)->get();
@@ -107,12 +105,27 @@ class ModelApi extends Controller
                 //url filter method
                 if(count(\Input::all()))
                 {
-                    //method exists
-                    if(method_exists($serviceName,\Input::get("method")))
+                    if(array_key_exists("method",\Input::all()) && !array_key_exists("version",\Input::all()))
                     {
-                        $method=\Input::get("method");
+                        //method exists
+                        if(method_exists($serviceName,\Input::get("method")))
+                        {
+                            $method=\Input::get("method");
+                        }
+                        else
+                        {
+                            if(count($apikey))
+                            {
+                                $lastlog=\DB::table($this->app->dbTable(['log_api']))->where("apikey","=",$apikey[0]->id)->orderBy("id","desc")->take(1)->update(['msg'=>'The requested method is not valid']);
+                            }
+
+                            return response()->json(['success'=>false,'msg'=>'The requested method is not valid']);
+                        }
                     }
+
+
                 }
+
 
                 return App($serviceName)->$method();
 

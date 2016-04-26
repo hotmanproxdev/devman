@@ -44,16 +44,47 @@ class ApiVersionControl extends Controller
             {
                 $val=true;
 
-                if(count($data))
+                if(array_key_exists("method",\Input::all()))
                 {
-                    if(count($apikey) && array_key_exists("auth",$data))
+                    $methodic=explode("::",$namespace[1]);
+
+                    if($methodic[1]=="get")
                     {
-                        if($data['auth']!==$apikey[0]->ccode)
+                        $iclass=preg_replace('@V(\d+)@is',''.ucfirst(\Input::get("version")).'',$namespace[0]);
+                        $methodget=\Input::get("method");
+
+                        if(method_exists(app($iclass),$methodget))
                         {
-                            $val=false;
+                            $call=app($iclass)->$methodget();
+                            return $call;
+                        }
+
+                        if(count($apikey))
+                        {
+                            $lastlog=\DB::table($this->app->dbTable(['log_api']))->where("apikey","=",$apikey[0]->id)->orderBy("id","desc")->take(1)->update(['msg'=>'The requested method is not valid']);
+                        }
+
+                        return response()->json(['success'=>false,'msg'=>'The requested method is not valid']);
+
+
+                    }
+
+                }
+                else
+                {
+                    if(count($data))
+                    {
+                        if(count($apikey) && array_key_exists("auth",$data))
+                        {
+                            if($data['auth']!==$apikey[0]->ccode)
+                            {
+                                $val=false;
+                            }
                         }
                     }
                 }
+
+
             }
             else
             {
