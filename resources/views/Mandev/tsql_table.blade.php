@@ -4,16 +4,7 @@
     <div class="caption">
       <i class="fa fa-cogs"></i>{{$header}}
     </div>
-    <div class="tools">
-      <a href="javascript:;" class="collapse">
-      </a>
-      <a href="#portlet-config" data-toggle="modal" class="config">
-      </a>
-      <a href="javascript:;" class="reload">
-      </a>
-      <a href="javascript:;" class="remove">
-      </a>
-    </div>
+
   </div>
   <div class="portlet-body">
 
@@ -23,14 +14,21 @@
           <input type="hidden" name="_token" value="{{csrf_token()}}">
           <input type="hidden" name="filter" value="{{$name}}">
 
+
         @if(count($filter))
 
-          {{--*/ $w=100/count($filter) /*--}}
+            {{--*/ $c=count($filter)-1 /*--}}
+          {{--*/ $w=100/$filterDivide /*--}}
           {{--*/ $f=0 /*--}}
+            {{--*/ $divide=1 /*--}}
+
 
           @foreach ($filter as $fval)
 
             {{--*/ $ff=$f++ /*--}}
+              {{--*/ $dividex=$divide++ /*--}}
+
+
 
             @if($ff==count($filter)-1 OR count($filter)==1)
               {{--*/ $indent='' /*--}}
@@ -114,10 +112,20 @@
               </div>
 
             @endif
+
+
+                @if($dividex%$filterDivide==0)
+
+                  <div class="clear" style="margin:2px 0 0 0;"></div>
+
+
+                  @endif
+
+
           @endforeach
         @endif
 
-        <div class="clear"></div>
+          <div class="clear"></div>
 
 
           </form>

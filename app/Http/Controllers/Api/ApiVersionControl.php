@@ -8,6 +8,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Contracts\Routing\ResponseFactory;
 use DB;
 use Session;
+use Cache;
+use App\Http\Controllers\Api\ConfigApi as Config;
 
 class ApiVersionControl extends Controller
 {
@@ -17,24 +19,39 @@ class ApiVersionControl extends Controller
     public $controller;
     public $model;
     public $version='V1'; //ucfirst
+    public $env;
+    public $provision;
+    public $config;
 
-    public function __construct(Request $request)
+    public function __construct(Request $request,Config $config)
     {
         //request class
         $this->request = $request;
         //base service provider
         $this->app = app()->make("Base");
+        //get environment
+        $this->env=app("\Env")->system([__CLASS__,'Api']);
+        //get provision
+        $this->provision=$this->env->provision();
+        //get config
+        $this->config=$config;
     }
 
 
     public function get($namespace=array(),$callback,$data=array())
     {
+        if(!array_key_exists("provision",$data) && !$this->provision['success'])
+        {
+            return response()->json(['success'=>false,'msg'=>$this->provision['msg']]);
+        }
 
         $apikey=\DB::table($this->app->dbTable(['api']))
             ->where("apikey","=",\Input::get("key"))->where("standart_key","=",\Input::get("hash"))
             ->get();
 
         $getMethod=explode("::",$namespace[1]);
+
+        Session::put("apiWorkingMethod",$getMethod[1]);
 
         $val=false;
 
@@ -193,7 +210,31 @@ class ApiVersionControl extends Controller
                     $lastlog=\DB::table($this->app->dbTable(['log_api']))->where("apikey","=",$apikey[0]->id)->orderBy("id","desc")->take(1)->update(['query'=>$call]);
                 }
 
+
+                if(array_key_exists("cache",$data) && $this->config->cacheStatu)
+                {
+
+                    if(!($this->request->header("user-agent")==$this->config->user_agent))
+                    {
+                        return Cache::remember($namespace[1],$data['cache'], function() use ($call)
+                        {
+                            return $call;
+                        });
+                    }
+
+
+                }
+
+                if(array_key_exists("provision",$data))
+                {
+                    if(!$data['provision']['success'])
+                    {
+                        return response()->json(['success'=>false,'msg'=>$data['provision']['msg']]);
+                    }
+                }
+
                 return $call;
+
 
 
             }

@@ -98,7 +98,7 @@ class BeforeMiddleware
 
 
 
-        $this->app->insertLang(["url_path"=>"default","word_data"=>['close'=>'Kapalı'],"lang"=>1]);
+        $this->app->insertLang(["url_path"=>"default","word_data"=>['app_delete_selected'=>'Seçililere İşlem Uygula'],"lang"=>1]);
 
 
         return $next($request);

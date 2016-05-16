@@ -44,7 +44,6 @@ class dbTransactionController extends Controller
 
             //commit
             \DB::commit();
-            //boolean
             return true;
 
         }
@@ -56,7 +55,6 @@ class dbTransactionController extends Controller
             //boolean
             return false;
         }
-
 
     }
 }

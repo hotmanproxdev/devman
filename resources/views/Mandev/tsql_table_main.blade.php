@@ -67,6 +67,14 @@
   </tr>
   </thead>
   <tbody>
+
+  @if(count($query)==0)
+    <div style="padding:10px;">
+      <span style="color:#e20a16; font-weight:bold;">{{$lang['empty_table']}}</span>
+    </div>
+
+    @endif
+
   @foreach($query as $result)
     <tr>
       @foreach($fields as $val)
@@ -196,6 +204,7 @@
     </tr>
   @endforeach
 
+
   </tbody>
 </table>
   @show
@@ -204,7 +213,7 @@
 
 
 <div id="procaction_{{$name}}">
-@if(count($filter))
+@if(count($filter) && count($query))
 
   @foreach ($filter as $fval)
 

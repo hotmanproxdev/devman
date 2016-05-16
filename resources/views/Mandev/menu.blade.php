@@ -63,7 +63,7 @@
 
 
       <li>
-        <a href="{{$baseUrl}}/{{strtolower(config("app.admin_dirname"))}}/logs">
+        <a href="{{$baseUrl}}/{{strtolower(config("app.admin_dirname"))}}/adminlog">
           <i class="fa fa-crosshairs"></i>
           <span class="title">Erişim Logları</span>
           <span class="arrow "></span>

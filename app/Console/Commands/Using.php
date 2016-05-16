@@ -199,5 +199,17 @@ class Using extends Command
         }
 
 
+        //pdf
+        if($this->argument("name")=="pdf")
+        {
+            $dd['stream']='app("\Output")->pdfStream($data,$file)';
+            $dd['download']='app("\Output")->PdfDownload("data","file")';
+            $dd['save']='app("\Output")->pdfSave($data,$file)';
+            dd($dd);
+        }
+
+
+
+
     }
 }

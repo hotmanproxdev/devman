@@ -124,6 +124,27 @@ class customApi extends Command
                         fwrite($dt, $icerik);
                         fclose($dt);
 
+                        $dosya = "" . storage_path("app") . "" . $slashes . "apihandle.txt";
+                        $dt = fopen($dosya, "rb");
+                        $icerik = fread($dt, filesize($dosya));
+                        $dosya = "".$app_path."HandleServer.php";
+                        $dt = fopen($dosya, 'w');
+                        $icerik=str_replace("{custom}",ucfirst($this->argument("custom")),$icerik);
+                        if($this->argument("dir"))
+                        {
+                            $icerik=str_replace("{namespace}","\\".str_replace("/","\\",ucfirst($this->argument("dir")))."",$icerik);
+                        }
+                        else
+                        {
+                            $icerik=str_replace("{namespace}","",$icerik);
+                        }
+
+
+
+
+                        fwrite($dt, $icerik);
+                        fclose($dt);
+
                     }
 
                     if(touch("".$app_path."Model".$slashes."".ucfirst($this->argument("custom"))."ApiModel.php"))

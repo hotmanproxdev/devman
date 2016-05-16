@@ -15,7 +15,7 @@ class appQuery
 
     public function getField($query=false)
     {
-        if($query)
+        if(count($query))
         {
             foreach ($query[0] as $key=>$value)
             {
@@ -24,6 +24,8 @@ class appQuery
 
             return $list;
         }
+
+        return [];
     }
 
 

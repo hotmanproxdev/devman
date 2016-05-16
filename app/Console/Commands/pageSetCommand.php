@@ -9,7 +9,7 @@ class pageSetCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'page {page} {dir?} {sourcefile?}';
+    protected $signature = 'page {page} {dir?} {sourcefile?} {table?}';
     /**
      * The console command description.
      *
@@ -40,6 +40,7 @@ class pageSetCommand extends Command
 
         if($this->argument("page")=="source")
         {
+
             if(file_exists("".$app_path."".config("app.admin_dirname")."".$slashes."".ucfirst($this->argument("dir"))."".$slashes."source"))
             {
                 if(touch("".$app_path."".config("app.admin_dirname")."".$slashes."".ucfirst($this->argument("dir"))."".$slashes."source".$slashes."".$this->argument("sourcefile")."Controller.php"))
@@ -64,6 +65,41 @@ class pageSetCommand extends Command
                     $icerik=str_replace("__sourceFile__",$this->argument("sourcefile"),$icerik);
                     fwrite($dt,$icerik);
                     fclose($dt);
+
+                    if(strlen($this->argument("table"))>0)
+                    {
+                        $dosya = "".$app_path."".config("app.admin_dirname")."".$slashes."".ucfirst($this->argument("dir"))."".$slashes."".$this->argument("dir")."Model.php";
+
+                        $dt = fopen($dosya, "rb");
+                        $icerik = fread($dt, filesize($dosya));
+
+                        $c=str_replace("__table__",$this->argument("table"),$icerik);
+
+                        $dosya = "".$app_path."".config("app.admin_dirname")."".$slashes."".ucfirst($this->argument("dir"))."".$slashes."".$this->argument("dir")."Model.php";
+
+
+                        $dt = fopen($dosya, 'w');
+
+                        fwrite($dt,$c);
+                        fclose($dt);
+
+                        $view="".$view_path."".config("app.admin_dirname")."".$slashes."".ucfirst($this->argument("dir"))."".$slashes."".ucfirst($this->argument("dir"))."_content.blade.php";
+
+                        $dt = fopen($view, "rb");
+                        $icerik = fread($dt, filesize($view));
+
+                        $cv=str_replace("__namespace__",$this->argument("dir"),$icerik);
+
+                        $view="".$view_path."".config("app.admin_dirname")."".$slashes."".ucfirst($this->argument("dir"))."".$slashes."".ucfirst($this->argument("dir"))."_content.blade.php";
+
+
+                        $dt = fopen($view, 'w');
+
+                        fwrite($dt,$cv);
+                        fclose($dt);
+
+
+                    }
 
                     dd("source file has been created");
 

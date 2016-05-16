@@ -18,6 +18,8 @@ class Kernel extends ConsoleKernel
         Commands\Using::class,
         Commands\pageSetCommand::class,
         Commands\customApi::class,
+        Commands\apiTest::class,
+        Commands\apiVersion::class,
         Commands\seeder::class,
  ];
 

@@ -77,130 +77,137 @@ class appIndex
 
     public function fields($fields=array(),$row=false,$auth=array())
     {
-        if(count($fields)==0)
+
+        if(count($this->data['query']))
         {
-            foreach ($this->data['query'][0] as $key=>$value)
+            if(count($fields)==0)
             {
-                if(is_array($row) && array_key_exists("except",$row))
+                foreach ($this->data['query'][0] as $key=>$value)
                 {
-                    if(!in_array($key,$row['except']))
+                    if(is_array($row) && array_key_exists("except",$row))
                     {
-                        $fields[$key]=ucfirst($key);
-                    }
-                }
-                else
-                {
-                    $fields[$key]=ucfirst($key);
-                }
-
-            }
-
-            if(is_array($row))
-            {
-                foreach ($fields as $rkey=>$rval)
-                {
-                    if(array_key_exists($rkey,$row))
-                    {
-                        foreach ($row[$rkey] as $ra=>$raw)
+                        if(!in_array($key,$row['except']))
                         {
-                            if($ra=="before")
-                            {
-                                foreach ($raw as $a=>$b)
-                                {
-                                    $efields[$a]=$b;
-
-                                }
-                                $efields[$rkey]=$rval;
-                            }
-                            else
-                            {
-                                $efields[$rkey]=$rval;
-                                foreach ($raw as $a=>$b)
-                                {
-                                    $efields[$a]=$b;
-
-                                }
-                            }
-
+                            $fields[$key]=ucfirst($key);
                         }
                     }
                     else
                     {
-                        $efields[$rkey]=$rval;
+                        $fields[$key]=ucfirst($key);
                     }
+
                 }
 
-                $fields=array();
-                $fields=$efields;
-            }
-        }
-
-
-        $authfield=[];
-        if(array_key_exists("auth",$auth))
-        {
-            if(count($auth['auth']))
-            {
-                foreach ($auth['auth'] as $key=>$function)
+                if(is_array($row))
                 {
-                    if(is_callable($function))
+                    foreach ($fields as $rkey=>$rval)
                     {
-                        $liste=call_user_func($function);
-                        $authfield[$key]=$liste;
+                        if(array_key_exists($rkey,$row))
+                        {
+                            foreach ($row[$rkey] as $ra=>$raw)
+                            {
+                                if($ra=="before")
+                                {
+                                    foreach ($raw as $a=>$b)
+                                    {
+                                        $efields[$a]=$b;
+
+                                    }
+                                    $efields[$rkey]=$rval;
+                                }
+                                else
+                                {
+                                    $efields[$rkey]=$rval;
+                                    foreach ($raw as $a=>$b)
+                                    {
+                                        $efields[$a]=$b;
+
+                                    }
+                                }
+
+                            }
+                        }
+                        else
+                        {
+                            $efields[$rkey]=$rval;
+                        }
+                    }
+
+                    $fields=array();
+                    $fields=$efields;
+                }
+            }
+
+
+            $authfield=[];
+            if(array_key_exists("auth",$auth))
+            {
+                if(count($auth['auth']))
+                {
+                    foreach ($auth['auth'] as $key=>$function)
+                    {
+                        if(is_callable($function))
+                        {
+                            $liste=call_user_func($function);
+                            $authfield[$key]=$liste;
+                        }
                     }
                 }
             }
-        }
 
 
 
-        foreach ($this->data['query'][0] as $key=>$value)
-        {
-            $list[]=$key;
-        }
-
-        if(count($fields))
-        {
-            foreach ($fields as $ff=>$f)
+            foreach ($this->data['query'][0] as $key=>$value)
             {
-                if(array_key_exists($ff,$authfield))
+                $list[]=$key;
+            }
+
+            if(count($fields))
+            {
+                foreach ($fields as $ff=>$f)
                 {
-                    if($authfield[$ff]==true)
+                    if(array_key_exists($ff,$authfield))
+                    {
+                        if($authfield[$ff]==true)
+                        {
+                            $flist[$ff]=$f;
+                        }
+                    }
+                    else
                     {
                         $flist[$ff]=$f;
                     }
                 }
-                else
+
+                $fields=[];
+                $fields=$flist;
+
+
+
+                $this->data['wanted_fields']=$fields;
+
+                foreach ($fields as $key=>$value)
                 {
-                    $flist[$ff]=$f;
-                }
-            }
-
-            $fields=[];
-            $fields=$flist;
-
-
-
-            $this->data['wanted_fields']=$fields;
-
-            foreach ($fields as $key=>$value)
-            {
-                if(!in_array($key,$list) and array_key_exists($key,$this->appQuery->getField($this->data['query'])))
-                {
-                    foreach ($this->data['query'] as $result)
+                    if(!in_array($key,$list) and array_key_exists($key,$this->appQuery->getField($this->data['query'])))
                     {
-                        $result->$key='';
+                        foreach ($this->data['query'] as $result)
+                        {
+                            $result->$key='';
+                        }
                     }
                 }
-            }
 
 
-            if($row)
-            {
-                $this->data['wanted_fields_row']=true;
+                if($row)
+                {
+                    $this->data['wanted_fields_row']=true;
+                }
             }
+
         }
+
         return $this;
+
     }
 
 
@@ -257,6 +264,24 @@ class appIndex
         return $this;
     }
 
+
+    public function filterDivide($val)
+    {
+        $this->data['filterDivide']=$val;
+        return $this;
+    }
+
+
+    public function edit($edit=array())
+    {
+        if(count($edit))
+        {
+            $this->data['edit']=$edit;
+        }
+        return $this;
+    }
+
+
     public function run($callback=false,$arg=array())
     {
 
@@ -269,6 +294,8 @@ class appIndex
 
         if(count($arg))
         {
+
+            \Session::put($arg['data']['name'],$arg);
 
             $arg['data']['lang']=$this->app->getLang(['url_path'=>'default','lang'=>$this->admin->lang]);
 

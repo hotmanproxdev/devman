@@ -38,6 +38,7 @@ class AfterMiddleware
     {
         $response = $next($request);
 
+
         if(config("app.mysql_slow_status"))
         {
             $mysqlLog=DB::getQueryLog();

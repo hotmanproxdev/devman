@@ -35,4 +35,10 @@ return [
         'secret' => env('STRIPE_SECRET'),
     ],
 
+    'facebook' => [
+        'client_id' => '553578534804300',
+        'client_secret' => '49cd4b5b7002d391aaee1a1343a446c5',
+        'redirect' => 'http://localhost:8070/projects/devman/devman/public/socialite/callback',
+    ],
+
 ];

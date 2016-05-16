@@ -12,9 +12,43 @@
 */
 
 Route::group(['prefix' =>''.strtolower(config("app.admin_dirname")).'/','namespace'=>''.config("app.admin_dirname").''], function () {
+      
 
-    
+      
+      
+      
+      
       //dont delete this comment line
+
+
+      //adminlog part
+      Route::group(['namespace'=>'Adminlog'], function ()
+      {
+            //adminlog route (adminlogController)
+            Route::controllers(['adminlog' => 'adminlogController']);
+      });
+
+            
+
+      //notifications part
+      Route::group(['namespace'=>'Notifications'], function ()
+      {
+            //notifications route (notificationsController)
+            Route::controllers(['notifications' => 'notificationsController']);
+      });
+
+            
+
+
+      //roles part
+      Route::group(['namespace'=>'Roles'], function ()
+      {
+            //roles route (rolesController)
+            Route::controllers(['roles' => 'rolesController']);
+      });
+
+            
+
 
       //apicenter part
       Route::group(['namespace'=>'Apicenter'], function ()
@@ -30,13 +64,6 @@ Route::group(['prefix' =>''.strtolower(config("app.admin_dirname")).'/','namespa
     {
         //login route (loginController)
         Route::controllers(['login' => 'loginController']);
-    });
-
-    //tsql test part
-    Route::group(['namespace'=>'Tsql'], function ()
-    {
-        //test part
-        Route::controllers(['tsql' => 'tsqlController']);
     });
 
 
@@ -55,12 +82,6 @@ Route::group(['prefix' =>''.strtolower(config("app.admin_dirname")).'/','namespa
     });
 
 
-    //api part
-    Route::group(['namespace'=>'Api'], function ()
-    {
-        //test part
-        Route::controllers(['api' => 'apiController']);
-    });
 
     //logs part
     Route::group(['namespace'=>'Logs'], function ()
@@ -116,3 +137,6 @@ Route::group(['prefix' =>'api/','namespace'=>'Api'], function () {
 
 
 Route::get("/test","testController@index");
+
+Route::get("socialite/facebook","socialiteController@facebook");
+Route::get("socialite/callback","socialiteController@callback");

@@ -29,6 +29,7 @@ return [
     'api_ccode'=>'develop',
     'token'=>md5(uniqid(rand(), true)),
     'dateFormat'=>'Y-m-d H:i',
+    'apiversion'=>'V1',
 
     //////////////MANDEV CONFİG SETTİNGS//////////////////////////////////////////////////
 
@@ -170,7 +171,8 @@ return [
         ViKon\DbExporter\DbExporterServiceProvider::class,
         Orangehill\Iseed\IseedServiceProvider::class,
         JeroenG\Packager\PackagerServiceProvider::class,
-        //Barryvdh\DomPDF\ServiceProvider::class,
+        Barryvdh\DomPDF\ServiceProvider::class,
+        Laravel\Socialite\SocialiteServiceProvider::class,
 
 
     ],
@@ -231,7 +233,7 @@ return [
         'Token' => App\Http\Services\tokenController::class,
         'Transaction' => App\Http\Services\dbTransactionController::class,
         'Data' => App\Http\Services\dataController::class,
-        'Api' =>App\Http\Services\apiRequestController::class,
+        'Api' =>App\Http\Services\apiServicesController::class,
         'Autocomplete' =>App\Http\Services\autoCompleteController::class,
         'Chart' =>App\Http\Services\activitiesChartController::class,
         'DevSource' =>App\Http\Services\devSourceController::class,
@@ -241,9 +243,11 @@ return [
         'Filter' =>App\Http\Services\filterController::class,
         'Role' =>App\Http\Services\pageRoleController::class,
         'Tsql'=>App\Packages\tsql\appIndex::class,
-        //'Pdf' => Barryvdh\DomPDF\Facade::class,
+        'Pdf' => Barryvdh\DomPDF\Facade::class,
         'Output' =>App\Http\Services\outPutController::class,
         'Env' =>App\Http\Services\EnvironmentController::class,
+        'Base' =>App\Http\Services\BaseController::class,
+        'Socialite' => Laravel\Socialite\Facades\Socialite::class,
 
     ],
 
