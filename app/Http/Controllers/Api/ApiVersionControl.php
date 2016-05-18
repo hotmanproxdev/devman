@@ -40,7 +40,15 @@ class ApiVersionControl extends Controller
 
     public function get($namespace=array(),$callback,$data=array())
     {
-        if(!array_key_exists("provision",$data) && !$this->provision['success'])
+        if(array_key_exists("access",$data) && !Session::has("mainSource") && !$data['access'])
+        {
+            return response()->json(['success'=>false,'msg'=>'No access']);
+        }
+
+
+        Session::forget("mainSource");
+
+        if(!array_key_exists("provision",$data) && !$this->provision['success'] && !Session::has("testApi"))
         {
             return response()->json(['success'=>false,'msg'=>$this->provision['msg']]);
         }
@@ -225,7 +233,7 @@ class ApiVersionControl extends Controller
 
                 }
 
-                if(array_key_exists("provision",$data))
+                if(array_key_exists("provision",$data) && !Session::has("testApi"))
                 {
                     if(!$data['provision']['success'])
                     {

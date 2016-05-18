@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Api\Custom\V1\profile\Model;
+namespace App\Http\Controllers\Api\Custom\V1\chat\Model;
 
 use Illuminate\Http\Request;
 use App\Http\Requests;
@@ -12,7 +12,7 @@ use App\Http\Controllers\Api\ConfigApi as Config;
 use App\Http\Controllers\Api\BaseApi as Base;
 
 
-class ProfileApiModel extends Controller
+class ChatApiModel extends Controller
 {
 
     public $request;

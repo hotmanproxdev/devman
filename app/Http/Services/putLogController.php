@@ -68,12 +68,7 @@ class putLogController extends Controller
             $data['getdata']=(!array_key_exists("_token",$post)) ? json_encode($post) : json_encode([]);
             $data['created_at']=time();
 
-            if(DB::table($this->app->dbTable(['logs']))->insert($data))
-            {
-                return DB::table($this->app->dbTable(['log_statistics']))
-                                ->where("id","=",1)
-                                ->update(['log'=>$this->getAllLogCounter(),'updated_at'=>time()]);
-            }
+           return DB::table($this->app->dbTable(['logs']))->insert($data);
         }
 
 

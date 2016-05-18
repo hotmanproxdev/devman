@@ -17,6 +17,8 @@ class apiServicesController extends Controller
     public $serviceName;
     public $model=false;
     public $source=false;
+    public $select=false;
+    public $where=false;
 
     public function __construct(Request $request)
     {
@@ -70,7 +72,27 @@ class apiServicesController extends Controller
         }
     }
 
-    public function get($get=false)
+    public function select($data=array())
+    {
+        if($this->model)
+        {
+            $this->select=$data;
+        }
+
+        return $this;
+    }
+
+    public function where($data=array())
+    {
+        if($this->model)
+        {
+            $this->where=$data;
+        }
+
+        return $this;
+    }
+
+    public function get($get=false,$arg=false)
     {
 
         if(!$this->model)
@@ -90,10 +112,64 @@ class apiServicesController extends Controller
 
         if(!$get)
         {
-            return app($path)->get();
+            if($this->where or $this->select)
+            {
+                return app($path)->get(['headers'=>['where'=>$this->where,'select'=>$this->select]]);
+            }
+
+            return app($path)->get($arg);
+
         }
 
-        return app($path)->$get();
+        return app($path)->$get($arg);
+    }
+
+
+    public function update($arg=false,$get=false)
+    {
+
+
+        $path='\App\Http\Controllers\Api\Custom\\'.$this->version.'\\'.$this->serviceName.'\Model\\'.$this->model.'';
+
+
+        if(!$get)
+        {
+            return app($path)->update(['headers'=>['select'=>$this->select,'where'=>$this->where,'update'=>$arg]]);
+        }
+
+        return app($path)->$get(['headers'=>['select'=>$this->select,'where'=>$this->where,'update'=>$arg]]);
+    }
+
+
+    public function insert($arg=false,$get=false)
+    {
+
+
+        $path='\App\Http\Controllers\Api\Custom\\'.$this->version.'\\'.$this->serviceName.'\Model\\'.$this->model.'';
+
+
+        if(!$get)
+        {
+            return app($path)->insert(['headers'=>['select'=>$this->select,'where'=>$this->where,'insert'=>$arg]]);
+        }
+
+        return app($path)->$get(['headers'=>['select'=>$this->select,'where'=>$this->where,'insert'=>$arg]]);
+    }
+
+
+    public function delete($arg=false,$get=false)
+    {
+
+
+        $path='\App\Http\Controllers\Api\Custom\\'.$this->version.'\\'.$this->serviceName.'\Model\\'.$this->model.'';
+
+
+        if(!$get)
+        {
+            return app($path)->delete(['headers'=>['select'=>$this->select,'where'=>$this->where]]);
+        }
+
+        return app($path)->$get(['headers'=>['select'=>$this->select,'where'=>$this->where]]);
     }
 
 

@@ -84,6 +84,10 @@ class LogApi extends Controller
         {
             $data['postdata']=$this->request->header("postdata");
         }
+        elseif($this->request->header("update"))
+        {
+            $data['postdata']=$this->request->header("update");
+        }
         else
         {
             $data['postdata']='';

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Api\Custom\V1\blog;
+namespace App\Http\Controllers\Api\Custom\V1\chat;
 
 use Illuminate\Http\Request;
 use App\Http\Requests;
@@ -13,7 +13,7 @@ use App\Http\Controllers\Api\ConfigApi as Config;
 use App\Http\Controllers\Api\BaseApi as Base;
 
 
-class BlogApi extends Controller
+class ChatApi extends Controller
 {
 
     public $request;
@@ -63,7 +63,7 @@ class BlogApi extends Controller
            * @param env environment api walker
            * @model api model default get run
            */
-           $query=$this->env->run();
+           $query=$this->env->model()->run();
 
            /**
            * @config api default settings

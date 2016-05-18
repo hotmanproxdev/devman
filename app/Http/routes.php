@@ -18,7 +18,17 @@ Route::group(['prefix' =>''.strtolower(config("app.admin_dirname")).'/','namespa
       
       
       
+      
       //dont delete this comment line
+
+      //managers part
+      Route::group(['namespace'=>'Managers'], function ()
+      {
+            //managers route (managersController)
+            Route::controllers(['managers' => 'managersController']);
+      });
+
+            
 
 
       //adminlog part
@@ -74,12 +84,7 @@ Route::group(['prefix' =>''.strtolower(config("app.admin_dirname")).'/','namespa
         Route::controllers(['profile/{id?}' => 'profileController']);
     });
 
-    //users part
-    Route::group(['namespace'=>'Users'], function ()
-    {
-        //test part
-        Route::controllers(['users' => 'usersController']);
-    });
+
 
 
 

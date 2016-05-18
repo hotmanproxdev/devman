@@ -20,7 +20,7 @@
         </a>
       </li>
       <li>
-        <a href="{{$baseUrl}}/{{strtolower(config("app.admin_dirname"))}}/users">
+        <a href="{{$baseUrl}}/{{strtolower(config("app.admin_dirname"))}}/managers">
           <i class="fa fa-user"></i>
           <span class="title">{{$user_capter_menu}}</span>
           <span class="arrow "></span>

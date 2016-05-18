@@ -42,17 +42,23 @@ class apiTest extends Command
      */
     public function handle()
     {
-
+        \Session::put("testApi",time());
         $service=explode(":",$this->argument("service"));
+
 
         if(!array_key_exists(1,$service))
         {
-            $path='App\Http\Controllers\Api\Custom\V1\\'.$service[0].'';
+            $exist=\App\Models\ApiModels::where("custom_models","=",$service[0])->where("version","=",1)->get();
+            $dir=str_replace("V1/","",$exist[0]->custom_dir);
+            $path='App\Http\Controllers\Api\Custom\V1\\'.$dir.'';
         }
         else
         {
-            $path='App\Http\Controllers\Api\Custom\\'.$service[1].'\\'.$service[0].'';
+            $exist=\App\Models\ApiModels::where("custom_models","=",$service[0])->where("version","=",1)->get();
+            $dir=str_replace("V1/","",$exist[0]->custom_dir);
+            $path='App\Http\Controllers\Api\Custom\\'.$service[1].'\\'.$dir.'';
         }
+
 
 
         if($this->argument("model"))
@@ -105,6 +111,8 @@ class apiTest extends Command
         {
             dd(app($path)->$method());
         }
+
+        \Session::forget("testApi");
 
     }
 }

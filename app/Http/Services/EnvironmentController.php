@@ -87,15 +87,19 @@ class EnvironmentController extends Controller
                 unset($class[key( array_slice( $class, -1, 1, TRUE ) )]);
 
 
+                $exist=\App\Models\ApiModels::where("custom_models","=",$this->name)->where("version","=",1)->get();
+                $dir=str_replace("V1/","",$exist[0]->custom_dir);
+
+
                 if($this->load!==NULL)
                 {
                     if($this->main!==NULL)
                     {
-                        $source='\\'.$this->paths['Api'].'\\'.$aversion.'\\'.$this->name.'\\'.$this->load.'Api';
+                        $source='\\'.$this->paths['Api'].'\\'.$aversion.'\\'.$dir.'\\'.$this->load.'Api';
                     }
                     else
                     {
-                        $source='\\'.$this->paths['Api'].'\\'.$aversion.'\\'.$this->name.'\\'.$this->model.'\\'.$this->load.'Api'.$this->model.'';
+                        $source='\\'.$this->paths['Api'].'\\'.$aversion.'\\'.$dir.'\\'.$this->model.'\\'.$this->load.'Api'.$this->model.'';
                     }
 
                 }
@@ -103,15 +107,16 @@ class EnvironmentController extends Controller
                 {
                     if($this->main!==NULL)
                     {
-                        $source='\\'.$this->paths['Api'].'\\'.$aversion.'\\'.$this->name.'\\'.$this->name.'Api';
+                        $source='\\'.$this->paths['Api'].'\\'.$aversion.'\\'.$dir.'\\'.$this->name.'Api';
                     }
                     else
                     {
-                        $source='\\'.$this->paths['Api'].'\\'.$aversion.'\\'.$this->name.'\\'.$this->model.'\\'.$this->name.'Api'.$this->model.'';
+                        $source='\\'.$this->paths['Api'].'\\'.$aversion.'\\'.$dir.'\\'.$this->model.'\\'.$this->name.'Api'.$this->model.'';
                     }
 
 
                 }
+
 
 
             }
@@ -150,6 +155,7 @@ class EnvironmentController extends Controller
                     }
 
 
+
                     //reference control
                     $referenceControl=\DB::table($this->app->dbTable(['api_reference']))->where("request_class","=",$this->data[0])
                         ->where('request_class_method',"=",\Session("apiWorkingMethod"))
@@ -165,10 +171,18 @@ class EnvironmentController extends Controller
                         $reVersion=$requestedVersion[1];
                     }
 
+
                     if(count($referenceControl)==0 && \DB::table($this->app->dbTable(['api_reference']))->insert(['request_class'=>$this->data[0],
                             'request_class_method'=>\Session("apiWorkingMethod"),'requested_class'=>$source,'requested_class_method'=>$method,
                             'request_version'=>$rVersion,'requested_version'=>$reVersion,'created_at'=>time()]))
                     {
+
+                        if($this->main!==NULL)
+                        {
+                            \Session::put("mainSource",true);
+                            $mainarray=json_decode(app($source)->$method($arg),1);
+                            return $mainarray['query'];
+                        }
                         return app($source)->$method($arg);
                     }
                 }

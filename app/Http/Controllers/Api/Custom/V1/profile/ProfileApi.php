@@ -63,7 +63,7 @@ class ProfileApi extends Controller
            * @param env environment api walker
            * @model api model default get run
            */
-           $query=$this->env->name("profile")->run();
+           $query=$this->env->name("blog")->run();
 
            /**
            * @config api default settings

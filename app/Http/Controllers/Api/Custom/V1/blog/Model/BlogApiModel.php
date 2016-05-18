@@ -48,14 +48,14 @@ class BlogApiModel extends Controller
     |
     */
 
-    public function get ()
+    public function get ($data=false)
     {
        //make query
-       return DB::table("prosystem_api_custom_test")
-                                          ->select($this->config->select())
-                                          ->where(function ($query)
+       return \App\Models\Admin
+                                          ::select($this->config->select($data))
+                                          ->where(function ($query) use ($data)
                                           {
-                                             foreach ($this->config->where() as $key=>$value)
+                                             foreach ($this->config->where($data) as $key=>$value)
                                              {
                                                  if(is_array($value))
                                                  {
@@ -63,7 +63,7 @@ class BlogApiModel extends Controller
                                                  }
                                                  else
                                                  {
-                                                    $query->where($key,"=",$value);
+                                                    $query->where($key,$this->config->whereOpt($key),$value);
                                                  }
 
                                              }
@@ -87,16 +87,16 @@ class BlogApiModel extends Controller
      |
      */
 
-     public function update ()
+     public function update ($data=false)
      {
-        return app("\Transaction")->commit(function()
+        return app("\Transaction")->commit(function() use ($data)
         {
             //make query
-            return DB::table($this->app->dbTable(['admin']))
-                    ->select($this->config->select())
-                    ->where(function ($query)
+            return \App\Models\Admin
+                    ::select($this->config->select($data))
+                    ->where(function ($query) use ($data)
                     {
-                        foreach ($this->config->where() as $key=>$value)
+                        foreach ($this->config->where($data) as $key=>$value)
                         {
                             if(is_array($value))
                             {
@@ -104,15 +104,12 @@ class BlogApiModel extends Controller
                             }
                             else
                             {
-                                $query->where($key,"=",$value);
+                                $query->where($key,$this->config->whereOpt($key),$value);
                             }
 
                         }
                     })
-                    ->orderBy("id","desc")
-                    ->skip($this->config->pageNumber())
-                    ->take(1)
-                    ->update($this->config->update());
+                    ->update($this->config->update($data));
             });
 
         }
@@ -129,12 +126,12 @@ class BlogApiModel extends Controller
      |
      */
 
-     public function insert ()
+     public function insert ($data=false)
      {
-        return app("\Transaction")->commit(function()
+        return app("\Transaction")->commit(function() use ($data)
         {
             //make query
-            return DB::table($this->app->dbTable(['admin']))->insert($this->config->postdata());
+            return \App\Models\Admin::firstOrCreate($this->config->postdata($data));
         });
 
      }
@@ -151,15 +148,15 @@ class BlogApiModel extends Controller
      |
      */
 
-     public function delete ()
+     public function delete ($data=false)
      {
-        return app("\Transaction")->commit(function()
+        return app("\Transaction")->commit(function() use ($data)
         {
             //make query
-            return DB::table($this->app->dbTable(['admin']))
-                    ->where(function ($query)
+            return \App\Models\Admin
+                    ::where(function ($query) use ($data)
                     {
-                        foreach ($this->config->where() as $key=>$value)
+                        foreach ($this->config->where($data) as $key=>$value)
                         {
                             if(is_array($value))
                             {
@@ -167,7 +164,7 @@ class BlogApiModel extends Controller
                             }
                             else
                             {
-                                $query->where($key,"=",$value);
+                                $query->where($key,$this->config->whereOpt($key),$value);
                             }
 
                         }

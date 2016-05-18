@@ -54,7 +54,7 @@ class BlogApiSource extends Controller
        * @param Api source
        * @throws return array
        */
-       return ['source'];
+       return ['source blog'];
 
     }
 

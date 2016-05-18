@@ -72,16 +72,31 @@ class ConfigApi extends Controller
    |
    */
 
-    public function select()
+    public function select($data=false)
     {
-        //example : ["id","username"]
-        if($this->request->header("select"))
+        if($data)
         {
-            return json_decode($this->request->header("select"),true);
+            if($data['headers']['select'])
+            {
+                return $data['headers']['select'];
+            }
+            return '*';
+
+        }
+        else
+        {
+            //example : ["id","username"]
+            if($this->request->header("select"))
+            {
+                return json_decode($this->request->header("select"),true);
+            }
+
+            return '*';
         }
 
 
-        return '*';
+
+
     }
 
     /*
@@ -116,16 +131,59 @@ class ConfigApi extends Controller
    |
    */
 
-    public function where()
+    public function where($data=false)
     {
-        // example : {"id" : 1}
-        if($this->request->header("where"))
+        if($data)
         {
-            return json_decode($this->request->header("where"),true);
+            if($data['headers']['where'])
+            {
+                return $data['headers']['where'];
+            }
+
+            return [];
+        }
+        else
+        {
+            // example : {"id" : 1}
+            if($this->request->header("where"))
+            {
+                return json_decode($this->request->header("where"),true);
+            }
         }
 
 
         return [];
+    }
+
+
+    /*
+  |--------------------------------------------------------------------------
+  | Application Api Custom where Method
+  |--------------------------------------------------------------------------
+  |
+  | Here is where you can register 'where queries' of the api for an application.
+  | It's a breeze. Simply tell Laravel the URIs it should respond to
+  | and give it the controller to call when that URI is requested.
+  |
+  */
+
+    public function whereOpt($key=false)
+    {
+        // example : {"id" : ">"}
+        if($this->request->header("whereOpt"))
+        {
+            $optar=json_decode($this->request->header("whereOpt"),true);
+            if(array_key_exists($key,$optar))
+            {
+                return $optar[$key];
+            }
+            else
+            {
+                return "=";
+            }
+        }
+
+        return "=";
     }
 
 
@@ -140,14 +198,27 @@ class ConfigApi extends Controller
    |
    */
 
-    public function update()
+    public function update($data=false)
     {
-        if($this->request->header("update"))
+        if($data)
         {
-            return json_decode($this->request->header("update"),true);
+            if($data['headers']['update'])
+            {
+                return $data['headers']['update'];
+            }
+
+            return [];
+        }
+        else
+        {
+            if($this->request->header("update"))
+            {
+                return json_decode($this->request->header("update"),true);
+            }
+
+            return [];
         }
 
-        return [];
     }
 
 
@@ -183,9 +254,22 @@ class ConfigApi extends Controller
    |
    */
 
-    public function postdata()
+    public function postdata($data=false)
     {
-        return $this->app->getvalidPostKey(json_decode($this->request->header("postdata"),1),['_token']);
+        if($data)
+        {
+            if($data['headers']['insert'])
+            {
+                return $data['headers']['insert'];
+            }
+
+            return [];
+        }
+        else
+        {
+            return $this->app->getvalidPostKey(json_decode($this->request->header("postdata"),1),['_token']);
+        }
+
     }
 
 
