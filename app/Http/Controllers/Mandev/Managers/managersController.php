@@ -41,7 +41,7 @@ class managersController extends Controller
              //menu statu
              $this->data['menu']=$this->app->menuStatu('normal');
              //page role
-             $this->data['pageRole']=$this->app->pageRole(['pageRole'=>1,'admin'=>$this->admin]);
+             $this->data['pageRole']=$this->app->pageRole(['pageRole'=>2,'admin'=>$this->admin]);
              //admin view
              $this->data['admin']=$this->admin;
              //get model
@@ -122,7 +122,7 @@ class managersController extends Controller
             return app("\Ajax")->control(function()
             {
                 //content auth
-                return app("\Role")->get(1,function()
+                return app("\Role")->get(4,function()
                 {
                     //new name
                     $this->data['name']='managers';
@@ -139,13 +139,13 @@ class managersController extends Controller
             return app("\Ajax")->control(function()
             {
                 //content auth
-                return app("\Role")->get(1,function()
+                return app("\Role")->get(5,function()
                 {
                     //same token control
                     return app("\Token")->valid(function()
                     {
                         //validation control
-                        return $this->validation->make([],function()
+                        return $this->validation->make($this->validationRules("postManagersnew"),function()
                         {
                             //post data query is true
                             return app("\Query")->isTrue($this->model->postManagersnew(),function()
@@ -168,7 +168,7 @@ class managersController extends Controller
         return app("\Ajax")->control(function()
         {
             //content auth
-            return app("\Role")->get(1,function()
+            return app("\Role")->get(19,function()
             {
                 //edit name
                 $this->data['name']='managers';
@@ -186,7 +186,7 @@ class managersController extends Controller
         return app("\Ajax")->control(function()
         {
             //content auth
-            return app("\Role")->get(1,function()
+            return app("\Role")->get(7,function()
             {
                 //same token control
                 return app("\Token")->valid(function()
@@ -207,5 +207,33 @@ class managersController extends Controller
 
         });
 
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    | Application Profile Validate Rules
+    |--------------------------------------------------------------------------
+    |
+    | Here is where you can register all of the routes for an application.
+    | It's a breeze. Simply tell Laravel the URIs it should respond to
+    | and give it the controller to call when that URI is requested.
+    |
+    */
+
+    public function validationRules($key)
+    {
+        if($key=="postManagersnew")
+        {
+            $rules=array(
+                "str_empty"=>[
+                    $this->data['username']=>[Input::get("username")],
+                    $this->data['password']=>[Input::get("password")],
+                    $this->data['email']=>[Input::get("email")],
+                    $this->data['fullname']=>[Input::get("fullname")]
+                ]
+            );
+        }
+
+        return $rules;
     }
 }

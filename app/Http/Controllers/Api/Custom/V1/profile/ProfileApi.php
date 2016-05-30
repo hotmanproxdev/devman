@@ -13,7 +13,7 @@ use App\Http\Controllers\Api\ConfigApi as Config;
 use App\Http\Controllers\Api\BaseApi as Base;
 
 
-class ProfileApi extends Controller
+class ProfileApi extends Controller implements \App\Http\Controllers\Api\InterfaceApi
 {
 
     public $request;
@@ -59,17 +59,29 @@ class ProfileApi extends Controller
         */
         return $this->versionControl->get([__CLASS__,__METHOD__],function()
         {
-           /**
-           * @param env environment api walker
-           * @model api model default get run
-           */
-           $query=$this->env->name("blog")->run();
+            /**
+             * @param env environment api walker
+             * @model api model default get run
+             */
+            $profile=$this->env->run();
 
-           /**
-           * @config api default settings
-           * @output json,xml,soap converter
-           */
-           return $this->config->output($query);
+            /**
+             * @param env environment api walker
+             * @model api model default get run
+             */
+            $source=$this->env->get("sourcelist")->run(['query'=>$profile]);
+
+            /**
+             * @param env environment api walker
+             * @model api model default get run
+             */
+            $query=$this->env->get("liste")->run(['query'=>$source]);
+
+            /**
+             * @config api default settings
+             * @output json,xml,soap converter
+             */
+            return $this->config->output($query);
 
         });
     }
@@ -106,7 +118,7 @@ class ProfileApi extends Controller
             */
             return $this->config->output($query);
 
-        });
+        },['provision'=>'postProvision']);
     }
 
 
@@ -143,7 +155,7 @@ class ProfileApi extends Controller
             */
             return $this->config->output($query);
 
-        });
+        },['provision'=>'postProvision']);
     }
 
 
@@ -179,7 +191,7 @@ class ProfileApi extends Controller
             */
             return $this->config->output($query);
 
-        });
+        },['provision'=>'postProvision']);
     }
 
 

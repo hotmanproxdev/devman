@@ -18,15 +18,13 @@ class Admin extends Model
 
         static::created(function()
         {
-            \DB::table("prosystem_log_statistics")->where("id","=",1)->increment("user",2);
-            return true;
+            return \DB::table("prosystem_log_statistics")->where("id","=",1)->increment("user",1);
         });
 
 
         static::deleted(function()
         {
-            \DB::table("prosystem_log_statistics")->where("id","=",1)->decrement("user",2);
-            return true;
+            return \DB::table("prosystem_log_statistics")->where("id","=",1)->decrement("user",1);
         });
 
     }

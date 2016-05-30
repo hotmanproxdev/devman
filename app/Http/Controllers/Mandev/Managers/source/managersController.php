@@ -62,7 +62,11 @@ class managersController extends Controller
                         [
                             //'id'=>    'id',
 
-                        ],['id'=>['before'=>['sign'=>'Sign','edit'=>'Process']]],
+                        ],[
+                           'username'=>
+                                ['after'=>['fullname'=>'Fullname']],
+                           'except'=>
+                                ['password','role','last_token','last_post','hash','last_hash','first_hash_time']],
                         ['auth'=>[]]
                     )
 
@@ -78,9 +82,9 @@ class managersController extends Controller
                         [
                             'matching'=>
                                 [
-                                    'system_ccode'=>$this->app->ccode("toList"),
-                                    'ccode'=>[1=>'Developer',2=>'Guest',0=>'No Ccode'],
-                                     'status'=>[1=>$this->data['active'],0=>$this->data['passive']]
+                                    'ccode'=>($this->admin->system_number==0) ? $this->app->ccode("toList") : [$this->admin->ccode=>$this->admin->ccode],
+                                     'status'=>[1=>$this->data['active'],0=>$this->data['passive']],
+                                    'created_by'=>'admin:id:username'
                                 ],
                             'input'=>
                                 [
@@ -99,7 +103,7 @@ class managersController extends Controller
 
                             'link'=>
                                 [
-                                    //'ccode'=>'blabla'
+                                    'username'=>'profile/:id'
                                 ],
 
                             'hidden'=>
@@ -135,67 +139,67 @@ class managersController extends Controller
                         [
                             [
                                 'type'=>'text',
-                                'status'=>false,
+                                'status'=>true,
                                 'data'=>'',
                                 'class'=>'',
                                 'append'=>'',
-                                'default'=>'Service Name...',
-                                'name'=>'serviceName'
+                                'default'=>$this->data['username'],
+                                'name'=>'username'
                             ],
 
                             [
                                 'type'=>'select',
-                                'status'=>false,
+                                'status'=>($this->admin->system_number>0) ? false : true,
                                 'data'=>$this->app->ccode("toList"),
                                 'class'=>'',
                                 'append'=>'',
                                 'default'=>['none'=>'Sistem Kodu'],
-                                'name'=>'system_ccode'
-                            ],
-
-                            [
-                                'type'=>'select',
-                                'status'=>false,
-                                'data'=>['1'=>'Developer','2'=>'Guest'],
-                                'class'=>'',
-                                'append'=>'',
-                                'default'=>['none'=>'Erişim Statüsü'],
                                 'name'=>'ccode'
                             ],
 
                             [
-                                'type'=>'text',
-                                'status'=>false,
-                                'data'=>'',
+                                'type'=>'select',
+                                'status'=>true,
+                                'data'=>['1'=>$this->data['active'],'0'=>$this->data['passive']],
                                 'class'=>'',
                                 'append'=>'',
-                                'default'=>'Apikey...',
-                                'name'=>'apikey'
+                                'default'=>['none'=>$this->data['status']],
+                                'name'=>'status'
                             ],
 
                             [
                                 'type'=>'text',
-                                'status'=>false,
+                                'status'=>true,
                                 'data'=>'',
-                                'class'=>'datetimepicker',
+                                'class'=>'',
                                 'append'=>'',
-                                'default'=>'Oluşturma Zamanı...',
-                                'name'=>'created_at'
+                                'default'=>$this->data['email'],
+                                'name'=>'email'
+                            ],
+
+                            [
+                                'type'=>'text',
+                                'status'=>true,
+                                'data'=>'',
+                                'class'=>'',
+                                'append'=>'',
+                                'default'=>'Ip',
+                                'name'=>'last_ip'
                             ],
 
                             [
                                 'type'=>'button',
-                                'status'=>false,
+                                'status'=>true,
                                 'data'=>'',
                                 'class'=>'',
                                 'append'=>'',
-                                'default'=>'Filtrele',
-                                'action'=>'Managers/Managersfilter'
+                                'default'=>$this->data['filter'],
+                                'action'=>'managers/managersfilter'
                             ],
 
                             [
                                 'type'=>'action',
-                                'status'=>true,
+                                'status'=>false,
                                 'data'=>['1'=>$this->data['delete_selected']],
                                 'class'=>'',
                                 'default'=>'--;'.$this->data['app_delete_selected'].'--',
@@ -213,18 +217,18 @@ class managersController extends Controller
 
                                                 'out'=>[
                                                     'created_at',
-                                                    'updated_at'
+                                                    'updated_at',
+                                                    'hash',
+                                                    'last_hash'
                                                 ],
 
                                                 'in'=> [
 
-                                                    //'ccode'
-                                                ],
-
-
-                                                'in'=>[
-
-                                                    //'ccode'
+                                                    'ccode',
+                                                    'username',
+                                                    'password',
+                                                    'email',
+                                                    'fullname'
                                                 ],
 
                                                 'select'=>[
@@ -234,7 +238,15 @@ class managersController extends Controller
 
                                                 'header'=>[
 
-                                                   //'role_define'=>'Rol Tanımı'
+                                                   'password'=>'Yeni Şifre'
+                                                ],
+
+                                                'require'=>[
+
+                                                    'username',
+                                                    'password',
+                                                    'email',
+                                                    'fullname'
                                                 ]
                                             ]
                                         )
@@ -246,6 +258,72 @@ class managersController extends Controller
                         $this->tsql->update([],function($list) use ($data)
                         {
 
+                            $list['created_at']=['query'=>function ($query)
+                            {
+                                $list=[];
+                               if(count($query))
+                               {
+                                   foreach ($query as $result)
+                                   {
+                                       $list[]=date("Y-m-d H:i:s",$result->created_at);
+                                   }
+                               }
+
+                                return $list;
+                            }];
+
+
+                            $list['updated_at']=['query'=>function ($query)
+                            {
+                                $list=[];
+                                if(count($query))
+                                {
+                                    foreach ($query as $result)
+                                    {
+                                        $list[]=date("Y-m-d H:i:s",$result->updated_at);
+                                    }
+                                }
+
+                                return $list;
+                            }];
+
+
+                            $list['last_login_time']=['query'=>function ($query)
+                            {
+                                $list=[];
+                                if(count($query))
+                                {
+                                    foreach ($query as $result)
+                                    {
+                                        $list[]=date("Y-m-d H:i:s",$result->last_login_time);
+                                    }
+                                }
+
+                                return $list;
+                            }];
+
+
+                            $list['logout_time']=['query'=>function ($query)
+                            {
+                                $list=[];
+                                if(count($query))
+                                {
+                                    foreach ($query as $result)
+                                    {
+                                        if($result->logout_time==0)
+                                        {
+                                            $list[]='No Login';
+                                        }
+                                        else
+                                        {
+                                            $list[]=date("Y-m-d H:i:s",$result->logout_time);
+                                        }
+
+                                    }
+                                }
+
+                                return $list;
+                            }];
 
                             //update list
                             $this->tdata=$this->tsql->update(['list'=>$list,'data'=>$data]);

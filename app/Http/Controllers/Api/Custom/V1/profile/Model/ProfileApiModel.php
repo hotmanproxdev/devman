@@ -12,7 +12,7 @@ use App\Http\Controllers\Api\ConfigApi as Config;
 use App\Http\Controllers\Api\BaseApi as Base;
 
 
-class ProfileApiModel extends Controller
+class ProfileApiModel extends Controller implements \App\Http\Controllers\Api\InterfaceApi
 {
 
     public $request;
@@ -70,7 +70,7 @@ class ProfileApiModel extends Controller
                                           })
                                           ->orderBy("id","desc")
                                           ->skip($this->config->pageNumber())
-                                          ->take(1)
+                                          ->take($this->config->take($data))
                                           ->get();
     }
 

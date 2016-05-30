@@ -38,7 +38,7 @@ class notificationController extends Controller
         //log info update
         $this->app->updateLogInfo($this->admin->id,['success_operations'=>1,'msg'=>$data['msg'],'query_json'=>json_encode(DB::getQueryLog()),'process_count_sql'=>count(DB::getQueryLog())]);
         DB::table($this->app->dbTable(['admin']))->where("id","=",$this->admin->id)->update(['operations'=>DB::raw("operations+1"),'success_operations'=>DB::raw("success_operations+1"),
-        'last_token'=>Input::get("_token"),'last_post'=>base64_encode(json_encode(Input::all()))]);
+        'last_token'=>Input::get("_token"),'last_post'=>base64_encode(json_encode($this->app->getvalidPostkey(\Input::all(),['created_at','updated_at'])))]);
 
         DB::table($this->app->dbTable(['notifications']))->insert(['ccode'=>$this->app->ccode($this->admin->ccode),'user'=>$this->admin->id,
                                                                   'title'=>$this->app->getUsers($this->admin->id,'fullname')[0]->fullname,

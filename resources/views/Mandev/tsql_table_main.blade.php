@@ -172,7 +172,10 @@
 
                     @if(array_key_exists("link",$fillIn))
                       @if(array_key_exists($val,$fillIn['link']))
-                        <a href="{{$baseUrl}}/{{strtolower(config("app.admin_dirname"))}}/{{$fillIn['link'][$val]}}" target="_blank">
+
+                        {{--*/ $linkex=preg_replace_callback('#:(\w+)?#is',function ($matches) use ($result) { return $result->$matches[1]; },$fillIn['link'][$val]) /*--}}
+
+                        <a href="{{$baseUrl}}/{{strtolower(config("app.admin_dirname"))}}/{{$linkex}}" target="_blank">
                           {{$result->$val}}
                           </a>
                         @else

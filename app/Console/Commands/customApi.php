@@ -11,7 +11,7 @@ class customApi extends Command
      *
      * @var string
      */
-    protected $signature = 'apicustom {custom} {dir}';
+    protected $signature = 'apicustom {custom} {dir} {statu?}';
 
     /**
      * The console command description.
@@ -62,7 +62,14 @@ class customApi extends Command
 
         if(true)
         {
-            if($main->insert(['custom_models'=>$this->argument("custom"),'custom_dir'=>($this->argument("dir")) ? ucfirst($this->argument("dir")) : NULL,'version'=>$versioning,'users'=>0,'created_at'=>time()]))
+            $statu=1;
+
+            if($this->argument("statu")=="0")
+            {
+                $statu=0;
+            }
+            if($main->insert(['custom_models'=>$this->argument("custom"),'custom_dir'=>($this->argument("dir")) ? ucfirst($this->argument("dir")) : NULL,'version'=>$versioning,'users'=>0,
+                'statu'=>$statu,'created_at'=>time()]))
             {
                 $slashes='/';
 

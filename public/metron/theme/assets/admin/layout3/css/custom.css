@@ -1,0 +1,90 @@
+/* here you can put your own css to customize and override the theme */
+
+/***
+Rounded Portlets
+***/
+/*
+.portlet {
+	border-radius: 4px !important;
+}
+
+.portlet .portlet-title {
+	border-radius: 4px 4px 0px 0px !important;
+}
+
+.portlet .portlet-body,
+.portlet .portlet-body .form-actions  {
+	border-radius: 0px 0px 4px 4px !important;
+}
+*/
+
+.tformtd { background-color:#3598dc; color:#fff; padding:10px; }
+.tformtd2 { padding:10px; font-weight: normal; }
+.validation { color:#e20a16; font-weight:bold; display:none; }
+.btn1 { background-color: #ffb23f; }
+
+
+/* Large desktops and laptops */
+@media (min-width: 1200px) {
+
+    .divlay { float:left; padding:0px; }
+    .clear { clear:both; margin:0 0px 0px 0; }
+    .indent { width:98%; }
+    .xtable { width:60%; border:0px; }
+    .ajaxPageFull {width:60%; }
+
+}
+
+/* Landscape tablets and medium desktops */
+@media (min-width: 992px) and (max-width: 1199px) {
+
+    .divlay { width:100% !important; float:left; margin:5px 0 0 0; }
+    .clear { clear:both; margin:0 0px 15px 0; }
+    .indent { width:100% !important; }
+    .xtable { width:60%; border:0px; }
+    .ajaxPageFull {width:60%; }
+
+}
+
+/* Portrait tablets and small desktops */
+@media (min-width: 768px) and (max-width: 991px) {
+
+    .divlay { width:100% !important; float:left; margin:5px 0 0 0; }
+    .clear { clear:both; margin:0 0px 15px 0; }
+    .indent { width:100% !important; }
+    .xtable { width:100%; border:0px; }
+    .ajaxPageFull {width:100%; }
+
+}
+
+/* Landscape phones and portrait tablets */
+@media (max-width: 767px) {
+
+    .divlay { width:100% !important; float:left; margin:5px 0 0 0; }
+    .clear { clear:both; margin:0 0px 15px 0; }
+    .indent { width:100% !important; }
+    .xtable { width:100%; border:0px; }
+    .ajaxPageFull {width:100%; }
+}
+
+/* Portrait phones and smaller */
+@media (max-width: 480px) {
+
+    .divlay { width:100% !important; float:left; margin:5px 0 0 0; }
+    .clear { clear:both; margin:0 0px 15px 0; }
+    .indent { width:100% !important; }
+    .xtable { width:100%; border:0px; }
+    .ajaxPageFull {width:100%; }
+
+}
+
+.xtext { background-color: #ffb23f; }
+.xtext2 { font-weight:bold; }
+.xtext3 { color:#336699; font-weight:bold; }
+td.page-ajax-active { padding: 10px; border:1px solid #ccc; background-color :#e2e2e2;  cursor:pointer; }
+td.page-ajax-passive { padding: 10px; border:1px solid #ccc; background-color :#fff;  cursor:pointer; }
+.ajaxPageFull2 {width:100%; }
+.statu { color:#336699; font-weight:bold; }
+.namecolor { font-weight:bold; }
+.key {  color:#336699; font-weight:bold; }
+.ccode { font-weight:bold; color:#e20a16; }

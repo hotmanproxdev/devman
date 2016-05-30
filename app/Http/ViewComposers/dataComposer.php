@@ -3,6 +3,7 @@
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use Session;
+use DB;
 
 class dataComposer {
 
@@ -36,9 +37,14 @@ class dataComposer {
      */
     public function compose(View $view)
     {
+        $menu=DB::table(app()->make("Base")->dbTable(['menu']))->where("parent","=",0)->where("status","=",1)->orderBy("row","asc")->get();
+        $menuparent=DB::table(app()->make("Base")->dbTable(['menu']))->where("parent",">",0)->where("status","=",1)->orderBy("row","asc")->get();
+
         $view->with('baseUrl', 'http://'.$this->request->getHttpHost().''.$this->request->getBaseUrl().'');
         $view->with('mandev', 'http://'.$this->request->getHttpHost().''.$this->request->getBaseUrl().'/'.strtolower(config("app.admin_dirname")).'');
         $view->with('token',$this->token);
+        $view->with('menuData',$menu);
+        $view->with('menuParentData',$menuparent);
         //$view->with('activites_chart',"blablachart");
     }
 

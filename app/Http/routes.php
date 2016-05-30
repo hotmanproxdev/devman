@@ -12,14 +12,24 @@
 */
 
 Route::group(['prefix' =>''.strtolower(config("app.admin_dirname")).'/','namespace'=>''.config("app.admin_dirname").''], function () {
-      
 
       
       
       
       
       
+      
+      
       //dont delete this comment line
+
+      //menus part
+      Route::group(['namespace'=>'Menus'], function ()
+      {
+            //menus route (menusController)
+            Route::controllers(['menus' => 'menusController']);
+      });
+
+            
 
       //managers part
       Route::group(['namespace'=>'Managers'], function ()
@@ -29,7 +39,6 @@ Route::group(['prefix' =>''.strtolower(config("app.admin_dirname")).'/','namespa
       });
 
             
-
 
       //adminlog part
       Route::group(['namespace'=>'Adminlog'], function ()

@@ -73,7 +73,30 @@
         </div>
       </div>
       <!-- End: life time stats -->
+
     </div>
+
+
   </div>
+
+<!--<div id="charts">
+
+
+    <div class="row">
+
+      <div class="col-md-12 col-sm-12">
+        <div id="chart_column1" style="height: 600px;"></div>
+      </div>
+
+      <div class="col-md-12 col-sm-12">
+        <div id="chart_pie1" style="height: 600px;"></div>
+      </div>
+
+
+    </div>
+
+
+</div>-->
+
 
 @endif

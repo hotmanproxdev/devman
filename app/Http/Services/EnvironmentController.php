@@ -21,6 +21,11 @@ class EnvironmentController extends Controller
     public $main=null;
     public $model='Source';
     public $provision=false;
+    public $select=null;
+    public $where=null;
+    public $update=null;
+    public $insert=null;
+    public $take=false;
 
     public function __construct(Request $request)
     {
@@ -68,6 +73,58 @@ class EnvironmentController extends Controller
         $this->model='Model';
         return $this;
     }
+
+    public function select($data=array())
+    {
+        if($this->model=="Model")
+        {
+            $this->select=$data;
+            return $this;
+        }
+
+    }
+
+
+    public function where($data=array())
+    {
+        if($this->model=="Model")
+        {
+            $this->where=$data;
+            return $this;
+        }
+
+    }
+
+    public function take($data)
+    {
+        if($this->model=="Model")
+        {
+            $this->take=$data;
+            return $this;
+        }
+
+    }
+
+    public function update($data=array())
+    {
+        if($this->model=="Model")
+        {
+            $this->update=$data;
+            return $this;
+        }
+
+    }
+
+    public function insert($data=array())
+    {
+        if($this->model=="Model")
+        {
+            $this->insert=$data;
+            return $this;
+        }
+
+    }
+
 
     public function run ($arg=false)
     {
@@ -131,7 +188,31 @@ class EnvironmentController extends Controller
             $method=($this->method==NULL) ? 'get' : $this->method;
 
 
+            if(is_array($this->select))
+            {
+                $arg['headers']['select']=$this->select;
+            }
 
+            if(is_array($this->where))
+            {
+                $arg['headers']['where']=$this->where;
+            }
+
+            if(is_array($this->update))
+            {
+                $arg['headers']['update']=$this->update;
+            }
+
+            if(is_array($this->insert))
+            {
+                $arg['headers']['insert']=$this->insert;
+            }
+
+
+            if($this->take)
+            {
+                $arg['headers']['take']=$this->take;
+            }
 
 
 
@@ -183,6 +264,8 @@ class EnvironmentController extends Controller
                             $mainarray=json_decode(app($source)->$method($arg),1);
                             return $mainarray['query'];
                         }
+
+
                         return app($source)->$method($arg);
                     }
                 }
@@ -328,6 +411,16 @@ class EnvironmentController extends Controller
 
         return \DB::table($this->app->dbTable(['api_reference']))->select(['request_class',
             'request_class_method','request_version','requested_version','created_at'])->where("requested_class","=",$method)->where("requested_class_method","=",$methodex[1])->get();
+    }
+
+
+    public function resolve($data,$resolve=false)
+    {
+        if($resolve)
+        {
+            return json_decode($data)[0]->$resolve;
+        }
+        return json_decode($data);
     }
 
 

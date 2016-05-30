@@ -290,8 +290,6 @@ class adminlogController extends Controller
                     )->filterDivide(7)
 
 
-
-
                     /* command run */
                     ->run(function($data)
                     {

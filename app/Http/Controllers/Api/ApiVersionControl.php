@@ -235,10 +235,23 @@ class ApiVersionControl extends Controller
 
                 if(array_key_exists("provision",$data) && !Session::has("testApi"))
                 {
-                    if(!$data['provision']['success'])
+                    if(!is_array($data['provision']))
                     {
-                        return response()->json(['success'=>false,'msg'=>$data['provision']['msg']]);
+
+                        $provision=app("\App\Http\Controllers\Api\ProvisionApi")->$data['provision']();
+                        if($provision['success']===false)
+                        {
+                            return response()->json(['success'=>false,'msg'=>$provision['msg']]);
+                        }
                     }
+                    else
+                    {
+                        if(!$data['provision']['success'])
+                        {
+                            return response()->json(['success'=>false,'msg'=>$data['provision']['msg']]);
+                        }
+                    }
+
                 }
 
                 return $call;

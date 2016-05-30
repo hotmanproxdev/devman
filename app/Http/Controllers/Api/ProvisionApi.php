@@ -59,6 +59,35 @@ class ProvisionApi extends Controller
     }
 
 
+    /*
+    |--------------------------------------------------------------------------
+    | Application Api Custom Get Post Provision
+    |--------------------------------------------------------------------------
+    |
+    | Here is where you can register post provision of the api for an application.
+    | It's a breeze. Simply tell Laravel the URIs it should respond to
+    | and give it the controller to call when that URI is requested.
+    |
+    */
+
+    public function postProvision ()
+    {
+        /**
+         * @method provision condition
+         * @result success true|false
+         * @false adding msq key and info
+         */
+
+        if($this->request->header("postdata"))
+        {
+            return ['success'=>true];
+        }
+
+        return ['success'=>false,'msg'=>'post provision condition'];
+    }
+
+
+
 
     /*
     |--------------------------------------------------------------------------

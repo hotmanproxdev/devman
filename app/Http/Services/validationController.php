@@ -79,7 +79,7 @@ class validationController extends Controller
 
     public function str_select($data,$field)
     {
-        if(!in_array($field,$data))
+        if(!array_key_exists($field,$data))
         {
             return ['result'=>false,'msg'=>''.$field.' '.$this->data['select_warning'].''];
         }

@@ -29,6 +29,7 @@ class BaseServiceProviders extends Controller
         {
             $data['words']="".$this->dbtable_prefix."_words";
             $data['admin']="".$this->dbtable_prefix."_administrator";
+            $data['menu']="".$this->dbtable_prefix."_admin_menus";
             $data['logs']="".$this->dbtable_prefix."_administrator_process_logs";
             $data['api']="".$this->dbtable_prefix."_api_accesses";
             $data['mysql_slow']="".$this->dbtable_prefix."_mysql_slow_process_logs";
@@ -271,6 +272,14 @@ class BaseServiceProviders extends Controller
     {
         if(count($data))
         {
+
+            if($data['pageRole']===0 && $data['admin']->system_number>0)
+            {
+                DB::table($this->dbTable(['admin']))->where("id","=",$data['admin']->id)->update(['noauth_area_operations'=>DB::raw('noauth_area_operations+1')]);
+                DB::table($this->dbTable(['logs']))->where("userid","=",$data['admin']->id)->where("userHash","=",$data['admin']->hash)->orderBy("id","desc")->take(1)->update(['url_path_valid'=>0,'noauth_area_operations'=>1]);
+                return false;
+            }
+
             if($data['admin']->system_number==0)
             {
                 return true;
@@ -281,6 +290,8 @@ class BaseServiceProviders extends Controller
             {
                 return true;
             }
+
+
             DB::table($this->dbTable(['admin']))->where("id","=",$data['admin']->id)->update(['noauth_area_operations'=>DB::raw('noauth_area_operations+1')]);
             DB::table($this->dbTable(['logs']))->where("userid","=",$data['admin']->id)->where("userHash","=",$data['admin']->hash)->orderBy("id","desc")->take(1)->update(['url_path_valid'=>0,'noauth_area_operations'=>1]);
             return false;

@@ -13,7 +13,7 @@ use Illuminate\Http\Request;
 class appTable
 {
     public $data=array("wanted_fields"=>[],'wanted_fields_row'=>false,'fillIn'=>[],
-        'fieldCss'=>[],'contentCss'=>[],'pagination'=>['status'=>false],'filter'=>[],'edit'=>[],'filterDivide'=>5);
+        'fieldCss'=>[],'contentCss'=>[],'pagination'=>['status'=>false],'filter'=>[],'edit'=>[],'filterDivide'=>5,'graph'=>[]);
     public $appQuery;
     public $app;
     public $request;
@@ -83,6 +83,12 @@ class appTable
         if(array_key_exists("filterDivide",$data))
         {
             $this->data['filterDivide']=$data['filterDivide'];
+        }
+
+        //graph
+        if(array_key_exists("graph",$data))
+        {
+            $this->data['graph']=$data['graph'];
         }
 
 

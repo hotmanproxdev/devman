@@ -30,6 +30,7 @@ return [
     'token'=>md5(uniqid(rand(), true)),
     'dateFormat'=>'Y-m-d H:i',
     'apiversion'=>'V1',
+    'theme'=>2,
 
     //////////////MANDEV CONFİG SETTİNGS//////////////////////////////////////////////////
 

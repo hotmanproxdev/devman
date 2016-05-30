@@ -40,22 +40,33 @@ class managersModel extends Controller
                   ->where(
                           function ($query)
                           {
+                               if($this->admin->system_number>0)
+                               {
+                                   $query->where("ccode","=",$this->admin->ccode);
+                               }
                                if($this->request->ajax() && !array_key_exists("ajax",\Input::all()))
                                {
                                    foreach (app("\Filter")->getData($this->filterHas()) as $key=>$value)
                                    {
-                                       if($key=="apikey")
+                                       if($key=="username" or $key=="email")
                                        {
-                                           $query->where(''.$this->app->dbTable(['api']).'.'.$key.'',"=",$value);
+                                           if(is_numeric($value))
+                                           {
+                                               $query->where(''.$this->app->dbTable(['admin']).'.id',"=",$value);
+                                           }
+                                           else
+                                           {
+                                               $query->where(''.$this->app->dbTable(['admin']).'.'.$key.'',"like",'%'.$value.'%');
+                                           }
+
                                        }
-                                       elseif($key=="created_at")
+                                       elseif($key=="ccode")
                                        {
-                                           $tablekey=''.$this->app->dbTable(['log_api']).'.'.$key.'';
-                                           $query->whereRaw("FROM_UNIXTIME(".$tablekey.",'%Y-%m-%d') ='".date("Y-m-d",strtotime($value))."'");
+                                           $query->where(''.$this->app->dbTable(['admin']).'.'.$key.'',"=",$this->app->ccode($value));
                                        }
                                        else
                                        {
-                                           $query->where(''.$this->app->dbTable(['log_api']).'.'.$key.'',"=",$value);
+                                           $query->where(''.$this->app->dbTable(['admin']).'.'.$key.'',"=",$value);
                                        }
 
                                    }

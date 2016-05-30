@@ -271,6 +271,12 @@ class appIndex
         return $this;
     }
 
+    public function graph($val)
+    {
+        $this->data['graph']=$val;
+        return $this;
+    }
+
 
     public function edit($edit=array())
     {

@@ -99,8 +99,24 @@
 
                   @else
 
+                  @if(array_key_exists("require",\Session($name)['data']['edit']))
+
+                    @if(in_array($result,\Session($name)['data']['edit']['require']))
+
+                      {{--*/ $require='' /*--}}
+                      <input type="text"  name="{{$result}}" class="form-control {{$result}} {{$datetimepicker}}" require="input-{{$result}}" value="{{$query->$result}}"/>
+                      <span class="validation {{$result}}">* {{$validation_warning}}</span>
+                    @else
+
+                      {{--*/ $require='' /*--}}
+                      <input type="text"  name="{{$result}}" class="form-control {{$datetimepicker}}" value="{{$query->$result}}"/>
+
+                    @endif
+                  @else
 
                 <input type="text"  name="{{$result}}" class="form-control {{$datetimepicker}}" value="{{$query->$result}}"/>
+
+                    @endif
 
                   @endif
               </div>

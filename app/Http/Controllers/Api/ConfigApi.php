@@ -19,6 +19,7 @@ class ConfigApi extends Controller
     public $version='V1'; //ucfirst
     public $cacheStatu=true;
     public $user_agent='Symfony/2.X';
+    public $pageNumber=10;
 
     public function __construct(Request $request)
     {
@@ -76,11 +77,19 @@ class ConfigApi extends Controller
     {
         if($data)
         {
-            if($data['headers']['select'])
+            if(array_key_exists("select",$data['headers']))
             {
-                return $data['headers']['select'];
+                if($data['headers']['select'])
+                {
+                    return $data['headers']['select'];
+                }
+                return '*';
             }
-            return '*';
+            else
+            {
+                return '*';
+            }
+
 
         }
         else
@@ -135,12 +144,22 @@ class ConfigApi extends Controller
     {
         if($data)
         {
-            if($data['headers']['where'])
+            if(array_key_exists("where",$data['headers']))
             {
-                return $data['headers']['where'];
+                if($data['headers']['where'])
+                {
+                    return $data['headers']['where'];
+                }
+
+                return [];
+            }
+            else
+            {
+                return [];
             }
 
-            return [];
+
+
         }
         else
         {
@@ -211,9 +230,9 @@ class ConfigApi extends Controller
         }
         else
         {
-            if($this->request->header("update"))
+            if($this->request->header("postdata"))
             {
-                return json_decode($this->request->header("update"),true);
+                return json_decode($this->request->header("postdata"),true);
             }
 
             return [];
@@ -242,6 +261,48 @@ class ConfigApi extends Controller
 
         return 0;
     }
+
+
+    /*
+  |--------------------------------------------------------------------------
+  | Application Api Custom take data
+  |--------------------------------------------------------------------------
+  |
+  | Here is where you can register pagination of the api for an application.
+  | It's a breeze. Simply tell Laravel the URIs it should respond to
+  | and give it the controller to call when that URI is requested.
+  |
+  */
+
+    public function take($data=false)
+    {
+        if($data)
+        {
+            if(array_key_exists("take",$data['headers']))
+            {
+                if($data['headers']['take'])
+                {
+                    return $data['headers']['take'];
+                }
+
+                return $this->pageNumber;
+            }
+
+            return $this->pageNumber;
+
+        }
+        else
+        {
+            if($this->request->header("take"))
+            {
+                return $this->request->header("take");
+            }
+
+            return $this->pageNumber;
+        }
+
+    }
+
 
     /*
    |--------------------------------------------------------------------------

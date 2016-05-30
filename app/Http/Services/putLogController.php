@@ -31,6 +31,10 @@ class putLogController extends Controller
     }
     public function admin($log=array(),$post=array())
     {
+        if($this->request->getPathInfo()=="/mandev/test/desktopnotification")
+        {
+            exit();
+        }
         if(!preg_match('@^\/api.*@',$this->request->getPathInfo()))
         {
             $data['userid']=$this->admin->id;
@@ -68,255 +72,36 @@ class putLogController extends Controller
             $data['getdata']=(!array_key_exists("_token",$post)) ? json_encode($post) : json_encode([]);
             $data['created_at']=time();
 
-           return DB::table($this->app->dbTable(['logs']))->insert($data);
+           if(DB::table($this->app->dbTable(['logs']))->insert($data))
+           {
+               if(!$this->adminLogsUpdate())
+               {
+                   return false;
+               }
+           }
+
+            return false;
         }
 
 
     }
 
 
-    public function getAllLogCounter()
+    private function adminLogsUpdate()
     {
-        $query=DB::table($this->app->dbTable(['log_statistics']))->where("id","=",1)->get();
+        $generalCounts=DB::table($this->app->dbTable(['log_statistics']))->select("general_counts")->where("id","=",1);
 
-        if($query[0]->log==NULL)
-        {
-            //log counter
-            $log['log_counter']=1;
+        $generalCountsGet=$generalCounts->get();
 
-            //ccode counter
-            $log['ccode'][$this->admin->ccode]=1;
+        $generalCountsArray=json_decode($generalCountsGet[0]->general_counts,1);
 
-            //ccode username counter
-            $log['user']['ccode'][$this->admin->ccode][$this->admin->id]=1;
+        $generalCountsArray['adminLogs']=$generalCountsArray['adminLogs']+1;
+
+        return $generalCounts->update(['general_counts'=>json_encode($generalCountsArray)]);
 
 
-            //osFamily counter
-            $browserDetect=BrowserDetect::toArray();
-            $log['family']['osFamily'][$browserDetect['osFamily']]=1;
-            $log['family']['ccode'][$this->admin->ccode]['osFamily'][$browserDetect['osFamily']]=1;
-
-            //browserFamily counter
-            $log['family']['browserFamily'][$browserDetect['browserFamily']]=1;
-            $log['family']['ccode'][$this->admin->ccode]['browserFamily'][$browserDetect['browserFamily']]=1;
-
-
-            //Family user counter
-            $log['family']['user'][$this->admin->ccode][$this->admin->id]['osFamily'][$browserDetect['osFamily']]=1;
-            $log['family']['user'][$this->admin->ccode][$this->admin->id]['browserFamily'][$browserDetect['browserFamily']]=1;
-
-        }
-        else
-        {
-            $log=json_decode($query[0]->log,1);
-
-            //log counter
-            $log['log_counter']=$log['log_counter']+1;
-
-            //ccode counter
-            if(array_key_exists($this->admin->ccode,$log['ccode']))
-            {
-                $log['ccode'][$this->admin->ccode]=$log['ccode'][$this->admin->ccode]+1;
-            }
-            else
-            {
-                $log['ccode'][$this->admin->ccode]=1;
-            }
-
-
-            //ccode username counter
-            if(array_key_exists($this->admin->ccode,$log['user']['ccode']))
-            {
-                if(array_key_exists($this->admin->id, $log['user']['ccode'][$this->admin->ccode]))
-                {
-                    $log['user']['ccode'][$this->admin->ccode][$this->admin->id]=$log['user']['ccode'][$this->admin->ccode][$this->admin->id]+1;
-                }
-                else
-                {
-                    $log['user']['ccode'][$this->admin->ccode][$this->admin->id]=1;
-                }
-
-            }
-            else
-            {
-                $log['user']['ccode'][$this->admin->ccode][$this->admin->id]=1;
-            }
-
-            //get browserdetect
-            $browserDetect=BrowserDetect::toArray();
-
-            //osFamily counter
-            if(array_key_exists($browserDetect['osFamily'],$log['family']['osFamily']))
-            {
-                $log['family']['osFamily'][$browserDetect['osFamily']]=$log['family']['osFamily'][$browserDetect['osFamily']]+1;
-            }
-            else
-            {
-                $log['family']['osFamily'][$browserDetect['osFamily']]=1;
-            }
-
-            //browserFamily counter
-            if(array_key_exists($browserDetect['browserFamily'],$log['family']['browserFamily']))
-            {
-                $log['family']['browserFamily'][$browserDetect['browserFamily']]=$log['family']['browserFamily'][$browserDetect['browserFamily']]+1;
-            }
-            else
-            {
-                $log['family']['browserFamily'][$browserDetect['browserFamily']]=1;
-            }
-
-
-            //osFamily ccode counter
-            if(array_key_exists($this->admin->ccode,$log['family']['ccode']))
-            {
-                if(array_key_exists("osFamily",$log['family']['ccode'][$this->admin->ccode]))
-                {
-                    if(array_key_exists($browserDetect['osFamily'],$log['family']['ccode'][$this->admin->ccode]['osFamily']))
-                    {
-                        $log['family']['ccode'][$this->admin->ccode]['osFamily'][$browserDetect['osFamily']]=$log['family']['ccode'][$this->admin->ccode]['osFamily'][$browserDetect['osFamily']]+1;
-                    }
-                    else
-                    {
-                        $log['family']['ccode'][$this->admin->ccode]['osFamily'][$browserDetect['osFamily']]=1;
-                    }
-                }
-                else
-                {
-                    $log['family']['ccode'][$this->admin->ccode]['osFamily'][$browserDetect['osFamily']]=1;
-                }
-
-            }
-            else
-            {
-                $log['family']['ccode'][$this->admin->ccode]['osFamily'][$browserDetect['osFamily']]=1;
-            }
-
-
-            //browserFamily ccode counter
-            if(array_key_exists($this->admin->ccode,$log['family']['ccode']))
-            {
-                if(array_key_exists("browserFamily",$log['family']['ccode'][$this->admin->ccode]))
-                {
-                    //browserFamily ccode counter
-                    if(array_key_exists($browserDetect['browserFamily'],$log['family']['ccode'][$this->admin->ccode]['browserFamily']))
-                    {
-                        $log['family']['ccode'][$this->admin->ccode]['browserFamily'][$browserDetect['browserFamily']]=
-                            $log['family']['ccode'][$this->admin->ccode]['browserFamily'][$browserDetect['browserFamily']]+1;
-                    }
-                    else
-                    {
-                        $log['family']['ccode'][$this->admin->ccode]['browserFamily'][$browserDetect['browserFamily']]=1;
-                    }
-                }
-                else
-                {
-                    $log['family']['ccode'][$this->admin->ccode]['browserFamily'][$browserDetect['browserFamily']]=1;
-                }
-
-            }
-            else
-            {
-                $log['family']['ccode'][$this->admin->ccode]['browserFamily'][$browserDetect['browserFamily']]=1;
-            }
-
-
-
-
-            //osFamily user counter
-            if(array_key_exists('user',$log['family']))
-            {
-                if(array_key_exists($this->admin->ccode,$log['family']['user']))
-                {
-                    if(array_key_exists($this->admin->id,$log['family']['user'][$this->admin->ccode]))
-                    {
-                        if(array_key_exists('osFamily',$log['family']['user'][$this->admin->ccode][$this->admin->id]))
-                        {
-                            if(array_key_exists($browserDetect['osFamily'],$log['family']['user'][$this->admin->ccode][$this->admin->id]['osFamily']))
-                            {
-                                $log['family']['user'][$this->admin->ccode][$this->admin->id]['osFamily'][$browserDetect['osFamily']]=
-                                    $log['family']['user'][$this->admin->ccode][$this->admin->id]['osFamily'][$browserDetect['osFamily']]+1;
-                            }
-                            else
-                            {
-                                $log['family']['user'][$this->admin->ccode][$this->admin->id]['osFamily'][$browserDetect['osFamily']]=1;
-                            }
-
-                        }
-                        else
-                        {
-                            $log['family']['user'][$this->admin->ccode][$this->admin->id]['osFamily'][$browserDetect['osFamily']]=1;
-                        }
-
-                    }
-                    else
-                    {
-                        $log['family']['user'][$this->admin->ccode][$this->admin->id]['osFamily'][$browserDetect['osFamily']]=1;
-                    }
-                }
-                else
-                {
-                    $log['family']['user'][$this->admin->ccode][$this->admin->id]['osFamily'][$browserDetect['osFamily']]=1;
-                }
-
-            }
-            else
-            {
-                $log['family']['user'][$this->admin->ccode][$this->admin->id]['osFamily'][$browserDetect['osFamily']]=1;
-            }
-
-
-
-            //browserFamily user counter
-            if(array_key_exists('user',$log['family']))
-            {
-                if(array_key_exists($this->admin->ccode,$log['family']['user']))
-                {
-                    if(array_key_exists($this->admin->id,$log['family']['user'][$this->admin->ccode]))
-                    {
-                        if(array_key_exists('browserFamily',$log['family']['user'][$this->admin->ccode][$this->admin->id]))
-                        {
-                            if(array_key_exists($browserDetect['browserFamily'],$log['family']['user'][$this->admin->ccode][$this->admin->id]['browserFamily']))
-                            {
-                                $log['family']['user'][$this->admin->ccode][$this->admin->id]['browserFamily'][$browserDetect['browserFamily']]=
-                                    $log['family']['user'][$this->admin->ccode][$this->admin->id]['browserFamily'][$browserDetect['browserFamily']]+1;
-                            }
-                            else
-                            {
-                                $log['family']['user'][$this->admin->ccode][$this->admin->id]['browserFamily'][$browserDetect['browserFamily']]=1;
-                            }
-
-                        }
-                        else
-                        {
-                            $log['family']['user'][$this->admin->ccode][$this->admin->id]['browserFamily'][$browserDetect['browserFamily']]=1;
-                        }
-
-                    }
-                    else
-                    {
-                        $log['family']['user'][$this->admin->ccode][$this->admin->id]['browserFamily'][$browserDetect['browserFamily']]=1;
-                    }
-                }
-                else
-                {
-                    $log['family']['user'][$this->admin->ccode][$this->admin->id]['browserFamily'][$browserDetect['browserFamily']]=1;
-                }
-
-            }
-            else
-            {
-                $log['family']['user'][$this->admin->ccode][$this->admin->id]['browserFamily'][$browserDetect['browserFamily']]=1;
-            }
-
-
-
-
-
-        }
-
-
-        return json_encode($log);
     }
+
 
 
 }
