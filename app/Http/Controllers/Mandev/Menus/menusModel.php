@@ -33,8 +33,8 @@ class menusModel extends Controller
 
     }
 
-   public function get()
-   {
+    public function get()
+    {
         //default filter query
         return DB::table($this->app->dbTable(['menu']))
                   ->where(
@@ -63,48 +63,51 @@ class menusModel extends Controller
                           )
                           ->orderBy("row","asc")
                           ->paginate(10);
-   }
+    }
 
 
-     public function postMenus()
-     {
-            return DB::table($this->app->dbTable(['menu']))->where("id","=",\Input::get("id"))->update($this->app->getvalidPostkey(\Input::all(),['_token']));
-     }
+    public function postMenus()
+    {
+        return app("\Query")->uplog(['menu'],function()
+        {
+            return \App\Models\Menu::where("id","=",\Input::get("id"))->update($this->app->getvalidPostkey(\Input::all(),['_token']));
+        });
+
+    }
 
 
-     public function postMenusnew()
-     {
-            \Input::merge(array('created_at' =>time()));
-            \Input::merge(array('updated_at' =>time()));
+    public function postMenusnew()
+    {
+        \Input::merge(array('created_at' =>time()));
+        \Input::merge(array('updated_at' =>time()));
 
-             return DB::table($this->app->dbTable(['menu']))->insert($this->app->getvalidPostkey(\Input::all(),['_token']));
-     }
+        return \App\Models\Menu::firstOrCreate($this->app->getvalidPostkey(\Input::all(),['_token']));
+    }
 
-      public function postprocessmenus()
-      {
-          if(\Input::get("menussignprocess")=="1")
-          {
-             $return=[];
-             foreach (\Input::get("sign") as $sign)
-             {
-                if(DB::table($this->app->dbTable(['menu']))->delete(['id'=>$sign])==false)
+    public function postprocessmenus()
+    {
+        if(\Input::get("menussignprocess")=="1")
+        {
+            $return=[];
+            foreach (\Input::get("sign") as $sign)
+            {
+                if(\App\Models\Menu::find($sign)->delete()==false)
                 {
                     return false;
                 }
-             }
+            }
 
-             return true;
+            return true;
 
-          }
+        }
 
 
-      }
-
+    }
 
 
     public function getMainMenus()
     {
-        $menus=DB::table($this->app->dbTable(['menu']))->where("parent","=","0")->where("status","=",1)->get();
+        $menus=\App\Models\Menu::where("parent","=","0")->where("status","=",1)->get();
 
         $list=[];
 

@@ -14,13 +14,13 @@
 Route::group(['prefix' =>''.strtolower(config("app.admin_dirname")).'/','namespace'=>''.config("app.admin_dirname").''], function () {
 
       
-      
-      
+
       
       
       
       
       //dont delete this comment line
+
 
       //menus part
       Route::group(['namespace'=>'Menus'], function ()
@@ -55,18 +55,6 @@ Route::group(['prefix' =>''.strtolower(config("app.admin_dirname")).'/','namespa
             //notifications route (notificationsController)
             Route::controllers(['notifications' => 'notificationsController']);
       });
-
-            
-
-
-      //roles part
-      Route::group(['namespace'=>'Roles'], function ()
-      {
-            //roles route (rolesController)
-            Route::controllers(['roles' => 'rolesController']);
-      });
-
-            
 
 
       //apicenter part

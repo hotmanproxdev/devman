@@ -3,7 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Log;
+use Log as Log;
 
 class Profile extends Model
 {

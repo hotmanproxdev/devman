@@ -137,7 +137,7 @@
           <div class="form-actions">
             <div class="row">
               <div class="col-md-offset-3 col-md-9">
-                <a class="submit btn purple" ajax-form="{{$name}}" action="{{\Session($name)['data']['edit']['action']}}/{{$name}}"><i class="fa fa-check"></i>{{$save_changes}}</a>
+                <a class="submit btn purple" ajax-form="{{$name}}" action="{{\Session($name)['data']['edit']['action']}}/edit{{\Session($name)['data']['edit']['action']}}"><i class="fa fa-check"></i>{{$save_changes}}</a>
                 <span id="{{$name}}result"></span>
               </div>
             </div>

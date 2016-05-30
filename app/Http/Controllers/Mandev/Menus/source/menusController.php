@@ -95,7 +95,7 @@ class menusController extends Controller
 
                             'modal'=>
                                 [
-                                    'edit'=>['action'=>'menus/edit','title'=>'Tsql Editleme Bölümü']
+                                    'edit'=>['action'=>'menus/editmenus','title'=>'Tsql Editleme Bölümü']
                                 ],
 
                             'link'=>

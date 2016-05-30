@@ -86,8 +86,11 @@ class queryController extends Controller
     public function upLog($data=array(),$callback)
     {
         $val=false;
+        
+        $postData=$this->app->getvalidPostkey(\Input::all(),['_token']);
 
-        $query=\DB::table($this->app->dbTable([$data[0]]))->where("id","=",$data[1])->get();
+        $query=\DB::table($this->app->dbTable([$data[0]]))->where("id","=",\Input::get("id"))->get();
+
 
         if(count($query))
         {
@@ -95,17 +98,16 @@ class queryController extends Controller
             $queryData=[];
             foreach ($query[0] as $key=>$value)
             {
-                if(array_key_exists($key,$data[2]))
+                if(array_key_exists($key,$postData))
                 {
                     $queryData[$key]=$value;
 
-                    if($data[2][$key]!=$queryData[$key])
+                    if($postData[$key]!=$queryData[$key])
                     {
-                        $changedList[$key]=['old'=>$queryData[$key],'new'=>$data[2][$key]];
+                        $changedList[$key]=['old'=>$queryData[$key],'new'=>$postData[$key]];
                     }
                 }
             }
-
 
             if(count($changedList))
             {
@@ -113,7 +115,7 @@ class queryController extends Controller
 
                 foreach ($changedList as $ckey=>$cvalue)
                 {
-                    $listarr[]=['route'=>$this->request->getPathInfo(),'table'=>$data[0],'table_id'=>$data[1],
+                    $listarr[]=['route'=>$this->request->getPathInfo(),'table'=>$data[0],'table_id'=>\Input::get("id"),
                         'field'=>$ckey,'old_value'=>$changedList[$ckey]['old'],'new_value'=>$changedList[$ckey]['new'],
                         'changed'=>json_encode($changedList),'admin'=>$this->admin->id,'ccode'=>$this->app->ccode($this->admin->ccode),'created_at'=>time()];
 
@@ -123,6 +125,7 @@ class queryController extends Controller
 
 
             }
+
 
             if(\Session::has("updateLog"))
             {

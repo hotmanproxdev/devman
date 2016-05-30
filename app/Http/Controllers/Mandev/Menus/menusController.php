@@ -84,7 +84,142 @@ class menusController extends Controller
             return $view;
 
             //return view
-            return view("".config("app.admin_dirname").".".$this->url_path.".main",$this->data);
+            //return view("".config("app.admin_dirname").".".$this->url_path.".main",$this->data);
+        }
+
+        /*
+        |--------------------------------------------------------------------------
+        | Application Api Custom Get Page New Button Process Ajax
+        |--------------------------------------------------------------------------
+        |
+        | Here is where you can register new process ajax of the page for an application.
+        | It's a breeze. Simply tell Laravel the URIs it should respond to
+        | and give it the controller to call when that URI is requested.
+        |
+        */
+        public function getNewmenus()
+        {
+             //it just accepts ajax request
+            return app("\Ajax")->control(function()
+            {
+                //content auth
+                return app("\Role")->get(0,function()
+                {
+                    //new name
+                    $this->data['name']='menus';
+
+                    //return view
+                    return view("".config("app.admin_dirname").".tsqlnew",$this->data);
+                });
+            });
+        }
+
+
+        /*
+        |--------------------------------------------------------------------------
+        | Application Api Custom Get Page New Button Post
+        |--------------------------------------------------------------------------
+        |
+        | Here is where you can register new button post of the page for an application.
+        | It's a breeze. Simply tell Laravel the URIs it should respond to
+        | and give it the controller to call when that URI is requested.
+        |
+        */
+        public function postMenusnew()
+        {
+            //accept post in with ajax method
+            return app("\Ajax")->control(function()
+            {
+                //content auth
+                return app("\Role")->get(0,function()
+                {
+                    //same token control
+                    return app("\Token")->valid(function()
+                    {
+                        //validation control
+                        return $this->validation->make($this->validationRules("menu"),function()
+                        {
+                            //post data query is true
+                            return app("\Query")->isTrue($this->model->postMenusnew(),function()
+                            {
+                                return $this->notification->success(['msg'=>$this->data['successdata'],'title'=>$this->data['successful']]);
+                            });
+                        });
+
+                    });
+
+                });
+
+            });
+
+        }
+
+
+        /*
+        |--------------------------------------------------------------------------
+        | Application Api Custom Get Page Edit Ajax Process
+        |--------------------------------------------------------------------------
+        |
+        | Here is where you can register edit ajax of the page for an application.
+        | It's a breeze. Simply tell Laravel the URIs it should respond to
+        | and give it the controller to call when that URI is requested.
+        |
+        */
+        public function getEditmenus()
+        {
+            //it just accepts ajax request
+            return app("\Ajax")->control(function()
+            {
+                //content auth
+                return app("\Role")->get(0,function()
+                {
+                    //edit name
+                    $this->data['name']='menus';
+
+                    //return view
+                    return view("".config("app.admin_dirname").".tsqledit",$this->data);
+                });
+            });
+        }
+
+
+        /*
+        |--------------------------------------------------------------------------
+        | Application Api Custom Get Page Edit Post
+        |--------------------------------------------------------------------------
+        |
+        | Here is where you can register page edit post of the page for an application.
+        | It's a breeze. Simply tell Laravel the URIs it should respond to
+        | and give it the controller to call when that URI is requested.
+        |
+        */
+        public function postEditmenus()
+        {
+            //accept post in with ajax method
+            return app("\Ajax")->control(function()
+            {
+                //content auth
+                return app("\Role")->get(0,function()
+                {
+                    //same token control
+                    return app("\Token")->valid(function()
+                    {
+                        //validation control
+                        return $this->validation->make($this->validationRules("menu"),function()
+                        {
+                            //post data query is true
+                            return app("\Query")->isTrue($this->model->postMenus(),function()
+                            {
+                                return $this->notification->success(['msg'=>$this->data['successdata'],'title'=>$this->data['successful']]);
+                            });
+                        });
+
+                    });
+
+                });
+
+            });
+
         }
 
 
@@ -123,7 +258,7 @@ class menusController extends Controller
             return app("\Ajax")->control(function()
             {
                 //content auth
-                return app("\Role")->get(1,function()
+                return app("\Role")->get(0,function()
                 {
                     //same token control
                     return app("\Token")->valid(function()
@@ -145,143 +280,6 @@ class menusController extends Controller
             });
 
         }
-
-        /*
-        |--------------------------------------------------------------------------
-        | Application Api Custom Get Page New Button Process Ajax
-        |--------------------------------------------------------------------------
-        |
-        | Here is where you can register new process ajax of the page for an application.
-        | It's a breeze. Simply tell Laravel the URIs it should respond to
-        | and give it the controller to call when that URI is requested.
-        |
-        */
-        public function getNewmenus()
-        {
-             //it just accepts ajax request
-            return app("\Ajax")->control(function()
-            {
-                //content auth
-                return app("\Role")->get(1,function()
-                {
-                    //new name
-                    $this->data['name']='menus';
-
-                    //return view
-                    return view("".config("app.admin_dirname").".tsqlnew",$this->data);
-                });
-            });
-        }
-
-
-        /*
-        |--------------------------------------------------------------------------
-        | Application Api Custom Get Page New Button Post
-        |--------------------------------------------------------------------------
-        |
-        | Here is where you can register new button post of the page for an application.
-        | It's a breeze. Simply tell Laravel the URIs it should respond to
-        | and give it the controller to call when that URI is requested.
-        |
-        */
-        public function postMenusnew()
-        {
-            //accept post in with ajax method
-            return app("\Ajax")->control(function()
-            {
-                //content auth
-                return app("\Role")->get(1,function()
-                {
-                    //same token control
-                    return app("\Token")->valid(function()
-                    {
-                        //validation control
-                        return $this->validation->make($this->validationRules("menu"),function()
-                        {
-                            //post data query is true
-                            return app("\Query")->isTrue($this->model->postMenusnew(),function()
-                            {
-                                return $this->notification->success(['msg'=>$this->data['successdata'],'title'=>$this->data['successful']]);
-                            });
-                        });
-
-                    });
-
-                });
-
-            });
-
-        }
-
-
-        /*
-        |--------------------------------------------------------------------------
-        | Application Api Custom Get Page Edit Ajax Process
-        |--------------------------------------------------------------------------
-        |
-        | Here is where you can register edit ajax of the page for an application.
-        | It's a breeze. Simply tell Laravel the URIs it should respond to
-        | and give it the controller to call when that URI is requested.
-        |
-        */
-        public function getEdit()
-        {
-            //it just accepts ajax request
-            return app("\Ajax")->control(function()
-            {
-                //content auth
-                return app("\Role")->get(1,function()
-                {
-                    //edit name
-                    $this->data['name']='menus';
-
-                    //return view
-                    return view("".config("app.admin_dirname").".tsqledit",$this->data);
-                });
-            });
-        }
-
-
-        /*
-        |--------------------------------------------------------------------------
-        | Application Api Custom Get Page Edit Post
-        |--------------------------------------------------------------------------
-        |
-        | Here is where you can register page edit post of the page for an application.
-        | It's a breeze. Simply tell Laravel the URIs it should respond to
-        | and give it the controller to call when that URI is requested.
-        |
-        */
-        public function postMenus()
-        {
-            //accept post in with ajax method
-            return app("\Ajax")->control(function()
-            {
-                //content auth
-                return app("\Role")->get(1,function()
-                {
-                    //same token control
-                    return app("\Token")->valid(function()
-                    {
-                        //validation control
-                        return $this->validation->make($this->validationRules("menu"),function()
-                        {
-                            //post data query is true
-                            return app("\Query")->isTrue($this->model->postMenus(),function()
-                            {
-                                return $this->notification->success(['msg'=>$this->data['successdata'],'title'=>$this->data['successful']]);
-                            });
-                        });
-
-                    });
-
-                });
-
-            });
-
-        }
-
-
 
 
         /*
