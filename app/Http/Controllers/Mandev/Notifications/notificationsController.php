@@ -57,66 +57,49 @@ class notificationsController extends Controller
 
         }
 
-    public function getIndex ()
-    {
-        //get notifications list
-        $this->data['query'] = $this->source->data("notifications")->get("get");
 
-        //ajax return view
-        $view=view("".config("app.admin_dirname").".".$this->url_path.".main",$this->data);
-
-        if($this->request->ajax())
+        /*
+        |--------------------------------------------------------------------------
+        | Application Api Custom Get Page Index
+        |--------------------------------------------------------------------------
+        |
+        | Here is where you can register main index of the page for an application.
+        | It's a breeze. Simply tell Laravel the URIs it should respond to
+        | and give it the controller to call when that URI is requested.
+        |
+        */
+        public function getIndex ()
         {
-            $sections = $view->renderSections();
-            return $sections['tsql'];
-        }
+            //get notifications list
+            $this->data['query'] = $this->source->data("notifications")->get("get");
 
-        return $view;
+            //ajax return view
+            $view=view("".config("app.admin_dirname").".".$this->url_path.".main",$this->data);
 
-        //return view
-        return view("".config("app.admin_dirname").".".$this->url_path.".main",$this->data);
-    }
-
-
-    public function postNotificationsfilter()
-    {
-        return app("\Filter")->data(function()
-        {
-            return $this->getIndex();
-        });
-    }
-
-
-    public function postProcessnotifications()
-        {
-            //accept post in with ajax method
-            return app("\Ajax")->control(function()
+            if($this->request->ajax())
             {
-                //content auth
-                return app("\Role")->get(1,function()
-                {
-                    //same token control
-                    return app("\Token")->valid(function()
-                    {
-                        //validation control
-                        return $this->validation->make([],function()
-                        {
-                            //post data query is true
-                            return app("\Query")->isTrue($this->model->postprocessnotifications(),function()
-                            {
-                                return $this->notification->success(['msg'=>$this->data['successdata'],'title'=>$this->data['successful']]);
-                            });
-                        });
+                $sections = $view->renderSections();
+                return $sections['tsql'];
+            }
 
-                    });
+            return $view;
 
-                });
-
-            });
-
+            //return view
+            return view("".config("app.admin_dirname").".".$this->url_path.".main",$this->data);
         }
 
-    public function getNewnotifications()
+
+        /*
+        |--------------------------------------------------------------------------
+        | Application Api Custom Get Page New Button Process Ajax
+        |--------------------------------------------------------------------------
+        |
+        | Here is where you can register new process ajax of the page for an application.
+        | It's a breeze. Simply tell Laravel the URIs it should respond to
+        | and give it the controller to call when that URI is requested.
+        |
+        */
+        public function getNewnotifications()
         {
             //it just accepts ajax request
             return app("\Ajax")->control(function()
@@ -133,6 +116,17 @@ class notificationsController extends Controller
             });
         }
 
+
+        /*
+        |--------------------------------------------------------------------------
+        | Application Api Custom Get Page New Button Post
+        |--------------------------------------------------------------------------
+        |
+        | Here is where you can register new button post of the page for an application.
+        | It's a breeze. Simply tell Laravel the URIs it should respond to
+        | and give it the controller to call when that URI is requested.
+        |
+        */
         public function postNotificationsnew()
         {
             //accept post in with ajax method
@@ -162,50 +156,164 @@ class notificationsController extends Controller
 
         }
 
-    public function getEdit()
-    {
-        //it just accepts ajax request
-        return app("\Ajax")->control(function()
+
+        /*
+        |--------------------------------------------------------------------------
+        | Application Api Custom Get Page Edit Ajax Process
+        |--------------------------------------------------------------------------
+        |
+        | Here is where you can register edit ajax of the page for an application.
+        | It's a breeze. Simply tell Laravel the URIs it should respond to
+        | and give it the controller to call when that URI is requested.
+        |
+        */
+        public function getEditnotifications()
         {
-            //content auth
-            return app("\Role")->get(1,function()
+            //it just accepts ajax request
+            return app("\Ajax")->control(function()
             {
-                //edit name
-                $this->data['name']='notifications';
-
-                //return view
-                return view("".config("app.admin_dirname").".tsqledit",$this->data);
-            });
-        });
-    }
-
-
-    public function postNotifications()
-    {
-        //accept post in with ajax method
-        return app("\Ajax")->control(function()
-        {
-            //content auth
-            return app("\Role")->get(1,function()
-            {
-                //same token control
-                return app("\Token")->valid(function()
+                //content auth
+                return app("\Role")->get(1,function()
                 {
-                    //validation control
-                    return $this->validation->make([],function()
+                    //edit name
+                    $this->data['name']='notifications';
+
+                    //return view
+                    return view("".config("app.admin_dirname").".tsqledit",$this->data);
+                });
+            });
+        }
+
+
+
+        /*
+        |--------------------------------------------------------------------------
+        | Application Api Custom Get Page Edit Post
+        |--------------------------------------------------------------------------
+        |
+        | Here is where you can register page edit post of the page for an application.
+        | It's a breeze. Simply tell Laravel the URIs it should respond to
+        | and give it the controller to call when that URI is requested.
+        |
+        */
+        public function postEditnotifications()
+        {
+            //accept post in with ajax method
+            return app("\Ajax")->control(function()
+            {
+                //content auth
+                return app("\Role")->get(1,function()
+                {
+                    //same token control
+                    return app("\Token")->valid(function()
                     {
-                        //post data query is true
-                        return app("\Query")->isTrue($this->model->postNotifications(),function()
+                        //validation control
+                        return $this->validation->make([],function()
                         {
-                            return $this->notification->success(['msg'=>$this->data['successdata'],'title'=>$this->data['successful']]);
+                            //post data query is true
+                            return app("\Query")->isTrue($this->model->postNotifications(),function()
+                            {
+                                return $this->notification->success(['msg'=>$this->data['successdata'],'title'=>$this->data['successful']]);
+                            });
                         });
+
                     });
 
                 });
 
             });
 
-        });
+        }
 
-    }
+
+        /*
+        |--------------------------------------------------------------------------
+        | Application Api Custom Get Page Post Filter
+        |--------------------------------------------------------------------------
+        |
+        | Here is where you can register post filter of the page for an application.
+        | It's a breeze. Simply tell Laravel the URIs it should respond to
+        | and give it the controller to call when that URI is requested.
+        |
+        */
+        public function postNotificationsfilter()
+        {
+           return app("\Filter")->data(function()
+           {
+               return $this->getIndex();
+           });
+        }
+
+
+        /*
+        |--------------------------------------------------------------------------
+        | Application Api Custom Get Page Process Filter
+        |--------------------------------------------------------------------------
+        |
+        | Here is where you can register process filter of the page for an application.
+        | It's a breeze. Simply tell Laravel the URIs it should respond to
+        | and give it the controller to call when that URI is requested.
+        |
+        */
+        public function postProcessnotifications()
+        {
+            //accept post in with ajax method
+            return app("\Ajax")->control(function()
+            {
+                //content auth
+                return app("\Role")->get(1,function()
+                {
+                    //same token control
+                    return app("\Token")->valid(function()
+                    {
+                        //validation control
+                        return $this->validation->make([],function()
+                        {
+                            //post data query is true
+                            return app("\Query")->isTrue($this->model->postprocessnotifications(),function()
+                            {
+                                return $this->notification->success(['msg'=>$this->data['successdata'],'title'=>$this->data['successful']]);
+                            });
+                        });
+
+                    });
+
+                });
+
+            });
+
+        }
+
+
+        /*
+        |--------------------------------------------------------------------------
+        | Application Api Custom Get Page Validation Rules
+        |--------------------------------------------------------------------------
+        |
+        | Here is where you can register validation rules of the page for an application.
+        | It's a breeze. Simply tell Laravel the URIs it should respond to
+        | and give it the controller to call when that URI is requested.
+        |
+        */
+        public function validationRules($key)
+        {
+            if($key=="postManagersnew")
+            {
+                $rules=array(
+                        "str_empty"=>[
+
+                                        //$this->data['username']=>[Input::get("username")]
+                                     ],
+
+                                     "str_select"=>[
+
+                                                        //Input::get("parent")=>[0=>$this->data['mainMenu']]+$this->model->getMainMenus(),
+                                                        //Input::get("status")=>[0=>$this->data['passive'],1=>$this->data['active']]
+
+                                                    ]
+                    );
+            }
+
+                return $rules;
+        }
 }

@@ -44,20 +44,7 @@ class notificationsModel extends Controller
                                {
                                    foreach (app("\Filter")->getData($this->filterHas()) as $key=>$value)
                                    {
-                                       if($key=="apikey")
-                                       {
-                                           $query->where(''.$this->app->dbTable(['api']).'.'.$key.'',"=",$value);
-                                       }
-                                       elseif($key=="created_at")
-                                       {
-                                           $tablekey=''.$this->app->dbTable(['log_api']).'.'.$key.'';
-                                           $query->whereRaw("FROM_UNIXTIME(".$tablekey.",'%Y-%m-%d') ='".date("Y-m-d",strtotime($value))."'");
-                                       }
-                                       else
-                                       {
-                                           $query->where(''.$this->app->dbTable(['log_api']).'.'.$key.'',"=",$value);
-                                       }
-
+                                      $query->where(''.$this->app->dbTable(['notifications']).'.'.$key.'',"=",$value);
                                    }
                                }
                                else
@@ -71,44 +58,47 @@ class notificationsModel extends Controller
    }
 
 
-     public function postNotifications()
-     {
+   public function postNotifications()
+   {
+        return app("\Query")->uplog(['notifications'],function()
+        {
             return DB::table($this->app->dbTable(['notifications']))->where("id","=",\Input::get("id"))->update($this->app->getvalidPostkey(\Input::all(),['_token']));
-     }
+        });
+   }
 
 
-     public function postNotificationsnew()
-     {
-            \Input::merge(array('created_at' =>time()));
-            \Input::merge(array('updated_at' =>time()));
+   public function postNotificationsnew()
+   {
+        \Input::merge(array('created_at' =>time()));
+        \Input::merge(array('updated_at' =>time()));
 
-             return DB::table($this->app->dbTable(['notifications']))->insert($this->app->getvalidPostkey(\Input::all(),['_token']));
-     }
+        return DB::table($this->app->dbTable(['notifications']))->insert($this->app->getvalidPostkey(\Input::all(),['_token']));
+   }
 
-      public function postprocessnotifications()
-      {
-          if(\Input::get("notificationssignprocess")=="1")
-          {
-             $return=[];
-             foreach (\Input::get("sign") as $sign)
-             {
+
+   public function postprocessnotifications()
+   {
+        if(\Input::get("notificationssignprocess")=="1")
+        {
+            $return=[];
+            foreach (\Input::get("sign") as $sign)
+            {
                 if(DB::table($this->app->dbTable(['notifications']))->delete(['id'=>$sign])==false)
                 {
                     return false;
                 }
-             }
+            }
 
-             return true;
+            return true;
 
-          }
+        }
+   }
 
 
-      }
-
-    private function filterHas()
-    {
+   private function filterHas()
+   {
         return app("\Filter")->filterHas();
-    }
+   }
 
 
 

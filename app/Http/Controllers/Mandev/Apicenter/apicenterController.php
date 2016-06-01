@@ -40,7 +40,7 @@ class apicenterController extends Controller
              //menu statu
              $this->data['menu']=$this->app->menuStatu('normal');
              //page role
-             $this->data['pageRole']=$this->app->pageRole(['pageRole'=>1,'admin'=>$this->admin]);
+             $this->data['pageRole']=$this->app->pageRole(['pageRole'=>13,'admin'=>$this->admin]);
              //admin view
              $this->data['admin']=$this->admin;
              //get model

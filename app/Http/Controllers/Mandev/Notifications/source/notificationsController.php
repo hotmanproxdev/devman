@@ -94,7 +94,7 @@ class notificationsController extends Controller
 
                             'modal'=>
                                 [
-                                    'edit'=>['action'=>'notifications/edit','title'=>'Tsql Editleme Bölümü']
+                                    'edit'=>['action'=>'notifications/editnotifications','title'=>'notifications Düzenleme Bölümü']
                                 ],
 
                             'link'=>
@@ -190,20 +190,20 @@ class notificationsController extends Controller
                                 'class'=>'',
                                 'append'=>'',
                                 'default'=>'Filtrele',
-                                'action'=>'Notifications/Notificationsfilter'
+                                'action'=>'notifications/notificationsfilter'
                             ],
 
                             [
                                 'type'=>'action',
                                 'status'=>true,
-                                'data'=>['1'=>'Seçilileri Sil'],
+                                'data'=>['1'=>$this->data['delete_selected']],
                                 'class'=>'',
-                                'default'=>'--Seçililere İşlem Uygula--',
+                                'default'=>'--;'.$this->data['app_delete_selected'].'--',
                                 'action'=>'processnotifications'
                             ]
                         ]
 
-                    )
+                    )->filterDivide(7)
 
 
                      ->edit(
@@ -221,12 +221,6 @@ class notificationsController extends Controller
                                                     //'ccode'
                                                 ],
 
-
-                                                'in'=>[
-
-                                                    //'ccode'
-                                                ],
-
                                                 'select'=>[
 
                                                     //'status'=>[1=>$this->data['active'],0=>$this->data['passive']]
@@ -235,6 +229,12 @@ class notificationsController extends Controller
                                                 'header'=>[
 
                                                    //'role_define'=>'Rol Tanımı'
+                                                ],
+
+
+                                                'require'=>[
+
+                                                    //'username'
                                                 ]
                                             ]
                                         )
@@ -246,6 +246,20 @@ class notificationsController extends Controller
                         $this->tsql->update([],function($list) use ($data)
                         {
 
+                            $list['created_at']=['query'=>function ($query)
+                            {
+
+                                $list=[];
+                                if(count($query))
+                                {
+                                    foreach ($query as $result)
+                                    {
+                                        $list[]=date("Y-m-d H:i:s",$result->created_at);
+                                    }
+                                }
+
+                                return $list;
+                            }];
 
                             //update list
                             $this->tdata=$this->tsql->update(['list'=>$list,'data'=>$data]);

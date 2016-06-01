@@ -98,7 +98,7 @@ class BeforeMiddleware
 
 
 
-        $this->app->insertLang(["url_path"=>"default","word_data"=>['newbutton'=>'Yeni Ekle'],"lang"=>1]);
+        $this->app->insertLang(["url_path"=>"default","word_data"=>['homepage'=>'Anasayfa'],"lang"=>1]);
 
 
         return $next($request);

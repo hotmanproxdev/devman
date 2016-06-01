@@ -13,96 +13,123 @@
     <!-- BEGIN MEGA MENU -->
     <!-- DOC: Apply "hor-menu-light" class after the "hor-menu" class below to have a horizontal menu with white background -->
     <!-- DOC: Remove data-hover="dropdown" and data-close-others="true" attributes below to disable the dropdown opening on mouse hover -->
+
+    {{--*/ $parent=array() /*--}}
+    {{--*/ $menus=array() /*--}}
+    {{--*/ $icon=array() /*--}}
+    {{--*/ $sub=array() /*--}}
+
+
+    @foreach ($menuParentData as $parentresult)
+
+      {{--*/ $parent[$parentresult->parent]['menu'][]=$parentresult->menu /*--}}
+      {{--*/ $parent[$parentresult->parent]['link'][]=$parentresult->link /*--}}
+      {{--*/ $parent[$parentresult->parent]['icon'][]=$parentresult->icon /*--}}
+      {{--*/ $parent[$parentresult->parent]['role'][]=$parentresult->role /*--}}
+
+      {{--*/ $menus[$parentresult->link]=$parentresult->menu /*--}}
+      {{--*/ $sub[$parentresult->parent]=$parentresult->id /*--}}
+    @endforeach
+
+
     <div class="hor-menu ">
       <ul class="nav navbar-nav">
+
+
+
+        @if($route==="home")
+
         <li class="active">
+
+          @else
+          <li class="">
+            @endif
+
+
           <a href="{{$baseUrl}}/{{strtolower(config("app.admin_dirname"))}}/home">
             <i class="icon-home"></i>
-            <span class="title">Anasayfa</span>
+
+            @if($route==="home")
+            <span class="title" style="color:#ffffdd;">{{$homepage}}</span>
+
+            @else
+              <span class="title" style="">{{$homepage}}</span>
+              @endif
             <span class="selected"></span>
           </a>
         </li>
 
 
-        @foreach ($menuData as $menuresult)
 
 
-          <li class="menu-dropdown mega-menu-dropdown ">
+        @foreach ($menuData as $result)
 
-            @if(count($menuParentData))
+          @if($route===$result->link and !array_key_exists($result->id,$parent))
+              <li class="active menu-dropdown mega-menu-dropdown ">
+            @else
 
-              {{--*/ $k=false /*--}}
-            @foreach ($menuParentData as $menuresult2)
+              @if($route===$result->link or (array_key_exists($result->id,$parent) and in_array($route,$parent[$result->id]['link'])))
+              <li class="active menu-dropdown mega-menu-dropdown ">
+              @else
+              <li class="menu-dropdown mega-menu-dropdown ">
+              @endif
 
-              @if(!$k)
-              @if($menuresult2->parent==$menuresult->id)
+            @endif
 
-            <a data-hover="megamenu-dropdown" data-close-others="true" data-toggle="dropdown" href="{{$baseUrl}}/{{strtolower(config("app.admin_dirname"))}}/{{$menuresult->link}}"
+
+
+
+            @if(array_key_exists($result->id,$sub))
+            <a data-hover="megamenu-dropdown" data-close-others="true" data-toggle="dropdown" href="{{$baseUrl}}/{{strtolower(config("app.admin_dirname"))}}"
+
+               @else
+              <a href="{{$baseUrl}}/{{strtolower(config("app.admin_dirname"))}}/{{$result->link}}"
+                   @endif
                class="dropdown-toggle">
 
-              {{--*/ $down=true /*--}}
 
-              @else
+              <i class="{{$result->icon}}"></i>
 
-                <a href="{{$baseUrl}}/{{strtolower(config("app.admin_dirname"))}}/{{$menuresult->link}}"
-                   class="dropdown-toggle">
-
-                  {{--*/ $down=false /*--}}
-
+              @if(array_key_exists($result->id,$parent) && in_array($route,$parent[$result->id]['link']))
+                <span class="title" style="color:#ffffdd;">{{$result->menu}} - {{$menus[$route]}}</span>
+                @else
+                <span class="title">{{$result->menu}}</span>
                 @endif
 
-                  @endif
-
-                  {{--*/ $k=true /*--}}
-
-              @endforeach
-
-                  @else
 
 
-                    <a href="{{$baseUrl}}/{{strtolower(config("app.admin_dirname"))}}/{{$menuresult->link}}"
-                       class="dropdown-toggle">
-                    {{--*/ $down=false /*--}}
-
-
-                    @endif
-
-
-
-              <i class="{{$menuresult->icon}}"></i>
-              <span class="title">{{$menuresult->menu}}</span>
-              <span class="arrow "></span>
-
-                  @if($down)
-                    <i class="fa fa-angle-down"></i>
-                    @else
-
-                    @endif
+              @if(array_key_exists($result->id,$parent))
+                <span class="arrow "></span>
+                <i class="fa fa-angle-down"></i>
+              @endif
 
             </a>
 
-
-            <ul class="dropdown-menu" style="min-width: 200px">
+            @if(array_key_exists($result->id,$sub))
+            <ul class="dropdown-menu" style="min-width: 226px">
               <li>
                 <div class="mega-menu-content">
                   <div class="row">
                     <div class="col-md-12">
                       <ul class="mega-menu-submenu">
 
-                        @foreach ($menuParentData as $menuresult2)
+                        @if(array_key_exists($result->id,$parent))
 
-                          @if($menuresult2->parent==$menuresult->id)
+                          @foreach ($parent[$result->id]['menu'] as $submenukey=>$submenuval)
 
-                        <li>
-                          <a href="{{$baseUrl}}/{{strtolower(config("app.admin_dirname"))}}/{{$menuresult2->link}}" class="iconify">
-                            <i class="{{$menuresult2->icon}}"></i>
-                            {{$menuresult2->menu}}</a>
-                        </li>
+                            @if(app()->make("Base")->pageRole(['pageRole'=>$parent[$result->id]['role'][$submenukey],'admin'=>$admin]))
+                              <li>
+                                <a href="{{$baseUrl}}/{{strtolower(config("app.admin_dirname"))}}/{{$parent[$result->id]['link'][$submenukey]}}" class="iconify">
+                                  <i class="{{$parent[$result->id]['icon'][$submenukey]}}"></i>
+                                  {{$submenuval}}</a>
+                              </li>
+                            @endif
+                          @endforeach
 
-                          @endif
+                        @endif
 
 
-                        @endforeach
+
 
                       </ul>
                     </div>
@@ -110,6 +137,10 @@
                   </div>
                 </div>
               </li>
+              @else
+                <ul>
+                @endif
+
             </ul>
 
 
@@ -117,9 +148,7 @@
           </li>
 
 
-          @endforeach
-
-
+        @endforeach
 
 
 
