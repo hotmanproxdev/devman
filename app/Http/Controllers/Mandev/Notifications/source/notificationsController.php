@@ -235,9 +235,91 @@ class notificationsController extends Controller
                                                 'require'=>[
 
                                                     //'username'
-                                                ]
+                                                ],
+                                                'changesql'=>[
+                                                             /*'parent'=>[
+
+                                                                          'changesql'=>'table//match//field',
+                                                                          'changesqlresult'=>'resultclass'
+                                                                          ]*/
+                                                             ],
+
+                                                             'explain'=>[
+                                                                            //'menu'=>'Menu ismini yazmanız zorunludur'
+                                                                        ],
+
+                                                             'class'=>[
+
+                                                                        //'menu'=>'datetimepicker'
+                                                                       ]
                                             ]
                                         )
+
+
+
+                                         ->newset(
+
+                                                                    [
+                                                                        'name'=>'',
+                                                                        'action'=>'notifications',
+
+                                                                        'out'=>[
+                                                                            'created_at',
+                                                                            'updated_at',
+                                                                            //'hash',
+                                                                            //'last_hash'
+                                                                        ],
+
+                                                                        'in'=> [
+
+                                                                            //'ccode',
+                                                                            //'username',
+                                                                            //'password',
+                                                                            //'email',
+                                                                            //'fullname'
+                                                                        ],
+
+                                                                        'select'=>[
+
+                                                                            //'status'=>[1=>$this->data['active'],0=>$this->data['passive']]
+                                                                        ],
+
+                                                                        'header'=>[
+
+                                                                            //'password'=>'Yeni Şifre'
+                                                                        ],
+
+                                                                        'require'=>[
+
+                                                                            //'username',
+                                                                            //'password',
+                                                                            //'email',
+                                                                            //'fullname'
+                                                                        ],
+
+                                                                        'default'=>[
+                                                                            //'id'=>1
+                                                                        ],
+
+                                                                        'changesql'=>[
+                                                                                        /*'parent'=>[
+
+                                                                                                    'changesql'=>'table//match//field',
+                                                                                                     'changesqlresult'=>'resultclass'
+                                                                                                   ]*/
+                                                                                      ],
+
+                                                                        'explain'=>[
+                                                                                        //'menu'=>'Menu ismini yazmanız zorunludur'
+                                                                                   ],
+
+                                                                        'class'=>[
+
+                                                                                    //'menu'=>'datetimepicker'
+                                                                                 ]
+                                                                    ]
+                                                                )
+
 
                     /* command run */
                     ->run(function($data)

@@ -88,3 +88,6 @@ td.page-ajax-passive { padding: 10px; border:1px solid #ccc; background-color :#
 .namecolor { font-weight:bold; }
 .key {  color:#336699; font-weight:bold; }
 .ccode { font-weight:bold; color:#e20a16; }
+
+
+select.status { background-color:#ffffdd; }

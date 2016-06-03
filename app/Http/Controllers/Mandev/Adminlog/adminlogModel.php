@@ -83,6 +83,7 @@ class adminlogModel extends Controller
     public function getBrowserFamily()
     {
          $browserFamily=DB::table($this->app->dbTable(['logs']))->select("browserFamily")->groupBy("browserFamily")->get();
+        $browserFamilyList=[];
          foreach ($browserFamily as $result)
          {
              $browserFamilyList[$result->browserFamily]=$result->browserFamily;
@@ -96,6 +97,7 @@ class adminlogModel extends Controller
     public function getOsFamily()
     {
         $osFamily=DB::table($this->app->dbTable(['logs']))->select("osFamily")->groupBy("osFamily")->get();
+        $osFamilyList=[];
         foreach ($osFamily as $result)
         {
             $osFamilyList[$result->osFamily]=$result->osFamily;
@@ -108,6 +110,7 @@ class adminlogModel extends Controller
     public function getdeviceFamily()
     {
         $deviceFamily=DB::table($this->app->dbTable(['logs']))->select("deviceFamily")->groupBy("deviceFamily")->get();
+        $deviceFamilyList=[];
         foreach ($deviceFamily as $result)
         {
             if(strlen($result->deviceFamily)>0)

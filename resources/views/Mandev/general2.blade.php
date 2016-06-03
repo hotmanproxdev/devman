@@ -528,6 +528,9 @@ License: You must have a valid license purchased only from themeforest(the above
   {
 
     var changesql=$(this).attr("changesql");
+
+
+
     var val=$(this).val();
     var result=$(this).attr("changesqlresult");
 

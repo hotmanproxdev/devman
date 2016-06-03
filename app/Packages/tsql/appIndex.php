@@ -287,6 +287,15 @@ class appIndex
         return $this;
     }
 
+    public function newset($new=array())
+    {
+        if(count($new))
+        {
+            $this->data['new']=$new;
+        }
+        return $this;
+    }
+
 
     public function run($callback=false,$arg=array())
     {

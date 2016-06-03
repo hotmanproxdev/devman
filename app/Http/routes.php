@@ -13,11 +13,7 @@
 
 Route::group(['prefix' =>''.strtolower(config("app.admin_dirname")).'/','namespace'=>''.config("app.admin_dirname").''], function () {
 
-      
 
-      
-      
-      
       
       
       //dont delete this comment line

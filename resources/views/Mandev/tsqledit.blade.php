@@ -61,11 +61,27 @@
 												<span class="input-group-addon">
 												<i class="fa fa-check"></i>
 												</span>
+                {{--*/ $cclass='' /*--}}
+                {{--*/ $cclass2='' /*--}}
+                {{--*/ $cclass3='' /*--}}
+                {{--*/ $cclass4='' /*--}}
 
+
+                @if(array_key_exists("changesql",\Session($name)['data']['edit']) && array_key_exists($result,\Session($name)['data']['edit']['changesql']))
+
+                  {{--*/ $cclass='changesql' /*--}}
+                  {{--*/ $cclass2='changesql='.\Session($name)['data']['edit']['changesql'][$result]['changesql'].'' /*--}}
+                  {{--*/ $cclass3='changesqlresult='.\Session($name)['data']['edit']['changesql'][$result]['changesqlresult'].'' /*--}}
+                @endif
+
+                @if(array_key_exists("class",\Session($name)['data']['new']) && array_key_exists($result,\Session($name)['data']['new']['class']))
+
+                  {{--*/ $cclass4=''.\Session($name)['data']['new']['class'][$result].'' /*--}}
+                @endif
 
                 @if(array_key_exists($result,\Session($name)['data']['edit']['select']) && !array_key_exists($result,\Session($name)['data']['fillIn']['matching']))
 
-                  <select  name="{{$result}}" class="form-control">
+                  <select  name="{{$result}}" class="{{$result}} {{$cclass}} {{$cclass4}} form-control" {{$cclass2}} {{$cclass3}}   >
 
                 <option value="{{$query->$result}}">{{\Session($name)['data']['edit']['select'][$result][$query->$result]}}</option>
 
@@ -83,7 +99,7 @@
 
                   @elseif(array_key_exists($result,\Session($name)['data']['fillIn']['matching']))
 
-                  <select name="{{$result}}" class="form-control">
+                  <select name="{{$result}}" class="{{$result}} {{$cclass}} {{$cclass4}} form-control" {{$cclass2}} {{$cclass3}} >
 
                     <option value="{{array_search($query->$result,\Session($name)['data']['fillIn']['matching'][$result])}}">{{$query->$result}}</option>
 
@@ -104,22 +120,31 @@
                     @if(in_array($result,\Session($name)['data']['edit']['require']))
 
                       {{--*/ $require='' /*--}}
-                      <input type="text"  name="{{$result}}" class="form-control {{$result}} {{$datetimepicker}}" require="input-{{$result}}" value="{{$query->$result}}"/>
+                      <input type="text"  name="{{$result}}" class="form-control {{$result}} {{$datetimepicker}} {{$cclass4}}" require="input-{{$result}}" value="{{$query->$result}}"/>
                       <span class="validation {{$result}}">* {{$validation_warning}}</span>
                     @else
 
                       {{--*/ $require='' /*--}}
-                      <input type="text"  name="{{$result}}" class="form-control {{$datetimepicker}}" value="{{$query->$result}}"/>
+                      <input type="text"  name="{{$result}}" class="form-control {{$datetimepicker}} {{$cclass4}}" value="{{$query->$result}}"/>
 
                     @endif
                   @else
 
-                <input type="text"  name="{{$result}}" class="form-control {{$datetimepicker}}" value="{{$query->$result}}"/>
+                <input type="text"  name="{{$result}}" class="form-control {{$datetimepicker}} {{$cclass4}}" value="{{$query->$result}}"/>
 
                     @endif
 
                   @endif
               </div>
+
+              @if(array_key_exists("explain",\Session($name)['data']['edit']) && array_key_exists($result,\Session($name)['data']['edit']['explain']) )
+                <p class="help-block">
+												<span class="label label-success label-sm">
+												{{$explain}}: </span> &nbsp;
+                  {{\Session($name)['data']['edit']['explain'][$result]}}
+                </p>
+
+              @endif
 
             </div>
           </div>

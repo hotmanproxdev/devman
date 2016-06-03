@@ -244,7 +244,8 @@ class menusController extends Controller
                                                     'parent'=>'Alt Menu Seçimi',
                                                     'link'=>'Menu Linki',
                                                     'row'=>'Menu Sıralaması',
-                                                    'status'=>'Menü Durumu'
+                                                    'status'=>'Menü Durumu',
+                                                    'role'=>'Menü Yetki Numarası'
                                                 ],
 
 
@@ -254,9 +255,93 @@ class menusController extends Controller
                                                     'icon',
                                                     'parent',
                                                     'row'
+                                                ],
+
+                                                'changesql'=>[
+                                                    /*'parent'=>[
+
+                                                        'changesql'=>'hotels//country//hotel_name',
+                                                        'changesqlresult'=>'status'
+                                                    ]*/
+                                                ],
+
+                                                'explain'=>[
+                                                    //'menu'=>'Menu ismini yazmanız zorunludur'
+                                                ],
+
+                                                'class'=>[
+
+                                                    //'menu'=>'datetimepicker'
                                                 ]
                                             ]
                                         )
+
+
+
+                        ->newset(
+
+                            [
+                                'name'=>$this->data['menunewname'],
+                                'action'=>'menus',
+
+                                'out'=>[
+                                    'created_at',
+                                    'updated_at'
+                                ],
+
+                                'in'=> [
+
+                                    //'ccode'
+                                ],
+
+                                'select'=>[
+
+                                    //'status'=>[1=>$this->data['active'],0=>$this->data['passive']]
+                                ],
+
+                                'header'=>[
+
+                                    'menu'=>'Menu İsmi',
+                                    'icon'=>'Menu Resmi',
+                                    'parent'=>'Alt Menu Seçimi',
+                                    'link'=>'Menu Linki',
+                                    'row'=>'Menu Sıralaması',
+                                    'status'=>'Menü Durumu',
+                                    'role'=>'Menü Yetki Numarası'
+                                ],
+
+
+                                'require'=>[
+
+                                    'menu',
+                                    'icon',
+                                    'parent',
+                                    'row'
+                                ],
+
+                                'default'=>[
+                                    'role'=>1,
+                                    'icon'=>'fa fa-list'
+                                ],
+
+                                'changesql'=>[
+                                    /*'parent'=>[
+
+                                        'changesql'=>'hotels//country//hotel_name',
+                                        'changesqlresult'=>'status'
+                                    ]*/
+                                ],
+
+                                'explain'=>[
+                                    //'menu'=>'Menu ismini yazmanız zorunludur'
+                                ],
+
+                                'class'=>[
+
+                                    //'menu'=>'datetimepicker'
+                                ]
+                            ]
+                        )
 
                     /* command run */
                     ->run(function($data)

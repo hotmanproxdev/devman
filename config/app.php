@@ -174,6 +174,8 @@ return [
         JeroenG\Packager\PackagerServiceProvider::class,
         Barryvdh\DomPDF\ServiceProvider::class,
         Laravel\Socialite\SocialiteServiceProvider::class,
+        Maatwebsite\Excel\ExcelServiceProvider::class,
+        //Khill\Lavacharts\Laravel\LavachartsServiceProvider::class,
 
 
     ],
@@ -249,6 +251,9 @@ return [
         'Env' =>App\Http\Services\EnvironmentController::class,
         'Base' =>App\Http\Services\BaseController::class,
         'Socialite' => Laravel\Socialite\Facades\Socialite::class,
+        'Excel' => Maatwebsite\Excel\Facades\Excel::class,
+        'Excell' =>App\Http\Services\excellController::class,
+
 
     ],
 

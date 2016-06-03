@@ -54,17 +54,16 @@ class testController extends Controller
     {
         $changesql=explode("//",Input::get("changesql"));
 
-        $sql=DB::table($this->app->dbTable([$changesql[0]]))->select([$changesql[2]])->where($changesql[1],"=",Input::get("val"))->get();
+        $sql=DB::table($this->app->dbTable([$changesql[0]]))->select(['id',$changesql[2]])->where($changesql[1],"=",Input::get("val"))->get();
 
-        $list=array('<option value="none">'.$this->data['apiGroup'].'</option>');
-
+        $list=array('<option value="none">-- '.$this->data['makechoose'].' --</option>');
         if(count($sql))
         {
             foreach ($sql as $result)
             {
-                $reschange=DB::table($this->app->dbTable([$changesql[3]]))->select(['id',$changesql[4]])->where($changesql[4],"=",$result->$changesql[2])->get();
+                //$reschange=DB::table($this->app->dbTable([$changesql[3]]))->select(['id',$changesql[4]])->where($changesql[4],"=",$result->$changesql[2])->get();
 
-                $list[]='<option value="'.$reschange[0]->id.'">'.$reschange[0]->$changesql[4].'</option>';
+                $list[]='<option value="'.$result->id.'">'.$result->$changesql[2].'</option>';
             }
         }
 

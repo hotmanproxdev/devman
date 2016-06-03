@@ -251,6 +251,58 @@ class managersController extends Controller
                                             ]
                                         )
 
+
+
+                        ->newset(
+
+                            [
+                                'name'=>'',
+                                'action'=>'managers',
+
+                                'out'=>[
+                                    'created_at',
+                                    'updated_at',
+                                    'hash',
+                                    'last_hash'
+                                ],
+
+                                'in'=> [
+
+                                    'ccode',
+                                    'username',
+                                    'password',
+                                    'email',
+                                    'fullname'
+                                ],
+
+                                'select'=>[
+
+                                    //'status'=>[1=>$this->data['active'],0=>$this->data['passive']]
+                                ],
+
+                                'header'=>[
+
+                                    'password'=>'Yeni Şifre'
+                                ],
+
+                                'require'=>[
+
+                                    'username',
+                                    'password',
+                                    'email',
+                                    'fullname'
+                                ],
+
+                                'default'=>[
+                                    //'id'=>1
+                                ]
+                            ]
+                        )
+
+
+
+
+
                     /* command run */
                     ->run(function($data)
                     {
