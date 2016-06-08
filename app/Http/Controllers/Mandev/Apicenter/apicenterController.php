@@ -239,7 +239,7 @@ class apicenterController extends Controller
                     $this->data['daily_request_limit']=>[Input::get("request")],
                 ],
                 "str_select"=>[
-                    Input::get("ccode")=>($this->admin->system_number==0) ? ['develop','guest'] : ['guest'],
+                    Input::get("ccode")=>($this->admin->system_number==0) ? ['develop'=>'develop','guest'=>'guest'] : ['guest'=>'guest'],
                     Input::get("access_service_key")=>[1,0],
                     Input::get("request_type")=>[1,0]
                 ],

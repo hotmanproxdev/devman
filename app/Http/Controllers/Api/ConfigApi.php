@@ -20,6 +20,12 @@ class ConfigApi extends Controller
     public $cacheStatu=true;
     public $user_agent='Symfony/2.X';
     public $pageNumber=10;
+    public $isMobile=false;
+    public $isDesktop=false;
+    public $isTablet=false;
+    public $ios=false;
+    public $android=false;
+    public $web=false;
 
     public function __construct(Request $request)
     {
@@ -334,6 +340,115 @@ class ConfigApi extends Controller
     }
 
 
+
+    /*
+   |--------------------------------------------------------------------------
+   | Application Api Custom Output isMobile
+   |--------------------------------------------------------------------------
+   |
+   | Here is where you can register as ismobile output of the api for an application.
+   | It's a breeze. Simply tell Laravel the URIs it should respond to
+   | and give it the controller to call when that URI is requested.
+   |
+   */
+
+    public function isMobile()
+    {
+        $this->isMobile=true;
+        return $this;
+    }
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | Application Api Custom Output isDesktop
+    |--------------------------------------------------------------------------
+    |
+    | Here is where you can register as isDesktop output of the api for an application.
+    | It's a breeze. Simply tell Laravel the URIs it should respond to
+    | and give it the controller to call when that URI is requested.
+    |
+    */
+
+    public function isDesktop()
+    {
+        $this->isDesktop=true;
+        return $this;
+    }
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | Application Api Custom Output isTablet
+    |--------------------------------------------------------------------------
+    |
+    | Here is where you can register as isDesktop output of the api for an application.
+    | It's a breeze. Simply tell Laravel the URIs it should respond to
+    | and give it the controller to call when that URI is requested.
+    |
+    */
+
+    public function isTablet()
+    {
+        $this->isTablet=true;
+        return $this;
+    }
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | Application Api Custom Output ios
+    |--------------------------------------------------------------------------
+    |
+    | Here is where you can register as ios output of the api for an application.
+    | It's a breeze. Simply tell Laravel the URIs it should respond to
+    | and give it the controller to call when that URI is requested.
+    |
+    */
+
+    public function ios()
+    {
+        $this->ios=true;
+        return $this;
+    }
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | Application Api Custom Output Android
+    |--------------------------------------------------------------------------
+    |
+    | Here is where you can register as android output of the api for an application.
+    | It's a breeze. Simply tell Laravel the URIs it should respond to
+    | and give it the controller to call when that URI is requested.
+    |
+    */
+
+    public function android()
+    {
+        $this->android=true;
+        return $this;
+    }
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | Application Api Custom Output Android
+    |--------------------------------------------------------------------------
+    |
+    | Here is where you can register as android output of the api for an application.
+    | It's a breeze. Simply tell Laravel the URIs it should respond to
+    | and give it the controller to call when that URI is requested.
+    |
+    */
+
+    public function web()
+    {
+        $this->web=true;
+        return $this;
+    }
+
+
     /*
    |--------------------------------------------------------------------------
    | Application Api Custom Get Method
@@ -367,13 +482,123 @@ class ConfigApi extends Controller
              * @result App $result
              * @mission success false array
              */
-             $result=['success'=>false,'query'=>[]];
+             $result=['success'=>false,'msg'=>'no result'];
         }
 
          /**
          * @return App $return
-         * @mission return json object
+         * @mission return output object
          */
+
+         if($this->isMobile)
+         {
+             /**
+              * @param App $app browser detect
+              * @throws callable method
+              */
+             $browser=\BrowserDetect::toArray();
+
+             if(!$browser['isMobile'])
+             {
+                 /**
+                  * @result App $result
+                  * @mission success false array
+                  */
+                 $result=['success'=>false,'msg'=>'no result'];
+             }
+         }
+
+        if($this->isDesktop)
+        {
+            /**
+             * @param App $app browser detect
+             * @throws callable method
+             */
+            $browser=\BrowserDetect::toArray();
+
+            if(!$browser['isDesktop'])
+            {
+                /**
+                 * @result App $result
+                 * @mission success false array
+                 */
+                $result=['success'=>false,'msg'=>'no result'];
+            }
+        }
+
+
+        if($this->isTablet)
+        {
+            /**
+             * @param App $app browser detect
+             * @throws callable method
+             */
+            $browser=\BrowserDetect::toArray();
+
+            if(!$browser['isTablet'])
+            {
+                /**
+                 * @result App $result
+                 * @mission success false array
+                 */
+                $result=['success'=>false,'msg'=>'no result'];
+            }
+        }
+
+        if($this->ios)
+        {
+            /**
+             * @param App $app browser detect
+             * @throws callable method
+             */
+            $browser=\BrowserDetect::toArray();
+
+            if($browser['osFamily']!=="Apple iOS")
+            {
+                /**
+                 * @result App $result
+                 * @mission success false array
+                 */
+                $result=['success'=>false,'msg'=>'no result'];
+            }
+        }
+
+
+        if($this->android)
+        {
+            /**
+             * @param App $app browser detect
+             * @throws callable method
+             */
+            $browser=\BrowserDetect::toArray();
+
+            if($browser['osFamily']!=="AndroidOS")
+            {
+                /**
+                 * @result App $result
+                 * @mission success false array
+                 */
+                $result=['success'=>false,'msg'=>'no result'];
+            }
+        }
+
+        if($this->web)
+        {
+            /**
+             * @param App $app browser detect
+             * @throws callable method
+             */
+            $browser=\BrowserDetect::toArray();
+
+            if($browser['osFamily']=="AndroidOS" OR $browser['osFamily']=="Apple iOS")
+            {
+                /**
+                 * @result App $result
+                 * @mission success false array
+                 */
+                $result=['success'=>false,'msg'=>'no result'];
+            }
+        }
          return response()->json($result);
     }
 

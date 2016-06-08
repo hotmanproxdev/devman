@@ -534,7 +534,7 @@ class BaseServiceProviders extends Controller
             //db table services
             foreach ($this->dbTable(['all']) as $tabkey=>$tabindex)
             {
-                $services[]=$tabkey;
+                //$services[]=$tabkey;
             }
 
             $apicustom=DB::table($this->dbTable(['api_custom']))->distinct()->where("statu","=",1)->get(array("custom_models"));

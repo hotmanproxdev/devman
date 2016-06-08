@@ -46,14 +46,15 @@ class pageSetCommand extends Command
                 if(touch("".$app_path."".config("app.admin_dirname")."".$slashes."".ucfirst($this->argument("dir"))."".$slashes."source".$slashes."".$this->argument("sourcefile")."Controller.php"))
                 {
 
-                    if($this->argument("sourcefile")=="tsql")
+                    if($this->argument("table")=="main")
                     {
-                        $dosya = "".storage_path("app")."".$slashes."sourceFileTsql.txt";
+                        $dosya = "".storage_path("app")."".$slashes."sourceMain.txt";
                     }
                     else
                     {
                         $dosya = "".storage_path("app")."".$slashes."sourceFile.txt";
                     }
+
 
                     $dt = fopen($dosya, "rb");
                     $icerik = fread($dt, filesize($dosya));
@@ -66,7 +67,7 @@ class pageSetCommand extends Command
                     fwrite($dt,$icerik);
                     fclose($dt);
 
-                    if(strlen($this->argument("table"))>0)
+                    if(strlen($this->argument("table"))>0 && $this->argument("table")!=="main")
                     {
                         $dosya = "".$app_path."".config("app.admin_dirname")."".$slashes."".ucfirst($this->argument("dir"))."".$slashes."".$this->argument("dir")."Model.php";
 

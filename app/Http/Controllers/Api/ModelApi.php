@@ -126,6 +126,10 @@ class ModelApi extends Controller
 
                 }
 
+                if(!Session::has("laraapikey"))
+                {
+                    Session::put("laraapikey",$apikey);
+                }
 
                 return App($serviceName)->$method();
 

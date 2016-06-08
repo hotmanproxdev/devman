@@ -203,13 +203,39 @@ class ServicesApi extends Controller
 
         }
 
-        //log set
-        $this->log->set(['manipulation'=>1,'msg'=>'invalid sevice_name']);
+        //developer controller
+        $developer=$this->controller->developer(Session("apiHash"));
 
-        //developer api false
-        return response()->json(['success'=>false,
+        if(!$developer['success'])
+        {
+            //log set
+            $this->log->set(['manipulation'=>1,'msg'=>'invalid sevice_name']);
+
+            //developer api false
+            return response()->json(['success'=>false,
                 'msg'=>'invalid service name'
-               ]);
+            ]);
+        }
+
+
+        if(!array_key_exists($serviceName,$this->app->dbTable(['all'])) && $developer['user'][0]->ccode=="develop")
+        {
+            //log set
+            $this->log->set(['manipulation'=>1,'msg'=>'invalid sevice_name']);
+
+            //developer api false
+            return response()->json(['success'=>false,
+                'msg'=>'invalid service name'
+            ]);
+        }
+
+
+        //service call
+        return $this->model->get($serviceName,['codingRequest'=>false,'apiId'=>$developer['apiId'],'user'=>$developer['user']]);
+
+
+
+
     }
 
 
@@ -226,6 +252,7 @@ class ServicesApi extends Controller
             $services=array_merge($test,$access_service);
         }
 
+
         //authorized forbidden access services
         if($apiuser[0]->forbidden_access_services!==NULL)
         {
@@ -239,7 +266,35 @@ class ServicesApi extends Controller
                 }
 
             }
-            $services=json_encode(array_merge($test,$serviceNames));
+            $services=array_merge($test,$serviceNames);
+        }
+
+        if($apiuser[0]->ccode=="develop")
+        {
+            $apiarray= [
+                'access_services'=>$services,
+                'forbidden_access_services'=>explode("-",$apiuser[0]->forbidden_access_services),
+                'update'=>($apiuser[0]->api_coding_update) ? true : false,
+                'insert'=>($apiuser[0]->api_coding_insert) ? true : false,
+                'delete'=>($apiuser[0]->api_coding_delete) ? true : false,
+                'mainTables'=>$this->app->dbTable(['all'])
+            ];
+        }
+        else
+        {
+            $forbiddenList=[];
+            foreach (explode("-",$apiuser[0]->forbidden_access_services) as $fb)
+            {
+                if(!array_key_exists($fb,$this->app->dbTable(['all'])))
+                {
+                    $forbiddenList[]=$fb;
+                }
+            }
+
+            $apiarray= [
+                'access_services'=>$services,
+                'forbidden_access_services'=>$forbiddenList
+            ];
         }
         $json_content=[
                        'success'=>true,
@@ -262,15 +317,10 @@ class ServicesApi extends Controller
                            'all_service_request_json'=>json_decode($apiuser[0]->all_service_request_number,true)
                            ],
                        'api'=>
-                            [
-                           'access_services'=>$services,
-                               'forbidden_access_services'=>json_encode(explode("-",$apiuser[0]->forbidden_access_services),true),
-                           'select'=>$this->request->header("select"),
-                           'update'=>$this->request->header("update")
-                           ]
+                            $apiarray
                        ];
 
-        if($json_content['api']['select']!==NULL)
+        /*if($json_content['api']['select']!==NULL)
         {
             $selectMode=json_decode($json_content['api']['select'],true);
             foreach ($json_content as $key=>$content)
@@ -282,7 +332,7 @@ class ServicesApi extends Controller
             }
 
             $json_content=$select_json;
-        }
+        }*/
 
 
         //api developer

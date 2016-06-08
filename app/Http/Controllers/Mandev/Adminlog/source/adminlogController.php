@@ -289,6 +289,16 @@ class adminlogController extends Controller
 
                     )->filterDivide(7)
 
+                    ->graph(
+                        [
+                            'status'=>true,
+                            'datas'=>
+                            [
+
+                            ]
+                        ]
+                    )
+
 
                     /* command run */
                     ->run(function($data)

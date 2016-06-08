@@ -207,6 +207,29 @@ class ApiVersionControl extends Controller
         {
             if(is_callable($callback))
             {
+                if(preg_match('@update@',$getMethod[1]))
+                {
+                    if(!$apikey[0]->api_coding_update)
+                    {
+                        return response()->json(['success'=>false,'msg'=>'You dont have authority for update process']);
+                    }
+                }
+
+                if(preg_match('@insert@',$getMethod[1]))
+                {
+                    if(!$apikey[0]->api_coding_insert)
+                    {
+                        return response()->json(['success'=>false,'msg'=>'You dont have authority for insert process']);
+                    }
+                }
+
+                if(preg_match('@delete@',$getMethod[1]))
+                {
+                    if(!$apikey[0]->api_coding_delete)
+                    {
+                        return response()->json(['success'=>false,'msg'=>'You dont have authority for delete process']);
+                    }
+                }
                 $call=call_user_func($callback);
 
                 $callex=explode("{",$call);

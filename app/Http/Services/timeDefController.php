@@ -96,4 +96,5 @@ class timeDefController extends Controller
     {
        return $data/60;
     }
+
 }

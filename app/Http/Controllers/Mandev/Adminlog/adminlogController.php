@@ -62,6 +62,9 @@ class adminlogController extends Controller
         //get adminlog list
         $this->data['query'] = $this->source->data("adminlog")->get("get");
 
+        //get graphs list
+        $this->data['columnChart'] = $this->source->data("graphs")->get("column");
+
         //ajax return view
         $view=view("".config("app.admin_dirname").".".$this->url_path.".main",$this->data);
 
