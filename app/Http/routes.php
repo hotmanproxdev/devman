@@ -143,3 +143,6 @@ Route::get("/test","testController@index");
 
 Route::get("socialite/facebook","socialiteController@facebook");
 Route::get("socialite/callback","socialiteController@callback");
+Route::get("socialite/instagram","socialiteController@instagram");
+Route::get("socialite/test","socialiteController@test");
+Route::get("socialite/test2","socialiteController@test2");

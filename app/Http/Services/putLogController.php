@@ -60,7 +60,7 @@ class putLogController extends Controller
             $data['referer']=$this->request->header("referer");
             $data['formprocess']=($this->request->ajax()) ? 'Ajax Request' : 'Normal Request';
 
-            $data['user_agent']=$this->request->header('user-Agent');
+            $data['user_agent']='';
             $data['user_host']=$this->request->header('host');
             $data['user_host']='';
 

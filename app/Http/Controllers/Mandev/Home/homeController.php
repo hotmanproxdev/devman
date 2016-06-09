@@ -9,6 +9,7 @@ use Illuminate\Contracts\Routing\ResponseFactory;
 use DB;
 use Time;
 use Cache;
+use Larabros\Elogram\Client as Client;
 
 class homeController extends Controller
 {

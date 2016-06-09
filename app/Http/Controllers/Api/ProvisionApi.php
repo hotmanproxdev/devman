@@ -77,13 +77,9 @@ class ProvisionApi extends Controller
          * @result success true|false
          * @false adding msq key and info
          */
+        $success=($this->request->header("postdata")) ? true : false;
 
-        if($this->request->header("postdata"))
-        {
-            return ['success'=>true];
-        }
-
-        return ['success'=>false,'msg'=>'post provision condition'];
+        return ['success'=>$success,'msg'=>'post provision condition'];
     }
 
 

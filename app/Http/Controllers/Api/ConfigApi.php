@@ -485,6 +485,13 @@ class ConfigApi extends Controller
              $result=['success'=>false,'msg'=>'no result'];
         }
 
+        /**
+         * @param App $app browser detect
+         * @throws callable method
+         */
+        $browser=\BrowserDetect::toArray();
+        $browserresult=['success'=>false,'msg'=>'no result'];
+
          /**
          * @return App $return
          * @mission return output object
@@ -492,29 +499,18 @@ class ConfigApi extends Controller
 
          if($this->isMobile)
          {
-             /**
-              * @param App $app browser detect
-              * @throws callable method
-              */
-             $browser=\BrowserDetect::toArray();
-
              if(!$browser['isMobile'])
              {
                  /**
                   * @result App $result
                   * @mission success false array
                   */
-                 $result=['success'=>false,'msg'=>'no result'];
+                 $result=$browserresult;
              }
          }
 
         if($this->isDesktop)
         {
-            /**
-             * @param App $app browser detect
-             * @throws callable method
-             */
-            $browser=\BrowserDetect::toArray();
 
             if(!$browser['isDesktop'])
             {
@@ -522,81 +518,57 @@ class ConfigApi extends Controller
                  * @result App $result
                  * @mission success false array
                  */
-                $result=['success'=>false,'msg'=>'no result'];
+                $result=$browserresult;
             }
         }
 
 
         if($this->isTablet)
         {
-            /**
-             * @param App $app browser detect
-             * @throws callable method
-             */
-            $browser=\BrowserDetect::toArray();
-
             if(!$browser['isTablet'])
             {
                 /**
                  * @result App $result
                  * @mission success false array
                  */
-                $result=['success'=>false,'msg'=>'no result'];
+                $result=$browserresult;
             }
         }
 
         if($this->ios)
         {
-            /**
-             * @param App $app browser detect
-             * @throws callable method
-             */
-            $browser=\BrowserDetect::toArray();
-
             if($browser['osFamily']!=="Apple iOS")
             {
                 /**
                  * @result App $result
                  * @mission success false array
                  */
-                $result=['success'=>false,'msg'=>'no result'];
+                $result=$browserresult;
             }
         }
 
 
         if($this->android)
         {
-            /**
-             * @param App $app browser detect
-             * @throws callable method
-             */
-            $browser=\BrowserDetect::toArray();
-
             if($browser['osFamily']!=="AndroidOS")
             {
                 /**
                  * @result App $result
                  * @mission success false array
                  */
-                $result=['success'=>false,'msg'=>'no result'];
+                $result=$browserresult;
             }
         }
 
         if($this->web)
         {
-            /**
-             * @param App $app browser detect
-             * @throws callable method
-             */
-            $browser=\BrowserDetect::toArray();
-
             if($browser['osFamily']=="AndroidOS" OR $browser['osFamily']=="Apple iOS")
             {
                 /**
                  * @result App $result
                  * @mission success false array
                  */
-                $result=['success'=>false,'msg'=>'no result'];
+                $result=$browserresult;
             }
         }
          return response()->json($result);
