@@ -8,13 +8,13 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Larabros\Elogram\Client as Client;
 
-class socialiteController extends Controller
+class instagramController extends Controller
 {
 
     public $request;
     private $instagramClientId='2cc6bab5c386499e983090b0fa69c927';
     private $instagramClientSecret='2032d51fc73345de920e73c237b76d7e';
-    private $instagramRedirectUrl='http://localhost:8070/projects/devman/devman/public/socialite/instagram?this=that';
+    private $instagramRedirectUrl='http://localhost:8070/projects/devman/devman/public/socialite/services/instagram/token';
 
     public function __construct(Request $request)
     {
@@ -22,12 +22,12 @@ class socialiteController extends Controller
     }
 
     /**
-     * Store a newly created resource in instagram.
+     * Store a token resource in instagram.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function instagram()
+    public function getToken()
     {
         session_start();
         $client = new \GuzzleHttp\Client();
@@ -36,8 +36,8 @@ class socialiteController extends Controller
         {
             $clientCheck = new Client($this->instagramClientId, $this->instagramClientSecret, null, $this->instagramRedirectUrl);
 
-            dd($clientCheck->getLoginUrl());
-            return redirect($clientCheck->getLoginUrl());
+            $login=str_replace('scope=basic',"scope=basic+follower_list+public_content+comments+relationships+likes",$clientCheck->getLoginUrl());
+            return redirect($login);
         }
 
         $response = $client->post('https://api.instagram.com/oauth/access_token', array('form_params' => array(
@@ -50,6 +50,5 @@ class socialiteController extends Controller
 
         return $response->getBody()->getContents();
     }
-
 
 }
