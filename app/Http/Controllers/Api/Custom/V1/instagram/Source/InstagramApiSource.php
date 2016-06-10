@@ -91,18 +91,24 @@ class InstagramApiSource extends Controller
          */
         $client = new \GuzzleHttp\Client();
 
+        /**
+         * @param Api source get instagram user
+         * @throws return class object
+         */
+        $instagramUser=$this->getInstagramUser();
+
         //endpoint : users
         if($data['endpoint']==="users")
         {
             //guzzle get request data
-            $request=$client->get("https://api.instagram.com/v1/users/self/?access_token=".$this->getInstagramUser()->access_token);
+            $request=$client->get("https://api.instagram.com/v1/users/self/?access_token=".$instagramUser->access_token);
         }
 
         //endpoint : media
         if($data['endpoint']==="media")
         {
             //guzzle get request data
-            $request=$client->get("https://api.instagram.com/v1/users/".$this->getInstagramUser()->id."/media/recent/?access_token=".$this->getInstagramUser()->access_token);
+            $request=$client->get("https://api.instagram.com/v1/users/".$instagramUser->id."/media/recent/?access_token=".$instagramUser->access_token);
         }
 
         return $request;
