@@ -48,6 +48,10 @@ class BeforeMiddleware
      */
     public function handle($request, Closure $next)
     {
+        if(date_default_timezone_get()==="UTC")
+        {
+            date_default_timezone_set('Europe/Istanbul');
+        }
         if(config("app.log_status"))
         {
             $this->log->admin(['access','request','request'],Input::all());

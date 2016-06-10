@@ -6,10 +6,6 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Contracts\Routing\ResponseFactory;
-use DB;
-use Time;
-use Cache;
-use Larabros\Elogram\Client as Client;
 
 class homeController extends Controller
 {
@@ -20,7 +16,7 @@ class homeController extends Controller
        public $url_path='home';
        public $time;
 
-       public function __construct (Request $request,Time $time)
+       public function __construct (Request $request)
        {
            //page protector
            $this->middleware('auth');
@@ -38,8 +34,6 @@ class homeController extends Controller
            $this->data['pageRole']=$this->app->pageRole(['pageRole'=>1,'admin'=>$this->admin]);
            //page admin
            $this->data['admin']=$this->admin;
-           //time def
-           $this->time=$time;
 
        }
 

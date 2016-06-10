@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Carbon\Carbon;
 
 class timeDefController extends Controller
 {
@@ -95,6 +96,20 @@ class timeDefController extends Controller
     public function convertDate($data)
     {
        return $data/60;
+    }
+
+    public function diff($int)
+    {
+        Carbon::setLocale('en');
+        //date_default_timezone_set('Europe/London');
+        return Carbon::createFromTimestamp($int)->timezone(date_default_timezone_get())->diffForHumans();
+    }
+
+    public function date($int)
+    {
+        Carbon::setLocale('en');
+        //date_default_timezone_set('Europe/London');
+        return Carbon::createFromTimestamp($int)->timezone(date_default_timezone_get());
     }
 
 }
