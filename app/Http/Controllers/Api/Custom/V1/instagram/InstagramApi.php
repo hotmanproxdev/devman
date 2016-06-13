@@ -81,7 +81,7 @@ class InstagramApi extends Controller implements \App\Http\Controllers\Api\Inter
     |
     | Here is where you can register instagram media endpoint of the api for an application.
     | It's a breeze. Simply tell Laravel the URIs it should respond to
-    | and give it the controller to call when that URI is requested.x
+    | and give it the controller to call when that URI is requested
     |
     */
 
